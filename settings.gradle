@@ -1,0 +1,57 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "Study-Android"
+
+include ':Base-HelloWorld'
+
+include ':UI-Common-Activity'
+include ':UI-Common-Fragment'
+include ':UI-Layout-Linear'
+include ':UI-Layout-Table'
+include ':UI-Layout-Frame'
+include ':UI-Layout-Relative'
+include ':UI-Layout-Constraint'
+include ':UI-CtrlBase-TextView'
+include ':UI-CtrlBase-EditText'
+include ':UI-CtrlBase-Button'
+include ':UI-CtrlBase-ToggleButton'
+include ':UI-CtrlBase-ImageView'
+include ':UI-CtrlBase-Toast'
+include ':UI-CtrlBase-AlertDialog'
+include ':UI-CtrlBase-SeekBar'
+include ':UI-CtrlExt-RecyclerView'
+include ':UI-CtrlMD-TabLayout'
+
+include ':SYS-Common-Bundle'
+include ':SYS-Common-Parcelable'
+include ':SYS-Service-Base'
+include ':SYS-Service-Foreground'
+include ':SYS-Service-Bind'
+include ':SYS-Service-AIDL-Server'
+include ':SYS-Service-AIDL-Client'
+include ':SYS-Broadcast-System'
+include ':SYS-Broadcast-Normal'
+include ':SYS-Broadcast-Ordered'
+include ':SYS-Broadcast-Local'
+
+include ':Store-File-FileStore'
+include ':Store-KV-SharedPreferences'
+// include ':Store-DB-Room'
+
+include ':Media-Common-MediaSession-Server'
+include ':Media-Common-MediaSession-Client'
+include ':Media-Audio-AudioFocus'

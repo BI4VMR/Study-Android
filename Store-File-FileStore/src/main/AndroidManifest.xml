@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.bi4vmr.study">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DEFAULT">
+
+        <activity
+            android:name="net.bi4vmr.study.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例：读取raw目录资源 -->
+        <activity
+            android:name=".apkraw.DemoAPKRawUI"
+            android:exported="false" />
+
+        <!-- 示例：读取assets目录资源 -->
+        <activity
+            android:name=".apkassets.DemoAPKAssetsUI"
+            android:exported="false" />
+
+        <!-- 示例：读写应用私有数据（内部） -->
+        <activity
+            android:name=".privateinner.DemoPrivateInnerUI"
+            android:exported="false" />
+
+        <!-- 读写应用私有数据（外部） -->
+        <activity
+            android:name=".privateoutter.DemoPrivateOutterUI"
+            android:exported="false" />
+
+        <!-- 示例：读写共享数据目录 -->
+        <activity
+            android:name=".publicdir.DemoPublicUI"
+            android:exported="false" />
+    </application>
+</manifest>

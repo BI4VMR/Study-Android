@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btRefresh"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/list_item_type1" />
+
+    <Button
+        android:id="@+id/btRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="刷新数据集"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btReset"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="重置"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/btRefresh"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="HardcodedText" />
+</androidx.constraintlayout.widget.ConstraintLayout>

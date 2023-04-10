@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.bi4vmr.study">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DEFAULT">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例：启动新的Activity -->
+        <activity
+            android:name=".gotopage.DemoGotoPageUI"
+            android:exported="false" />
+
+        <!-- 测试Activity -->
+        <activity
+            android:name=".gotopage.TestActivity"
+            android:exported="false" />
+
+        <!-- 示例：启动新的Activity -->
+        <activity
+            android:name=".gotoforresult2.DemoGotoForResult2UI"
+            android:exported="false" />
+
+        <!-- 示例：生命周期 -->
+        <activity
+            android:name=".lifecycle.DemoLifeCycleUI"
+            android:exported="false" />
+
+        <!-- 示例：视图数据保持 -->
+        <activity
+            android:name=".viewstate.DemoViewStateUI"
+            android:exported="false" />
+
+        <!-- 示例：启动模式 -->
+        <activity
+            android:name=".launchmode.DemoLaunchModeUI"
+            android:exported="false" />
+
+        <!-- 启动模式测试页：Standard -->
+        <activity
+            android:name=".launchmode.StandardActivity"
+            android:exported="true" />
+
+        <!-- 启动模式测试页：SingleTop -->
+        <activity
+            android:name=".launchmode.SingleTopActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+
+        <!-- 启动模式测试页：SingleTask -->
+        <activity
+            android:name=".launchmode.SingleTaskActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:taskAffinity=".affinity" />
+
+        <!-- 启动模式测试页：SingleInstance -->
+        <activity
+            android:name=".launchmode.SingleInstanceActivity"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:taskAffinity=".affinity" />
+    </application>
+</manifest>
