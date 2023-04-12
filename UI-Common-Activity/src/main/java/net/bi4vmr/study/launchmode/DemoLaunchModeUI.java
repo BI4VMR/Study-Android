@@ -2,25 +2,26 @@ package net.bi4vmr.study.launchmode;
 
 import android.app.ActivityManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.R;
 
+import java.util.List;
+
 public class DemoLaunchModeUI extends AppCompatActivity {
 
-    private ActivityManager am;
-
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launchmodetest);
-
-        am = getSystemService(ActivityManager.class);
 
         // 页面ID
         TextView tvID = findViewById(R.id.tvID);
@@ -53,6 +54,17 @@ public class DemoLaunchModeUI extends AppCompatActivity {
             Intent intent = new Intent(this, SingleInstanceActivity.class);
             startActivity(intent);
         });
+
+        // 获取ActivityManager实例
+        ActivityManager am = getSystemService(ActivityManager.class);
+        // 获取任务列表并打印它们的信息
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(100);
+        for (ActivityManager.RunningTaskInfo item : list) {
+            Log.i("myapp", "----------");
+            Log.i("myapp", "TaskID:" + item.id);
+            Log.i("myapp", "Package:" + item.topActivity.getPackageName());
+            Log.i("myapp", "----------");
+        }
     }
 
     @Override

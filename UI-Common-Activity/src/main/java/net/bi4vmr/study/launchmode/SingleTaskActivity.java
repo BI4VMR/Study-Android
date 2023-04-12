@@ -1,6 +1,7 @@
 package net.bi4vmr.study.launchmode;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.R;
 
+import java.util.List;
 import java.util.UUID;
 
 public class SingleTaskActivity extends AppCompatActivity {
@@ -55,6 +57,17 @@ public class SingleTaskActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SingleInstanceActivity.class);
             startActivity(intent);
         });
+
+        // 获取ActivityManager实例
+        ActivityManager am = getSystemService(ActivityManager.class);
+        // 获取任务列表并打印它们的信息
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(100);
+        for (ActivityManager.RunningTaskInfo item : list) {
+            Log.i("myapp", "----------");
+            Log.i("myapp", "TaskID:" + item.id);
+            Log.i("myapp", "Package:" + item.topActivity.getPackageName());
+            Log.i("myapp", "----------");
+        }
     }
 
     @Override
