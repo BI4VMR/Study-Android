@@ -1,5 +1,6 @@
 package net.bi4vmr.study.launchmode;
 
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,10 +13,14 @@ import net.bi4vmr.study.R;
 
 public class DemoLaunchModeUI extends AppCompatActivity {
 
+    private ActivityManager am;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launchmodetest);
+
+        am = getSystemService(ActivityManager.class);
 
         // 页面ID
         TextView tvID = findViewById(R.id.tvID);
