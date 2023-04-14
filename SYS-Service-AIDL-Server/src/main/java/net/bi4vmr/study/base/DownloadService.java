@@ -38,6 +38,13 @@ public class DownloadService extends Service {
         // 回调接口的实现类，用于向客户端反馈结果。
         private TaskCallback callback;
 
+        /**
+         * Name        : 获取服务端进程ID
+         * <p>
+         * Description : 获取服务端进程ID。
+         *
+         * @return 服务端的进程ID
+         */
         @Override
         public int getPID() {
             return Process.myPid();
