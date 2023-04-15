@@ -26,12 +26,17 @@
 
         <!-- 示例：ChipGroup：换行显示 -->
         <activity
-            android:name=".chipgrouplinefeed.DemoChipGroupLineFeedUI"
+            android:name=".group_linefeed.DemoGroupLineFeedUI"
             android:exported="false" />
 
         <!-- 示例：ChipGroup：单选与多选 -->
         <activity
-            android:name=".chipgroupchoice.DemoChipGroupChoiceUI"
+            android:name=".group_choice.DemoGroupChoiceUI"
+            android:exported="false" />
+
+        <!-- 示例：ChipGroup：动态创建表项 -->
+        <activity
+            android:name=".group_additem.DemoGroupAddItemUI"
             android:exported="false" />
     </application>
 </manifest>

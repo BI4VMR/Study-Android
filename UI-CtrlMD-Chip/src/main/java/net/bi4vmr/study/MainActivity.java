@@ -7,8 +7,9 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.DemoBaseUI;
-import net.bi4vmr.study.chipgroupchoice.DemoChipGroupChoiceUI;
-import net.bi4vmr.study.chipgrouplinefeed.DemoChipGroupLineFeedUI;
+import net.bi4vmr.study.group_additem.DemoGroupAddItemUI;
+import net.bi4vmr.study.group_choice.DemoGroupChoiceUI;
+import net.bi4vmr.study.group_linefeed.DemoGroupLineFeedUI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,16 +26,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // ChipGroup：换行显示
-        Button btnChipGroupLineFeed = findViewById(R.id.btnChipGroupLineFeed);
-        btnChipGroupLineFeed.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemoChipGroupLineFeedUI.class);
+        Button btnGroupLineFeed = findViewById(R.id.btnGroupLineFeed);
+        btnGroupLineFeed.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DemoGroupLineFeedUI.class);
             startActivity(intent);
         });
 
         // ChipGroup：单选与多选
-        Button btnChipGroupChoice = findViewById(R.id.btnChipGroupChoice);
-        btnChipGroupChoice.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemoChipGroupChoiceUI.class);
+        Button btnGroupChoice = findViewById(R.id.btnGroupChoice);
+        btnGroupChoice.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DemoGroupChoiceUI.class);
+            startActivity(intent);
+        });
+
+        // ChipGroup：动态创建表项
+        Button btnGroupAddItem = findViewById(R.id.btnGroupAddItem);
+        btnGroupAddItem.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DemoGroupAddItemUI.class);
             startActivity(intent);
         });
     }

@@ -16,7 +16,7 @@
         android:text="基本应用" />
 
     <Button
-        android:id="@+id/btnChipGroupLineFeed"
+        android:id="@+id/btnGroupLineFeed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -25,11 +25,20 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/btnChipGroupChoice"
+        android:id="@+id/btnGroupChoice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="ChipGroup：单选与多选"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnGroupAddItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="ChipGroup：动态创建表项"
         android:textAllCaps="false" />
 </LinearLayout>
