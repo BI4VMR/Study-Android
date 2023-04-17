@@ -3,16 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:ignore="HardcodedText">
 
-    <ImageButton
-        android:id="@+id/ibTest"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_funny_256"
-        android:contentDescription="@null" />
+        android:text="功能按钮"
+        app:rippleColor="#0F0"
+        app:icon="@drawable/ic_funny_256"
+        app:iconTintMode="add"
+        app:iconTint="@color/purple_500"
+        app:iconSize="32dp"
+        android:textAllCaps="false" />
 </LinearLayout>

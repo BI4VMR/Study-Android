@@ -6,7 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.demo01.Demo01Activity;
+import net.bi4vmr.study.base.DemoBaseUI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,9 +15,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn01 = findViewById(R.id.btn01);
-        btn01.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Demo01Activity.class);
+        // 基本应用
+        Button btnBase = findViewById(R.id.btnBase);
+        btnBase.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DemoBaseUI.class);
             startActivity(intent);
         });
     }

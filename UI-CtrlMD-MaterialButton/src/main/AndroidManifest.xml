@@ -10,7 +10,7 @@
         android:theme="@style/Theme.DEFAULT">
 
         <activity
-            android:name=".MainActivity"
+            android:name="net.bi4vmr.study.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +19,9 @@
             </intent-filter>
         </activity>
 
+        <!-- 示例：基本应用 -->
         <activity
-            android:name="net.bi4vmr.study.demo01.Demo01Activity"
+            android:name=".base.DemoBaseUI"
             android:exported="false" />
     </application>
 </manifest>
