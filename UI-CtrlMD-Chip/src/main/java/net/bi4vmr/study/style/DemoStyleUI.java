@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.style;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,12 +9,12 @@ import com.google.android.material.chip.Chip;
 
 import net.bi4vmr.study.R;
 
-public class DemoBaseUI extends AppCompatActivity {
+public class DemoStyleUI extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_demo_base);
+        setContentView(R.layout.ui_demo_style);
 
         Chip chipAction = findViewById(R.id.chipAction);
         Chip chipFilter = findViewById(R.id.chipFilter);

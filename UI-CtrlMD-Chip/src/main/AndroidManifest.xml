@@ -24,6 +24,11 @@
             android:name=".base.DemoBaseUI"
             android:exported="false" />
 
+        <!-- 示例：外观定制 -->
+        <activity
+            android:name=".style.DemoStyleUI"
+            android:exported="false" />
+
         <!-- 示例：ChipGroup：换行显示 -->
         <activity
             android:name=".group_linefeed.DemoGroupLineFeedUI"

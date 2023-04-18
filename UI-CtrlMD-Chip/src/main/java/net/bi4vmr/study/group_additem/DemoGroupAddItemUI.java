@@ -42,7 +42,7 @@ public class DemoGroupAddItemUI extends AppCompatActivity {
             List<Integer> idList = chipgroup.getCheckedChipIds();
             Log.i("myapp", "当前Group中被选中的ItemID：" + idList);
             for (int id : idList) {
-                Chip item = (Chip) chipgroup.findViewById(id);
+                Chip item = chipgroup.findViewById(id);
                 if (item != null) {
                     Log.i("myapp", "Text:" + item);
                 }
@@ -52,9 +52,13 @@ public class DemoGroupAddItemUI extends AppCompatActivity {
         // 新增Item按钮
         btnAdd.setOnClickListener(v -> {
             Chip chip = new Chip(this);
-            chip.setCheckedIconVisible(true);
-            chip.setCheckable(true);
             chip.setText(genRandomID());
+            chip.setCloseIconVisible(true);
+            chip.setOnCloseIconClickListener(btnClose -> {
+                /* 当关闭按钮被点击时，从容器中移除自身。 */
+                chipgroup.removeView(chip);
+            });
+            chip.setCheckable(true);
             chipgroup.addView(chip);
         });
 

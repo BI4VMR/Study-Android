@@ -16,8 +16,9 @@
         android:text="多行显示"
         android:textColor="@color/black" />
 
+    <!-- 多行ChipGroup（默认） -->
     <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipgroupSingle"
+        android:id="@+id/chipgroupMulti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -64,8 +65,7 @@
 
         <!-- 单行ChipGroup -->
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipgroupMulti"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:id="@+id/chipgroupSingle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:singleLine="true">

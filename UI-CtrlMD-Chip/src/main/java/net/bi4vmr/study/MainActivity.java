@@ -10,6 +10,7 @@ import net.bi4vmr.study.base.DemoBaseUI;
 import net.bi4vmr.study.group_additem.DemoGroupAddItemUI;
 import net.bi4vmr.study.group_choice.DemoGroupChoiceUI;
 import net.bi4vmr.study.group_linefeed.DemoGroupLineFeedUI;
+import net.bi4vmr.study.style.DemoStyleUI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +23,13 @@ public class MainActivity extends AppCompatActivity {
         Button btnBase = findViewById(R.id.btnBase);
         btnBase.setOnClickListener(v -> {
             Intent intent = new Intent(this, DemoBaseUI.class);
+            startActivity(intent);
+        });
+
+        // 外观定制
+        Button btnStyle = findViewById(R.id.btnStyle);
+        btnStyle.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DemoStyleUI.class);
             startActivity(intent);
         });
 
