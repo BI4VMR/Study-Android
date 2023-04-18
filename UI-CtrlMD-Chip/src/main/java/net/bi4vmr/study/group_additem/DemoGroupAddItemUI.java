@@ -30,7 +30,7 @@ public class DemoGroupAddItemUI extends AppCompatActivity {
 
         // 获取当前状态按钮
         btnGet.setOnClickListener(v -> {
-            // 获取所有表项
+            /* 获取所有表项 */
             List<View> viewList = new ArrayList<>();
             int childCount = chipgroup.getChildCount();
             for (int i = 0; i < childCount; i++) {
@@ -38,13 +38,14 @@ public class DemoGroupAddItemUI extends AppCompatActivity {
             }
             Log.i("myapp", "当前Group中已添加的Item数量：" + viewList.size());
 
-            // 获取选中表项
+            /* 获取选中表项 */
             List<Integer> idList = chipgroup.getCheckedChipIds();
             Log.i("myapp", "当前Group中被选中的ItemID：" + idList);
             for (int id : idList) {
-                Chip item = chipgroup.findViewById(id);
-                if (item != null) {
-                    Log.i("myapp", "Text:" + item);
+                View item = chipgroup.findViewById(id);
+                if (item instanceof Chip) {
+                    Chip chip = (Chip) item;
+                    Log.i("myapp", "Text:" + chip.getText());
                 }
             }
         });
