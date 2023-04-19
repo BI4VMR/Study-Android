@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,57 +13,36 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="10dp"
-        android:text="Action Chip"
+        android:text="基本样式"
         android:textColor="@color/black" />
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chipAction"
+        android:id="@+id/chipStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chip Style" />
+        android:checkable="true"
+        android:text="Base Style"
+        app:checkedIconVisible="true"
+        app:chipBackgroundColor="@color/background"
+        app:chipCornerRadius="0dp"
+        app:chipStrokeColor="#F00"
+        app:chipStrokeWidth="1dp"
+        app:chipSurfaceColor="@color/black"
+        app:rippleColor="@null" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="10dp"
-        android:text="Filter Chip"
+        android:text="状态图标"
         android:textColor="@color/black" />
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chipFilter"
-        style="@style/Widget.MaterialComponents.Chip.Filter"
+        android:id="@+id/chipIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FilterChip" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="10dp"
-        android:text="Entry Chip"
-        android:textColor="@color/black" />
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chipEntry"
-        style="@style/Widget.MaterialComponents.Chip.Entry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EntryChip" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="10dp"
-        android:text="Choice Chip"
-        android:textColor="@color/black" />
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chipChoice"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ChoiceChip" />
+        android:text="Icon Style"
+        app:chipIcon="@drawable/ic_funny_256"
+        app:closeIconVisible="true" />
 </LinearLayout>
