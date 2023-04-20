@@ -17,34 +17,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="获取"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnAdd"
+        app:layout_constraintBottom_toTopOf="@id/btnBackToA"
+        app:layout_constraintEnd_toStartOf="@id/btnReload"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnAdd"
+        android:id="@+id/btnReload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="新增"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnReplace"
-        app:layout_constraintStart_toEndOf="@id/btnGet" />
-
-    <Button
-        android:id="@+id/btnReplace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="替换"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="重置"
+        app:layout_constraintBottom_toTopOf="@id/btnBackToA"
         app:layout_constraintEnd_toStartOf="@id/btnBack"
-        app:layout_constraintStart_toEndOf="@id/btnAdd" />
+        app:layout_constraintStart_toEndOf="@id/btnGet" />
 
     <Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="回退"
+        app:layout_constraintBottom_toTopOf="@id/btnBackToA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnReload" />
+
+    <Button
+        android:id="@+id/btnBackToA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="回退至状态A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnBackToB"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnBackToB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="回退至状态B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnReplace" />
+        app:layout_constraintStart_toEndOf="@id/btnBackToA" />
 </androidx.constraintlayout.widget.ConstraintLayout>

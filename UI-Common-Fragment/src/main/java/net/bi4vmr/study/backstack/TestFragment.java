@@ -1,4 +1,4 @@
-package net.bi4vmr.study.manage;
+package net.bi4vmr.study.backstack;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,7 +19,7 @@ public class TestFragment extends Fragment {
 
     private static final String PARAM_TEXTINFO = "TEXTINFO";
 
-    private String textInfo;
+    private String textInfo = "";
 
     /**
      * 获取Fragment实例
@@ -40,7 +40,7 @@ public class TestFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        Log.i("myapp", "Fragment(" + textInfo + "): OnAttach.");
+        Log.i("myapp", "Fragment: OnAttach.");
     }
 
     @Override
@@ -111,5 +111,16 @@ public class TestFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         Log.i("myapp", "Fragment(" + textInfo + "): OnDetach.");
+    }
+
+    /**
+     * Name        : 获取页面名称
+     * <p>
+     * Description : 获取当前页面初始化时由外部设置的名称。
+     *
+     * @return 页面名称。
+     */
+    public String getName() {
+        return textInfo;
     }
 }

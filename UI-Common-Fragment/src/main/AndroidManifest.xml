@@ -33,5 +33,10 @@
         <activity
             android:name=".manage.DemoManageUI"
             android:exported="false" />
+
+        <!-- 示例：回退栈 -->
+        <activity
+            android:name=".backstack.DemoBackStackUI"
+            android:exported="false" />
     </application>
 </manifest>

@@ -34,7 +34,6 @@ public class DemoManageUI extends AppCompatActivity {
             Log.i("myapp", fmList.toString());
         });
 
-
         // 向容器中添加Fragment
         btnAdd.setOnClickListener(v -> {
             // 创建Fragment实例
@@ -44,10 +43,30 @@ public class DemoManageUI extends AppCompatActivity {
             // 获取Fragment事务实例
             FragmentTransaction transaction = manager.beginTransaction();
             // 添加Fragment
-            transaction.add(R.id.container, fragment);
-            transaction.addToBackStack("");
+            transaction.add(R.id.container, TestFragment.newInstance(genRandomID()));
+            // 添加Fragment
+            transaction.add(R.id.container, TestFragment.newInstance(genRandomID()));
+            transaction.addToBackStack("2");
+            transaction.add(R.id.container, TestFragment.newInstance(genRandomID()));
+            transaction.add(R.id.container, TestFragment.newInstance(genRandomID()));
+            transaction.addToBackStack("6");
             // 提交事务
             transaction.commit();
+
+//
+//            FragmentTransaction transaction2 = manager.beginTransaction();
+//            // 添加Fragment
+//            transaction2.add(R.id.container, TestFragment.newInstance(genRandomID()));
+//            transaction2.addToBackStack("3");
+//            // 提交事务
+//            transaction2.commit();
+//
+//            FragmentTransaction transaction4 = manager.beginTransaction();
+//            // 添加Fragment
+//            transaction4.add(R.id.container, TestFragment.newInstance(genRandomID()));
+//            transaction4.addToBackStack("2");
+//            // 提交事务
+//            transaction4.commit();
         });
 
         // 替换容器中的Fragment
@@ -70,21 +89,9 @@ public class DemoManageUI extends AppCompatActivity {
             // 获取FragmentManager实例
             FragmentManager manager = getSupportFragmentManager();
             // manager.popBackStack();
-            manager.popBackStack("AAA", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            manager.popBackStack("AAA", 0);
+            manager.popBackStack("2", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//            manager.popBackStack("", 0);
         });
-
-        // 创建Fragment实例
-        TestFragment fragment = TestFragment.newInstance(genRandomID());
-        // 获取FragmentManager实例
-        FragmentManager manager = getSupportFragmentManager();
-        // 获取Fragment事务实例
-        FragmentTransaction transaction = manager.beginTransaction();
-        // 添加Fragment
-        transaction.add(R.id.container, fragment, "AAA");
-        transaction.addToBackStack("");
-        // 提交事务
-        transaction.commit();
     }
 
     // 获取随机ID

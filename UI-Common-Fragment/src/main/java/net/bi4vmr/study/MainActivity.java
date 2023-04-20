@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.bi4vmr.study.backstack.DemoBackStackUI;
 import net.bi4vmr.study.base.DemoBaseUI;
 import net.bi4vmr.study.initdata.DemoInitDataUI;
 import net.bi4vmr.study.manage.DemoManageUI;
@@ -35,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
         Button btnManage = findViewById(R.id.btnManage);
         btnManage.setOnClickListener(v -> {
             Intent intent = new Intent(this, DemoManageUI.class);
+            startActivity(intent);
+        });
+
+        // 回退栈
+        Button btnBackStack = findViewById(R.id.btnBackStack);
+        btnBackStack.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DemoBackStackUI.class);
             startActivity(intent);
         });
     }
