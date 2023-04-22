@@ -10,6 +10,7 @@ import net.bi4vmr.study.backstack.DemoBackStackUI;
 import net.bi4vmr.study.base.DemoBaseUI;
 import net.bi4vmr.study.initdata.DemoInitDataUI;
 import net.bi4vmr.study.manage.DemoManageUI;
+import net.bi4vmr.study.usecontext.DemoUseContextUI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
         Button btnBackStack = findViewById(R.id.btnBackStack);
         btnBackStack.setOnClickListener(v -> {
             Intent intent = new Intent(this, DemoBackStackUI.class);
+            startActivity(intent);
+        });
+
+        // 使用Context
+        Button btnUseContext = findViewById(R.id.btnUseContext);
+        btnUseContext.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DemoUseContextUI.class);
             startActivity(intent);
         });
     }

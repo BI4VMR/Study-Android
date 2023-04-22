@@ -38,5 +38,10 @@
         <activity
             android:name=".backstack.DemoBackStackUI"
             android:exported="false" />
+
+        <!-- 示例：使用Context -->
+        <activity
+            android:name=".usecontext.DemoUseContextUI"
+            android:exported="false" />
     </application>
 </manifest>
