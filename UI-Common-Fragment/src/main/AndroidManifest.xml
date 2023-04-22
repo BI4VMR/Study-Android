@@ -39,7 +39,7 @@
             android:name=".backstack.DemoBackStackUI"
             android:exported="false" />
 
-        <!-- 示例：使用Context -->
+        <!-- 示例：获取并使用Context -->
         <activity
             android:name=".usecontext.DemoUseContextUI"
             android:exported="false" />

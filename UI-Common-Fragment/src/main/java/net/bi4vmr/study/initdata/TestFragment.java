@@ -1,12 +1,15 @@
 package net.bi4vmr.study.initdata;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -46,8 +49,9 @@ public class TestFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Log.i("myapp", "OnAttach.");
         // 从Fragment中获取Bundle对象
         Bundle args = getArguments();
         if (args != null) {
@@ -59,6 +63,7 @@ public class TestFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.i("myapp", "OnCreateView.");
         View view = inflater.inflate(R.layout.fragment_test, container, false);
         TextView tv = view.findViewById(R.id.tvContent);
         tv.setText(textInfo);

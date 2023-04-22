@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 使用Context
+        // 获取并使用Context
         Button btnUseContext = findViewById(R.id.btnUseContext);
         btnUseContext.setOnClickListener(v -> {
             Intent intent = new Intent(this, DemoUseContextUI.class);
