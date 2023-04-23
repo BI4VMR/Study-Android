@@ -23,74 +23,113 @@ public class DemoManageUI extends AppCompatActivity {
 
         Button btnGet = findViewById(R.id.btnGet);
         Button btnAdd = findViewById(R.id.btnAdd);
+        Button btnRemove = findViewById(R.id.btnRemove);
         Button btnReplace = findViewById(R.id.btnReplace);
-        Button btnBack = findViewById(R.id.btnBack);
+        Button btnShow = findViewById(R.id.btnShow);
+        Button btnHide = findViewById(R.id.btnHide);
+        Button btnAttach = findViewById(R.id.btnAttach);
+        Button btnDetach = findViewById(R.id.btnDetach);
+
+        // 测试Fragment实例
+        Fragment fragment = TestFragment.newInstance(genRandomID());
 
         // 获取容器状态
         btnGet.setOnClickListener(v -> {
             // 获取FragmentManager实例
-            FragmentManager manager = getSupportFragmentManager();
-            List<Fragment> fmList = manager.getFragments();
-            Log.i("myapp", fmList.toString());
+            FragmentManager fm = getSupportFragmentManager();
+            List<Fragment> fmList = fm.getFragments();
+            Log.i("myapp", "Fragment count is " + fmList.size());
+            for (int i = 0; i < fmList.size(); i++) {
+                Fragment f = fmList.get(i);
+                if (f instanceof net.bi4vmr.study.backstack.TestFragment) {
+                    net.bi4vmr.study.backstack.TestFragment tf = (net.bi4vmr.study.backstack.TestFragment) f;
+                    Log.i("myapp", "Fragment " + i + " is " + tf.getName());
+                }
+            }
         });
 
         // 向容器中添加Fragment
         btnAdd.setOnClickListener(v -> {
-            // 创建Fragment实例
-            TestFragment fragment = TestFragment.newInstance(genRandomID());
             // 获取FragmentManager实例
             FragmentManager manager = getSupportFragmentManager();
             // 获取Fragment事务实例
             FragmentTransaction transaction = manager.beginTransaction();
             // 添加Fragment
-            transaction.add(R.id.container, TestFragment.newInstance(genRandomID()));
-            // 添加Fragment
-            transaction.add(R.id.container, TestFragment.newInstance(genRandomID()));
-            transaction.addToBackStack("2");
-            transaction.add(R.id.container, TestFragment.newInstance(genRandomID()));
-            transaction.add(R.id.container, TestFragment.newInstance(genRandomID()));
-            transaction.addToBackStack("6");
+            transaction.add(R.id.container, fragment);
             // 提交事务
             transaction.commit();
+        });
 
-//
-//            FragmentTransaction transaction2 = manager.beginTransaction();
-//            // 添加Fragment
-//            transaction2.add(R.id.container, TestFragment.newInstance(genRandomID()));
-//            transaction2.addToBackStack("3");
-//            // 提交事务
-//            transaction2.commit();
-//
-//            FragmentTransaction transaction4 = manager.beginTransaction();
-//            // 添加Fragment
-//            transaction4.add(R.id.container, TestFragment.newInstance(genRandomID()));
-//            transaction4.addToBackStack("2");
-//            // 提交事务
-//            transaction4.commit();
+        // 移除容器中的Fragment
+        btnRemove.setOnClickListener(v -> {
+            // 获取FragmentManager实例
+            FragmentManager manager = getSupportFragmentManager();
+            // 获取Fragment事务实例
+            FragmentTransaction transaction = manager.beginTransaction();
+            // 移除Fragment
+            transaction.remove(fragment);
+            // 提交事务
+            transaction.commit();
         });
 
         // 替换容器中的Fragment
         btnReplace.setOnClickListener(v -> {
-            // 创建Fragment实例
-            TestFragment fragment = TestFragment.newInstance(genRandomID());
             // 获取FragmentManager实例
             FragmentManager manager = getSupportFragmentManager();
             // 获取Fragment事务实例
             FragmentTransaction transaction = manager.beginTransaction();
-            // 添加Fragment
-            transaction.replace(R.id.container, fragment);
-            // transaction.addToBackStack("");
+            // 替换Fragment
+            transaction.replace(R.id.container, TestFragment.newInstance(genRandomID()));
             // 提交事务
             transaction.commit();
         });
 
-        // 回退
-        btnBack.setOnClickListener(v -> {
+        // 显示指定的Fragment
+        btnShow.setOnClickListener(v -> {
             // 获取FragmentManager实例
             FragmentManager manager = getSupportFragmentManager();
-            // manager.popBackStack();
-            manager.popBackStack("2", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//            manager.popBackStack("", 0);
+            // 获取Fragment事务实例
+            FragmentTransaction transaction = manager.beginTransaction();
+            // 显示Fragment
+            transaction.show(fragment);
+            // 提交事务
+            transaction.commit();
+        });
+
+        // 隐藏指定的Fragment
+        btnHide.setOnClickListener(v -> {
+            // 获取FragmentManager实例
+            FragmentManager manager = getSupportFragmentManager();
+            // 获取Fragment事务实例
+            FragmentTransaction transaction = manager.beginTransaction();
+            // 隐藏Fragment
+            transaction.hide(fragment);
+            // 提交事务
+            transaction.commit();
+        });
+
+        // 附加指定的Fragment
+        btnAttach.setOnClickListener(v -> {
+            // 获取FragmentManager实例
+            FragmentManager manager = getSupportFragmentManager();
+            // 获取Fragment事务实例
+            FragmentTransaction transaction = manager.beginTransaction();
+            // 隐藏Fragment
+            transaction.attach(fragment);
+            // 提交事务
+            transaction.commit();
+        });
+
+        // 分离指定的Fragment
+        btnDetach.setOnClickListener(v -> {
+            // 获取FragmentManager实例
+            FragmentManager manager = getSupportFragmentManager();
+            // 获取Fragment事务实例
+            FragmentTransaction transaction = manager.beginTransaction();
+            // 隐藏Fragment
+            transaction.detach(fragment);
+            // 提交事务
+            transaction.commit();
         });
     }
 

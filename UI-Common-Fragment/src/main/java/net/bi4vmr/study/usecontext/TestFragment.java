@@ -50,29 +50,24 @@ public class TestFragment extends Fragment {
          * 在回调触发时获取了Context，此时Fragment可能已经从Activity分离了，这种情况会导致异常。
          */
         // 延时5秒执行，模拟耗时操作。
-        handler.postDelayed(() -> {
-            // 获取Context
-            Context ctx = requireContext();
-            // 显示Toast
-            Toast.makeText(ctx, "Test", Toast.LENGTH_SHORT)
-                    .show();
-        }, 5000L);
+        // handler.postDelayed(() -> {
+        //     // 获取Context
+        //     Context ctx = requireContext();
+        //     // 显示Toast
+        //     Toast.makeText(ctx, "Test", Toast.LENGTH_SHORT)
+        //             .show();
+        // }, 5000L);
 
         /*
          * 以下是正确示范：
          *
-         * 在回调外面提前获取Context创建好Toast，等到触发时直接进行显示。
+         * 在回调外面提前获取Context，等到触发时直接使用。
          */
-        // 获取Context
-        Context ctx = requireContext();
-        // 使用 "onAttach()" 方法的参数也可以
-        // Context ctx = mContext;
-        // 初始化Toast，但先不进行显示。
-        Toast toast = Toast.makeText(ctx, "Test", Toast.LENGTH_SHORT);
         // 延时5秒执行，模拟耗时操作。
         handler.postDelayed(() -> {
-            // 异步方法触发，显示Toast。
-            toast.show();
+            // 使用 "onAttach()" 方法中保存的Context，显示Toast。
+            Toast.makeText(mContext, "Test", Toast.LENGTH_SHORT)
+                    .show();
         }, 5000L);
         return view;
     }

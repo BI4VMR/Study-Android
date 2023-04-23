@@ -40,18 +40,18 @@ public class TestFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        Log.i("myapp", "Fragment: OnAttach.");
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         // 从Fragment中获取Bundle对象
         Bundle args = getArguments();
         if (args != null) {
             // 从Bundle中取出参数
             textInfo = args.getString(PARAM_TEXTINFO);
         }
+        Log.i("myapp", "Fragment(" + textInfo + "): OnAttach.");
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         Log.i("myapp", "Fragment(" + textInfo + "): OnCreate.");
     }
 

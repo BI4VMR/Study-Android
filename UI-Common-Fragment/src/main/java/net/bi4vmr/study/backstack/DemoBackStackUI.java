@@ -48,9 +48,7 @@ public class DemoBackStackUI extends AppCompatActivity {
         });
 
         // 重置
-        btnReload.setOnClickListener(v -> {
-            initFragments();
-        });
+        btnReload.setOnClickListener(v -> initFragments());
 
         // 回退
         btnBack.setOnClickListener(v -> fragmentManager.popBackStack());
