@@ -93,7 +93,9 @@ public class DemoManageUI extends AppCompatActivity {
             // 显示Fragment
             transaction.show(fragment);
             // 提交事务
-            transaction.commit();
+            transaction.commitNow();
+            // 查看状态
+            Log.i("myapp", "Fragment隐藏状态：" + fragment.isHidden());
         });
 
         // 隐藏指定的Fragment
@@ -105,7 +107,9 @@ public class DemoManageUI extends AppCompatActivity {
             // 隐藏Fragment
             transaction.hide(fragment);
             // 提交事务
-            transaction.commit();
+            transaction.commitNow();
+            // 查看状态
+            Log.i("myapp", "Fragment隐藏状态：" + fragment.isHidden());
         });
 
         // 附加指定的Fragment

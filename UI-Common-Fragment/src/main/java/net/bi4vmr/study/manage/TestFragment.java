@@ -112,4 +112,10 @@ public class TestFragment extends Fragment {
         super.onDetach();
         Log.i("myapp", "Fragment(" + textInfo + "): OnDetach.");
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.i("myapp", "Fragment(" + textInfo + "): OnHiddenChanged. IsHide:" + hidden);
+    }
 }
