@@ -22,7 +22,9 @@ public class TestFragment extends Fragment {
     private String textInfo;
 
     /**
-     * 获取Fragment实例
+     * Name        : 获取Fragment实例
+     * <p>
+     * Description : 创建一个Fragment实例并返回。
      *
      * @param textInfo 文本信息
      * @return 当前Fragment的实例
