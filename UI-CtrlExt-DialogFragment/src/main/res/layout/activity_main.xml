@@ -13,6 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="基本应用"
-        android:textAllCaps="false" />
+        android:text="基本应用" />
+
+    <Button
+        android:id="@+id/btnStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="外观定制" />
 </LinearLayout>

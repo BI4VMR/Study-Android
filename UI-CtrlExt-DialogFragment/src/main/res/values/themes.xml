@@ -13,4 +13,13 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="DialogFullScreen" parent="Theme.AppCompat.Dialog">
+        <!-- 窗口背景 -->
+        <item name="android:windowBackground">@android:color/white</item>
+        <!-- 全屏属性 -->
+        <item name="android:windowFullscreen">true</item>
+        <!-- 内边距 -->
+        <item name="android:padding">0dp</item>
+    </style>
 </resources>
