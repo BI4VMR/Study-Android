@@ -59,3 +59,5 @@ include ':Store-DB-Room'
 include ':Media-Common-MediaSession-Server'
 include ':Media-Common-MediaSession-Client'
 include ':Media-Audio-AudioFocus'
+
+include ':Schema-Tool-ViewBinding'
