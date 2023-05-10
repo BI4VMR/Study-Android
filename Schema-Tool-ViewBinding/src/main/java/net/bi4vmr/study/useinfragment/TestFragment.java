@@ -13,6 +13,8 @@ import net.bi4vmr.study.databinding.LoginFragmentBinding;
 
 public class TestFragment extends Fragment {
 
+    private LoginFragmentBinding binding;
+
     public static TestFragment newInstance() {
         return new TestFragment();
     }
@@ -20,7 +22,7 @@ public class TestFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // 使用生命周期方法提供的"inflater"和父容器获取视图绑定对象
-        LoginFragmentBinding binding = LoginFragmentBinding.inflate(inflater, container, false);
+        binding = LoginFragmentBinding.inflate(inflater, container, false);
 
         /* 初始化控件 */
         binding.tvTitle.setText("请输入登录信息");
@@ -34,5 +36,12 @@ public class TestFragment extends Fragment {
 
         // 返回View给系统
         return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // 将视图绑定对象置空，防止内存泄漏。
+        binding = null;
     }
 }

@@ -58,6 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
+        // 只需要保存视图绑定对象即可，不需要再保存每个控件的引用。
         private final ListItemSimpleBinding binding;
 
         public MyViewHolder(@NonNull ListItemSimpleBinding binding) {
