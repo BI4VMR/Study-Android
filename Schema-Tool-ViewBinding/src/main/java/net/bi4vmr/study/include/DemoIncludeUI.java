@@ -1,27 +1,25 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.include;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.databinding.UiDemoBaseBinding;
+import net.bi4vmr.study.databinding.UiDemoIncludeBinding;
 
-public class DemoBaseUI extends AppCompatActivity {
+public class DemoIncludeUI extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // 使用ViewBinding时，不再通过"setContentView(int ResID)"方法加载布局。
-        // setContentView(R.layout.ui_demo_base);
-
-        // 获取当前页面的ViewBinding对象
-        UiDemoBaseBinding binding = UiDemoBaseBinding.inflate(getLayoutInflater());
-        // 使用"setContentView(View view)"方法加载布局。
+        UiDemoIncludeBinding binding = UiDemoIncludeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 访问标题控件，设置标题
-        binding.tvTitle.setText("请输入登录信息");
+        // 访问标题布局中的文本控件，设置标题。
+        binding.layoutTitle.tvTitle.setText("请输入登录信息");
+        // 访问标题布局中的按钮控件，设置点击事件监听器。
+        binding.layoutTitle.btnBack.setOnClickListener(v -> finish());
+
         // 访问登录按钮控件，设置点击事件监听器。
         binding.btnLogin.setOnClickListener(v -> {
             // 访问用户名与密码输入控件，获取当前内容。

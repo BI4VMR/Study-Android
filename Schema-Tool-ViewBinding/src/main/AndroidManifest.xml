@@ -23,5 +23,15 @@
         <activity
             android:name=".base.DemoBaseUI"
             android:exported="false" />
+
+        <!-- 示例：处理Include标签 -->
+        <activity
+            android:name=".include.DemoIncludeUI"
+            android:exported="false" />
+
+        <!-- 示例：处理Include标签 -->
+        <activity
+            android:name=".merge.DemoMergeUI"
+            android:exported="false" />
     </application>
 </manifest>
