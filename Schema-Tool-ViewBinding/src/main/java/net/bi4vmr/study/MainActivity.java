@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.bi4vmr.study.base.DemoBaseUI;
 import net.bi4vmr.study.include.DemoIncludeUI;
 import net.bi4vmr.study.merge.DemoMergeUI;
+import net.bi4vmr.study.useinadapter.DemoUseInAdapterUI;
+import net.bi4vmr.study.useinfragment.DemoUseInFragmentUI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +23,20 @@ public class MainActivity extends AppCompatActivity {
         Button btnBase = findViewById(R.id.btnBase);
         btnBase.setOnClickListener(v -> {
             Intent intent = new Intent(this, DemoBaseUI.class);
+            startActivity(intent);
+        });
+
+        // 在Fragment中使用
+        Button btnUseInFragment = findViewById(R.id.btnUseInFragment);
+        btnUseInFragment.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DemoUseInFragmentUI.class);
+            startActivity(intent);
+        });
+
+        // 在Adapter中使用
+        Button btnUseInAdapter = findViewById(R.id.btnUseInAdapter);
+        btnUseInAdapter.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DemoUseInAdapterUI.class);
             startActivity(intent);
         });
 

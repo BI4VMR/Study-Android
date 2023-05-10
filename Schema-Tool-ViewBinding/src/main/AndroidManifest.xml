@@ -24,6 +24,16 @@
             android:name=".base.DemoBaseUI"
             android:exported="false" />
 
+        <!-- 示例：在Fragment中使用 -->
+        <activity
+            android:name=".useinfragment.DemoUseInFragmentUI"
+            android:exported="false" />
+
+        <!-- 示例：在Adapter中使用 -->
+        <activity
+            android:name=".useinadapter.DemoUseInAdapterUI"
+            android:exported="false" />
+
         <!-- 示例：处理Include标签 -->
         <activity
             android:name=".include.DemoIncludeUI"

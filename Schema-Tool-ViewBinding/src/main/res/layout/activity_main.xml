@@ -17,6 +17,24 @@
         android:text="基本应用" />
 
     <Button
+        android:id="@+id/btnUseInFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="在Fragment中使用"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnUseInAdapter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="在Adapter中使用"
+        android:textAllCaps="false" />
+
+    <Button
         android:id="@+id/btnInclude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
