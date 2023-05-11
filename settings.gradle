@@ -60,4 +60,5 @@ include ':Media-Common-MediaSession-Server'
 include ':Media-Common-MediaSession-Client'
 include ':Media-Audio-AudioFocus'
 
+include ':Schema-Tool-LiveData'
 include ':Schema-Tool-ViewBinding'
