@@ -60,5 +60,7 @@ include ':Media-Common-MediaSession-Server'
 include ':Media-Common-MediaSession-Client'
 include ':Media-Audio-AudioFocus'
 
+// ----- 工程架构 -----
+include ':Schema-Tool-ViewModel'
 include ':Schema-Tool-LiveData'
 include ':Schema-Tool-ViewBinding'
