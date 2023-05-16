@@ -28,13 +28,13 @@ import net.bi4vmr.study.R;
  */
 public class TestFragment extends Fragment {
 
-    private BaseUIViewModel activityVM;
+    private MyViewModel activityVM;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 获取Activity对应的ViewModel实例
-        activityVM = new ViewModelProvider(requireActivity()).get(BaseUIViewModel.class);
+        activityVM = new ViewModelProvider(requireActivity()).get(MyViewModel.class);
     }
 
     @SuppressLint("SetTextI18n")

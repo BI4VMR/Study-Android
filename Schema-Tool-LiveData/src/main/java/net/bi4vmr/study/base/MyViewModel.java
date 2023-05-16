@@ -13,9 +13,9 @@ import androidx.lifecycle.ViewModel;
  * <p>
  * Date        : 2023-05-11 14:51
  * <p>
- * Description : 测试页面ViewModel。
+ * Description : 测试ViewModel。
  */
-public class BaseUIViewModel extends ViewModel {
+public class MyViewModel extends ViewModel {
 
     // 基本类型数值
     private int num = 0;
@@ -27,11 +27,17 @@ public class BaseUIViewModel extends ViewModel {
 
     // 数值增加
     public void plus() {
-        numberData.setValue(++num);
+        // 改变数值
+        num += 10;
+        // 通知观察者数值发生变化
+        numberData.setValue(num);
     }
 
     // 数值减少
     public void minus() {
-        numberData.setValue(--num);
+        // 改变数值
+        num -= 10;
+        // 通知观察者数值发生变化
+        numberData.setValue(num);
     }
 }

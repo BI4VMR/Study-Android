@@ -32,7 +32,7 @@ public class DemoBaseUI extends AppCompatActivity {
         setContentView(R.layout.ui_demo_base);
 
         // 获取当前Activity对应的ViewModel实例
-        BaseUIViewModel vm = new ViewModelProvider(this).get(BaseUIViewModel.class);
+        MyViewModel vm = new ViewModelProvider(this).get(MyViewModel.class);
 
         Button btnPlus = findViewById(R.id.btnPlus);
         Button btnMinus = findViewById(R.id.btnMinus);
@@ -52,7 +52,7 @@ public class DemoBaseUI extends AppCompatActivity {
 
         // 读取LiveData的初始值
         Log.i("myapp", "LiveData初始值：" + vm.roNumberData.getValue());
-        // 调用LiveData的"observe()"方法，注册本Fragment为该LiveData的观察者。
+        // 调用LiveData的"observe()"方法，注册本Activity为该LiveData的观察者。
         vm.roNumberData.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
