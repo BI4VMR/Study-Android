@@ -49,7 +49,7 @@ public class DemoTransformUI extends AppCompatActivity {
         });
 
         // 观察平方数值的变化
-        vm.roSquaredData.observe(this, integer -> {
+        vm.squaredData.observe(this, integer -> {
             Log.i("myapp", "Squared LiveData数值改变：" + integer);
             tvSquared.setText("平方数值:" + integer);
         });

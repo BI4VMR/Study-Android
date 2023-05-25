@@ -25,7 +25,7 @@ public class MyViewModel extends ViewModel {
     public final MutableLiveData<Integer> numberData = new MutableLiveData<>(num);
 
     // 自"numberData"转换而来的LiveData，每当"numberData"改变时，它的值自动变为"numberData"的平方根。
-    public final LiveData<Integer> roSquaredData = Transformations.map(numberData, new Function<Integer, Integer>() {
+    public final LiveData<Integer> squaredData = Transformations.map(numberData, new Function<Integer, Integer>() {
         @Override
         public Integer apply(Integer input) {
             // 计算平方根并返回结果
@@ -51,13 +51,13 @@ public class MyViewModel extends ViewModel {
             }
         });
 
-        // 注册事件源，每当"roSquaredData"的值改变时触发。
-        mediatorData.addSource(roSquaredData, new Observer<Integer>() {
+        // 注册事件源，每当"squaredData"的值改变时触发。
+        mediatorData.addSource(squaredData, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
                 assert mediatorData.getValue() != null;
                 int current = mediatorData.getValue();
-                // 当前数值加上"roSquaredData"的数值。
+                // 当前数值加上"squaredData"的数值。
                 mediatorData.setValue(current + integer);
             }
         });
