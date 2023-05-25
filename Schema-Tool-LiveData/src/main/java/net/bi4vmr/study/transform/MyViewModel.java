@@ -79,7 +79,7 @@ public class MyViewModel extends ViewModel {
         numberData.setValue(num);
     }
 
-    // 计算平方根
+    // 计算平方值
     private int squared(int raw) {
         return raw * raw;
     }
