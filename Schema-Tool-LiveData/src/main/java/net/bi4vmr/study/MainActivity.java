@@ -7,6 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.DemoBaseUI;
+import net.bi4vmr.study.transform.DemoTransformUI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,13 @@ public class MainActivity extends AppCompatActivity {
         Button btnBase = findViewById(R.id.btnBase);
         btnBase.setOnClickListener(v -> {
             Intent intent = new Intent(this, DemoBaseUI.class);
+            startActivity(intent);
+        });
+
+        // 数据转换
+        Button btnTransform = findViewById(R.id.btnTransform);
+        btnTransform.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DemoTransformUI.class);
             startActivity(intent);
         });
     }

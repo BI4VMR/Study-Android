@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 /**
- * Name        : BaseUIViewModel
+ * Name        : MyViewModel
  * <p>
  * Author      : BI4VMR
  * <p>
