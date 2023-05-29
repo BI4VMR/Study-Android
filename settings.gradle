@@ -56,6 +56,9 @@ include ':Store-File-FileStore'
 include ':Store-KV-SharedPreferences'
 include ':Store-DB-Room'
 
+// ----- 网络通讯 -----
+include ':Net-Common-ConnectState'
+
 include ':Media-Common-MediaSession-Server'
 include ':Media-Common-MediaSession-Client'
 include ':Media-Audio-AudioFocus'
