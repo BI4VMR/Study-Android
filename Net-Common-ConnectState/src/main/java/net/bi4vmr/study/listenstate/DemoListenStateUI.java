@@ -1,11 +1,15 @@
 package net.bi4vmr.study.listenstate;
 
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.net.LinkProperties;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.R;
@@ -17,53 +21,74 @@ public class DemoListenStateUI extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_demo_base);
+        setContentView(R.layout.ui_demo_listenstate);
 
-        // Button btn = findViewById(R.id.btn01);
+        Button btnRegister = findViewById(R.id.btnRegister);
+        Button btnUnregister = findViewById(R.id.btnUnregister);
 
         // 初始化ConnectivityManager
         manager = getSystemService(ConnectivityManager.class);
-        //
-        // btn.setOnClickListener(v -> {
-        //     // 该方法可以获取当前可用的网络信息，如果当前没有可用的网络连接，则返回空值。
-        //     NetworkInfo info = manager.getActiveNetworkInfo();
-        //     if (info == null) {
-        //         Log.i("myapp", "当前无可用的网络连接！");
-        //         return;
-        //     }
-        //
-        //     // 获取连接详情
-        //     Log.i("myapp", "Type Code: " + info.getType());
-        //     Log.i("myapp", "Type Name: " + info.getTypeName());
-        //     Log.i("myapp", "SubType Code: " + info.getSubtype());
-        //     Log.i("myapp", "SubType Name: " + info.getSubtypeName());
-        //     Log.i("myapp", "Reason: " + info.getReason());
-        //
-        //     // Network[] networks=manager.getAllNetworks();
-        //     // for (Network net:networks){
-        //     //     NetworkCapabilities s =manager.getNetworkCapabilities(net);
-        //     //     // s.getTransportInfo();
-        //     //     // TransportInfo t =s.getTransportInfo();
-        //     // }
-        // });
+        MyNetworkCallback callback = new MyNetworkCallback();
 
-        // btn.setOnClickListener(v -> {
-        // 该方法可以获取当前可用的网络信息，如果当前没有可用的网络连接，则返回空值。
-        // NetworkInfo info = manager.getNetworkCapabilities()
-        // if (info == null) {
-        //     Log.i("myapp", "当前无可用的网络连接！");
-        //     return;
-        // }
-        //
-        // // 获取连接详情
-        // Log.i("myapp", "getState: " + info.getState().name());
-        // Log.i("myapp", "getTypeName: " + info.getTypeName());
-        // Log.i("myapp", "getSubtypeName: " + info.getSubtypeName());
-        // Log.i("myapp", "getReason: " + info.getReason());
-        // });
+        // 注册网络状态回调
+        btnRegister.setOnClickListener(v -> {
+            NetworkRequest request = new NetworkRequest.Builder()
+                    .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                    .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+                    .build();
+            manager.registerNetworkCallback(request, callback);
+        });
 
-        // manager.registerNetworkCallback();
-        //
-        // manager.registerDefaultNetworkCallback();
+        // 注销网络状态回调
+        btnUnregister.setOnClickListener(v -> manager.unregisterNetworkCallback(callback));
+    }
+
+    /*
+     * 自定义网络状态监听器，用于接收各网络状态事件。
+     */
+    private static class MyNetworkCallback extends ConnectivityManager.NetworkCallback {
+
+        @Override
+        public void onAvailable(@NonNull Network network) {
+            super.onAvailable(network);
+            Log.i("myapp", "MyNetworkCallback:OnAvailable.");
+
+        }
+
+        @Override
+        public void onLosing(@NonNull Network network, int maxMsToLive) {
+            super.onLosing(network, maxMsToLive);
+            Log.i("myapp", "MyNetworkCallback:OnLosing.");
+        }
+
+        @Override
+        public void onLost(@NonNull Network network) {
+            super.onLost(network);
+            Log.i("myapp", "MyNetworkCallback:OnLost.");
+        }
+
+        @Override
+        public void onUnavailable() {
+            super.onUnavailable();
+            Log.i("myapp", "MyNetworkCallback:OnUnavailable.");
+        }
+
+        @Override
+        public void onCapabilitiesChanged(@NonNull Network network, @NonNull NetworkCapabilities networkCapabilities) {
+            super.onCapabilitiesChanged(network, networkCapabilities);
+            Log.i("myapp", "MyNetworkCallback:OnCapabilitiesChanged.");
+        }
+
+        @Override
+        public void onLinkPropertiesChanged(@NonNull Network network, @NonNull LinkProperties linkProperties) {
+            super.onLinkPropertiesChanged(network, linkProperties);
+            Log.i("myapp", "MyNetworkCallback:OnLinkPropertiesChanged.");
+        }
+
+        @Override
+        public void onBlockedStatusChanged(@NonNull Network network, boolean blocked) {
+            super.onBlockedStatusChanged(network, blocked);
+            Log.i("myapp", "MyNetworkCallback:OnBlockedStatusChanged.");
+        }
     }
 }

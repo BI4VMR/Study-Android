@@ -7,6 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.DemoBaseUI;
+import net.bi4vmr.study.listenstate.DemoListenStateUI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,13 @@ public class MainActivity extends AppCompatActivity {
         Button btnBase = findViewById(R.id.btnBase);
         btnBase.setOnClickListener(v -> {
             Intent intent = new Intent(this, DemoBaseUI.class);
+            startActivity(intent);
+        });
+
+        // 网络状态回调
+        Button btnListenState = findViewById(R.id.btnListenState);
+        btnListenState.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DemoListenStateUI.class);
             startActivity(intent);
         });
     }

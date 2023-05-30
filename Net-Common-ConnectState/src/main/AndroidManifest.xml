@@ -25,5 +25,10 @@
         <activity
             android:name=".base.DemoBaseUI"
             android:exported="false" />
+
+        <!-- 示例：网络状态回调 -->
+        <activity
+            android:name=".listenstate.DemoListenStateUI"
+            android:exported="false" />
     </application>
 </manifest>

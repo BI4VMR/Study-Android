@@ -65,7 +65,7 @@ public class DemoBaseUI extends AppCompatActivity {
             boolean isMobile = (info.getType() == ConnectivityManager.TYPE_MOBILE);
 
             Log.i("myapp", "WiFi: " + isWiFi + "; Mobile: " + isMobile);
-            tvInfo.append("WiFi: " + isWiFi + "; Mobile: " + isMobile);
+            tvInfo.append("\nWiFi: " + isWiFi + "; Mobile: " + isMobile);
         });
 
         // 按钮被点击时，查询当前的网络状态。
