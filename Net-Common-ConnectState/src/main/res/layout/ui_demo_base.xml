@@ -8,11 +8,26 @@
     tools:ignore="HardcodedText">
 
     <Button
-        android:id="@+id/btn01"
+        android:id="@+id/btnQuery1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="功能按钮"
-        android:textAllCaps="false" />
+        android:text="查询连接状态（旧API）" />
+
+    <Button
+        android:id="@+id/btnQuery2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="查询连接状态（新API）" />
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp" />
 </LinearLayout>
