@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="10dp"
+        android:text="基本样式"
+        android:textColor="@color/black" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:text="Base Style"
+        app:checkedIconVisible="true"
+        app:chipBackgroundColor="@color/background"
+        app:chipCornerRadius="0dp"
+        app:chipStrokeColor="#F00"
+        app:chipStrokeWidth="1dp"
+        app:chipSurfaceColor="@color/black"
+        app:rippleColor="@null" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="10dp"
+        android:text="状态图标"
+        android:textColor="@color/black" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Icon Style"
+        app:chipIcon="@drawable/ic_funny_256"
+        app:closeIconVisible="true" />
+</LinearLayout>

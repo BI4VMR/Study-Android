@@ -1,0 +1,6 @@
+<resources>
+    <!-- 对于不需要被翻译的属性，可以添加'translatable="false"'属性，以忽略警告。 -->
+    <string name="app_name" translatable="false">!用户界面-素材与资源-文本</string>
+
+    <string name="text">多语言文本（默认）</string>
+</resources>

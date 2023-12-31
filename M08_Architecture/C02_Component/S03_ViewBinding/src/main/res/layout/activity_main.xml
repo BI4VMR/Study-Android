@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?><!-- "tools:viewBindingIgnore"属性如果设为"true"，可以使Gradle忽略当前文件，不生成对应的绑定类。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText"
+    tools:viewBindingIgnore="true">
+
+    <Button
+        android:id="@+id/btnBase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="基本应用" />
+
+    <Button
+        android:id="@+id/btnUseInFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="在Fragment中使用"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnUseInAdapter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="在Adapter中使用"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnInclude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="处理Include标签"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnMerge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="处理Merge标签"
+        android:textAllCaps="false" />
+</LinearLayout>

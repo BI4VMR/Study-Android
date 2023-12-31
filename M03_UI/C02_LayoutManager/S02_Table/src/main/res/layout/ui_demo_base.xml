@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 第一行 -->
+    <TableRow>
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#00F" />
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#F0F" />
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#0F0" />
+    </TableRow>
+
+    <!-- 第二行 -->
+    <TableRow>
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#0FF" />
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#FF0" />
+    </TableRow>
+</TableLayout>
