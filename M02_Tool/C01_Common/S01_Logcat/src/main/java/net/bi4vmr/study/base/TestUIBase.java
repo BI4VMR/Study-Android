@@ -80,6 +80,12 @@ public class TestUIBase extends AppCompatActivity {
         // 每行最大长度
         final int lineLength = 1000;
 
+        // 如果无需换行，则原样打印。
+        if (input.length() <= lineLength) {
+            Log.i(TAG, input);
+            return;
+        }
+
         // 计算切分后的行数（不含最后一行）
         int lines = input.length() / lineLength;
         // 循环打印每一行内容
@@ -87,12 +93,12 @@ public class TestUIBase extends AppCompatActivity {
             if (i != lines) {
                 /* 打印完整的行 */
                 String line = input.substring(i * lineLength, (i + 1) * lineLength);
-                Log.i(TAG, line);
+                Log.i(TAG, "Line" + (i + 1) + ", Text: " + line);
             } else {
                 /* 打印最后一行 */
                 String line = input.substring(i * lineLength);
                 if (!line.isEmpty()) {
-                    Log.i(TAG, line);
+                    Log.i(TAG, "Line" + (i + 1) + ", Text: " + line);
                 }
             }
         }
