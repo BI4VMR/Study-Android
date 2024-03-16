@@ -85,12 +85,10 @@ include(":M03_UI:C02_LayoutManager:S02_Table")
 include(":M03_UI:C02_LayoutManager:S03_Frame")
 include(":M03_UI:C02_LayoutManager:S04_Relative")
 include(":M03_UI:C02_LayoutManager:S05_Constraint")
-include ":M03_UI:C03_CtrlBase:S01_TextView"
-// include ":M03_UI:C03_CtrlBase:S07-CheckBox"
+include(":M03_UI:C04_CtrlExt:S01_RecyclerView")
 include(":M03_UI:C04_CtrlExt:S03_ViewPager2")
 include(":M03_UI:C05_CtrlMD:S01_MaterialButton")
 include(":M03_UI:C05_CtrlMD:S02_FloatingActionButton")
-// include(":M03_UI:C05_CtrlMD:S03_TextInputLayout")
 include(":M03_UI:C05_CtrlMD:S04_Chip")
 include(":M03_UI:C05_CtrlMD:S05_TabLayout")
 include(":M03_UI:C08_Resource:S01_Text")

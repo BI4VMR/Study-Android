@@ -19,37 +19,37 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例：基本应用 -->
+        <!-- 示例界面：基本应用 -->
         <activity
             android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 示例：点击事件 -->
+        <!-- 示例界面：点击事件 -->
         <activity
             android:name=".clickevent.DemoClickEventUI"
             android:exported="false" />
 
-        <!-- 示例：多种View类型 -->
+        <!-- 示例界面：多种View类型 -->
         <activity
             android:name=".viewtype.DemoViewTypeUI"
             android:exported="false" />
 
-        <!-- 示例：动态更新列表 -->
+        <!-- 示例界面：动态更新列表 -->
         <activity
             android:name=".updatelist.DemoUpdateListUI"
             android:exported="false" />
 
-        <!-- 示例：局部刷新 -->
+        <!-- 示例界面：局部刷新 -->
         <activity
             android:name=".updateitem.DemoUpdateItemUI"
             android:exported="false" />
 
-        <!-- 示例：DiffUtil -->
+        <!-- 示例界面：DiffUtil -->
         <activity
             android:name=".diffutil.DemoDiffUtilUI"
             android:exported="false" />
 
-        <!-- 示例：缓存与复用 -->
+        <!-- 示例界面：缓存与复用 -->
         <activity
             android:name=".viewcache.DemoViewCacheUI"
             android:exported="false" />
