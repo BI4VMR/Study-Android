@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例：基本应用 -->
+        <!-- 示例界面：基本应用 -->
         <activity
             android:name=".base.TestUIBase"
             android:exported="false" />

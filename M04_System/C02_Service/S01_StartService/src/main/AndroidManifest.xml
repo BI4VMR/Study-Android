@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.bi4vmr.study">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -19,12 +18,12 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例：基本应用 -->
+        <!-- 示例界面：基本应用 -->
         <activity
-            android:name=".base.DemoBaseUI"
+            android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 注册自定义的服务 -->
+        <!-- 注册自定义Service -->
         <service
             android:name=".base.DownloadService"
             android:exported="false" />

@@ -13,7 +13,7 @@ android {
     compileSdk version_CompileSDK
 
     defaultConfig {
-        applicationId "net.bi4vmr.study.system.service.aidlclient"
+        applicationId "net.bi4vmr.study.system.service.foreground"
         minSdk version_MinSDK
         targetSdk version_TargetSDK
         versionCode version_ModuleCode
