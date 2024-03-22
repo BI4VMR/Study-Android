@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.android.kotlin)
 }
 
 def version_MinSDK = Integer.valueOf(libs.versions.android.minSdk.get())
@@ -20,11 +21,19 @@ android {
         versionName version_ModuleName
     }
 
+    sourceSets {
+        main {
+            java {
+                java.srcDirs += "src/main/kotlin"
+            }
+        }
+    }
+
     viewBinding {
         enabled = true
     }
 }
 
 dependencies {
-    implementation libs.bundles.android.core
+    implementation(libs.bundles.android.coreWithKT)
 }

@@ -8,20 +8,11 @@
     tools:ignore="HardcodedText">
 
     <Button
-        android:id="@+id/btnBase"
+        android:id="@+id/btn01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="动态请求权限（旧API）"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/btnContracts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="动态请求权限（新API）"
+        android:text="功能按钮"
         android:textAllCaps="false" />
 </LinearLayout>

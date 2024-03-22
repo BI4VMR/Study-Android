@@ -95,7 +95,9 @@ include(":M03_UI:C08_Resource:S01_Text")
 
 /* ----- 系统组件 ----- */
 include(":M04_System:C01_Common:S01_Bundle")
+include(":M04_System:C01_Common:S02_Intent")
 include(":M04_System:C01_Common:S03_Application")
+include(":M04_System:C01_Common:S04_Context")
 include(":M04_System:C01_Common:S05_Parcelable")
 include(":M04_System:C02_Service:S01_StartService")
 include(":M04_System:C02_Service:S02_BindService")

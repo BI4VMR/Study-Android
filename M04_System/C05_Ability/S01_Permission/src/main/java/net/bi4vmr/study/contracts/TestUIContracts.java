@@ -15,14 +15,14 @@ import net.bi4vmr.study.R;
 
 import java.util.Map;
 
-public class DemoContractsUI extends AppCompatActivity {
+public class TestUIContracts extends AppCompatActivity {
 
     private final ActivityResultLauncher<String> activityLauncher = getActivityResultLauncher();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_demo_base);
+        setContentView(R.layout.testui_base);
 
         Button btnRequest = findViewById(R.id.btnRequest);
         btnRequest.setOnClickListener(v -> {
