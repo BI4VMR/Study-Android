@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.databinding.MainActivityBinding;
+import net.bi4vmr.study.lifecycle.TestUILifeCycle;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
         MainActivityBinding binding = MainActivityBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
-        // 基本应用
-        binding.btnBase.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIBase.class);
+        // Service的生命周期
+        binding.btnLifeCycle.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUILifeCycle.class);
             startActivity(intent);
         });
     }

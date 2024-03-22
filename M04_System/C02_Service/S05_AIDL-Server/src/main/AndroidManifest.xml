@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.bi4vmr.study">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ExportedService">
 
     <application
         android:allowBackup="true"
@@ -19,14 +20,19 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：基本应用 -->
+        <!-- 示例：绑定当前软件包中的服务 -->
         <activity
             android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 下载服务 -->
         <service
             android:name=".base.DownloadService"
-            android:exported="false" />
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>

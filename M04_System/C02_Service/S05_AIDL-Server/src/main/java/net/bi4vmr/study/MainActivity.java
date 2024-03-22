@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         MainActivityBinding binding = MainActivityBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
-        // 基本应用
+        // 绑定当前软件包中的服务
         binding.btnBase.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBase.class);
             startActivity(intent);
