@@ -14,7 +14,7 @@ android {
     compileSdk version_CompileSDK
 
     defaultConfig {
-        applicationId "net.bi4vmr.study.ui.common.activity"
+        applicationId "net.bi4vmr.study.tool.common.adb"
         minSdk version_MinSDK
         targetSdk version_TargetSDK
         versionCode version_ModuleCode
@@ -31,6 +31,15 @@ android {
 
     viewBinding {
         enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
     }
 }
 

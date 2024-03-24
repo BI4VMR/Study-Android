@@ -2,11 +2,13 @@ package net.bi4vmr.study;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.config.DemoConfigUI;
+import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.gotoforresult.DemoGotoForResultUI;
 import net.bi4vmr.study.gotoforresult2.DemoGotoForResult2UI;
 import net.bi4vmr.study.gotopage.DemoGotoPageUI;
@@ -19,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(LayoutInflater.from(this));
+        setContentView(binding.getRoot());
 
         // 启动新的Activity
         Button btnSwitchPage = findViewById(R.id.btnSwitchPage);
