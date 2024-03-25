@@ -41,3 +41,13 @@ android {
 dependencies {
     implementation(libs.bundles.android.coreWithKT)
 }
+
+gradle.projectsEvaluated {
+    tasks.withType(Delete.class).tap {
+        configureEach {
+            def cppCacheDir = getProjectDir().absolutePath + File.separator + ".cxx"
+            // 清除C++构建缓存文件
+            delete(cppCacheDir)
+        }
+    }
+}
