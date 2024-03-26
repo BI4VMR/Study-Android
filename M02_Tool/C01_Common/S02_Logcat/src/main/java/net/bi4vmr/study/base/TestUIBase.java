@@ -28,8 +28,8 @@ public class TestUIBase extends AppCompatActivity {
 
     // 输出日志
     private void testLog() {
-        binding.tvLog.append("\n--- 输出日志 ---\n");
         Log.i(TAG, "--- 输出日志 ---");
+        binding.tvLog.append("\n--- 输出日志 ---\n");
 
         // 输出Verbose级别日志
         Log.v(TAG, "Verbose Log.");
@@ -45,8 +45,8 @@ public class TestUIBase extends AppCompatActivity {
 
     // Java日志兼容性
     private void testJavaLog() {
-        binding.tvLog.append("\n--- Java日志兼容性 ---\n");
         Log.i(TAG, "--- Java日志兼容性 ---");
+        binding.tvLog.append("\n--- Java日志兼容性 ---\n");
 
         // 输出标准信息
         System.out.println("标准信息输出测试。");
@@ -56,8 +56,8 @@ public class TestUIBase extends AppCompatActivity {
 
     // Chatty机制
     private void testChatty() {
-        binding.tvLog.append("\n--- Chatty机制 ---\n");
         Log.i(TAG, "--- Chatty机制 ---");
+        binding.tvLog.append("\n--- Chatty机制 ---\n");
 
         // 连续输出100行相同的日志
         for (int i = 0; i < 100; i++) {
@@ -67,12 +67,12 @@ public class TestUIBase extends AppCompatActivity {
 
     // 输出超长内容
     private void testLongLine() {
-        binding.tvLog.append("\n--- 输出超长内容 ---\n");
         Log.i(TAG, "--- 输出超长内容 ---");
+        binding.tvLog.append("\n--- 输出超长内容 ---\n");
 
         // 测试数据
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 1; i <= 1000; i++) {
             sb.append("日志内容");
         }
         String input = sb.toString();
@@ -93,12 +93,12 @@ public class TestUIBase extends AppCompatActivity {
             if (i != lines) {
                 /* 打印完整的行 */
                 String line = input.substring(i * lineLength, (i + 1) * lineLength);
-                Log.i(TAG, "Line" + (i + 1) + ", Text: " + line);
+                Log.i(TAG, "Line:[" + (i + 1) + "] Text:[" + line + "]");
             } else {
                 /* 打印最后一行 */
                 String line = input.substring(i * lineLength);
                 if (!line.isEmpty()) {
-                    Log.i(TAG, "Line" + (i + 1) + ", Text: " + line);
+                    Log.i(TAG, "Line:[" + (i + 1) + "] Text:[" + line + "]");
                 }
             }
         }
