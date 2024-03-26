@@ -22,5 +22,10 @@
         <activity
             android:name=".base.TestUIBase"
             android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
     </application>
 </manifest>

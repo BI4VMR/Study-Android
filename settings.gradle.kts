@@ -78,6 +78,7 @@ include(":M02_Tool:C01_Common:S01_ADB")
 include(":M02_Tool:C01_Common:S02_Logcat")
 
 /* ----- 用户界面 ----- */
+include(":M03_UI:C01_Common:S01_View")
 include(":M03_UI:C01_Common:S02_Activity")
 include(":M03_UI:C01_Common:S03_Fragment")
 include(":M03_UI:C02_LayoutManager:S01_Linear")
