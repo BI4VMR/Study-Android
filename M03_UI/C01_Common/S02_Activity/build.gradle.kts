@@ -14,22 +14,12 @@ android {
     namespace = "net.bi4vmr.study"
     compileSdk = versionCompileSDK
 
-    signingConfigs {
-        create("AOSPSystem") {
-            storeFile = file("${rootDir.absolutePath}${File.separator}AOSPSystem.keystore")
-            storePassword = "AOSPSystem"
-            keyAlias = "AOSPSystem"
-            keyPassword = "AOSPSystem"
-        }
-    }
-
     defaultConfig {
         applicationId = "net.bi4vmr.study.ui.common.activity"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
         versionName = versionModuleName
-        signingConfig = signingConfigs.getByName("AOSPSystem")
     }
 
     sourceSets {

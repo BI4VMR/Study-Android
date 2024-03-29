@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="返回结果测试Activity"
+        android:text="启动新的Activity"
         android:textColor="@color/black"
         android:textSize="22sp" />
 
@@ -29,22 +29,12 @@
             android:textSize="14sp" />
     </ScrollView>
 
-    <EditText
-        android:id="@+id/etInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:autofillHints="name"
-        android:hint="在此输入需要返回的内容"
-        android:inputType="text" />
-
     <Button
-        android:id="@+id/btnClose"
+        android:id="@+id/btnStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="关闭当前Activity并返回结果"
+        android:text="启动页面并等待结果"
         android:textAllCaps="false" />
 </LinearLayout>

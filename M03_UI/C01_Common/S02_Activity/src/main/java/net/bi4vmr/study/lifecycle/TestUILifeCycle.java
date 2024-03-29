@@ -3,34 +3,36 @@ package net.bi4vmr.study.lifecycle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.R;
+import net.bi4vmr.study.databinding.TestuiLifecycleBinding;
 import net.bi4vmr.study.gotopage.TestActivity;
 
-public class DemoLifeCycleUI extends AppCompatActivity {
+public class TestUILifeCycle extends AppCompatActivity {
+
+    private static final String TAG = "TestApp-" + TestUILifeCycle.class.getSimpleName();
+
+    private TestuiLifecycleBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i("myapp", "OnCreate.");
-        setContentView(R.layout.ui_demo_lifecycle);
+        Log.i(TAG, "OnCreate.");
+        binding = TestuiLifecycleBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // 打开新的Activity
-        Button btnStartInner = findViewById(R.id.btnGoToNewPage);
-        btnStartInner.setOnClickListener(v -> {
+        binding.btnGoToNewPage.setOnClickListener(v -> {
             // 创建Intent对象
-            Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+            Intent intent = new Intent(this, TestActivity.class);
             // 启动SecondActivity
             startActivity(intent);
         });
 
         // 关闭当前Activity
-        Button btnClose = findViewById(R.id.btnClose);
-        btnClose.setOnClickListener(v -> {
-            Log.i("myapp", "Finish function called.");
+        binding.btnClose.setOnClickListener(v -> {
+            Log.i(TAG, "Finish function called.");
             finish();
         });
     }
@@ -38,36 +40,36 @@ public class DemoLifeCycleUI extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i("myapp", "OnStart.");
+        Log.i(TAG, "OnStart.");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("myapp", "OnResume.");
+        Log.i(TAG, "OnResume.");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.i("myapp", "OnPause.");
+        Log.i(TAG, "OnPause.");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i("myapp", "OnStop.");
+        Log.i(TAG, "OnStop.");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i("myapp", "OnDestroy.");
+        Log.i(TAG, "OnDestroy.");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.i("myapp", "OnRestart.");
+        Log.i(TAG, "OnRestart.");
     }
 }

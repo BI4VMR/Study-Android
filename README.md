@@ -1,5 +1,29 @@
 # 简介
+
 Android应用程序开发学习示例代码。
+
+# AOSP系统签名
+
+本工程内置了AOSP系统签名文件，如果部分API需要验证签名权限，可以应用该签名后进行调试。
+
+"build.gradle.kts":
+
+```kotlin
+android {
+    signingConfigs {
+        create("AOSP") {
+            storeFile = file("${rootDir.absolutePath}${File.separator}AOSPSystem.keystore")
+            storePassword = "AOSPSystem"
+            keyAlias = "AOSPSystem"
+            keyPassword = "AOSPSystem"
+        }
+    }
+
+    defaultConfig {
+        signingConfig = signingConfigs.getByName("AOSP")
+    }
+}
+```
 
 <!-- Hide
 
