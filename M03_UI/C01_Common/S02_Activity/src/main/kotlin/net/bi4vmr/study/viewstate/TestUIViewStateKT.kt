@@ -29,6 +29,7 @@ class TestUIViewStateKT : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         Log.i(TAG, "OnRestoreInstanceState.")
+
         // 从Bundle对象读取先前保存的数据
         val isChecked: Boolean = savedInstanceState.getBoolean("STATE")
         Log.i(TAG, "已读取数据：$isChecked")
@@ -49,6 +50,7 @@ class TestUIViewStateKT : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         Log.i(TAG, "OnSaveInstanceState.")
+
         // 从控件中读取数据并保存至系统提供的Bundle对象
         val isChecked: Boolean = binding.btnTest.isChecked
         outState.putBoolean("STATE", isChecked)

@@ -102,13 +102,13 @@
 
         <!-- 示例：处理配置变更 -->
         <activity
-            android:name=".config.DemoConfigUI"
+            android:name=".config.TestUIConfig"
             android:configChanges="uiMode"
             android:exported="false" />
 
         <!-- 示例：启动模式 -->
         <activity
-            android:name=".launchmode.DemoLaunchModeUI"
+            android:name=".launchmode.TestUILaunchMode"
             android:exported="false" />
 
         <!-- 启动模式测试页：Standard -->

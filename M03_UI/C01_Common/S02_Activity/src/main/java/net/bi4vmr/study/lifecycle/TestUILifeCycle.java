@@ -24,9 +24,7 @@ public class TestUILifeCycle extends AppCompatActivity {
 
         // 打开新的Activity
         binding.btnGoToNewPage.setOnClickListener(v -> {
-            // 创建Intent对象
             Intent intent = new Intent(this, TestActivity.class);
-            // 启动SecondActivity
             startActivity(intent);
         });
 

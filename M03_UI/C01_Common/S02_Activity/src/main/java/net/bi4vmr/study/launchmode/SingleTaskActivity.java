@@ -21,7 +21,7 @@ public class SingleTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launchmodetest);
+        setContentView(R.layout.testui_launchmode);
 
         // 页面标题
         TextView tvTitle = findViewById(R.id.tvTitle);

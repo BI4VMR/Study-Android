@@ -32,6 +32,7 @@ public class TestUIViewState extends AppCompatActivity {
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         Log.i(TAG, "OnRestoreInstanceState.");
+
         // 从Bundle对象读取先前保存的数据
         boolean isChecked = savedInstanceState.getBoolean("STATE");
         Log.i(TAG, "已读取数据：" + isChecked);
@@ -55,6 +56,7 @@ public class TestUIViewState extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.i(TAG, "OnSaveInstanceState.");
+
         // 从文本框中读取数据并保存至系统提供的Bundle对象
         boolean isChecked = binding.btnTest.isChecked();
         outState.putBoolean("STATE", isChecked);
