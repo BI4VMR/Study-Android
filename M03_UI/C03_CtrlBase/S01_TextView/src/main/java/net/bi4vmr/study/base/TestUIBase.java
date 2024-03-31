@@ -20,6 +20,5 @@ public class TestUIBase extends AppCompatActivity {
 
         // 设置文本内容
         binding.textview.setText("这是一个文本框。");
-        binding.textview.getTextSizeUnit()
     }
 }
