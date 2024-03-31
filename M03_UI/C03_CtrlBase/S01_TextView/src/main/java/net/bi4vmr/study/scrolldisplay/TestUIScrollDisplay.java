@@ -1,18 +1,22 @@
 package net.bi4vmr.study.scrolldisplay;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.R;
+import net.bi4vmr.study.databinding.TestuiScrollDisplayBinding;
 
 public class TestUIScrollDisplay extends AppCompatActivity {
+
+    private static final String TAG = "TestApp-" + TestUIScrollDisplay.class.getSimpleName();
+
+    private TestuiScrollDisplayBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testui_scroll_display);
+        binding = TestuiScrollDisplayBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // 构造一段长的测试文本
         StringBuilder builder = new StringBuilder();
@@ -21,12 +25,9 @@ public class TestUIScrollDisplay extends AppCompatActivity {
         }
         String text = builder.toString();
 
-        // 获取控件对象
-        TextView tvMarquee = findViewById(R.id.tvMarquee);
         // 设置文本
-        tvMarquee.setText(text);
-
-        // 设置选中状态为"true"
-        tvMarquee.setSelected(true);
+        binding.tvMarquee.setText(text);
+        // 设置选中状态为"true"，使滚动生效。
+        binding.tvMarquee.setSelected(true);
     }
 }
