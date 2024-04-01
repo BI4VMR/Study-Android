@@ -23,9 +23,19 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：外观定制 -->
+        <activity
+            android:name=".style.TestUIStyle"
+            android:exported="false" />
+
         <!-- 示例界面：超长内容滚动显示 -->
         <activity
             android:name=".scrolldisplay.TestUIScrollDisplay"
+            android:exported="false" />
+
+        <!-- 示例界面：SpannableString -->
+        <activity
+            android:name=".span.TestUISpan"
             android:exported="false" />
 
         <!-- 示例界面：基本应用(KT) -->
@@ -33,9 +43,19 @@
             android:name=".base.TestUIBaseKT"
             android:exported="false" />
 
+        <!-- 示例界面：外观定制(KT) -->
+        <activity
+            android:name=".style.TestUIStyleKT"
+            android:exported="false" />
+
         <!-- 示例界面：超长内容滚动显示(KT) -->
         <activity
             android:name=".scrolldisplay.TestUIScrollDisplayKT"
+            android:exported="false" />
+
+        <!-- 示例界面：SpannableString(KT) -->
+        <activity
+            android:name=".span.TestUISpanKT"
             android:exported="false" />
     </application>
 </manifest>

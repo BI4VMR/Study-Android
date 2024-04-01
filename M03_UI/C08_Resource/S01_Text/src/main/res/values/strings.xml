@@ -2,5 +2,9 @@
     <!-- 对于不需要被翻译的属性，可以添加'translatable="false"'属性，以忽略警告。 -->
     <string name="app_name" translatable="false">!用户界面-素材与资源-文本</string>
 
-    <string name="text">多语言文本（默认）</string>
+    <string name="text_base" translatable="false">这是一个文本资源。</string>
+
+    <string name="text_template" translatable="false">字符串：[%s], 数字：[%d]</string>
+
+    <string name="text_ml">多语言文本（默认）</string>
 </resources>

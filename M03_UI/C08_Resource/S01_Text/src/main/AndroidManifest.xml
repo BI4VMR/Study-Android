@@ -22,5 +22,30 @@
         <activity
             android:name=".base.TestUIBase"
             android:exported="false" />
+
+        <!-- 示例界面：字符串模板 -->
+        <activity
+            android:name=".template.TestUITemplate"
+            android:exported="false" />
+
+        <!-- 示例界面：多语言支持 -->
+        <activity
+            android:name=".i18n.TestUIMultiLanguage"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：字符串模板(KT) -->
+        <activity
+            android:name=".template.TestUITemplateKT"
+            android:exported="false" />
+
+        <!-- 示例界面：多语言支持(KT) -->
+        <activity
+            android:name=".i18n.TestUIMultiLanguageKT"
+            android:exported="false" />
     </application>
 </manifest>

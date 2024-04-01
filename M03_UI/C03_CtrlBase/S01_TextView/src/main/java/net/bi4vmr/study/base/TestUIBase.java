@@ -17,8 +17,5 @@ public class TestUIBase extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // 设置文本内容
-        binding.textview.setText("这是一个文本框。");
     }
 }

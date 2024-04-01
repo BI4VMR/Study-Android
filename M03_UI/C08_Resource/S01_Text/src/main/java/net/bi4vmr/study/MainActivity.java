@@ -2,23 +2,58 @@ package net.bi4vmr.study;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
+import net.bi4vmr.study.base.TestUIBaseKT;
+import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.i18n.TestUIMultiLanguage;
+import net.bi4vmr.study.i18n.TestUIMultiLanguageKT;
+import net.bi4vmr.study.template.TestUITemplate;
+import net.bi4vmr.study.template.TestUITemplateKT;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MainActivityBinding binding = MainActivityBinding.inflate(LayoutInflater.from(this));
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // 基本应用
         binding.btnBase.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBase.class);
+            startActivity(intent);
+        });
+
+        // 字符串模板
+        binding.btnTemplate.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUITemplate.class);
+            startActivity(intent);
+        });
+
+        // 多语言支持
+        binding.btnI18N.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIMultiLanguage.class);
+            startActivity(intent);
+        });
+
+        // 基本应用(KT)
+        binding.btnBaseKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIBaseKT.class);
+            startActivity(intent);
+        });
+
+        // 字符串模板(KT)
+        binding.btnTemplateKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUITemplateKT.class);
+            startActivity(intent);
+        });
+
+        // 多语言支持(KT)
+        binding.btnI18NKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIMultiLanguageKT.class);
             startActivity(intent);
         });
     }

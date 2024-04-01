@@ -30,12 +30,30 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/btnStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="外观定制"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btnScrollDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:text="超长内容滚动显示"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnSpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="SpannableString"
             android:textAllCaps="false" />
 
         <TextView
@@ -57,12 +75,30 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/btnStyleKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="外观定制"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btnScrollDisplayKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:text="超长内容滚动显示"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnSpanKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="SpannableString"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

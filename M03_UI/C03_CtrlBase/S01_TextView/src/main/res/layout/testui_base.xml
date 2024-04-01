@@ -24,8 +24,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            tools:text="[文本框]" />
+            android:text="这是一个文本框。" />
     </LinearLayout>
 </ScrollView>

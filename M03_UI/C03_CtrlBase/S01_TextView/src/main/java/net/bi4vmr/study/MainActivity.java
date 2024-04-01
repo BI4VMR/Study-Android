@@ -10,6 +10,10 @@ import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.scrolldisplay.TestUIScrollDisplay;
 import net.bi4vmr.study.scrolldisplay.TestUIScrollDisplayKT;
+import net.bi4vmr.study.span.TestUISpan;
+import net.bi4vmr.study.span.TestUISpanKT;
+import net.bi4vmr.study.style.TestUIStyle;
+import net.bi4vmr.study.style.TestUIStyleKT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,9 +29,21 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 外观定制
+        binding.btnBase.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIStyle.class);
+            startActivity(intent);
+        });
+
         // 超长内容滚动显示
         binding.btnScrollDisplay.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIScrollDisplay.class);
+            startActivity(intent);
+        });
+
+        // SpannableString
+        binding.btnSpan.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUISpan.class);
             startActivity(intent);
         });
 
@@ -37,9 +53,21 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 外观定制(KT)
+        binding.btnStyleKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIStyleKT.class);
+            startActivity(intent);
+        });
+
         // 超长内容滚动显示(KT)
         binding.btnScrollDisplayKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIScrollDisplayKT.class);
+            startActivity(intent);
+        });
+
+        // SpannableString
+        binding.btnSpanKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUISpanKT.class);
             startActivity(intent);
         });
     }

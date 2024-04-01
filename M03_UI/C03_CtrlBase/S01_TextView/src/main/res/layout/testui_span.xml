@@ -15,29 +15,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="在XML中引用字符串资源："
+            android:text="基本应用："
             android:textColor="@color/black"
             android:textSize="16sp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvDefault"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@string/text_base" />
+            android:text="我能吞下玻璃而不伤身体" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="在代码中引用字符串资源："
+            android:text="文本样式："
             android:textColor="@color/black"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tvRefStringInCode"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvTextStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            tools:text="[文本框]" />
+            android:text="我能吞下玻璃而不伤身体" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="点击事件："
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="我能吞下玻璃而不伤身体" />
     </LinearLayout>
 </ScrollView>
