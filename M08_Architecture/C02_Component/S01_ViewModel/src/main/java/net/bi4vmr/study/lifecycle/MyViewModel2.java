@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 import java.util.UUID;
 
 /**
- * Name        : MyViewModel
+ * Name        : MyViewModel2
  * <p>
  * Author      : BI4VMR
  * <p>

@@ -18,5 +18,5 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        tools:layout="@layout/test_fragment" />
+        tools:layout="@layout/fragment_test" />
 </LinearLayout>

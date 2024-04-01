@@ -23,14 +23,13 @@ public class MyViewModel extends ViewModel {
 
     // 实例ID
     public final String id;
-
     // 共享数据
     private int num = 0;
 
     public MyViewModel() {
         // 生成随机ID，标识当前实例。
         id = genRandomID();
-        Log.i(TAG, "VM created. ID: " + id);
+        Log.i(TAG, "VM created. ID:[" + id + "]");
     }
 
     // 读取共享数据

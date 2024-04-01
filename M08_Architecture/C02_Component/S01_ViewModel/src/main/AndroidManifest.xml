@@ -32,5 +32,20 @@
         <activity
             android:name=".androidvm.TestUIAndroidVM"
             android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+<!--        &lt;!&ndash; 示例界面：生命周期(KT) &ndash;&gt;-->
+        <!--        <activity-->
+        <!--            android:name=".lifecycle.TestUILifeCycleKT"-->
+        <!--            android:exported="false" />-->
+
+        <!--        &lt;!&ndash; 示例界面：AndroidViewModel(KT) &ndash;&gt;-->
+        <!--        <activity-->
+        <!--            android:name=".androidvm.TestUIAndroidVMKT"-->
+        <!--            android:exported="false" />-->
     </application>
 </manifest>
