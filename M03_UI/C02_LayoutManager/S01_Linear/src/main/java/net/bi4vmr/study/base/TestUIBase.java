@@ -1,4 +1,4 @@
-package net.bi4vmr.study.weight;
+package net.bi4vmr.study.base;
 
 import android.os.Bundle;
 
@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.R;
 
-public class DemoWeightUI extends AppCompatActivity {
+public class TestUIBase extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_demo_weight);
+        setContentView(R.layout.testui_base);
     }
 }

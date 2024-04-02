@@ -33,12 +33,13 @@ public class TestUISpan extends AppCompatActivity {
         binding = TestuiSpanBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // 示例文本
         String text = "我能吞下玻璃而不伤身体";
 
         /*
          * 基本应用
          */
-        // 创建SpannableString对实例，并设置初始内容。
+        // 创建SpannableString实例，并设置初始内容。
         SpannableString ss1 = new SpannableString(text);
 
         /*
@@ -59,12 +60,11 @@ public class TestUISpan extends AppCompatActivity {
          *              Spanned.SPAN_EXCLUSIVE_INCLUSIVE - 不包括起始位置，包括结束位置。
          *              Spanned.SPAN_EXCLUSIVE_EXCLUSIVE - 不包括起始与结束位置。
          */
-        ss1.setSpan(new BackgroundColorSpan(Color.RED), 2, 6, 0);
+        ss1.setSpan(new BackgroundColorSpan(Color.RED), 2, 61, 0);
         ss1.setSpan(new BackgroundColorSpan(Color.GREEN), 8, 10, 0);
 
-        // 将SpannableString设置到TextView中。
-        TextView tvDefault = findViewById(R.id.tvDefault);
-        tvDefault.setText(ss1);
+        // 将SpannableString设置到TextView中
+        binding.tvDefault.setText(ss1);
 
         /*
          * 文本样式

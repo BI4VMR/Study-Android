@@ -21,17 +21,17 @@
 
         <!-- 示例：基本应用 -->
         <activity
-            android:name=".base.DemoBaseUI"
+            android:name=".base.TestUIBase"
             android:exported="false" />
 
         <!-- 示例：换行显示 -->
         <activity
-            android:name=".multiline.DemoMultiLineUI"
+            android:name=".multiline.TestUIMultiLine"
             android:exported="false" />
 
         <!-- 示例：权重属性 -->
         <activity
-            android:name=".weight.DemoWeightUI"
+            android:name=".weight.TestUIWeight"
             android:exported="false" />
     </application>
 </manifest>

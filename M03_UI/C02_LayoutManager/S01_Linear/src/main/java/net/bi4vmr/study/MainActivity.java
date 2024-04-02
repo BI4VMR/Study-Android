@@ -6,35 +6,37 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.base.DemoBaseUI;
-import net.bi4vmr.study.multiline.DemoMultiLineUI;
-import net.bi4vmr.study.weight.DemoWeightUI;
+import net.bi4vmr.study.base.TestUIBase;
+import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.multiline.TestUIMultiLine;
+import net.bi4vmr.study.weight.TestUIWeight;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // 基本应用
         Button btnBase = findViewById(R.id.btnBase);
         btnBase.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemoBaseUI.class);
+            Intent intent = new Intent(this, TestUIBase.class);
             startActivity(intent);
         });
 
         // 换行显示
         Button btnMultiLine = findViewById(R.id.btnMultiLine);
         btnMultiLine.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemoMultiLineUI.class);
+            Intent intent = new Intent(this, TestUIMultiLine.class);
             startActivity(intent);
         });
 
         // 权重属性
         Button btnWeight = findViewById(R.id.btnWeight);
         btnWeight.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemoWeightUI.class);
+            Intent intent = new Intent(this, TestUIWeight.class);
             startActivity(intent);
         });
     }

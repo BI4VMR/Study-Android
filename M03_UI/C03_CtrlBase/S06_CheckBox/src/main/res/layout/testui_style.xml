@@ -15,16 +15,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="默认样式："
+            android:text="复选框颜色："
             android:textColor="@color/black"
             android:textSize="16sp" />
 
         <CheckBox
-            android:id="@+id/checkbox"
+            android:id="@+id/btnBase2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="这是一个复选框"
-            android:textAllCaps="false" />
+            android:buttonTint="#FF4444"
+            android:text="这是一个复选框" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="复选框素材："
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/btnBase3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:button="@drawable/selector_location"
+            android:buttonTint="#00FFFF"
+            android:text="这是一个复选框" />
     </LinearLayout>
 </ScrollView>
