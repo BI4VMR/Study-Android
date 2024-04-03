@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // SpannableString
+        // SpannableString(KT)
         binding.btnSpanKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUISpanKT.class);
             startActivity(intent);

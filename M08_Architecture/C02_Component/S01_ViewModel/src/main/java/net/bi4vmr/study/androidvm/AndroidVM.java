@@ -27,6 +27,6 @@ public class AndroidVM extends AndroidViewModel {
 
         // 获取应用级的Context对象
         Context context = application.getApplicationContext();
-        Log.i(TAG, "Get APPContext:" + context.toString());
+        Log.i(TAG, "Get APPContext: " + context.toString());
     }
 }

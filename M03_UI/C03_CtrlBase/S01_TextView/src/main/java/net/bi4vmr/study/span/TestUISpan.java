@@ -12,13 +12,11 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.R;
 import net.bi4vmr.study.databinding.TestuiSpanBinding;
 
 public class TestUISpan extends AppCompatActivity {
@@ -48,34 +46,32 @@ public class TestUISpan extends AppCompatActivity {
          * Description : 设置文本样式。
          *
          * @param what  样式类型，内置样式名称通常以"Span"结尾。
-         *              每个Span实例只会被SpannableString应用一次，如果重复应用Span，则会导致其先前设置的样式
-         *              被清除；如果我们不希望清空Span已经设置的样式，应当创建一个新的Span实例再应用到Spannable
-         *              String中。
+         *              Span实例不可复用，如果重复使用同一个Span实例，则会导致先前设置的样式被清除。因此即使两处文本的样式完全相同，我
+         *              们也应当创建两个不同的Span实例。
          * @param start 起始位置（包括）
          * @param end   终止位置（不包括）
-         * @param flags 标志位
-         *              以下标志位用于控制在Span区域前后插入文本时，是否需要也应用该样式。
+         * @param flags 标志位，用于控制在Span区域前后插入新文本时，是否为它们也应用当前样式。
          *              Spanned.SPAN_INCLUSIVE_INCLUSIVE - 包括起始与结束位置。
          *              Spanned.SPAN_INCLUSIVE_EXCLUSIVE - 包括起始位置，不包括结束位置。
          *              Spanned.SPAN_EXCLUSIVE_INCLUSIVE - 不包括起始位置，包括结束位置。
          *              Spanned.SPAN_EXCLUSIVE_EXCLUSIVE - 不包括起始与结束位置。
          */
-        ss1.setSpan(new BackgroundColorSpan(Color.RED), 2, 61, 0);
+        ss1.setSpan(new BackgroundColorSpan(Color.RED), 2, 6, 0);
         ss1.setSpan(new BackgroundColorSpan(Color.GREEN), 8, 10, 0);
 
         // 将SpannableString设置到TextView中
         binding.tvDefault.setText(ss1);
 
         /*
-         * 文本样式
+         * 文本外观
          */
-        // 设置前景色（文字颜色）
+        // 设置前景色（即文本的颜色）
         ForegroundColorSpan foregroundSpan = new ForegroundColorSpan(Color.RED);
         // 设置背景色
         BackgroundColorSpan backgroundSpan = new BackgroundColorSpan(Color.CYAN);
-        // 设置字号（相对大小：相对原始字号的倍数）
+        // 设置尺寸（相对大小：相对原始字号增大2倍）
         RelativeSizeSpan relativeSizeSpan = new RelativeSizeSpan(2.0F);
-        // 设置字号（绝对大小：像素）
+        // 设置尺寸（绝对大小：像素）
         AbsoluteSizeSpan absoluteSizeSpan = new AbsoluteSizeSpan(30);
 
         SpannableString ss2 = new SpannableString(text);
@@ -84,18 +80,17 @@ public class TestUISpan extends AppCompatActivity {
         ss2.setSpan(relativeSizeSpan, 4, 6, 0);
         ss2.setSpan(absoluteSizeSpan, 6, 8, 0);
 
-        TextView tvTextStyle = findViewById(R.id.tvTextStyle);
-        tvTextStyle.setText(ss2);
+        binding.tvTextStyle.setText(ss2);
 
         /*
-         * 文本样式
+         * 点击事件
          */
-        // 点击事件
         ClickableSpan clickableSpan = new ClickableSpan() {
+
             @Override
             public void onClick(@NonNull View widget) {
                 /* 设置点击效果 */
-                Log.i("TestApp", "ClickableSpan.");
+                Log.i(TAG, "ClickableSpan-OnClick.");
                 Toast.makeText(getApplicationContext(), "已点击文字", Toast.LENGTH_SHORT)
                         .show();
             }
@@ -103,17 +98,16 @@ public class TestUISpan extends AppCompatActivity {
             @Override
             public void updateDrawState(@NonNull TextPaint ds) {
                 // 设置文本颜色，覆盖默认样式。
-                ds.setColor(Color.YELLOW);
+                // ds.setColor(Color.YELLOW);
                 // 设置下划线为不显示，覆盖默认样式。
-                ds.setUnderlineText(false);
+                // ds.setUnderlineText(false);
             }
         };
 
         SpannableString ss3 = new SpannableString(text);
         ss3.setSpan(clickableSpan, 2, 6, 0);
-        TextView tvClick = findViewById(R.id.tvClick);
         // TextView需要添加以下方法，才能使点击事件生效。
-        tvClick.setMovementMethod(LinkMovementMethod.getInstance());
-        tvClick.setText(ss3);
+        binding.tvClick.setMovementMethod(LinkMovementMethod.getInstance());
+        binding.tvClick.setText(ss3);
     }
 }

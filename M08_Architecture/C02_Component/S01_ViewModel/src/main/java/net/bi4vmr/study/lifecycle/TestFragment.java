@@ -6,11 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import net.bi4vmr.study.R;
+import net.bi4vmr.study.databinding.FragmentTestBinding;
 
 /**
  * Name        : TestFragment
@@ -27,6 +28,12 @@ public class TestFragment extends Fragment {
 
     private static final String TAG = "TestApp-" + TestFragment.class.getSimpleName();
 
+    private FragmentTestBinding binding;
+
+    public static TestFragment newInstance() {
+        return new TestFragment();
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,16 +41,17 @@ public class TestFragment extends Fragment {
 
         // 获取宿主Activity的MyViewModel2实例
         MyViewModel2 vmInActivity = new ViewModelProvider(requireActivity()).get(MyViewModel2.class);
-        Log.i(TAG, "Get VM in parent Activity. ID: " + vmInActivity.id);
+        Log.i(TAG, "Get VM in parent Activity. ID:[" + vmInActivity.id + "]");
 
         // 获取当前Fragment的ViewModel2实例
-        MyViewModel2 vm = new ViewModelProvider(this).get(MyViewModel2.class);
-        Log.i(TAG, "Get VM in Fragment. ID: " + vm.id);
+        MyViewModel2 vmInFragment = new ViewModelProvider(this).get(MyViewModel2.class);
+        Log.i(TAG, "Get VM in Fragment. ID:[" + vmInFragment.id + "]");
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_test, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentTestBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override

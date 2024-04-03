@@ -27,13 +27,13 @@ public class MyViewModel2 extends ViewModel {
     public MyViewModel2() {
         // 生成随机ID，标识当前实例。
         id = genRandomID();
-        Log.i(TAG, "VM created. ID: " + id);
+        Log.i(TAG, "VM created. ID:[" + id + "]");
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
-        Log.i(TAG, "OnCleared. ID: " + id);
+        Log.i(TAG, "OnCleared. ID:[" + id + "]");
     }
 
     // 获取随机ID

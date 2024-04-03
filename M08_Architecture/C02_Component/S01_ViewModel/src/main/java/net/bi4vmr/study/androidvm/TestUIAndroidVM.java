@@ -20,7 +20,7 @@ public class TestUIAndroidVM extends AppCompatActivity {
 
         // 获取AndroidViewModel实例
         AndroidVM vm = new ViewModelProvider(this).get(AndroidVM.class);
-        // 获取应用级的Context对象
+        // 使用AndroidViewModel
         Context context = vm.getApplication().getApplicationContext();
         Log.i(TAG, "Get APPContext:" + context.toString());
     }
