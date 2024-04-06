@@ -57,5 +57,50 @@
             android:layout_marginStart="10dp"
             android:text="这是一个文本框。"
             android:textColor="#FF00FF" />
+
+        <TextView
+            android:id="@+id/tvColor1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="24sp"
+            android:text="这是一个文本框。" />
+
+        <TextView
+            android:id="@+id/tvColor2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/simyou"
+            android:text="这是一个文本框。" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="字重："
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvColor3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="24sp"
+            android:textFontWeight="100"
+            android:fontFamily="@font/simyou"
+            android:text="这是一个文本框。" />
+
+        <TextView
+            android:id="@+id/tvColor4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="24sp"
+            android:textFontWeight="900"
+            android:fontFamily="@font/simyou"
+            android:text="这是一个文本框。" />
     </LinearLayout>
 </ScrollView>
