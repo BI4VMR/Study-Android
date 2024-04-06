@@ -15,21 +15,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="默认样式："
+            android:text="颜色选择器："
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <CheckBox
+        <ToggleButton
+            android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="这是一个复选框" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:checked="true"
-            android:text="这是一个复选框" />
+            android:textColor="@color/selector_sample"
+            android:textOff="我能吞下玻璃而不伤身体"
+            android:textOn="我能吞下玻璃而不伤身体" />
     </LinearLayout>
 </ScrollView>

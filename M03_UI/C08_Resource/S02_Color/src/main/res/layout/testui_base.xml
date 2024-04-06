@@ -15,21 +15,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="默认样式："
+            android:text="在XML中引用字符串资源："
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <CheckBox
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="这是一个复选框" />
+            android:text="我能吞下玻璃而不伤身体。"
+            android:textColor="@color/color_sample" />
 
-        <CheckBox
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="在代码中引用字符串资源："
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvRefColorInCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:checked="true"
-            android:text="这是一个复选框" />
+            android:text="我能吞下玻璃而不伤身体。" />
     </LinearLayout>
 </ScrollView>

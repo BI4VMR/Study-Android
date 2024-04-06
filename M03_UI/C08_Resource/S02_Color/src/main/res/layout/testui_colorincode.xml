@@ -15,21 +15,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="默认样式："
+            android:text="颜色在代码中的表示方法："
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <CheckBox
+        <TextView
+            android:id="@+id/textview1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="这是一个复选框" />
+            android:text="我能吞下玻璃而不伤身体。" />
 
-        <CheckBox
+        <TextView
+            android:id="@+id/textview2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:checked="true"
-            android:text="这是一个复选框" />
+            android:text="我能吞下玻璃而不伤身体。" />
+
+        <TextView
+            android:id="@+id/textview3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="我能吞下玻璃而不伤身体。" />
+
+        <TextView
+            android:id="@+id/textview4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="我能吞下玻璃而不伤身体。" />
     </LinearLayout>
 </ScrollView>

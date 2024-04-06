@@ -21,5 +21,6 @@ public class TestUIStyle extends AppCompatActivity {
 
         binding.tvColor.setTextColor(Color.CYAN);
         // binding.tvColor.getTextColors().getDefaultColor();
+        // binding.tvColor.setAutoLinkMask();
     }
 }

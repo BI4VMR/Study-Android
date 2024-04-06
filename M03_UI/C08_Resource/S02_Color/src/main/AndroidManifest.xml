@@ -9,7 +9,7 @@
         android:theme="@style/Theme.DEFAULT">
 
         <activity
-            android:name="net.bi4vmr.study.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,19 +23,29 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：使用代码表示颜色 -->
+        <activity
+            android:name=".colorincode.TestUIColorInCode"
+            android:exported="false" />
+
+        <!-- 示例界面：颜色选择器 -->
+        <activity
+            android:name=".selector.TestUISelector"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
             android:exported="false" />
 
-        <!-- 示例界面：外观定制 -->
+        <!-- 示例界面：使用代码表示颜色(KT) -->
         <activity
-            android:name=".style.TestUIStyle"
+            android:name=".colorincode.TestUIColorInCodeKT"
             android:exported="false" />
 
-        <!-- 示例界面：外观定制(KT) -->
+        <!-- 示例界面：颜色选择器(KT) -->
         <activity
-            android:name=".style.TestUIStyleKT"
+            android:name=".selector.TestUISelectorKT"
             android:exported="false" />
     </application>
 </manifest>

@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
+import net.bi4vmr.study.colorincode.TestUIColorInCode;
+import net.bi4vmr.study.colorincode.TestUIColorInCodeKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
-import net.bi4vmr.study.style.TestUIStyle;
-import net.bi4vmr.study.style.TestUIStyleKT;
+import net.bi4vmr.study.selector.TestUISelector;
+import net.bi4vmr.study.selector.TestUISelectorKT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,9 +27,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 外观定制
-        binding.btnStyle.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIStyle.class);
+        // 使用代码表示颜色
+        binding.btnColorInCode.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIColorInCode.class);
+            startActivity(intent);
+        });
+
+        // 颜色选择器
+        binding.btnSelector.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUISelector.class);
             startActivity(intent);
         });
 
@@ -37,9 +45,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 外观定制(KT)
-        binding.btnStyleKT.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIStyleKT.class);
+        // 使用代码表示颜色(KT)
+        binding.btnColorInCodeKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIColorInCodeKT.class);
+            startActivity(intent);
+        });
+
+        // 颜色选择器(KT)
+        binding.btnSelectorKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUISelectorKT.class);
             startActivity(intent);
         });
     }
