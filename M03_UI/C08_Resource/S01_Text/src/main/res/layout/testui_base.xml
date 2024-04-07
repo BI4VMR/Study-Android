@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="在XML中引用字符串资源："
+            android:text="在布局中引用字符串资源："
             android:textColor="@color/black"
             android:textSize="16sp" />
 

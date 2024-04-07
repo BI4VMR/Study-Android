@@ -21,11 +21,11 @@ class TestUISelectorKT : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // 通过Resources实例获取颜色选择器资源
+        // 通过Resources实例获取Selector资源
         val colorStateList: ColorStateList? =
             ContextCompat.getColorStateList(applicationContext, R.color.selector_sample)
         colorStateList?.let {
-            // 将颜色选择器设置到控件上
+            // 将Selector设置到控件上
             binding.button.setTextColor(it)
         }
     }

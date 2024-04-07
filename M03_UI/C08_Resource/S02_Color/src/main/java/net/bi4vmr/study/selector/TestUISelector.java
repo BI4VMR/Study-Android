@@ -7,23 +7,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import net.bi4vmr.study.R;
-import net.bi4vmr.study.databinding.TestuiBaseBinding;
+import net.bi4vmr.study.databinding.TestuiSelectorBinding;
 
 public class TestUISelector extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUISelector.class.getSimpleName();
 
-    private TestuiBaseBinding binding;
+    private TestuiSelectorBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiBaseBinding.inflate(getLayoutInflater());
+        binding = TestuiSelectorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 通过Resources实例获取颜色选择器资源
-        ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.color_sample);
-        // 将颜色选择器设置到控件上
-        binding.tvRefColorInCode.setTextColor(colorStateList);
+        // 通过Resources实例获取Selector资源
+        ColorStateList colorStateList = ContextCompat.getColorStateList(getApplicationContext(), R.color.selector_sample);
+        // 将Selector设置到控件上
+        binding.button.setTextColor(colorStateList);
     }
 }

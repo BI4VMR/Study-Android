@@ -4,7 +4,7 @@
 
     <string name="text_base" translatable="false">这是一个文本资源。</string>
 
-    <string name="text_template" translatable="false">字符串：[%s], 数字：[%d]</string>
+    <string name="text_template" translatable="false">学生姓名：[%s], 年龄：[%d]</string>
 
     <string name="text_ml">多语言文本（默认）</string>
 </resources>

@@ -20,7 +20,7 @@ public class TestUITemplate extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // 根据占位符依次传入对应的内容
-        String text = getResources().getString(R.string.text_template, "测试内容", 100);
+        String text = getResources().getString(R.string.text_template, "李田所", 24);
         // 将字符串设置到控件上
         binding.textview.setText(text);
     }

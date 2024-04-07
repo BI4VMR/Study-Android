@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 使用代码表示颜色
+        // 在代码中处理颜色
         binding.btnColorInCode.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIColorInCode.class);
             startActivity(intent);
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 使用代码表示颜色(KT)
+        // 在代码中处理颜色(KT)
         binding.btnColorInCodeKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIColorInCodeKT.class);
             startActivity(intent);

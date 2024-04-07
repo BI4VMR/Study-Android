@@ -15,7 +15,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="颜色选择器："
+            android:text="在布局中引用Selector："
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/selector_sample"
+            android:textOff="我能吞下玻璃而不伤身体"
+            android:textOn="我能吞下玻璃而不伤身体" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="在代码中引用Selector："
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -24,7 +40,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textColor="@color/selector_sample"
             android:textOff="我能吞下玻璃而不伤身体"
             android:textOn="我能吞下玻璃而不伤身体" />
     </LinearLayout>
