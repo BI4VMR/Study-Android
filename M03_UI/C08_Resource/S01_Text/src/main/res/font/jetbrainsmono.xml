@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 定义字体
+         "font":声明该字体对应的文件。
+         "fontStyle":声明样式是正常还是斜体。
+         "fontWeight":声明字重。
+    -->
     <font
         android:font="@font/jetbrainsmono_light"
         android:fontStyle="normal"
