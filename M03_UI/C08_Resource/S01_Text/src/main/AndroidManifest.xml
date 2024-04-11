@@ -33,6 +33,11 @@
             android:name=".i18n.TestUIMultiLanguage"
             android:exported="false" />
 
+        <!-- 示例界面：字体 -->
+        <activity
+            android:name=".font.TestUIFont"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
@@ -46,6 +51,11 @@
         <!-- 示例界面：多语言支持(KT) -->
         <activity
             android:name=".i18n.TestUIMultiLanguageKT"
+            android:exported="false" />
+
+        <!-- 示例界面：字体(KT) -->
+        <activity
+            android:name=".font.TestUIFontKT"
             android:exported="false" />
     </application>
 </manifest>

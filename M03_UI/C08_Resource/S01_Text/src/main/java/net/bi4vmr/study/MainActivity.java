@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.font.TestUIFont;
+import net.bi4vmr.study.font.TestUIFontKT;
 import net.bi4vmr.study.i18n.TestUIMultiLanguage;
 import net.bi4vmr.study.i18n.TestUIMultiLanguageKT;
 import net.bi4vmr.study.template.TestUITemplate;
@@ -39,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 字体
+        binding.btnFont.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIFont.class);
+            startActivity(intent);
+        });
+
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
@@ -54,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         // 多语言支持(KT)
         binding.btnI18NKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIMultiLanguageKT.class);
+            startActivity(intent);
+        });
+
+        // 字体(KT)
+        binding.btnFontKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIFontKT.class);
             startActivity(intent);
         });
     }
