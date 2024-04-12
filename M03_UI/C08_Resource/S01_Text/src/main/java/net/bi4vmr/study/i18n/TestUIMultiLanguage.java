@@ -1,13 +1,14 @@
 package net.bi4vmr.study.i18n;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.os.LocaleList;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.databinding.TestuiMultilanguageBinding;
 
+import java.lang.reflect.Method;
 import java.util.Locale;
 
 public class TestUIMultiLanguage extends AppCompatActivity {
@@ -57,11 +58,22 @@ public class TestUIMultiLanguage extends AppCompatActivity {
         binding.tvLog.append("\n--- 获取用户选择的地区列表 ---\n");
 
         // 获取用户选择的地区列表
-        LocaleList locales = getResources().getConfiguration().getLocales();
-        // 遍历输出信息
-        for (int i = 0; i < locales.size(); i++) {
-            Locale locale = locales.get(i);
-            Log.i(TAG, "Locale:[" + locale.toLanguageTag() + "]");
+        // LocaleList locales = getResources().getConfiguration().getLocales();
+        // // 遍历输出信息
+        // for (int i = 0; i < locales.size(); i++) {
+        //     Locale locale = locales.get(i);
+        //     Log.i(TAG, "Locale:[" + locale.toLanguageTag() + "]");
+        // }
+
+        try {
+            Class<?> c = Class.forName("com.android.internal.app.LocalePicker");
+            Method method = c.getMethod("getAllAssetLocales", Context.class, boolean.class);
+            Object o = method.invoke(null, this, false);
+            Log.i("TESTapp", o.getClass().getSimpleName());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+
     }
 }

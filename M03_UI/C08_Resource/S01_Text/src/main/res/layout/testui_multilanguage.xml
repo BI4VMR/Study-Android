@@ -59,4 +59,32 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/text_ml" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="RTL布局测试："
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="10dp"
+        android:background="#4400FF00"
+        android:text="示例文本1"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#44FFFF00"
+        android:text="示例文本2"
+        android:textColor="@color/black"
+        android:textDirection="locale"
+        android:textSize="16sp" />
 </LinearLayout>
