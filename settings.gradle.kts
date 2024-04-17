@@ -134,6 +134,7 @@ include(":M04_System:C05_Ability:S03_Configuration")
 include(":M04_System:C05_Ability:S04_PackageManager")
 include(":M04_System:C05_Ability:S05_UsageStats")
 include(":M04_System:C05_Ability:S06_NDK")
+include(":M04_System:C06_Concurrency:S01_Handler")
 
 /* ----- 数据存储 ----- */
 include(":M05_Storage:C01_File:S01_Base")
