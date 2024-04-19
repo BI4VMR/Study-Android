@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.bi4vmr.study.ui.ctrlbase.togglebutton">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -19,8 +18,34 @@
             </intent-filter>
         </activity>
 
+        <!-- 示例界面：基本应用 -->
         <activity
-            android:name="net.bi4vmr.study.demo01.Demo01Activity"
+            android:name=".base.TestUIBase"
+            android:exported="false" />
+
+        <!-- 示例界面：外观定制 -->
+        <activity
+            android:name=".style.TestUIStyle"
+            android:exported="false" />
+
+        <!-- 示例界面：事件监听器 -->
+        <activity
+            android:name=".event.TestUIEvent"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：外观定制(KT) -->
+        <activity
+            android:name=".style.TestUIStyleKT"
+            android:exported="false" />
+
+        <!-- 示例界面：事件监听器(KT) -->
+        <activity
+            android:name=".event.TestUIEventKT"
             android:exported="false" />
     </application>
 </manifest>

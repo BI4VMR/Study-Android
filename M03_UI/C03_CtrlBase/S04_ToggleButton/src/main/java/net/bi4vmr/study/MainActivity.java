@@ -2,23 +2,58 @@ package net.bi4vmr.study;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.demo01.Demo01Activity;
-import net.bi4vmr.study.ui.ctrlbase.togglebutton.R;
+import net.bi4vmr.study.base.TestUIBase;
+import net.bi4vmr.study.base.TestUIBaseKT;
+import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.event.TestUIEvent;
+import net.bi4vmr.study.event.TestUIEventKT;
+import net.bi4vmr.study.style.TestUIStyle;
+import net.bi4vmr.study.style.TestUIStyleKT;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        Button btn01 = findViewById(R.id.btn01);
-        btn01.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Demo01Activity.class);
+        // 基本应用
+        binding.btnBase.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIBase.class);
+            startActivity(intent);
+        });
+
+        // 外观定制
+        binding.btnStyle.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIStyle.class);
+            startActivity(intent);
+        });
+
+        // 事件监听器
+        binding.btnEvent.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIEvent.class);
+            startActivity(intent);
+        });
+
+        // 基本应用(KT)
+        binding.btnBaseKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIBaseKT.class);
+            startActivity(intent);
+        });
+
+        // 外观定制(KT)
+        binding.btnStyleKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIStyleKT.class);
+            startActivity(intent);
+        });
+
+        // 事件监听器(KT)
+        binding.btnEventKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIEventKT.class);
             startActivity(intent);
         });
     }

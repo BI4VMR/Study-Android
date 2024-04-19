@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 外观定制
-        binding.btnBase.setOnClickListener(v -> {
+        binding.btnStyle.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIStyle.class);
             startActivity(intent);
         });
