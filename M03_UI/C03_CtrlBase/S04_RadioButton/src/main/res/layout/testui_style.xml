@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="按钮状态："
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ToggleButton
+            android:id="@+id/tbtnCheckState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="按钮文本："
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ToggleButton
+            android:id="@+id/tbtnText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="已关闭"
+            android:textOn="已开启" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="按钮图像："
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ToggleButton
+            android:id="@+id/tbtnImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/selector_location"
+            android:textOff="@null"
+            android:textOn="@null" />
+    </LinearLayout>
+</ScrollView>
