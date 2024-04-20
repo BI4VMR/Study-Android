@@ -19,14 +19,14 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例：基本应用 -->
+        <!-- 示例界面：基本应用 -->
         <activity
-            android:name=".base.DemoBaseUI"
+            android:name=".base.TestUIBase"
             android:exported="false" />
 
         <!-- 示例：ViewPager2嵌套 -->
-        <activity
-            android:name=".nested.DemoNestedUI"
-            android:exported="false" />
+        <!--<activity-->
+        <!--    android:name=".nested.DemoNestedUI"-->
+        <!--    android:exported="false" />-->
     </application>
 </manifest>

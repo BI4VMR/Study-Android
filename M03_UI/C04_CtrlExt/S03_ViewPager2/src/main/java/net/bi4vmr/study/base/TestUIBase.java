@@ -12,7 +12,7 @@ import net.bi4vmr.study.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DemoBaseUI extends AppCompatActivity {
+public class TestUIBase extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
