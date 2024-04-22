@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.R;
+import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
 public class TestUIBase extends AppCompatActivity {
 
