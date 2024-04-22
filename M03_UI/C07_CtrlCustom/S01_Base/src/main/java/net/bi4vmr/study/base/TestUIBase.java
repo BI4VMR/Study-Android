@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.bi4vmr.study.R;
 import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
 public class TestUIBase extends AppCompatActivity {
@@ -18,6 +19,11 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // TODO
+        // 构建BusinessCard实例
+        BusinessCard businessCard = new BusinessCard(this);
+        // 设置文本与图像
+        businessCard.updateInfo("田所浩二", "11451419198", R.drawable.ic_funny_256);
+        // 将其添加到布局中
+        binding.getRoot().addView(businessCard);
     }
 }

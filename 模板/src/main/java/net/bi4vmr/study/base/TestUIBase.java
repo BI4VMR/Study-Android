@@ -18,6 +18,14 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // TODO
+        binding.setOnClickListener(v -> test());
+    }
+
+    // 功能模块
+    private void test() {
+        Log.i(TAG, "--- 功能模块 ---");
+        binding.tvLog.append("\n--- 功能模块 ---\n");
+
+        // ...
     }
 }

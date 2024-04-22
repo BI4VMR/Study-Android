@@ -7,6 +7,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
+import net.bi4vmr.study.base.TestUIBaseKT;
+import net.bi4vmr.study.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

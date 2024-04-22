@@ -20,14 +20,14 @@ class TestUIBaseKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
-            btn01.setOnClickListener { test() }
+            // btn01.setOnClickListener { test() }
         }
     }
 
     // 功能模块
     private fun test() {
         Log.i(TAG, "--- 功能模块 ---")
-        binding.tvLog.append("\n--- 功能模块 ---\n")
+        // binding.tvLog.append("\n--- 功能模块 ---\n")
 
         // ...
     }
