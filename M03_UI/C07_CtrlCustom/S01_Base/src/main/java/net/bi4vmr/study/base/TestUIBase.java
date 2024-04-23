@@ -24,6 +24,6 @@ public class TestUIBase extends AppCompatActivity {
         // 设置文本与图像
         businessCard.updateInfo("田所浩二", "11451419198", R.drawable.ic_funny_256);
         // 将其添加到布局中
-        binding.getRoot().addView(businessCard);
+        binding.container.addView(businessCard);
     }
 }

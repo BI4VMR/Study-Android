@@ -1,8 +1,8 @@
 package net.bi4vmr.study.base
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import net.bi4vmr.study.R
 import net.bi4vmr.study.databinding.TestuiBaseBinding
 
 class TestUIBaseKT : AppCompatActivity() {
@@ -19,16 +19,11 @@ class TestUIBaseKT : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        with(binding) {
-            // btn01.setOnClickListener { test() }
-        }
-    }
-
-    // 功能模块
-    private fun test() {
-        Log.i(TAG, "--- 功能模块 ---")
-        // binding.tvLog.append("\n--- 功能模块 ---\n")
-
-        // ...
+        // 构建BusinessCard实例
+        val businessCard = BusinessCardKT(this)
+        // 设置文本与图像
+        businessCard.updateInfo("田所浩二", "11451419198", R.drawable.ic_funny_256)
+        // 将其添加到布局中
+        binding.container.addView(businessCard)
     }
 }
