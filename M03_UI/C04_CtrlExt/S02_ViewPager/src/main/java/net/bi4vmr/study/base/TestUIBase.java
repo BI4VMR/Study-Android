@@ -2,25 +2,26 @@ package net.bi4vmr.study.base;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import net.bi4vmr.study.R;
+import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DemoBaseUI extends AppCompatActivity {
+public class TestUIBase extends AppCompatActivity {
+
+    private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();
+
+    private TestuiBaseBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_demo_base);
-
-        ViewPager vpTest = findViewById(R.id.vpTest);
-        Button btnSwitchPage = findViewById(R.id.btnSwitchPage);
+        binding = TestuiBaseBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // 创建测试页面
         List<TestFragment> pages = new ArrayList<>();
@@ -28,16 +29,18 @@ public class DemoBaseUI extends AppCompatActivity {
             pages.add(TestFragment.newInstance("页面" + (i + 1)));
         }
 
+        // 创建适配器
+        MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(), pages);
         // 将适配器与ViewPager绑定
-        vpTest.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), pages));
+        binding.viewpager.setAdapter(adapter);
 
-        btnSwitchPage.setOnClickListener(v -> {
+        binding.btnSwitchPage.setOnClickListener(v -> {
             // 切换至第三页
-            vpTest.setCurrentItem(2, false);
+            binding.viewpager.setCurrentItem(2, false);
         });
 
         // 注册页面滚动监听器
-        vpTest.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        binding.viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             /**
              * Name        : 页面滑动状态改变事件

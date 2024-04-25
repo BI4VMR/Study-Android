@@ -20,22 +20,24 @@ import java.util.List;
  */
 public class MyPagerAdapter extends FragmentStatePagerAdapter {
 
+    private static final String TAG = "TestApp-" + MyPagerAdapter.class.getSimpleName();
+
     // 数据源List
     private final List<TestFragment> pages;
 
     // 构造方法
     public MyPagerAdapter(@NonNull FragmentManager fm, List<TestFragment> pages) {
-        super(fm);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.pages = pages;
     }
 
     /**
      * Name        : 获取当前位置的Fragment
      * <p>
-     * Description : 获取当前位置的Fragment。
+     * Description : 无。
      *
-     * @param position 页面索引
-     * @return Fragment实例
+     * @param position 页面索引。
+     * @return Fragment实例。
      */
     @NonNull
     @Override
