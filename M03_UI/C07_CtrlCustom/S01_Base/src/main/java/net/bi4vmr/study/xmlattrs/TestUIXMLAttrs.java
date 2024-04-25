@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.bi4vmr.study.R;
+import net.bi4vmr.study.base.BusinessCard;
 import net.bi4vmr.study.databinding.TestuiXmlattrsBinding;
 
 public class TestUIXMLAttrs extends AppCompatActivity {

@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
     tools:ignore="HardcodedText">
 
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -26,7 +27,8 @@
         <net.bi4vmr.study.xmlattrs.BusinessCard2
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:name="aaa"
-            app:phone="bbb" />
+            app:avatar="@drawable/ic_funny_256"
+            app:name="田所浩二"
+            app:phone="11451419198" />
     </LinearLayout>
 </ScrollView>

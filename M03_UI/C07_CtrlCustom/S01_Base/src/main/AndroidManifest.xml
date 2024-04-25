@@ -23,6 +23,11 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：XML属性 -->
+        <activity
+            android:name=".xmlattrs.TestUIXMLAttrs"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"

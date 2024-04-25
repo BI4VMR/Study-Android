@@ -3,6 +3,6 @@
     <declare-styleable name="BusinessCard2">
         <attr name="name" format="string" />
         <attr name="phone" format="string" />
-        <attr name="aa" format="reference" />
+        <attr name="avatar" format="reference" />
     </declare-styleable>
 </resources>
