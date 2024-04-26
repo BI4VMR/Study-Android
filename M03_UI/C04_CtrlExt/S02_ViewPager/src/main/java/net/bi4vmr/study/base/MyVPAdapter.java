@@ -8,33 +8,25 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import java.util.List;
 
 /**
- * Name        : MyPagerAdapter
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-07-06 17:04
- * <p>
- * Description : ViewPager适配器。
+ * ViewPager适配器 - 基本应用。
+ *
+ * @author BI4VMR
  */
-public class MyPagerAdapter extends FragmentStatePagerAdapter {
+public class MyVPAdapter extends FragmentStatePagerAdapter {
 
-    private static final String TAG = "TestApp-" + MyPagerAdapter.class.getSimpleName();
+    private static final String TAG = "TestApp-" + MyVPAdapter.class.getSimpleName();
 
     // 数据源List
     private final List<TestFragment> pages;
 
     // 构造方法
-    public MyPagerAdapter(@NonNull FragmentManager fm, List<TestFragment> pages) {
+    public MyVPAdapter(@NonNull FragmentManager fm, List<TestFragment> pages) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.pages = pages;
     }
 
     /**
-     * Name        : 获取当前位置的Fragment
-     * <p>
-     * Description : 无。
+     * 获取当前位置的Fragment。
      *
      * @param position 页面索引。
      * @return Fragment实例。
@@ -46,11 +38,9 @@ public class MyPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     /**
-     * Name        : 获取页面数量
-     * <p>
-     * Description : 获取页面数量。
+     * 获取页面数量。
      *
-     * @return 页面数量
+     * @return 页面数量。
      */
     @Override
     public int getCount() {

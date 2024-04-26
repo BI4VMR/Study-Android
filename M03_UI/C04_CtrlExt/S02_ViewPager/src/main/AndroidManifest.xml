@@ -27,5 +27,10 @@
         <activity
             android:name=".event.TestUIEvent"
             android:exported="false" />
+
+        <!-- 示例界面：限制连续滑动 -->
+        <activity
+            android:name=".swipe1page.TestUISwipe1Page"
+            android:exported="false" />
     </application>
 </manifest>

@@ -28,17 +28,17 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="外观定制"
-            android:textAllCaps="false" />
-
-        <Button
             android:id="@+id/btnEvent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="事件监听器"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnSwipe1Page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="限制连续滑动"
             android:textAllCaps="false" />
 
         <TextView
@@ -56,17 +56,17 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnStyleKT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="外观定制"
-            android:textAllCaps="false" />
-
-        <Button
             android:id="@+id/btnEventKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="事件监听器"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnSwipe1PageKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="限制连续滑动"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

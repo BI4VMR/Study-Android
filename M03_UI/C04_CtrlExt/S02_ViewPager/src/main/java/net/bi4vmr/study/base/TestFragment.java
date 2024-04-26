@@ -1,5 +1,6 @@
 package net.bi4vmr.study.base;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +12,19 @@ import androidx.fragment.app.Fragment;
 
 import net.bi4vmr.study.databinding.FragmentTestBinding;
 
+import java.util.Random;
+
 public class TestFragment extends Fragment {
 
     private static final String TAG = "TestApp-" + TestFragment.class.getSimpleName();
     private static final String ARG_TEXT = "TEXT";
 
+    private final int bgColor;
     private String text;
+
+    public TestFragment() {
+        bgColor = Color.parseColor(getRandColor());
+    }
 
     public static TestFragment newInstance(String text) {
         TestFragment fragment = new TestFragment();
@@ -38,6 +46,26 @@ public class TestFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentTestBinding binding = FragmentTestBinding.inflate(inflater, container, false);
         binding.tvContent.setText(text);
+        binding.getRoot().setBackgroundColor(bgColor);
         return binding.getRoot();
+    }
+
+    /**
+     * 获取随机颜色代码。
+     *
+     * @return 十六进制颜色代码，例如"#5A6677"。
+     */
+    public String getRandColor() {
+        String R, G, B;
+        Random random = new Random();
+        R = Integer.toHexString(random.nextInt(256)).toUpperCase();
+        G = Integer.toHexString(random.nextInt(256)).toUpperCase();
+        B = Integer.toHexString(random.nextInt(256)).toUpperCase();
+
+        R = R.length() == 1 ? "0" + R : R;
+        G = G.length() == 1 ? "0" + G : G;
+        B = B.length() == 1 ? "0" + B : B;
+
+        return "#" + R + G + B;
     }
 }
