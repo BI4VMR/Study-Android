@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.swipe1page;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

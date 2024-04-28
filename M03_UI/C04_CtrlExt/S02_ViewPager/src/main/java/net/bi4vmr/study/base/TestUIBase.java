@@ -32,8 +32,8 @@ public class TestUIBase extends AppCompatActivity {
         // 将适配器与ViewPager绑定
         binding.viewpager.setAdapter(adapter);
 
+        // “切换至第三页”按钮
         binding.btnSwitchPage.setOnClickListener(v -> {
-            // 切换至第三页
             binding.viewpager.setCurrentItem(2, false);
         });
     }

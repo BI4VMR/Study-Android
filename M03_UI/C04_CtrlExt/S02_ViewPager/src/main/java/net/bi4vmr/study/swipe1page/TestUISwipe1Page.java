@@ -6,8 +6,6 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import net.bi4vmr.study.base.MyVPAdapter;
-import net.bi4vmr.study.base.TestFragment;
 import net.bi4vmr.study.databinding.TestuiSwipe1pageBinding;
 
 import java.util.ArrayList;

@@ -6,8 +6,6 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import net.bi4vmr.study.base.MyVPAdapter;
-import net.bi4vmr.study.base.TestFragment;
 import net.bi4vmr.study.databinding.TestuiEventBinding;
 
 import java.util.ArrayList;
@@ -41,7 +39,7 @@ public class TestUIEvent extends AppCompatActivity {
             binding.viewpager.setCurrentItem(2, false);
         });
 
-        // 注册页面滚动监听器
+        // 注册监听器：OnPageChangeListener
         binding.viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             /**

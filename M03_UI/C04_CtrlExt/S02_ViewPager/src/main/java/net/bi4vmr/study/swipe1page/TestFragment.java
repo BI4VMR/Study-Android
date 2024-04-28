@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.swipe1page;
 
 import android.graphics.Color;
 import android.os.Bundle;
