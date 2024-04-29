@@ -37,5 +37,15 @@
         <activity
             android:name=".base.TestUIBaseKT"
             android:exported="false" />
+
+        <!-- 示例界面：事件监听器(KT) -->
+        <activity
+            android:name=".event.TestUIEventKT"
+            android:exported="false" />
+
+        <!-- 示例界面：限制连续滑动(KT) -->
+        <activity
+            android:name=".swipe1page.TestUISwipe1PageKT"
+            android:exported="false" />
     </application>
 </manifest>

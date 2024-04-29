@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp" />
 
-        <net.bi4vmr.study.swipe1page.VPTouchMaskView
+        <net.bi4vmr.study.swipe1page.VPTouchMaskViewKT
             android:id="@+id/touchMaskView"
             android:layout_width="match_parent"
             android:layout_height="150dp" />

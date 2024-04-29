@@ -17,6 +17,7 @@ import java.util.Random;
 public class TestFragment extends Fragment {
 
     private static final String TAG = "TestApp-" + TestFragment.class.getSimpleName();
+
     private static final String ARG_TEXT = "TEXT";
 
     private final int bgColor;

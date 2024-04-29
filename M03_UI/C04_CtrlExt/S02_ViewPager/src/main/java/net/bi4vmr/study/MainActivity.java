@@ -6,9 +6,12 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
+import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.event.TestUIEvent;
+import net.bi4vmr.study.event.TestUIEventKT;
 import net.bi4vmr.study.swipe1page.TestUISwipe1Page;
+import net.bi4vmr.study.swipe1page.TestUISwipe1PageKT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +36,24 @@ public class MainActivity extends AppCompatActivity {
         // 限制连续滑动
         binding.btnSwipe1Page.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUISwipe1Page.class);
+            startActivity(intent);
+        });
+
+        // 基本应用(KT)
+        binding.btnBaseKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIBaseKT.class);
+            startActivity(intent);
+        });
+
+        // 事件监听器(KT)
+        binding.btnEventKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIEventKT.class);
+            startActivity(intent);
+        });
+
+        // 限制连续滑动(KT)
+        binding.btnSwipe1PageKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUISwipe1PageKT.class);
             startActivity(intent);
         });
     }

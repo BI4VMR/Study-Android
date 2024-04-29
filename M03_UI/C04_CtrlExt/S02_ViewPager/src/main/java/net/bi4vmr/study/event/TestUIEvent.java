@@ -34,53 +34,50 @@ public class TestUIEvent extends AppCompatActivity {
         // 将适配器与ViewPager绑定
         binding.viewpager.setAdapter(adapter);
 
-        binding.btnSwitchPage.setOnClickListener(v -> {
-            // 切换至第三页
-            binding.viewpager.setCurrentItem(2, false);
-        });
-
         // 注册监听器：OnPageChangeListener
         binding.viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-            /**
-             * Name        : 页面滑动状态改变事件
-             * <p>
-             * Description : 当滑动状态改变时，此事件触发。
+            /*
+             * 当滑动状态改变时，该方法将被触发。
              *
-             * @param state 表示滑动状态。{@link ViewPager#SCROLL_STATE_IDLE}表示滑动执行完毕，动画播放结束，目标页面已经完全显示。
-             *              {@link ViewPager#SCROLL_STATE_DRAGGING}表示用户正在用手指按住屏幕，正在进行拖拽。
-             *              {@link ViewPager#SCROLL_STATE_SETTLING}表示用户抬起手指，随后ViewPager将向目标页面自动滑动使其完全显示。
+             * @param state 表示滑动状态。
+             *              SCROLL_STATE_IDLE 数值为"0"，表示滑动完毕，动画播放结束，目标页面已经完全显示。
+             *              SCROLL_STATE_DRAGGING 数值为"1"，表示用户用手指按住屏幕，当前正在进行拖拽。
+             *              SCROLL_STATE_SETTLING 数值为"2"，表示用户手指已离开屏幕，ViewPager向目标页面自动滑动，以使其完全显示。
              */
             @Override
             public void onPageScrollStateChanged(int state) {
-                Log.i(TAG, "PageChangeCallback-PageScrollStateChanged. State:" + state);
+                Log.i(TAG, "OnPageChangeCallback-PageScrollStateChanged. State:[" + state + "]");
             }
 
-            /**
-             * Name        : 页面滑动状态改变事件
-             * <p>
-             * Description : 当滑动状态改变时，此事件触发。
+            /*
+             * 当用户滑动完毕最终选定某个页面时，该方法将被触发。
              *
-             * @param position 表示当前正在滑动的页面索引
-             * @param positionOffset 表示当前页面滑动至目标位置的进度，取值范围为 `[0, 1)` ，数值越大则离目标位置越近
-             * @param positionOffsetPixels 表示当前页面滑过的像素，取值范围为 `[0, ViewPager宽度)`
-             */
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // Log.i(TAG, "PageChangeCallback-PageScrolled. Index:" + position + " Offset:" + positionOffset + " OffsetPX:" + positionOffsetPixels);
-            }
-
-            /**
-             * Name        : 页面被选中事件
-             * <p>
-             * Description : 当滑动完毕最终选定某个页面时，此事件触发。
+             * 该事件仅在目标页面与先前显示的页面不同时触发，如果我们反复拖拽最后抬手时又回到了拖拽前显示的页面，则该事件并不会触发。
              *
-             * @param position 表示页面在ViewPager中的索引。
+             * @param position 目标页面在ViewPager中的索引。
              */
             @Override
             public void onPageSelected(int position) {
-                Log.i(TAG, "PageChangeCallback-PageSelected. Index:" + position);
+                Log.i(TAG, "OnPageChangeCallback-PageSelected. Index:[" + position + "]");
             }
+
+            /*
+             * 当页面正在切换时，该方法以较高频率被触发。
+             *
+             * @param position 当前正在滑动的页面索引。
+             * @param positionOffset 当前页面滑动至目标位置的进度，取值范围为 `[0, 1)` ，数值越大则离目标位置越近。
+             * @param positionOffsetPixels 当前页面滑过的像素数量，取值范围为 `[0, <ViewPager宽度>)` 。
+             */
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Log.i(TAG, "OnPageChangeCallback-PageScrolled. Index:[" + position + "] Offset:[" + positionOffset + "] OffsetPX:[" + positionOffsetPixels + "]");
+            }
+        });
+
+        // “切换至第三页”按钮
+        binding.btnSwitchPage.setOnClickListener(v -> {
+            binding.viewpager.setCurrentItem(2, false);
         });
     }
 }

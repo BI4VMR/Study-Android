@@ -40,22 +40,12 @@ public class TestUISwipe1Page extends AppCompatActivity {
         });
 
         // 注册页面滚动监听器
-        binding.viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        binding.viewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
             @Override
             public void onPageScrollStateChanged(int state) {
                 Log.i(TAG, "PageChangeListener-OnPageScrollStateChanged. State:[" + state + "]");
                 binding.touchMaskView.updateVPScrollState(state);
-            }
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // 暂不使用
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                // 暂不使用
             }
         });
     }

@@ -17,12 +17,13 @@ import java.util.Random;
 public class TestFragment extends Fragment {
 
     private static final String TAG = "TestApp-" + TestFragment.class.getSimpleName();
+
     private static final String ARG_TEXT = "TEXT";
 
     private final int bgColor;
     private String text;
 
-    public TestFragment() {
+    private TestFragment() {
         bgColor = Color.parseColor(getRandomColor());
     }
 
@@ -38,7 +39,7 @@ public class TestFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            text = getArguments().getString(ARG_TEXT);
+            text = getArguments().getString(ARG_TEXT, "");
         }
     }
 
@@ -55,7 +56,7 @@ public class TestFragment extends Fragment {
      *
      * @return 十六进制颜色代码，例如"#5A6677"。
      */
-    public String getRandomColor() {
+    private String getRandomColor() {
         String R, G, B;
         Random random = new Random();
         R = Integer.toHexString(random.nextInt(256)).toUpperCase();

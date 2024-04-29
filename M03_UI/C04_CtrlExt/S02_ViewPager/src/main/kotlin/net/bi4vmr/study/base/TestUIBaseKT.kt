@@ -21,7 +21,7 @@ class TestUIBaseKT : AppCompatActivity() {
         // 创建测试页面
         val pages: MutableList<TestFragmentKT> = mutableListOf()
         for (i in 0 until 10) {
-            pages.add(TestFragmentKT())
+            pages.add(TestFragmentKT.newInstance("页面${i + 1}"))
         }
 
         // 创建适配器实例

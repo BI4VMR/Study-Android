@@ -17,6 +17,7 @@ import java.util.Random;
 public class TestFragment extends Fragment {
 
     private static final String TAG = "TestApp-" + TestFragment.class.getSimpleName();
+
     private static final String ARG_TEXT = "TEXT";
 
     private final int bgColor;
@@ -38,7 +39,7 @@ public class TestFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            text = getArguments().getString(ARG_TEXT);
+            text = getArguments().getString(ARG_TEXT, "");
         }
     }
 
