@@ -24,6 +24,11 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：监听器 -->
+        <activity
+            android:name=".event.TestUIEvent"
+            android:exported="false" />
+
         <!-- 示例：ViewPager2嵌套 -->
         <!--<activity-->
         <!--    android:name=".nested.DemoNestedUI"-->

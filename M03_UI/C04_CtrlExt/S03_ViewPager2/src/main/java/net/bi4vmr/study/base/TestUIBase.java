@@ -1,23 +1,25 @@
 package net.bi4vmr.study.base;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
 
-import net.bi4vmr.study.R;
+import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestUIBase extends AppCompatActivity {
 
+    private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();
+
+    private TestuiBaseBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_demo_base);
+        binding = TestuiBaseBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // 创建测试页面
         List<TestFragment> pages = new ArrayList<>();
@@ -25,33 +27,14 @@ public class TestUIBase extends AppCompatActivity {
             pages.add(TestFragment.newInstance("页面" + (i + 1)));
         }
 
-        // 为ViewPager设置适配器
-        ViewPager2 viewPager2 = findViewById(R.id.vp2Content);
+        // 创建适配器实例
         MyVPAdapter adapter = new MyVPAdapter(this, pages);
-        viewPager2.setAdapter(adapter);
+        // 将适配器与ViewPager绑定
+        binding.viewpager2.setAdapter(adapter);
 
-        // 设置页面滑动监听器
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-
-            @Override
-            public void onPageSelected(int position) {
-                Log.i("myapp", "PageChangeCallback-PageSelected. Index:" + position);
-            }
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.i("myapp", "PageChangeCallback-PageScrolled. Offset:" + positionOffset);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                Log.i("myapp", "PageChangeCallback-PageScrollStateChanged. State:" + state);
-            }
-        });
-
-        Button b = findViewById(R.id.btnSet);
-        b.setOnClickListener(v -> {
-            viewPager2.setCurrentItem(3);
+        // “切换至第三页”按钮
+        binding.btnSwitchPage.setOnClickListener(v -> {
+            binding.viewpager2.setCurrentItem(2, false);
         });
     }
 }

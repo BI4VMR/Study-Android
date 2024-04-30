@@ -1,5 +1,7 @@
 package net.bi4vmr.study.base;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -32,6 +34,7 @@ public class MyVPAdapter extends FragmentStatePagerAdapter {
      */
     @Override
     public int getCount() {
+        Log.d(TAG, "GetCount. Count:[" + pages.size() + "]");
         return pages.size();
     }
 
@@ -44,6 +47,7 @@ public class MyVPAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
+        Log.d(TAG, "GetItem. Position:[" + position + "]");
         return pages.get(position);
     }
 }

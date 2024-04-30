@@ -2,13 +2,12 @@ package net.bi4vmr.study;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
-import net.bi4vmr.study.nested.DemoNestedUI;
+import net.bi4vmr.study.event.TestUIEvent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,10 +23,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // ViewPager2嵌套
-        Button btnNested = findViewById(R.id.btnNested);
-        btnNested.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemoNestedUI.class);
+        // 事件监听器
+        binding.btnEvent.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIEvent.class);
             startActivity(intent);
         });
     }
