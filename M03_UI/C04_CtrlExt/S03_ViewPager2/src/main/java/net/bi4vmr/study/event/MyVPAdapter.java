@@ -10,9 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import java.util.List;
 
 /**
- * ViewPager适配器 - 基本应用。
- *
- * @author BI4VMR
+ * ViewPager适配器 - 事件监听器。
  */
 public class MyVPAdapter extends FragmentStateAdapter {
 

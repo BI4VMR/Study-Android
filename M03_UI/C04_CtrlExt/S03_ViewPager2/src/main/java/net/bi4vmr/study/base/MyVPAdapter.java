@@ -11,8 +11,6 @@ import java.util.List;
 
 /**
  * ViewPager适配器 - 基本应用。
- *
- * @author BI4VMR
  */
 public class MyVPAdapter extends FragmentStateAdapter {
 

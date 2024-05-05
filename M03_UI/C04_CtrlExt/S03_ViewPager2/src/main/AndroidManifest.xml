@@ -24,6 +24,11 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：外观定制 -->
+        <activity
+            android:name=".style.TestUIStyle"
+            android:exported="false" />
+
         <!-- 示例界面：监听器 -->
         <activity
             android:name=".event.TestUIEvent"
@@ -37,6 +42,41 @@
         <!-- 示例界面：循环滑动（实现一） -->
         <activity
             android:name=".loop1.TestUILoop1"
+            android:exported="false" />
+
+        <!-- 示例界面：循环滑动（实现二） -->
+        <activity
+            android:name=".loop2.TestUILoop2"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：外观定制(KT) -->
+        <activity
+            android:name=".style.TestUIStyleKT"
+            android:exported="false" />
+
+        <!-- 示例界面：监听器(KT) -->
+        <activity
+            android:name=".event.TestUIEventKT"
+            android:exported="false" />
+
+        <!-- 示例界面：限制连续滑动(KT) -->
+        <activity
+            android:name=".swipe1page.TestUISwipe1PageKT"
+            android:exported="false" />
+
+        <!-- 示例界面：循环滑动（实现一）(KT) -->
+        <activity
+            android:name=".loop1.TestUILoop1KT"
+            android:exported="false" />
+
+        <!-- 示例界面：循环滑动（实现二）(KT) -->
+        <activity
+            android:name=".loop2.TestUILoop2KT"
             android:exported="false" />
 
         <!-- 示例：ViewPager2嵌套 -->

@@ -6,7 +6,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import net.bi4vmr.study.databinding.TestuiEventBinding;
+import net.bi4vmr.study.databinding.TestuiLoopBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +15,13 @@ public class TestUILoop1 extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUILoop1.class.getSimpleName();
 
-    private TestuiEventBinding binding;
+    private TestuiLoopBinding binding;
     private MyVPAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiEventBinding.inflate(getLayoutInflater());
+        binding = TestuiLoopBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         adapter = new MyVPAdapter(this);

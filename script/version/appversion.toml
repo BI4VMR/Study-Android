@@ -1,0 +1,8 @@
+# 版本号
+[versions]
+# ----- Android -----
+minSdk = "26"
+targetSdk = "33"
+compileSdk = "33"
+moduleCode = "1"
+moduleName = "0.0.1"

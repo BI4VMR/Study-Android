@@ -21,15 +21,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpager"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager2"
             android:layout_width="match_parent"
             android:layout_height="150dp" />
 
-<!--        <net.bi4vmr.study.swipe1page.VPTouchMaskViewKT-->
-<!--            android:id="@+id/touchMaskView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="150dp" />-->
+        <net.bi4vmr.study.swipe1page.VPTouchMaskViewKT
+            android:id="@+id/touchMaskView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
     </FrameLayout>
 
     <Button

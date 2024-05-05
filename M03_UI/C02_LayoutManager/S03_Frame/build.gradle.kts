@@ -3,11 +3,11 @@ plugins {
     alias(libs.plugins.android.kotlin)
 }
 
-val versionMinSDK: Int = Integer.valueOf(libs.versions.android.minSdk.get())
-val versionCompileSDK: Int = Integer.valueOf(libs.versions.android.compileSdk.get())
-val versionTargetSDK: Int = Integer.valueOf(libs.versions.android.targetSdk.get())
-val versionModuleCode: Int = Integer.valueOf(libs.versions.android.moduleCode.get())
-val versionModuleName: String = libs.versions.android.moduleName.get()
+val versionMinSDK: Int = appversion.versions.minSdk.get().toInt()
+val versionCompileSDK: Int = appversion.versions.compileSdk.get().toInt()
+val versionTargetSDK: Int = appversion.versions.targetSdk.get().toInt()
+val versionModuleCode: Int = appversion.versions.moduleCode.get().toInt()
+val versionModuleName: String = appversion.versions.moduleName.get()
 
 @Suppress("UnstableApiUsage")
 android {

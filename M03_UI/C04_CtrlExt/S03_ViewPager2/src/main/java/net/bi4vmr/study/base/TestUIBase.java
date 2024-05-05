@@ -29,7 +29,7 @@ public class TestUIBase extends AppCompatActivity {
 
         // 创建适配器实例
         MyVPAdapter adapter = new MyVPAdapter(this, pages);
-        // 将适配器与ViewPager绑定
+        // 将适配器与ViewPager2绑定
         binding.viewpager2.setAdapter(adapter);
 
         // “切换至第三页”按钮

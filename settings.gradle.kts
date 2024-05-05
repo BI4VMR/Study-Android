@@ -51,16 +51,12 @@ dependencyResolutionManagement {
         // 声明命名空间"libs"
         create("libs") {
             // 导入依赖版本配置文件
-            from(files("dependency.toml"))
-
-            // Android SDK版本
-            version("android_minSdk", "26")
-            version("android_targetSdk", "33")
-            version("android_compileSdk", "33")
-
-            // Android版本号与版本名称
-            version("android_ModuleCode", "1")
-            version("android_ModuleName", "0.0.1")
+            from(files("script/version/dependency.toml"))
+        }
+        // 声明命名空间"android"
+        create("appversion") {
+            // 导入依赖版本配置文件
+            from(files("script/version/appversion.toml"))
         }
     }
 }

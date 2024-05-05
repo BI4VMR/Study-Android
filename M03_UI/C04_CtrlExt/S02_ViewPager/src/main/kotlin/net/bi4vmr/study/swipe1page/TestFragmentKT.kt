@@ -12,6 +12,7 @@ import kotlin.random.Random
 class TestFragmentKT private constructor() : Fragment() {
 
     companion object {
+
         private val TAG: String = TestFragmentKT::class.java.simpleName
 
         private const val ARG_TEXT: String = "TEXT"
@@ -40,7 +41,11 @@ class TestFragmentKT private constructor() : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding: FragmentTestBinding = FragmentTestBinding.inflate(inflater, container, false)
         with(binding) {
             tvContent.text = text

@@ -3,11 +3,11 @@ plugins {
     alias(libs.plugins.android.kotlin)
 }
 
-def version_MinSDK = Integer.valueOf(libs.versions.android.minSdk.get())
-def version_CompileSDK = Integer.valueOf(libs.versions.android.compileSdk.get())
-def version_TargetSDK = Integer.valueOf(libs.versions.android.targetSdk.get())
-def version_ModuleCode = Integer.valueOf(libs.versions.android.moduleCode.get())
-def version_ModuleName = libs.versions.android.moduleName.get()
+def version_MinSDK = Integer.valueOf(appversion.versions.minSdk.get())
+def version_CompileSDK = Integer.valueOf(appversion.versions.compileSdk.get())
+def version_TargetSDK = Integer.valueOf(appversion.versions.targetSdk.get())
+def version_ModuleCode = Integer.valueOf(appversion.versions.moduleCode.get())
+def version_ModuleName = appversion.versions.moduleName.get()
 
 android {
     namespace "net.bi4vmr.study"

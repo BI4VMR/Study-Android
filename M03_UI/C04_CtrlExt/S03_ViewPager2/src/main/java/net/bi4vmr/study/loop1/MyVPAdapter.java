@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ViewPager适配器 - 基本应用。
+ * ViewPager适配器 - 循环滑动（实现一）。
  */
 public class MyVPAdapter extends FragmentStateAdapter {
 

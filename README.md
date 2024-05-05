@@ -9,10 +9,13 @@ Android应用程序开发学习示例代码。
 "build.gradle.kts":
 
 ```kotlin
+import java.io.File
+
 android {
     signingConfigs {
         create("AOSP") {
-            storeFile = file("${rootDir.absolutePath}${File.separator}AOSPSystem.keystore")
+            storeFile =
+                file("${rootDir.absolutePath}${File.separator}script/keystore/AOSPSystem.keystore")
             storePassword = "AOSPSystem"
             keyAlias = "AOSPSystem"
             keyPassword = "AOSPSystem"
