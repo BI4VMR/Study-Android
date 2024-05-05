@@ -1,4 +1,4 @@
-package net.bi4vmr.study.loop;
+package net.bi4vmr.study.loop1;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,9 +11,9 @@ import net.bi4vmr.study.databinding.TestuiEventBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestUILoop extends AppCompatActivity {
+public class TestUILoop1 extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-" + TestUILoop.class.getSimpleName();
+    private static final String TAG = "TestApp-" + TestUILoop1.class.getSimpleName();
 
     private TestuiEventBinding binding;
     private MyVPAdapter adapter;
@@ -36,12 +36,19 @@ public class TestUILoop extends AppCompatActivity {
             @Override
             public void onPageScrollStateChanged(int state) {
                 Log.i(TAG, "OnPageChangeCallback-PageScrollStateChanged. State:[" + state + "]");
+                // 滑动停止时进行判断
                 if (state == 0) {
+                    // 当前页面索引
                     int index = binding.viewpager2.getCurrentItem();
+                    // 最大页面索引
                     int maxIndex = adapter.getItemCount() - 1;
                     if (index == 0) {
+                        /* 当前为首页（原始列表的最后一项） */
+                        // 滑动至原始列表的最后一项（即当前列表的倒数第二项）
                         binding.viewpager2.setCurrentItem(maxIndex - 1, false);
                     } else if (index == maxIndex) {
+                        /* 当前为末页（原始列表的第一项） */
+                        // 滑动至原始列表的第一项（即当前列表的第二项）
                         binding.viewpager2.setCurrentItem(1, false);
                     }
                 }

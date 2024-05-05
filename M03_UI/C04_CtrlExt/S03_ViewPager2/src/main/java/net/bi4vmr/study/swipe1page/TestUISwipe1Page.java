@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import net.bi4vmr.study.databinding.TestuiSwipe1pageBinding;
 
@@ -30,12 +30,12 @@ public class TestUISwipe1Page extends AppCompatActivity {
         }
 
         // 创建适配器
-        MyVPAdapter adapter = new MyVPAdapter(getSupportFragmentManager(), pages);
+        MyVPAdapter adapter = new MyVPAdapter(this, pages);
         // 将适配器与ViewPager绑定
-        binding.viewpager.setAdapter(adapter);
+        binding.viewpager2.setAdapter(adapter);
 
         // 注册页面滚动监听器
-        binding.viewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        binding.viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
 
             @Override
             public void onPageScrollStateChanged(int state) {
@@ -46,7 +46,7 @@ public class TestUISwipe1Page extends AppCompatActivity {
 
         binding.btnSwitchPage.setOnClickListener(v -> {
             // 切换至第三页
-            binding.viewpager.setCurrentItem(2, false);
+            binding.viewpager2.setCurrentItem(2, false);
         });
     }
 }

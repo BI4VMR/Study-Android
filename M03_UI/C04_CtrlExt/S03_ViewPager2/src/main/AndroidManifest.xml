@@ -29,6 +29,16 @@
             android:name=".event.TestUIEvent"
             android:exported="false" />
 
+        <!-- 示例界面：限制连续滑动 -->
+        <activity
+            android:name=".swipe1page.TestUISwipe1Page"
+            android:exported="false" />
+
+        <!-- 示例界面：循环滑动（实现一） -->
+        <activity
+            android:name=".loop1.TestUILoop1"
+            android:exported="false" />
+
         <!-- 示例：ViewPager2嵌套 -->
         <!--<activity-->
         <!--    android:name=".nested.DemoNestedUI"-->

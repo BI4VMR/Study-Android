@@ -1,6 +1,5 @@
-package net.bi4vmr.study.loop;
+package net.bi4vmr.study.swipe1page;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -8,35 +7,22 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * ViewPager适配器 - 基本应用。
- *
- * @author BI4VMR
  */
 public class MyVPAdapter extends FragmentStateAdapter {
 
     private static final String TAG = "TestApp-" + MyVPAdapter.class.getSimpleName();
 
     // 数据源List
-    private final List<TestFragment> pages = new ArrayList<>();
+    private final List<TestFragment> pages;
 
     // 构造方法
-    public MyVPAdapter(@NonNull FragmentActivity activity) {
+    public MyVPAdapter(@NonNull FragmentActivity activity, List<TestFragment> pages) {
         super(activity);
-    }
-
-    /*
-     * 更新数据项。
-     */
-    @SuppressLint("NotifyDataSetChanged")
-    public void updatePages(@NonNull List<TestFragment> datas) {
-        pages.clear();
-        pages.addAll(datas);
-
-        notifyDataSetChanged();
+        this.pages = pages;
     }
 
     /**
