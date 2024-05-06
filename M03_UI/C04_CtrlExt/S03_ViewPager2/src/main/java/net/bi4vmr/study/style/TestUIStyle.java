@@ -1,8 +1,10 @@
 package net.bi4vmr.study.style;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import net.bi4vmr.study.databinding.TestuiStyleBinding;
 
@@ -29,5 +31,12 @@ public class TestUIStyle extends AppCompatActivity {
 
         MyVPAdapter adapter = new MyVPAdapter(this, pages);
         binding.vp2Direction.setAdapter(adapter);
+
+        /* 设置边缘阴影效果 */
+        View rv = binding.vp2Direction.getChildAt(0);
+        if (rv instanceof RecyclerView) {
+            // 关闭边缘阴影效果
+            rv.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        }
     }
 }

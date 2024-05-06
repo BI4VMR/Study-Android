@@ -1,7 +1,9 @@
 package net.bi4vmr.study.style
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import net.bi4vmr.study.databinding.TestuiStyleBinding
 
 class TestUIStyleKT : AppCompatActivity() {
@@ -28,5 +30,11 @@ class TestUIStyleKT : AppCompatActivity() {
         val adapter = MyVPAdapterKT(this, pages)
         // 将适配器与ViewPager2绑定
         binding.vp2Direction.adapter = adapter
+
+        /* 设置边缘阴影效果 */
+        (binding.vp2Direction.getChildAt(0) as? RecyclerView)?.let {
+            // 关闭边缘阴影效果
+            it.overScrollMode = View.OVER_SCROLL_NEVER
+        }
     }
 }
