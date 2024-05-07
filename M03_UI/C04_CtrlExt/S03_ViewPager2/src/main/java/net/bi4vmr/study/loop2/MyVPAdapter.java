@@ -26,17 +26,6 @@ public class MyVPAdapter extends FragmentStateAdapter {
         super(activity);
     }
 
-    /*
-     * 更新数据项。
-     */
-    @SuppressLint("NotifyDataSetChanged")
-    public void updateDatas(@NonNull List<String> newDatas) {
-        datas.clear();
-        datas.addAll(newDatas);
-
-        notifyDataSetChanged();
-    }
-
     /**
      * 获取页面数量。
      *
@@ -44,8 +33,8 @@ public class MyVPAdapter extends FragmentStateAdapter {
      */
     @Override
     public int getItemCount() {
-        // 返回一个很大的数值
-        return Short.MAX_VALUE;
+        // 如果数据源非空，返回一个很大的数值作为页数。
+        return datas.isEmpty() ? 0 : Short.MAX_VALUE;
     }
 
     /**
@@ -63,5 +52,42 @@ public class MyVPAdapter extends FragmentStateAdapter {
         Log.d(TAG, "CreateFragment. Index:[" + index + "]");
         String name = datas.get(index);
         return TestFragment.newInstance(name);
+    }
+
+    /**
+     * 更新数据项。
+     */
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateDatas(@NonNull List<String> newDatas) {
+        datas.clear();
+        datas.addAll(newDatas);
+
+        notifyDataSetChanged();
+    }
+
+    /**
+     * 获取ViewPager2队列中间的位置，并与数据源首项对齐。
+     *
+     * @return 位置索引。
+     * <p>
+     * 当数据源为空时，值为"-1"。
+     */
+    public int getMiddlePosition() {
+        // 数据源为空时，返回"-1"。
+        if (datas.isEmpty()) {
+            return -1;
+        }
+
+        // VP2队列中间的位置
+        int midPosition = getItemCount() / 2;
+        // 计算该位置在数据源中的偏移量
+        int modResult = midPosition % datas.size();
+        if (modResult == 0) {
+            /* 偏移量为0，说明该位置已经与数据源首项对齐。 */
+            return midPosition;
+        } else {
+            /* 偏移量非0，向右移动若干位置，与数据源首项对齐。 */
+            return midPosition + (datas.size() - modResult);
+        }
     }
 }

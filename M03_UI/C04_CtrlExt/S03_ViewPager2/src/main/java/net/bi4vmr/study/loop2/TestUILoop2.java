@@ -46,7 +46,7 @@ public class TestUILoop2 extends AppCompatActivity {
         // 数据更新完毕后，切换至中间的一页。
         binding.viewpager2.post(() -> {
             if (adapter.getItemCount() > 0) {
-                binding.viewpager2.setCurrentItem(adapter.getItemCount() / 2, false);
+                binding.viewpager2.setCurrentItem(adapter.getMiddlePosition(), false);
             }
         });
     }

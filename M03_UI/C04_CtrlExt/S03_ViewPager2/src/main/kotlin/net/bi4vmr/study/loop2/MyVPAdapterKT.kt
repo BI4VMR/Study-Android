@@ -18,23 +18,14 @@ class MyVPAdapterKT(activity: FragmentActivity) : FragmentStateAdapter(activity)
     // 数据源List
     private val datas: MutableList<String> = mutableListOf()
 
-    // 更新数据项。
-    @SuppressLint("NotifyDataSetChanged")
-    public fun updatePages(newDatas: List<String>) {
-        datas.clear()
-        datas.addAll(newDatas)
-
-        notifyDataSetChanged()
-    }
-
     /**
      * 获取页面数量。
      *
      * @return 页面数量。
      */
     override fun getItemCount(): Int {
-        // 返回一个很大的数值
-        return Short.MAX_VALUE.toInt()
+        // 如果数据源非空，返回一个很大的数值作为页数。
+        return if (datas.isNotEmpty()) Short.MAX_VALUE.toInt() else 0
     }
 
     /**
@@ -50,5 +41,42 @@ class MyVPAdapterKT(activity: FragmentActivity) : FragmentStateAdapter(activity)
         Log.d(TAG, "CreateFragment. Index:[${index}]")
         val name = datas[index]
         return TestFragment.newInstance(name)
+    }
+
+    /**
+     * 更新数据项。
+     */
+    @SuppressLint("NotifyDataSetChanged")
+    fun updatePages(newDatas: List<String>) {
+        datas.clear()
+        datas.addAll(newDatas)
+
+        notifyDataSetChanged()
+    }
+
+    /**
+     * 获取ViewPager2队列中间的位置，并与数据源首项对齐。
+     *
+     * @return 位置索引。
+     *
+     * 当数据源为空时，值为"-1"。
+     */
+    fun getMiddlePosition(): Int {
+        // 数据源为空时，返回"-1"。
+        if (datas.isEmpty()) {
+            return -1
+        }
+
+        // VP2队列中间的位置
+        val midPosition: Int = itemCount / 2
+        // 计算该位置在数据源中的偏移量
+        val modResult: Int = midPosition % datas.size
+        return if (modResult == 0) {
+            /* 偏移量为0，说明该位置已经与数据源首项对齐。 */
+            midPosition
+        } else {
+            /* 偏移量非0，向右移动若干位置，与数据源首项对齐。 */
+            midPosition + (datas.size - modResult)
+        }
     }
 }
