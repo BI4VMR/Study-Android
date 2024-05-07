@@ -25,7 +25,7 @@ class MyVPAdapterKT(activity: FragmentActivity) : FragmentStateAdapter(activity)
      */
     override fun getItemCount(): Int {
         // 如果数据源非空，返回一个很大的数值作为页数。
-        return if (datas.isNotEmpty()) Short.MAX_VALUE.toInt() else 0
+        return if (datas.isEmpty()) 0 else Short.MAX_VALUE.toInt()
     }
 
     /**

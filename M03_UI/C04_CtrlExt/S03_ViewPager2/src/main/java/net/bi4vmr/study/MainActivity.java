@@ -18,6 +18,8 @@ import net.bi4vmr.study.style.TestUIStyle;
 import net.bi4vmr.study.style.TestUIStyleKT;
 import net.bi4vmr.study.swipe1page.TestUISwipe1Page;
 import net.bi4vmr.study.swipe1page.TestUISwipe1PageKT;
+import net.bi4vmr.study.swipectrl.TestUISwipeCtrl;
+import net.bi4vmr.study.swipectrl.TestUISwipeCtrlKT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
         // 事件监听器
         binding.btnEvent.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIEvent.class);
+            startActivity(intent);
+        });
+
+        // 滑动控制
+        binding.btnSwipeCtrl.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUISwipeCtrl.class);
             startActivity(intent);
         });
 
@@ -78,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
         // 事件监听器(KT)
         binding.btnEventKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIEventKT.class);
+            startActivity(intent);
+        });
+
+        // 滑动控制(KT)
+        binding.btnSwipeCtrlKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUISwipeCtrlKT.class);
             startActivity(intent);
         });
 

@@ -42,6 +42,13 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/btnSwipeCtrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="滑动控制"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btnSwipe1Page"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,6 +95,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="事件监听器"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnSwipeCtrlKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="滑动控制"
             android:textAllCaps="false" />
 
         <Button

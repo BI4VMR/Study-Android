@@ -34,6 +34,11 @@
             android:name=".event.TestUIEvent"
             android:exported="false" />
 
+        <!-- 示例界面：滑动控制 -->
+        <activity
+            android:name=".swipectrl.TestUISwipeCtrl"
+            android:exported="false" />
+
         <!-- 示例界面：限制连续滑动 -->
         <activity
             android:name=".swipe1page.TestUISwipe1Page"
@@ -62,6 +67,11 @@
         <!-- 示例界面：监听器(KT) -->
         <activity
             android:name=".event.TestUIEventKT"
+            android:exported="false" />
+
+        <!-- 示例界面：滑动控制 -->
+        <activity
+            android:name=".swipectrl.TestUISwipeCtrlKT"
             android:exported="false" />
 
         <!-- 示例界面：限制连续滑动(KT) -->
