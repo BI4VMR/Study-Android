@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
+import net.bi4vmr.study.cache.TestUICache;
+import net.bi4vmr.study.cache.TestUICacheKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.event.TestUIEvent;
 import net.bi4vmr.study.event.TestUIEventKT;
@@ -71,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 缓存与复用
+        binding.btnCache.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUICache.class);
+            startActivity(intent);
+        });
+
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
@@ -110,6 +118,12 @@ public class MainActivity extends AppCompatActivity {
         // 循环滑动（实现二）(KT)
         binding.btnLoop2KT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUILoop2KT.class);
+            startActivity(intent);
+        });
+
+        // 缓存与复用(KT)
+        binding.btnCacheKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUICacheKT.class);
             startActivity(intent);
         });
     }

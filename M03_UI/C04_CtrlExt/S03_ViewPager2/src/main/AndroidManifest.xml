@@ -54,6 +54,11 @@
             android:name=".loop2.TestUILoop2"
             android:exported="false" />
 
+        <!-- 示例界面：缓存与复用 -->
+        <activity
+            android:name=".cache.TestUICache"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
@@ -87,6 +92,11 @@
         <!-- 示例界面：循环滑动（实现二）(KT) -->
         <activity
             android:name=".loop2.TestUILoop2KT"
+            android:exported="false" />
+
+        <!-- 示例界面：缓存与复用(KT) -->
+        <activity
+            android:name=".cache.TestUICacheKT"
             android:exported="false" />
 
         <!-- 示例：ViewPager2嵌套 -->
