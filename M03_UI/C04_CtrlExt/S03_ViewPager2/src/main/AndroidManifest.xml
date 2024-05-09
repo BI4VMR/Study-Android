@@ -59,6 +59,11 @@
             android:name=".cache.TestUICache"
             android:exported="false" />
 
+        <!-- 示例界面：生命周期 -->
+        <activity
+            android:name=".lifecycle.TestUILifeCycle"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
@@ -97,6 +102,11 @@
         <!-- 示例界面：缓存与复用(KT) -->
         <activity
             android:name=".cache.TestUICacheKT"
+            android:exported="false" />
+
+        <!-- 示例界面：生命周期(KT) -->
+        <activity
+            android:name=".lifecycle.TestUILifeCycleKT"
             android:exported="false" />
 
         <!-- 示例：ViewPager2嵌套 -->

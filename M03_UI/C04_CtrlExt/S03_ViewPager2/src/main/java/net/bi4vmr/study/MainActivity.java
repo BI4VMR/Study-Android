@@ -12,6 +12,8 @@ import net.bi4vmr.study.cache.TestUICacheKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.event.TestUIEvent;
 import net.bi4vmr.study.event.TestUIEventKT;
+import net.bi4vmr.study.lifecycle.TestUILifeCycle;
+import net.bi4vmr.study.lifecycle.TestUILifeCycleKT;
 import net.bi4vmr.study.loop1.TestUILoop1;
 import net.bi4vmr.study.loop1.TestUILoop1KT;
 import net.bi4vmr.study.loop2.TestUILoop2;
@@ -79,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 生命周期
+        binding.btnLifeCycle.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUILifeCycle.class);
+            startActivity(intent);
+        });
+
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
@@ -124,6 +132,12 @@ public class MainActivity extends AppCompatActivity {
         // 缓存与复用(KT)
         binding.btnCacheKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUICacheKT.class);
+            startActivity(intent);
+        });
+
+        // 生命周期(KT)
+        binding.btnLifeCycleKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUILifeCycleKT.class);
             startActivity(intent);
         });
     }

@@ -76,6 +76,13 @@
             android:text="缓存与复用"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/btnLifeCycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="生命周期"
+            android:textAllCaps="false" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -137,6 +144,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="缓存与复用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnLifeCycleKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="生命周期"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

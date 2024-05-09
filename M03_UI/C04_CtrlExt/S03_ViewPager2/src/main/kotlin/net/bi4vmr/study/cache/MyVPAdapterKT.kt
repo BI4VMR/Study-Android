@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 /**
- * ViewPager适配器 - 基本应用。
+ * ViewPager适配器 - 缓存与复用。
  */
 class MyVPAdapterKT(
     activity: FragmentActivity,
