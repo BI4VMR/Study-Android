@@ -12,7 +12,7 @@ import kotlin.random.Random
 class TestFragmentKT private constructor() : Fragment() {
 
     companion object {
-        private val TAG: String = TestFragmentKT::class.java.simpleName
+        private val TAG: String = "TestApp-${TestFragmentKT::class.java.simpleName}"
 
         private const val ARG_TEXT: String = "TEXT"
 

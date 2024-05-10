@@ -33,6 +33,11 @@
             android:name=".swipe1page.TestUISwipe1Page"
             android:exported="false" />
 
+        <!-- 示例界面：生命周期 -->
+        <activity
+            android:name=".lifecycle.TestUILifeCycle"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
@@ -46,6 +51,11 @@
         <!-- 示例界面：限制连续滑动(KT) -->
         <activity
             android:name=".swipe1page.TestUISwipe1PageKT"
+            android:exported="false" />
+
+        <!-- 示例界面：生命周期(KT) -->
+        <activity
+            android:name=".lifecycle.TestUILifeCycleKT"
             android:exported="false" />
     </application>
 </manifest>

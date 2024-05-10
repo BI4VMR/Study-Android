@@ -1,11 +1,11 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.lifecycle
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 
 /**
- * ViewPager适配器 - 基本应用。
+ * ViewPager适配器 - 生命周期。
  */
 class MyVPAdapterKT(
     fm: FragmentManager,

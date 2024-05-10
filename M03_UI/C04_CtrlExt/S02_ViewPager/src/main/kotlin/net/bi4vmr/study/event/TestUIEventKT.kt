@@ -9,7 +9,7 @@ import net.bi4vmr.study.databinding.TestuiEventBinding
 class TestUIEventKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-" + TestUIEventKT::class.java.simpleName
+        private val TAG: String = "TestApp-${TestUIEventKT::class.java.simpleName}"
     }
 
     private val binding: TestuiEventBinding by lazy {
@@ -67,7 +67,11 @@ class TestUIEventKT : AppCompatActivity() {
              * @param[positionOffset] 当前页面滑动至目标位置的进度，取值范围为 `[0, 1)` ，数值越大则离目标位置越近。
              * @param[positionOffsetPixels] 当前页面滑过的像素数量，取值范围为 `[0, <ViewPager宽度>)` 。
              */
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
                 Log.i(
                     TAG,
                     "OnPageChangeCallback-PageScrolled. Index:[$position] Offset[$positionOffset] OffsetPX:[$positionOffsetPixels]"

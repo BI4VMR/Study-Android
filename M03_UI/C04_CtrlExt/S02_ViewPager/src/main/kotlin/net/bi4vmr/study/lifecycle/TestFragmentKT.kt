@@ -1,19 +1,21 @@
-package net.bi4vmr.study.swipe1page
+package net.bi4vmr.study.lifecycle
 
-import android.graphics.Color
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import net.bi4vmr.study.databinding.FragmentTestBinding
-import kotlin.random.Random
 
+/**
+ * 测试Fragment
+ */
 class TestFragmentKT private constructor() : Fragment() {
 
     companion object {
-
-        private val TAG: String = TestFragmentKT::class.java.simpleName
+        private val TAG: String = "TestApp-${TestFragmentKT::class.java.simpleName}"
 
         private const val ARG_TEXT: String = "TEXT"
 
@@ -27,11 +29,11 @@ class TestFragmentKT private constructor() : Fragment() {
         }
     }
 
-    private val bgColor: Int
     private var text: String = ""
 
-    init {
-        bgColor = Color.parseColor(getRandomColor())
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        // Log.i(TAG, "OnAttach.")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +41,7 @@ class TestFragmentKT private constructor() : Fragment() {
         arguments?.let {
             text = it.getString(ARG_TEXT, "")
         }
+        Log.i(TAG, "$text OnCreate.")
     }
 
     override fun onCreateView(
@@ -46,36 +49,46 @@ class TestFragmentKT private constructor() : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.i(TAG, "$text OnCreateView.")
         val binding: FragmentTestBinding = FragmentTestBinding.inflate(inflater, container, false)
         with(binding) {
             tvContent.text = text
-            root.setBackgroundColor(bgColor)
             return root
         }
     }
 
-    /**
-     * 获取随机颜色代码。
-     *
-     * @return 十六进制颜色代码，例如"#5A6677"。
-     */
-    private fun getRandomColor(): String {
-        var r = Random.nextInt(256).toString(16).uppercase()
-        var g = Random.nextInt(256).toString(16).uppercase()
-        var b = Random.nextInt(256).toString(16).uppercase()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.i(TAG, "$text OnViewCreated.")
+    }
 
-        fun addPrefix(code: String): String {
-            return if (code.length == 1) {
-                "0$code"
-            } else {
-                code
-            }
-        }
+    override fun onStart() {
+        super.onStart()
+        Log.i(TAG, "$text OnStart.")
+    }
 
-        r = addPrefix(r)
-        g = addPrefix(g)
-        b = addPrefix(b)
+    override fun onResume() {
+        super.onResume()
+        Log.i(TAG, "$text OnResume.")
+    }
 
-        return "#$r$g$b"
+    override fun onPause() {
+        super.onPause()
+        Log.i(TAG, "$text OnPause.")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i(TAG, "$text OnStop.")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i(TAG, "$text OnDestroy.")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.i(TAG, "$text OnDetach.")
     }
 }

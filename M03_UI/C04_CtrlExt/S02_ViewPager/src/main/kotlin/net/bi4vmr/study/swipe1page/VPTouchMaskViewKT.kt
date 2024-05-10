@@ -21,6 +21,7 @@ class VPTouchMaskViewKT : View {
         private val TAG: String = VPTouchMaskViewKT::class.java.simpleName
     }
 
+    // ViewPager滑动状态
     private var vpScrolling: Boolean = false
 
     constructor(context: Context) : this(context, null)
@@ -41,7 +42,7 @@ class VPTouchMaskViewKT : View {
      *
      * @param state ViewPager的"SCROLL_STATE"系列常量。
      */
-    fun updateVP2ScrollState(state: Int) {
+    fun updateVPScrollState(state: Int) {
         // 当ViewPager滑动状态不为SCROLL_STATE_IDLE(0)时，说明滑动未终止。
         vpScrolling = (state != 0)
     }

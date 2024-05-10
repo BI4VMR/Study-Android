@@ -34,7 +34,7 @@ public class TestUISwipe1Page extends AppCompatActivity {
         // 将适配器与ViewPager绑定
         binding.viewpager.setAdapter(adapter);
 
-        // 注册页面滚动监听器
+        // 注册监听器：OnPageChangeListener
         binding.viewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
             @Override

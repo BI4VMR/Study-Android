@@ -7,7 +7,7 @@ import net.bi4vmr.study.databinding.TestuiBaseBinding
 class TestUIBaseKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-" + TestUIBaseKT::class.java.simpleName
+        private val TAG: String = "TestApp-${TestUIBaseKT::class.java.simpleName}"
     }
 
     private val binding: TestuiBaseBinding by lazy {
@@ -20,8 +20,8 @@ class TestUIBaseKT : AppCompatActivity() {
 
         // 创建测试页面
         val pages: MutableList<TestFragmentKT> = mutableListOf()
-        for (i in 0 until 10) {
-            pages.add(TestFragmentKT.newInstance("页面${i + 1}"))
+        for (i in 1..10) {
+            pages.add(TestFragmentKT.newInstance("页面$i"))
         }
 
         // 创建适配器实例

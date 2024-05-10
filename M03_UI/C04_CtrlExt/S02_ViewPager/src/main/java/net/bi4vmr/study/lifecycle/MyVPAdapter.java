@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.lifecycle;
 
 import android.util.Log;
 
@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import java.util.List;
 
 /**
- * ViewPager适配器 - 基本应用。
+ * ViewPager适配器 - 页面的生命周期。
  */
 public class MyVPAdapter extends FragmentStatePagerAdapter {
 
@@ -32,7 +32,7 @@ public class MyVPAdapter extends FragmentStatePagerAdapter {
      */
     @Override
     public int getCount() {
-        Log.d(TAG, "GetCount. Count:[" + pages.size() + "]");
+        // Log.d(TAG, "GetCount. Count:[" + pages.size() + "]");
         return pages.size();
     }
 
@@ -45,7 +45,7 @@ public class MyVPAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        Log.d(TAG, "GetItem. Position:[" + position + "]");
+        // Log.d(TAG, "GetItem. Position:[" + position + "]");
         return pages.get(position);
     }
 }

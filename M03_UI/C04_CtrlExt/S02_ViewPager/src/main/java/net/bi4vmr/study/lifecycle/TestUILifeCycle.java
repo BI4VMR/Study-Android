@@ -1,30 +1,30 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.lifecycle;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.databinding.TestuiBaseBinding;
+import net.bi4vmr.study.databinding.TestuiLifecycleBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestUIBase extends AppCompatActivity {
+public class TestUILifeCycle extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();
+    private static final String TAG = "TestApp-" + TestUILifeCycle.class.getSimpleName();
 
-    private TestuiBaseBinding binding;
+    private TestuiLifecycleBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiBaseBinding.inflate(getLayoutInflater());
+        binding = TestuiLifecycleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // 创建测试页面
         List<TestFragment> pages = new ArrayList<>();
-        for (int i = 1; i <= 10; i++) {
-            pages.add(TestFragment.newInstance("页面" + i));
+        for (int i = 1; i <= 9; i++) {
+            pages.add(TestFragment.newInstance("页面" + i + " "));
         }
 
         // 创建适配器实例
@@ -32,9 +32,7 @@ public class TestUIBase extends AppCompatActivity {
         // 将适配器与ViewPager绑定
         binding.viewpager.setAdapter(adapter);
 
-        // “切换至第三页”按钮
-        binding.btnSwitchPage.setOnClickListener(v -> {
-            binding.viewpager.setCurrentItem(2, false);
-        });
+        // 预加载当前页面左右的1个页面
+        binding.viewpager.setOffscreenPageLimit(0);
     }
 }

@@ -9,7 +9,7 @@ import net.bi4vmr.study.databinding.TestuiSwipe1pageKtBinding
 class TestUISwipe1PageKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-" + TestUISwipe1PageKT::class.java.simpleName
+        private val TAG: String = "TestApp-${TestUISwipe1PageKT::class.java.simpleName}"
     }
 
     private val binding: TestuiSwipe1pageKtBinding by lazy {
@@ -36,7 +36,7 @@ class TestUISwipe1PageKT : AppCompatActivity() {
 
             override fun onPageScrollStateChanged(state: Int) {
                 Log.i(TAG, "OnPageChangeCallback-PageScrollStateChanged. State:[$state]")
-                binding.touchMaskView.updateVP2ScrollState(state)
+                binding.touchMaskView.updateVPScrollState(state)
             }
         })
 
