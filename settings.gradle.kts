@@ -53,10 +53,10 @@ dependencyResolutionManagement {
             // 导入依赖版本配置文件
             from(files("script/version/dependency.toml"))
         }
-        // 声明命名空间"android"
-        create("appversion") {
+        // 声明命名空间"app"
+        create("app") {
             // 导入依赖版本配置文件
-            from(files("script/version/appversion.toml"))
+            from(files("script/version/app.toml"))
         }
     }
 }
@@ -137,7 +137,7 @@ include(":M04_System:C06_Concurrency:S01_Handler")
 /* ----- 数据存储 ----- */
 include(":M05_Storage:C01_File:S01_Base")
 include(":M05_Storage:C02_KV:S01_SharedPreferences")
-// include(":M05_Storage:C03_SQL:S01_SQLite")
+include(":M05_Storage:C03_SQL:S01_SQLite")
 include(":M05_Storage:C03_SQL:S02_Room")
 
 /* ----- 网络通讯 ----- */
