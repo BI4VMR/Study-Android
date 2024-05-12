@@ -7,22 +7,20 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
- * Name        : Student
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2024-01-07 16:41
- * <p>
- * Description : 实体类：学生。
+ * 实体类：学生。
  * <p>
  * 此处需要添加"@Entity"注解，使得Room能够识别到该实体类。
  */
 @Entity(tableName = "student_info")
 public class Student {
 
-    // ID（主键）
+    /**
+     * ID
+     * <p>
+     * "@PrimaryKey"注解表示该属性为主键。
+     * <p>
+     * "@ColumnInfo"注解表示该属性对应的列名。
+     */
     @PrimaryKey
     @ColumnInfo(name = "student_id")
     private long id;
@@ -34,12 +32,17 @@ public class Student {
     // 年龄
     private int age;
 
-    // Room只能识别具有完整属性的构造方法，因此其他构造方法需要添加"@Ignore"注解，使Room忽略它们。
+    /*
+     * 具有1个参数的构造方法
+     *
+     * Room只能识别具有完整属性的构造方法，因此其他构造方法需要添加"@Ignore"注解，使Room忽略它们。
+     */
     @Ignore
     public Student(long id) {
         this.id = id;
     }
 
+    // 具有3个参数的构造方法
     public Student(long id, String name, int age) {
         this.id = id;
         this.name = name;

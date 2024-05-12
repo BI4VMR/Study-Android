@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
+    id("kotlin-kapt")
 }
 
 val versionMinSDK: Int = app.versions.minSdk.get().toInt()
@@ -20,6 +21,15 @@ android {
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
         versionName = versionModuleName
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                // arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+            kapt{
+                arguments { arg("room.schemaLocation","$projectDir/schemas") }
+            }
+        }
     }
 
     sourceSets {
@@ -50,6 +60,8 @@ dependencies {
     implementation(libs.bundles.android.coreWithKT)
     // Room核心
     implementation(libs.android.room.runtime)
-    // Room注解处理器
-    annotationProcessor(libs.android.room.compiler)
+    // Room注解处理器(Java)
+    // annotationProcessor(libs.android.room.compiler)
+    // Room注解处理器(Kotlin)
+    kapt(libs.android.room.compiler)
 }

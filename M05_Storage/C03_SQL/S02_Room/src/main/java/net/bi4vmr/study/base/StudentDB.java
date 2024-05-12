@@ -7,21 +7,15 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 /**
- * Name        : StudentDB
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2024-01-07 16:41
- * <p>
- * Description : 实体类：学生。
+ * 数据库：学生信息。
  * <p>
  * 此处需要添加"@Database"注解，使得Room能够识别到该数据库类。
  * <p>
- * "entities"表示实体类的Class。存在多个实体类时，使用逗号分隔，格式为"entities = {A.class, B.class, ...}"。
+ * "entities"属性表示实体类的Class。
  * <p>
- * "version"表示数据库版本号。
+ * 存在多个实体类时，使用逗号分隔，格式为"entities = {A.class, B.class, ...}"。
+ * <p>
+ * "version"属性表示数据库的版本号。
  */
 @Database(entities = Student.class, version = 1)
 public abstract class StudentDB extends RoomDatabase {
@@ -44,7 +38,7 @@ public abstract class StudentDB extends RoomDatabase {
                             // Room默认不允许在主线程执行操作，此配置允许在主线程操作，仅适用于调试。
                             .allowMainThreadQueries()
                             /*
-                             * 设置日志模式
+                             * 设置日志模式。
                              *
                              * "TRUNCATE"
                              *
@@ -67,6 +61,6 @@ public abstract class StudentDB extends RoomDatabase {
         return instance;
     }
 
-    // 抽象方法，返回StudentDAO实例
+    // 抽象方法，返回StudentDAO实例。
     public abstract StudentDAO getStudentDAO();
 }
