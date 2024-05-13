@@ -1,44 +1,20 @@
 package net.bi4vmr.study.base;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 
 /**
  * 实体类：学生。
- * <p>
- * 此处需要添加"@Entity"注解，使得Room能够识别到该实体类。
  */
-@Entity(tableName = "student_info")
 public class Student {
 
-    /**
-     * ID
-     * <p>
-     * "@PrimaryKey"注解表示该属性为主键。
-     * <p>
-     * "@ColumnInfo"注解表示该属性对应的列名。
-     */
-    @PrimaryKey
-    @ColumnInfo(name = "student_id")
+    // ID
     private long id;
-
     // 姓名
-    @ColumnInfo(name = "student_name")
     private String name;
-
     // 年龄
-    @ColumnInfo(name = "age")
     private int age;
 
-    /*
-     * 具有1个参数的构造方法
-     *
-     * Room只能识别具有完整属性的构造方法，因此其他构造方法需要添加"@Ignore"注解，使Room忽略它们。
-     */
-    @Ignore
+    // 具有1个参数的构造方法
     public Student(long id) {
         this.id = id;
     }
@@ -50,11 +26,11 @@ public class Student {
         this.age = age;
     }
 
-    public long getId() {
+    public long getID() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setID(long id) {
         this.id = id;
     }
 

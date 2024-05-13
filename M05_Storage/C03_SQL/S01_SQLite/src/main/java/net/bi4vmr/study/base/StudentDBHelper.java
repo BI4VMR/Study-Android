@@ -32,13 +32,26 @@ public class StudentDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.i("S", "OnCreate");
-        final String sql = "";
-        db.execSQL(sql);
+        /*
+         * 初始化逻辑。
+         *
+         * 如果数据库文件不存在，该回调方法将会被触发。
+         */
+        Log.i(TAG, "OnCreate.");
+
+        final String createTableSQL = "CREATE TABLE student_info(\"student_id\" INTEGER PRIMARY KEY, \"student_name\" TEXT, \"age\" INTEGER)";
+        // 执行SQL语句，创建学生信息表。
+        db.execSQL(createTableSQL);
+
+        // 插入初始数据
+        final String SQL1 = "INSERT INTO student_info VALUES(1, '张三', 20)";
+        db.execSQL(SQL1);
+        final String SQL2 = "INSERT INTO student_info VALUES(2, '李四', 22)";
+        db.execSQL(SQL2);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        // 升级逻辑，当数据结构版本有变化时，该回调方法将会被触发。
     }
 }

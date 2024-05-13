@@ -31,5 +31,6 @@ public class TestUIBase extends AppCompatActivity {
     private void test() {
         Log.i(TAG, "--- 功能模块 ---");
         binding.tvLog.append("\n--- 功能模块 ---\n");
+        dbHelper.getWritableDatabase().
     }
 }
