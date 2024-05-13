@@ -1,6 +1,7 @@
 package net.bi4vmr.study.base;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +19,7 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.setOnClickListener(v -> test());
+        binding.tvLog.setOnClickListener(v -> test());
     }
 
     // 功能模块
