@@ -34,16 +34,6 @@ public class TestUIBase extends AppCompatActivity {
         binding.btnDelete.setOnClickListener(v -> testDelete());
     }
 
-    // 查询所有记录
-    private void testSelectAll() {
-        binding.tvLog.append("\n--- 查询所有记录 ---\n");
-        Log.i(TAG, "--- 查询所有记录 ---");
-
-        List<Student> result = dao.getStudent();
-        binding.tvLog.append(result.toString());
-        Log.i(TAG, result.toString());
-    }
-
     // 插入记录
     private void testAdd() {
         binding.tvLog.append("\n--- 插入记录 ---\n");
@@ -106,5 +96,15 @@ public class TestUIBase extends AppCompatActivity {
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
             e.printStackTrace();
         }
+    }
+
+    // 查询所有记录
+    private void testSelectAll() {
+        binding.tvLog.append("\n--- 查询所有记录 ---\n");
+        Log.i(TAG, "--- 查询所有记录 ---");
+
+        List<Student> result = dao.getStudent();
+        binding.tvLog.append(result.toString());
+        Log.i(TAG, result.toString());
     }
 }

@@ -39,19 +39,29 @@ public class StudentDBHelper extends SQLiteOpenHelper {
          */
         Log.i(TAG, "OnCreate.");
 
-        final String createTableSQL = "CREATE TABLE student_info(\"student_id\" INTEGER PRIMARY KEY, \"student_name\" TEXT, \"age\" INTEGER)";
         // 执行SQL语句，创建学生信息表。
+        final String createTableSQL = "CREATE TABLE \"student_info\"" +
+                "(" +
+                "\"student_id\" INTEGER PRIMARY KEY," +
+                "\"student_name\" TEXT," +
+                "\"age\" INTEGER" +
+                ")";
         db.execSQL(createTableSQL);
-
-        // 插入初始数据
-        final String SQL1 = "INSERT INTO student_info VALUES(1, '张三', 20)";
-        db.execSQL(SQL1);
-        final String SQL2 = "INSERT INTO student_info VALUES(2, '李四', 22)";
-        db.execSQL(SQL2);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // 升级逻辑，当数据结构版本有变化时，该回调方法将会被触发。
+    }
+
+    // 获取数据库实例
+    public SQLiteDatabase getDB() {
+        /*
+         * SQLiteOpenHelper的"getWritableDatabase()"方法将会尝试以“读写”模式打开数据库，如果数据文件所在分
+         * 区已满，将会导致"SQLiteException"异常。
+         * SQLiteOpenHelper的"getReadableDatabase()"方法将会尝试以“读写”模式打开数据库，如果数据文件所在分
+         * 区已满，将会以“只读”模式打开数据库，不会因此导致异常。
+         */
+        return getWritableDatabase();
     }
 }

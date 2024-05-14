@@ -19,7 +19,7 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.tvLog.setOnClickListener(v -> test());
+        binding.btn01.setOnClickListener(v -> test());
     }
 
     // 功能模块
