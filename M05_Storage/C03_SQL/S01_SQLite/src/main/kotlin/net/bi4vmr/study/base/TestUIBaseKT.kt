@@ -69,7 +69,6 @@ class TestUIBaseKT : AppCompatActivity() {
 
             // 创建ContentValues实例，组织一条记录的各个字段与值。
             val values = ContentValues()
-            values.put("student_id", id)
             values.put("student_name", "德川")
             values.put("age", 25)
 
@@ -132,9 +131,9 @@ class TestUIBaseKT : AppCompatActivity() {
                         val name: String = it.getString(1)
                         val age: Int = it.getInt(2)
 
-                        // 生成Kotlin对象
+                        // 生成Kotlin对象。
                         val studentKT = StudentKT(id, name, age)
-                        // 显示对象信息
+                        // 显示对象信息。
                         binding.tvLog.append("\n$studentKT")
                         Log.i(TAG, studentKT.toString())
                     } while (it.moveToNext())

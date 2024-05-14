@@ -30,13 +30,15 @@ public class StudentDBHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
+    /**
+     * 回调方法：初始化。
+     * <p>
+     * 如果数据库文件不存在，该回调方法将会被触发，此处可以创建表结构与写入初始数据。
+     *
+     * @param db 数据库实例。
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /*
-         * 初始化逻辑。
-         *
-         * 如果数据库文件不存在，该回调方法将会被触发。
-         */
         Log.i(TAG, "OnCreate.");
 
         // 执行SQL语句，创建学生信息表。
@@ -49,12 +51,22 @@ public class StudentDBHelper extends SQLiteOpenHelper {
         db.execSQL(createTableSQL);
     }
 
+    /**
+     * 回调方法：升级。
+     * <p>
+     * 当数据结构版本有变化时，该回调方法将会被触发，此处可以实现版本迁移操作。
+     *
+     * @param db         数据库实例。
+     * @param oldVersion 旧的数据结构版本号。
+     * @param newVersion 新的数据结构版本号。
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // 升级逻辑，当数据结构版本有变化时，该回调方法将会被触发。
+        Log.i(TAG, "OnUpgrade.");
+        // 暂不使用。
     }
 
-    // 获取数据库实例
+    // 获取数据库实例。
     public SQLiteDatabase getDB() {
         /*
          * SQLiteOpenHelper的"getWritableDatabase()"方法将会尝试以“读写”模式打开数据库，如果数据文件所在分

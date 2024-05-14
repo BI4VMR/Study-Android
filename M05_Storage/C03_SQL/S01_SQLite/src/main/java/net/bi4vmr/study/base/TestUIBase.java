@@ -23,7 +23,7 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //  创建学生信息数据库工具类的实例。
+        // 创建学生信息数据库工具类的实例。
         dbHelper = new StudentDBHelper(getApplicationContext());
 
         binding.btnInsert.setOnClickListener(v -> testInsert());
@@ -68,7 +68,6 @@ public class TestUIBase extends AppCompatActivity {
 
             // 创建ContentValues实例，组织一条记录的各个字段与值。
             ContentValues values = new ContentValues();
-            values.put("student_id", id);
             values.put("student_name", "德川");
             values.put("age", 25);
 
@@ -131,9 +130,9 @@ public class TestUIBase extends AppCompatActivity {
                     String name = cursor.getString(1);
                     int age = cursor.getInt(2);
 
-                    // 生成Java对象
+                    // 生成Java对象。
                     Student student = new Student(id, name, age);
-                    // 显示对象信息
+                    // 显示对象信息。
                     binding.tvLog.append("\n" + student);
                     Log.i(TAG, student.toString());
                 } while (cursor.moveToNext());
