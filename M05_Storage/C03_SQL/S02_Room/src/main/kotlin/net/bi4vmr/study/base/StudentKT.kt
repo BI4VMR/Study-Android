@@ -29,7 +29,8 @@ data class StudentKT(
     var name: String,
 
     // 年龄
-    var age: Int,
+    @ColumnInfo(name = "age")
+    var age: Int
 ) {
 
     /*
@@ -39,4 +40,8 @@ data class StudentKT(
      */
     @Ignore
     constructor(id: Long) : this(id, "", 0)
+
+    // 是否在UI中隐藏
+    @Ignore
+    var hide: Boolean = false
 }

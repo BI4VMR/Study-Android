@@ -27,27 +27,23 @@ interface StudentDAOKT {
     /**
      * 新增学生记录。
      *
-     * @param student 学生实体
+     * @param student 学生实体。
      */
     @Insert
     fun addStudent(student: StudentKT)
 
     /**
-     * Name        : 更新学生记录
-     * <p>
-     * Description : 更新学生记录。
+     * 更新学生记录。
      *
-     * @param student 学生实体
+     * @param student 学生实体。
      */
     @Update
     fun updateStudent(student: StudentKT)
 
     /**
-     * Name        : 删除学生记录
-     * <p>
-     * Description : 删除学生记录。
+     * 删除学生记录。
      *
-     * @param student 学生实体
+     * @param student 学生实体。
      */
     @Delete
     fun delStudent(student: StudentKT)

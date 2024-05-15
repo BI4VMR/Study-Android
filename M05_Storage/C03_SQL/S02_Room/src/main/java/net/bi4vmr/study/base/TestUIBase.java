@@ -65,7 +65,7 @@ public class TestUIBase extends AppCompatActivity {
             // 获取待操作的数据项ID
             long id = Integer.parseInt(binding.etID.getText().toString());
             // 更新记录
-            Student s = new Student(id, "多田野数人", 25);
+            Student s = new Student(id, "远野", 25);
             dao.updateStudent(s);
 
             binding.tvLog.append("\n更新成功。");

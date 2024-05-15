@@ -73,7 +73,7 @@ class TestUIBaseKT : AppCompatActivity() {
             // 获取待操作的数据项ID
             val id: Long = binding.etID.getText().toString().toLong()
             // 更新记录
-            val student = StudentKT(id, "多田野数人", 25)
+            val student = StudentKT(id, "远野", 25)
             studentDB.getStudentDAO().updateStudent(student)
 
             binding.tvLog.append("\n更新成功。")

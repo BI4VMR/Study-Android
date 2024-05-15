@@ -16,7 +16,7 @@ import androidx.room.RoomDatabase
  *
  * "version"属性表示数据库的版本号。
  */
-@Database(entities = [StudentKT::class], version = 1, exportSchema = true)
+@Database(entities = [StudentKT::class], version = 1)
 abstract class StudentDBKT : RoomDatabase() {
 
     companion object {
@@ -39,7 +39,7 @@ abstract class StudentDBKT : RoomDatabase() {
                         instance = Room.databaseBuilder(
                             context.applicationContext,
                             StudentDBKT::class.java,
-                            "student_kt"
+                            "student"
                         )
                             // Room默认不允许在主线程执行操作，此配置允许在主线程操作，仅适用于调试。
                             .allowMainThreadQueries()

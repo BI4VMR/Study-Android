@@ -27,11 +27,16 @@ public class Student {
 
     // 姓名
     @ColumnInfo(name = "student_name")
-    private String name;
+    @NonNull
+    private String name = "";
 
     // 年龄
     @ColumnInfo(name = "age")
     private int age;
+
+    // 是否在UI中隐藏
+    @Ignore
+    private boolean hide;
 
     /*
      * 具有1个参数的构造方法
@@ -58,11 +63,12 @@ public class Student {
         this.id = id;
     }
 
+    @NonNull
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 
