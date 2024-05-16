@@ -1,6 +1,7 @@
 package net.bi4vmr.study.base;
 
 import android.content.Context;
+import android.os.Environment;
 
 import androidx.room.Database;
 import androidx.room.Room;
@@ -17,7 +18,7 @@ import androidx.room.RoomDatabase;
  * <p>
  * "version"属性表示数据库的版本号。
  */
-@Database(entities = Student.class, version = 1)
+@Database(entities = Student.class, version = 1, exportSchema = false)
 public abstract class StudentDB extends RoomDatabase {
 
     private volatile static StudentDB instance = null;

@@ -12,11 +12,11 @@ import androidx.room.RoomDatabase
  *
  * "entities"属性表示实体类的Class。
  *
- * 存在多个实体类时，使用逗号分隔，格式为"entities = {A.class, B.class, ...}"。
+ * 存在多个实体类时，使用逗号分隔，格式为"entities = [A.class, B.class, ...]"。
  *
  * "version"属性表示数据库的版本号。
  */
-@Database(entities = [StudentKT::class], version = 1)
+@Database(entities = [StudentKT::class], version = 1, exportSchema = false)
 abstract class StudentDBKT : RoomDatabase() {
 
     companion object {

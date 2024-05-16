@@ -23,12 +23,9 @@ android {
         versionName = versionModuleName
 
         javaCompileOptions {
-            annotationProcessorOptions {
-                // arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-            }
             ksp {
-                // arguments { arg("room.schemaLocation", "$projectDir/schemas") }
-                arg("room.schemaLocation", "$projectDir/schemas")
+                // 指定Room导出调试信息的路径
+                arg("room.schemaLocation", "$projectDir/RoomSchema")
             }
         }
     }
@@ -66,6 +63,8 @@ dependencies {
 
     // Room注解处理器(Java)
     // annotationProcessor(libs.android.room.compiler)
-    // Room注解处理器(Kotlin)
+    // Room注解处理器(Kotlin-KAPT)
+    // kapt(libs.android.room.compiler)
+    // Room注解处理器(Kotlin-KSP)
     ksp(libs.android.room.compiler)
 }
