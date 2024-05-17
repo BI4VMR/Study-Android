@@ -38,21 +38,7 @@ public abstract class StudentDB extends RoomDatabase {
                     instance = Room.databaseBuilder(context.getApplicationContext(), StudentDB.class, "student")
                             // Room默认不允许在主线程执行操作，此配置允许在主线程操作，仅适用于调试。
                             .allowMainThreadQueries()
-                            /*
-                             * 设置日志模式。
-                             *
-                             * "TRUNCATE"
-                             *
-                             * 原生SQLite API的默认模式，当写入数据时会阻塞其他读取操作，降低写入并发。
-                             *
-                             * "WRITE_AHEAD_LOGGING"
-                             *
-                             * Room框架的默认模式(API Level > 16)，WAL模式使得读与写操作之间不会阻塞，只会阻塞写与写操作，能够
-                             * 提高写入并发。
-                             *
-                             * WAL模式比TRUNCATE模式写入速度更快，但由于读取数据时也需要读取WAL日志验证数据的
-                             * 正确性，所以读取数据较慢，我们应当根据实际使用场景进行选择。
-                             */
+                            // 设置日志模式
                             .setJournalMode(JournalMode.TRUNCATE)
                             // 构建实例
                             .build();
