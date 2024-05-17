@@ -25,21 +25,11 @@ class TestUIBaseKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
-            btnSelectAll.setOnClickListener { testSelectAll() }
             btnAdd.setOnClickListener { testAdd() }
             btnUpdate.setOnClickListener { testUpdate() }
             btnDelete.setOnClickListener { testDelete() }
+            btnSelectAll.setOnClickListener { testSelectAll() }
         }
-    }
-
-    // 查询所有记录
-    private fun testSelectAll() {
-        binding.tvLog.append("\n--- 查询所有记录 ---\n")
-        Log.i(TAG, "--- 查询所有记录 ---")
-
-        val result: List<StudentKT> = studentDB.getStudentDAO().getStudent()
-        binding.tvLog.append(result.toString())
-        Log.i(TAG, result.toString())
     }
 
     // 插入记录
@@ -49,7 +39,7 @@ class TestUIBaseKT : AppCompatActivity() {
 
         runCatching {
             // 获取待操作的数据项ID
-            val id: Long = binding.etID.getText().toString().toLong()
+            val id: Long = binding.etID.text.toString().toLong()
             val name = "田所浩二$id"
             // 插入记录
             val student = StudentKT(id, name, 24)
@@ -71,7 +61,7 @@ class TestUIBaseKT : AppCompatActivity() {
 
         runCatching {
             // 获取待操作的数据项ID
-            val id: Long = binding.etID.getText().toString().toLong()
+            val id: Long = binding.etID.text.toString().toLong()
             // 更新记录
             val student = StudentKT(id, "远野", 25)
             studentDB.getStudentDAO().updateStudent(student)
@@ -92,7 +82,7 @@ class TestUIBaseKT : AppCompatActivity() {
 
         runCatching {
             // 获取待操作的数据项ID
-            val id: Long = binding.etID.getText().toString().toLong()
+            val id: Long = binding.etID.text.toString().toLong()
             // 删除记录
             val student = StudentKT(id)
             studentDB.getStudentDAO().delStudent(student)
@@ -104,5 +94,15 @@ class TestUIBaseKT : AppCompatActivity() {
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
             it.printStackTrace()
         }
+    }
+
+    // 查询所有记录
+    private fun testSelectAll() {
+        binding.tvLog.append("\n--- 查询所有记录 ---\n")
+        Log.i(TAG, "--- 查询所有记录 ---")
+
+        val result: List<StudentKT> = studentDB.getStudentDAO().getStudent()
+        binding.tvLog.append(result.toString())
+        Log.i(TAG, result.toString())
     }
 }
