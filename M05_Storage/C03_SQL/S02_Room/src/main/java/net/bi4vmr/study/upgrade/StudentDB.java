@@ -1,7 +1,6 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.upgrade;
 
 import android.content.Context;
-import android.os.Environment;
 
 import androidx.room.Database;
 import androidx.room.Room;
@@ -18,7 +17,7 @@ import androidx.room.RoomDatabase;
  * <p>
  * "version"属性表示数据库的版本号。
  */
-@Database(entities = Student.class, version = 1, exportSchema = false)
+@Database(entities = StudentV2.class, version = 2, exportSchema = false)
 public abstract class StudentDB extends RoomDatabase {
 
     private volatile static StudentDB instance = null;
@@ -40,6 +39,9 @@ public abstract class StudentDB extends RoomDatabase {
                             .allowMainThreadQueries()
                             // 设置日志模式
                             .setJournalMode(JournalMode.TRUNCATE)
+                            // 添加版本迁移工具
+                            .addMigrations(new MigrationV1ToV2())
+                            .fallbackToDestructiveMigration()
                             // 构建实例
                             .build();
                 }

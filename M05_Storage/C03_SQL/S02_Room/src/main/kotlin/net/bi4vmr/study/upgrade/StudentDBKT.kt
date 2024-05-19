@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.upgrade
 
 import android.content.Context
 import androidx.room.Database
@@ -16,7 +16,7 @@ import androidx.room.RoomDatabase
  *
  * "version"属性表示数据库的版本号。
  */
-@Database(entities = [StudentKT::class], version = 1, exportSchema = false)
+@Database(entities = [StudentV2KT::class], version = 2, exportSchema = false)
 abstract class StudentDBKT : RoomDatabase() {
 
     companion object {
@@ -45,6 +45,8 @@ abstract class StudentDBKT : RoomDatabase() {
                             .allowMainThreadQueries()
                             // 设置日志模式
                             .setJournalMode(JournalMode.TRUNCATE)
+                            // 添加版本迁移工具
+                            .addMigrations(MigrationV1ToV2KT())
                             // 构建实例
                             .build()
                     }
