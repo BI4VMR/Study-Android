@@ -22,7 +22,7 @@ class StudentDBHelperKT(
     companion object {
         private val TAG: String = "TestApp-${StudentDBHelperKT::class.java.simpleName}"
 
-        private const val DB_NAME: String = "student"
+        private const val DB_NAME: String = "student.db"
         private const val DB_VERSION: Int = 1
     }
 
@@ -37,11 +37,11 @@ class StudentDBHelperKT(
         Log.i(TAG, "OnCreate.")
         // 执行SQL语句，创建学生信息表。
         val createTableSQL: String = """
-            CREATE TABLE "student_info"
+            CREATE TABLE student_info
             (
-            "student_id" INTEGER PRIMARY KEY,
-            "student_name" TEXT,
-            "age" INTEGER
+            student_id INTEGER PRIMARY KEY,
+            student_name TEXT,
+            age INTEGER
             );
         """.trimIndent()
         db.execSQL(createTableSQL)

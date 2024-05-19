@@ -14,7 +14,7 @@ public class StudentDBHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "TestApp-" + StudentDBHelper.class.getSimpleName();
 
-    private static final String DB_NAME = "student";
+    private static final String DB_NAME = "student.db";
     private static final int DB_VERSION = 1;
 
     // 构造方法
@@ -42,11 +42,11 @@ public class StudentDBHelper extends SQLiteOpenHelper {
         Log.i(TAG, "OnCreate.");
 
         // 执行SQL语句，创建学生信息表。
-        final String createTableSQL = "CREATE TABLE \"student_info\"" +
+        final String createTableSQL = "CREATE TABLE student_info" +
                 "(" +
-                "\"student_id\" INTEGER PRIMARY KEY," +
-                "\"student_name\" TEXT," +
-                "\"age\" INTEGER" +
+                "student_id INTEGER PRIMARY KEY," +
+                "student_name TEXT," +
+                "age INTEGER" +
                 ")";
         db.execSQL(createTableSQL);
     }
