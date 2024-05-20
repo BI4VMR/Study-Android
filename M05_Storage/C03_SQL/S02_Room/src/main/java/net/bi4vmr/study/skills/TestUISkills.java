@@ -1,26 +1,23 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.skills;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.databinding.TestuiBaseBinding;
+import net.bi4vmr.study.databinding.TestuiSkillsBinding;
 
-import java.util.List;
+public class TestUISkills extends AppCompatActivity {
 
-public class TestUIBase extends AppCompatActivity {
+    private static final String TAG = "TestApp-" + TestUISkills.class.getSimpleName();
 
-    private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();
-
-    private TestuiBaseBinding binding;
+    private TestuiSkillsBinding binding;
     private StudentDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiBaseBinding.inflate(getLayoutInflater());
+        binding = TestuiSkillsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // 获取数据库实例
@@ -66,7 +63,7 @@ public class TestUIBase extends AppCompatActivity {
             long id = Integer.parseInt(binding.etID.getText().toString());
             // 更新记录
             Student s = new Student(id, "远野", 25);
-            dao.updateStudent(s);
+            // dao.updateStudent(s);
 
             binding.tvLog.append("\n更新成功。");
             Log.i(TAG, "更新成功。");
@@ -87,7 +84,7 @@ public class TestUIBase extends AppCompatActivity {
             long id = Integer.parseInt(binding.etID.getText().toString());
             // 删除记录
             Student student = new Student(id);
-            dao.delStudent(student);
+            // dao.delStudent(student);
 
             binding.tvLog.append("\n删除成功。");
             Log.i(TAG, "删除成功。");
@@ -103,8 +100,8 @@ public class TestUIBase extends AppCompatActivity {
         binding.tvLog.append("\n--- 查询所有记录 ---\n");
         Log.i(TAG, "--- 查询所有记录 ---");
 
-        List<Student> result = dao.getStudent();
-        binding.tvLog.append(result.toString());
-        Log.i(TAG, result.toString());
+        // List<Student> result = dao.getStudent();
+        // binding.tvLog.append(result.toString());
+        // Log.i(TAG, result.toString());
     }
 }

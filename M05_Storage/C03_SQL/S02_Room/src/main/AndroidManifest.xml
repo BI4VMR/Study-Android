@@ -24,6 +24,11 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：进阶技巧 -->
+        <activity
+            android:name=".skills.TestUISkills"
+            android:exported="false" />
+
         <!-- 示例界面：数据库版本升级 -->
         <activity
             android:name=".upgrade.TestUIUpgrade"
@@ -32,6 +37,11 @@
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：进阶技巧(KT) -->
+        <activity
+            android:name=".skills.TestUISkillsKT"
             android:exported="false" />
 
         <!-- 示例界面：数据库版本升级(KT) -->

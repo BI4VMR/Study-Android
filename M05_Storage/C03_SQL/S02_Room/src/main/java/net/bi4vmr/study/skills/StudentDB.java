@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.skills;
 
 import android.content.Context;
 
@@ -34,13 +34,11 @@ public abstract class StudentDB extends RoomDatabase {
                      * "dbClass": 数据库类的Class。
                      * "name": 数据库文件的名称。
                      */
-                    instance = Room.databaseBuilder(context.getApplicationContext(), StudentDB.class, "student.db")
+                    instance = Room.databaseBuilder(context.getApplicationContext(), StudentDB.class, "student-skills.db")
                             // Room默认不允许在主线程执行操作，此配置允许在主线程操作，仅适用于调试。
                             .allowMainThreadQueries()
                             // 设置日志模式
                             .setJournalMode(JournalMode.TRUNCATE)
-                            // 如果检测到降级安装则清空数据（便于在做完升级实验后自动重置）
-                            .fallbackToDestructiveMigrationOnDowngrade()
                             // 构建实例
                             .build();
                 }

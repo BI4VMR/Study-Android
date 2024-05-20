@@ -20,7 +20,7 @@ public class TestUIUpgrade extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiUpgradeBinding.inflate(LayoutInflater.from(this));
+        binding = TestuiUpgradeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // 获取数据库实例
