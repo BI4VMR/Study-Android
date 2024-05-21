@@ -16,8 +16,41 @@ import java.util.List;
 @Dao
 public interface StudentDAO {
 
+    /**
+     * 插入学生记录。
+     *
+     * @param student 学生。
+     * @return 新数据的"RowID"。
+     */
     @Insert
-    void addStudent(Student student);
+    long insertStudent(Student student);
+
+    /**
+     * 插入学生记录（可变参数）。
+     *
+     * @param students 学生（可变参数）。
+     * @return 新数据的"RowID"（数组）。
+     */
+    @Insert
+    long[] insertStudents(Student... students);
+
+    /**
+     * 插入学生记录（集合）。
+     *
+     * @param students 学生（列表）。
+     * @return 新数据的"RowID"（列表）。
+     */
+    @Insert
+    List<Long> insertStudents(List<Student> students);
+
+    /**
+     * 插入学生记录（混合参数）。
+     *
+     * @param monitor  班长。
+     * @param students 学生（列表）。
+     */
+    @Insert
+    void insertStudents(Student monitor, List<Student> students);
 
     /**
      * 更新学生记录。

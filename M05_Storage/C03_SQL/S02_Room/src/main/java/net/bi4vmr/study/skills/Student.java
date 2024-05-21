@@ -21,7 +21,7 @@ public class Student {
      * <p>
      * "@ColumnInfo"注解表示该属性对应的列名。
      */
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "student_id")
     private long id;
 

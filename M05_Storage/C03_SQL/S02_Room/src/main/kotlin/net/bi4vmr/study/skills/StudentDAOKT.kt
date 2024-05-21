@@ -17,27 +17,38 @@ interface StudentDAOKT {
     /**
      * 插入学生记录。
      *
-     * @param[student] 学生实体。
+     * @param[student] 学生。
+     * @return 新数据的"RowID"。
      */
     @Insert
     fun insertStudent(student: StudentKT): Long
 
     /**
-     * TODO 添加简述。
+     * 插入学生记录。
      *
-     * TODO 添加详情。
-     *
-     * @param[students] 学生实体。
-     * @return TODO 添加返回值说明。
+     * @param[students] 学生（可变参数）。
+     * @return 新数据的"RowID"（数组）。
      */
     @Insert
     fun insertStudents(vararg students: StudentKT): Array<Long>
 
+    /**
+     * 插入学生记录（可变参数）。
+     *
+     * @param[students] 学生（列表）。
+     * @return 新数据的"RowID"（列表）。
+     */
     @Insert
     fun insertStudents(students: List<StudentKT>): List<Long>
 
+    /**
+     * 插入学生记录（混合参数）。
+     *
+     * @param[monitor] 班长。
+     * @param[students] 学生（列表）。
+     */
     @Insert
-    fun insertStudents(student: StudentKT, students: List<StudentKT>)
+    fun insertStudents(monitor: StudentKT, students: List<StudentKT>)
 
     /**
      * 更新学生记录。
