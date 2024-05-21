@@ -3,7 +3,6 @@ package net.bi4vmr.study.base;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -27,28 +26,12 @@ public class Student {
 
     // 姓名
     @ColumnInfo(name = "student_name")
-    @NonNull
-    private String name = "";
+    private String name;
 
     // 年龄
-    @ColumnInfo(name = "age")
     private int age;
 
-    // 是否在UI中隐藏
-    @Ignore
-    private boolean hide;
-
-    /*
-     * 具有1个参数的构造方法
-     *
-     * Room只能识别具有完整属性的构造方法，因此其他构造方法需要添加"@Ignore"注解，使Room忽略它们。
-     */
-    @Ignore
-    public Student(long id) {
-        this.id = id;
-    }
-
-    // 具有3个参数的构造方法
+    // 构造方法
     public Student(long id, String name, int age) {
         this.id = id;
         this.name = name;
@@ -63,12 +46,11 @@ public class Student {
         this.id = id;
     }
 
-    @NonNull
     public String getName() {
         return name;
     }
 
-    public void setName(@NonNull String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

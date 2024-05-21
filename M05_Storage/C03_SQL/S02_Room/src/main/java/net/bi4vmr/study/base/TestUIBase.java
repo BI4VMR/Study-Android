@@ -2,7 +2,6 @@ package net.bi4vmr.study.base;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,21 +27,22 @@ public class TestUIBase extends AppCompatActivity {
         // 获取学生信息DAO实例
         dao = studentDB.getStudentDAO();
 
-        binding.btnSelectAll.setOnClickListener(v -> testSelectAll());
-        binding.btnAdd.setOnClickListener(v -> testAdd());
+        binding.btnInsert.setOnClickListener(v -> testInsert());
         binding.btnUpdate.setOnClickListener(v -> testUpdate());
         binding.btnDelete.setOnClickListener(v -> testDelete());
+        binding.btnSelectAll.setOnClickListener(v -> testSelectAll());
     }
 
     // 插入记录
-    private void testAdd() {
+    private void testInsert() {
         binding.tvLog.append("\n--- 插入记录 ---\n");
         Log.i(TAG, "--- 插入记录 ---");
 
         try {
             // 获取待操作的数据项ID
             long id = Long.parseLong(binding.etID.getText().toString());
-            String name = "田所浩二" + id;
+            String name = "田所浩二";
+
             // 插入记录
             Student student = new Student(id, name, 24);
             dao.addStudent(student);
@@ -64,6 +64,7 @@ public class TestUIBase extends AppCompatActivity {
         try {
             // 获取待操作的数据项ID
             long id = Integer.parseInt(binding.etID.getText().toString());
+
             // 更新记录
             Student s = new Student(id, "远野", 25);
             dao.updateStudent(s);
@@ -85,8 +86,9 @@ public class TestUIBase extends AppCompatActivity {
         try {
             // 获取待操作的数据项ID
             long id = Integer.parseInt(binding.etID.getText().toString());
-            // 删除记录
-            Student student = new Student(id);
+
+            // 删除记录（指定ID即可）
+            Student student = new Student(id, null, 0);
             dao.delStudent(student);
 
             binding.tvLog.append("\n删除成功。");

@@ -51,7 +51,7 @@ class MigrationV1ToV2KT : Migration(1, 2) {
         // 迁移数据至新的类型，并写入新表。
         oldDatas.forEach {
             val id: Long = it.id
-            val name: String = it.name
+            val name: String = it.name ?: ""
             val birthday = "2024-01-01"
 
             val sql = "INSERT INTO student_info VALUES($id, '$name', '$birthday');"

@@ -25,7 +25,7 @@ class TestUIBaseKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
-            btnAdd.setOnClickListener { testAdd() }
+            btnInsert.setOnClickListener { testInsert() }
             btnUpdate.setOnClickListener { testUpdate() }
             btnDelete.setOnClickListener { testDelete() }
             btnSelectAll.setOnClickListener { testSelectAll() }
@@ -33,14 +33,15 @@ class TestUIBaseKT : AppCompatActivity() {
     }
 
     // 插入记录
-    private fun testAdd() {
+    private fun testInsert() {
         binding.tvLog.append("\n--- 插入记录 ---\n")
         Log.i(TAG, "--- 插入记录 ---")
 
         runCatching {
             // 获取待操作的数据项ID
             val id: Long = binding.etID.text.toString().toLong()
-            val name = "田所浩二$id"
+            val name = "田所浩二"
+
             // 插入记录
             val student = StudentKT(id, name, 24)
             studentDB.getStudentDAO().addStudent(student)
@@ -62,6 +63,7 @@ class TestUIBaseKT : AppCompatActivity() {
         runCatching {
             // 获取待操作的数据项ID
             val id: Long = binding.etID.text.toString().toLong()
+
             // 更新记录
             val student = StudentKT(id, "远野", 25)
             studentDB.getStudentDAO().updateStudent(student)
@@ -83,8 +85,9 @@ class TestUIBaseKT : AppCompatActivity() {
         runCatching {
             // 获取待操作的数据项ID
             val id: Long = binding.etID.text.toString().toLong()
+
             // 删除记录
-            val student = StudentKT(id)
+            val student = StudentKT(id, null, 0)
             studentDB.getStudentDAO().delStudent(student)
 
             binding.tvLog.append("\n删除成功。")

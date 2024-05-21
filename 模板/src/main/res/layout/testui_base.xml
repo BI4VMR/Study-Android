@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="基本应用"
         android:textColor="@color/black"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,10 +29,22 @@
             android:textSize="14sp" />
     </ScrollView>
 
-    <Button
-        android:id="@+id/btn01"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="功能按钮"
-        android:textAllCaps="false" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="功能按钮"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
