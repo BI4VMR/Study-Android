@@ -9,7 +9,7 @@ import net.bi4vmr.study.databinding.TestuiBaseBinding
 class TestUIBaseKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-" + TestUIBaseKT::class.java.simpleName
+        private val TAG: String = "TestApp-${TestUIBaseKT::class.java.simpleName}"
     }
 
     private val binding: TestuiBaseBinding by lazy {
@@ -53,11 +53,13 @@ class TestUIBaseKT : AppCompatActivity() {
 
         // 获取SharedPreferences实例
         val sp: SharedPreferences = getSharedPreferences("kvdata", MODE_PRIVATE)
+
         // 读取数值
         val i: Int = sp.getInt("Data_Int", 0)
         val b: Boolean = sp.getBoolean("Data_Boolean", false)
         val s: String? = sp.getString("Data_String", "Empty.")
 
+        // 显示内容
         val log = "数字：$i\n布尔值：$b\n字符串：$s"
         binding.tvLog.append(log)
         Log.i(TAG, log)

@@ -2,13 +2,12 @@ package net.bi4vmr.study;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.apkassets.TestUIAPKAssets;
 import net.bi4vmr.study.apkraw.TestUIAPKRaw;
-import net.bi4vmr.study.databinding.MainActivityBinding;
+import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.private_external.TestUIPrivateExternal;
 import net.bi4vmr.study.private_internal.TestUIPrivateInternal;
 import net.bi4vmr.study.public_data.TestUIPublicData;
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MainActivityBinding binding = MainActivityBinding.inflate(LayoutInflater.from(this));
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // 读取"raw"目录资源

@@ -5,11 +5,8 @@ import android.content.ContentResolver;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.blankj.utilcode.util.CloseUtils;
 
 import net.bi4vmr.study.R;
 import net.bi4vmr.study.databinding.TestuiApkrawBinding;
@@ -27,7 +24,7 @@ public class TestUIAPKRaw extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiApkrawBinding.inflate(LayoutInflater.from(this));
+        binding = TestuiApkrawBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.btnReadStream.setOnClickListener(v -> testReadStream());
@@ -51,7 +48,7 @@ public class TestUIAPKRaw extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            CloseUtils.closeIOQuietly(is);
+            IOUtil.closeQuietly(is);
         }
     }
 

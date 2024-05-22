@@ -1,12 +1,9 @@
 package net.bi4vmr.study.apkassets;
 
 import android.annotation.SuppressLint;
-import android.content.ContentResolver;
 import android.content.res.AssetManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +23,7 @@ public class TestUIAPKAssets extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiApkassetsBinding.inflate(LayoutInflater.from(this));
+        binding = TestuiApkassetsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.btnReadStream.setOnClickListener(v -> testReadStream());

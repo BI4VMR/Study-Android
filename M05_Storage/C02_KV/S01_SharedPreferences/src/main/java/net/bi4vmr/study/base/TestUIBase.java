@@ -55,11 +55,13 @@ public class TestUIBase extends AppCompatActivity {
 
         // 获取SharedPreferences实例
         SharedPreferences sp = getSharedPreferences("kvdata", Context.MODE_PRIVATE);
+
         // 读取数值
         int i = sp.getInt("Data_Int", 0);
         boolean b = sp.getBoolean("Data_Boolean", false);
         String s = sp.getString("Data_String", "Empty.");
 
+        // 显示内容
         String log = "数字：" + i + "\n布尔值：" + b + "\n字符串：" + s;
         binding.tvLog.append(log);
         Log.i(TAG, log);
