@@ -52,6 +52,7 @@ public class TestUIPublicData extends AppCompatActivity {
         Log.i(TAG, "共享存储-下载: 读-" + shareDLDir.canRead() + " ，写-" + shareDLDir.canWrite());
     }
 
+    // 打开应用详情页面
     private void testGotoSetting() {
         Uri uri = Uri.fromParts("package", getPackageName(), null);
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);

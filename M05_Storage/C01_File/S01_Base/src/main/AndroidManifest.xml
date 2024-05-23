@@ -57,8 +57,23 @@
             android:exported="false" />
 
         <!-- 示例界面：读取assets目录资源(KT) -->
-        <!--<activity-->
-        <!--    android:name=""-->
-        <!--    android:exported="false" />-->
+        <activity
+            android:name=".apkassets.TestUIAPKAssetsKT"
+            android:exported="false" />
+
+        <!-- 示例界面：读写应用私有数据（内部）(KT) -->
+        <activity
+            android:name=".private_internal.TestUIPrivateInternalKT"
+            android:exported="false" />
+
+        <!-- 示例界面：读写应用私有数据（外部）(KT) -->
+        <activity
+            android:name=".private_external.TestUIPrivateExternalKT"
+            android:exported="false" />
+
+        <!-- 示例界面：读写共享数据目录(KT) -->
+        <activity
+            android:name=".public_data.TestUIPublicDataKT"
+            android:exported="false" />
     </application>
 </manifest>

@@ -30,7 +30,15 @@ android {
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
         versionName = versionModuleName
-        signingConfig = signingConfigs.getByName("AOSP")
+    }
+
+    buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("AOSP")
+        }
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("AOSP")
+        }
     }
 
     sourceSets {

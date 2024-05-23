@@ -36,9 +36,8 @@ class TestUIAPKRawKT : AppCompatActivity() {
         Log.i(TAG, "--- 读取文件（字节流） ---")
         binding.tvLog.append("\n--- 读取文件（字节流） ---\n")
 
-        // 获取AssetManager
-        val resources: Resources = applicationContext.resources
         // 读取"raw/test.txt"
+        val resources: Resources = applicationContext.resources
         var stream: InputStream? = null
         try {
             // 传入资源ID，获取输入流。

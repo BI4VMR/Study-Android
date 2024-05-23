@@ -2,6 +2,7 @@ package net.bi4vmr.study.apkraw;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,18 +38,19 @@ public class TestUIAPKRaw extends AppCompatActivity {
         Log.i(TAG, "--- 读取文件（字节流） ---");
 
         // 读取"raw/test.txt"。
-        InputStream is = null;
+        Resources resources = getApplicationContext().getResources();
+        InputStream stream = null;
         try {
             // 传入资源ID，获取输入流。
-            is = getResources().openRawResource(R.raw.test);
+            stream = resources.openRawResource(R.raw.test);
             // 从输入流读取文本。
-            String content = IOUtil.readFile(is);
+            String content = IOUtil.readFile(stream);
             binding.tvLog.append("test.txt文件的内容为：\n" + content);
             Log.i(TAG, "test.txt文件的内容为：" + content);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            IOUtil.closeQuietly(is);
+            IOUtil.closeQuietly(stream);
         }
     }
 

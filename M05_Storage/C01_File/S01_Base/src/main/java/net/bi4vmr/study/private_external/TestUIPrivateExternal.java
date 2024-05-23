@@ -48,7 +48,7 @@ public class TestUIPrivateExternal extends AppCompatActivity {
         }
 
         /*
-         * 获取所有外置存储器上的私有数据目录路径
+         * 获取所有外置存储器上的私有数据目录路径。
          *
          * 此处的参数用于控制返回的目录类型，"null"表示返回顶层目录，其他值的含义见“访问共享数据”示例。
          */
@@ -66,7 +66,7 @@ public class TestUIPrivateExternal extends AppCompatActivity {
         Log.i(TAG, "--- 获取所有外置存储器上的私有数据目录路径 ---");
 
         /*
-         * 获取所有外部存储区域上的缓存目录
+         * 获取所有外部存储区域上的缓存目录。
          *
          * 包括虚拟存储卡与物理存储卡。
          */
@@ -77,7 +77,7 @@ public class TestUIPrivateExternal extends AppCompatActivity {
         }
 
         /*
-         * 获取所有外部存储区域上的数据目录
+         * 获取所有外部存储区域上的数据目录。
          *
          * 包括虚拟存储卡与物理存储卡。
          * 此处的参数用于控制返回的目录类型，"null"表示返回顶层目录，其他值的含义见“访问共享数据”示例。
@@ -94,21 +94,23 @@ public class TestUIPrivateExternal extends AppCompatActivity {
         binding.tvLog.append("\n--- 写入文件---\n");
         Log.i(TAG, "--- 写入文件 ---");
 
+        FileOutputStream stream = null;
         try {
             // 获取虚拟存储卡上的数据目录
             File externalFileDir = getApplicationContext().getExternalFilesDir(null);
             // 创建目标文件路径
             File dstFile = new File(externalFileDir, "test.txt");
             // 使用流的方式写入数据
-            FileOutputStream os = new FileOutputStream(dstFile);
-            os.write("我能吞下玻璃而不伤身体。".getBytes(StandardCharsets.UTF_8));
+            stream = new FileOutputStream(dstFile);
+            stream.write("我能吞下玻璃而不伤身体。".getBytes(StandardCharsets.UTF_8));
             binding.tvLog.append("\n写入test.txt成功");
             Log.i(TAG, "写入test.txt成功");
-            os.close();
         } catch (Exception e) {
             binding.tvLog.append("\n出现异常！");
             Log.e(TAG, "出现异常！");
             e.printStackTrace();
+        } finally {
+            IOUtil.closeQuietly(stream);
         }
     }
 
@@ -117,20 +119,23 @@ public class TestUIPrivateExternal extends AppCompatActivity {
         binding.tvLog.append("\n--- 读取文件---\n");
         Log.i(TAG, "--- 读取文件 ---");
 
+        FileInputStream stream = null;
         try {
             // 获取虚拟存储卡上的数据目录
             File externalFileDir = getApplicationContext().getExternalFilesDir(null);
             // 创建目标文件路径
             File dstFile = new File(externalFileDir, "test.txt");
             // 使用流的方式读取数据
-            FileInputStream is = new FileInputStream(dstFile);
-            String content = IOUtil.readFile(is);
+            stream = new FileInputStream(dstFile);
+            String content = IOUtil.readFile(stream);
             binding.tvLog.append("\n读取test.txt的内容：\n" + content);
             Log.i(TAG, "读取test.txt的内容： " + content);
         } catch (Exception e) {
             binding.tvLog.append("\n出现异常，请检查文件是否存在！");
             Log.e(TAG, "出现异常，请检查文件是否存在！");
             e.printStackTrace();
+        } finally {
+            IOUtil.closeQuietly(stream);
         }
     }
 }

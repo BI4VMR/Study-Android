@@ -56,23 +56,25 @@ public class TestUIPrivateInternal extends AppCompatActivity {
         binding.tvLog.append("\n--- 写入文件---\n");
         Log.i(TAG, "--- 写入文件 ---");
 
+        FileOutputStream stream = null;
         try {
             /*
-             * Name        : 打开指定文件的输出流
-             * <p>
-             * Description : 打开指定文件的输出流。
+             * 打开指定文件的输出流。
              *
-             * @param name 目标文件名。打开"/data/data/<包名>/files/"目录中的对应文件，若文件不存在则自动创建。
-             * @param mode 写入模式。"MODE_PRIVATE"表示清空写入；"MODE_APPEND"表示追加写入。
-             * @return FileOutputStream实例
+             * @param name 目标文件名。
+             *             打开"/data/data/<包名>/files/"目录中的对应文件，若文件不存在则自动创建。
+             * @param mode 写入模式。
+             *             "MODE_PRIVATE"表示清空写入；"MODE_APPEND"表示追加写入。
+             * @return FileOutputStream实例。
              */
-            FileOutputStream os = getApplicationContext().openFileOutput("test.txt", MODE_PRIVATE);
-            os.write("我能吞下玻璃而不伤身体。".getBytes(StandardCharsets.UTF_8));
-            binding.tvLog.append("\n写入test.txt成功");
-            Log.i(TAG, "写入test.txt成功");
-            os.close();
+            stream = getApplicationContext().openFileOutput("test.txt", MODE_PRIVATE);
+            stream.write("我能吞下玻璃而不伤身体。".getBytes(StandardCharsets.UTF_8));
+            binding.tvLog.append("\n写入test.txt成功。");
+            Log.i(TAG, "写入test.txt成功。");
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            IOUtil.closeQuietly(stream);
         }
     }
 
@@ -81,24 +83,26 @@ public class TestUIPrivateInternal extends AppCompatActivity {
         binding.tvLog.append("\n--- 读取文件---\n");
         Log.i(TAG, "--- 读取文件 ---");
 
+        FileInputStream stream = null;
         try {
             /*
-             * Name        : 打开指定文件的输入流
-             * <p>
-             * Description : 打开指定文件的输入流。
+             * 打开指定文件的输入流。
              *
-             * @param name 文件名。打开"/data/data/<包名>/files/"目录中的对应文件。
-             * @return FileInputStream实例
-             * @exception FileNotFoundException : 目标文件不存在。
+             * @param name 文件名。
+             *             打开"/data/data/<包名>/files/"目录中的对应文件。
+             * @return FileInputStream实例。
+             * @exception FileNotFoundException: 目标文件不存在。
              */
-            FileInputStream is = getApplicationContext().openFileInput("test.txt");
-            String content = IOUtil.readFile(is);
+            stream = getApplicationContext().openFileInput("test.txt");
+            String content = IOUtil.readFile(stream);
             binding.tvLog.append("\n读取test.txt的内容：\n" + content);
             Log.i(TAG, "读取test.txt的内容： " + content);
         } catch (Exception e) {
             binding.tvLog.append("\n文件不存在或出现其他异常！");
             Log.e(TAG, "文件不存在或出现其他异常！");
             e.printStackTrace();
+        } finally {
+            IOUtil.closeQuietly(stream);
         }
     }
 }
