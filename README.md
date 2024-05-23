@@ -9,8 +9,6 @@ Android应用程序开发学习示例代码。
 "build.gradle.kts":
 
 ```kotlin
-import java.io.File
-
 android {
     signingConfigs {
         create("AOSP") {
