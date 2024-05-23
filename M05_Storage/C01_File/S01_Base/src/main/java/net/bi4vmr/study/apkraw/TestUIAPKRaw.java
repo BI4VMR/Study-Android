@@ -36,12 +36,12 @@ public class TestUIAPKRaw extends AppCompatActivity {
         binding.tvLog.append("\n--- 读取文件（字节流） ---\n");
         Log.i(TAG, "--- 读取文件（字节流） ---");
 
-        // 读取"raw/test.txt"
+        // 读取"raw/test.txt"。
         InputStream is = null;
         try {
             // 传入资源ID，获取输入流。
             is = getResources().openRawResource(R.raw.test);
-            // 从输入流读取文本
+            // 从输入流读取文本。
             String content = IOUtil.readFile(is);
             binding.tvLog.append("test.txt文件的内容为：\n" + content);
             Log.i(TAG, "test.txt文件的内容为：" + content);
@@ -64,7 +64,7 @@ public class TestUIAPKRaw extends AppCompatActivity {
 
         // 将图片加载至ImageView
         binding.ivTest.setImageURI(Uri.parse(uri));
-        binding.tvLog.append("\n图片已加载至ImageView");
-        Log.i(TAG, "图片已加载至ImageView");
+        binding.tvLog.append("\n图片已加载至ImageView。");
+        Log.i(TAG, "图片已加载至ImageView。");
     }
 }

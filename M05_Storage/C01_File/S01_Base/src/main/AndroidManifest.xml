@@ -50,5 +50,15 @@
         <activity
             android:name=".public_data.TestUIPublicData"
             android:exported="false" />
+
+        <!-- 示例界面：读取raw目录资源(KT) -->
+        <activity
+            android:name=".apkraw.TestUIAPKRawKT"
+            android:exported="false" />
+
+        <!-- 示例界面：读取assets目录资源(KT) -->
+        <!--<activity-->
+        <!--    android:name=""-->
+        <!--    android:exported="false" />-->
     </application>
 </manifest>
