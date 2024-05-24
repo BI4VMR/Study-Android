@@ -39,18 +39,15 @@ public class TestUIAPKRaw extends AppCompatActivity {
 
         // 读取"raw/test.txt"。
         Resources resources = getApplicationContext().getResources();
-        InputStream stream = null;
         try {
             // 传入资源ID，获取输入流。
-            stream = resources.openRawResource(R.raw.test);
+            InputStream stream = resources.openRawResource(R.raw.test);
             // 从输入流读取文本。
             String content = IOUtil.readFile(stream);
             binding.tvLog.append("test.txt文件的内容为：\n" + content);
             Log.i(TAG, "test.txt文件的内容为：" + content);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            IOUtil.closeQuietly(stream);
         }
     }
 

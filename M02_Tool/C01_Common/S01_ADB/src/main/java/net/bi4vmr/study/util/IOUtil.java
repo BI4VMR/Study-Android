@@ -1,24 +1,17 @@
 package net.bi4vmr.study.util;
 
 import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * Name        : IOUtil
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-03-09 16:10
- * <p>
- * Description : IO工具类。
+ * I/O相关工具。
  */
 public class IOUtil {
 
-    // 读取文件内容，返回字符串。
+    // 读取文件内容，返回字符串，并关闭流。
     public static String readFile(InputStream is) {
         InputStreamReader isReader = new InputStreamReader(is);
         BufferedReader reader = new BufferedReader(isReader);
@@ -37,15 +30,28 @@ public class IOUtil {
             } while (true);
 
             // 释放资源
-            reader.close();
-            isReader.close();
-            if (is != null) {
-                is.close();
-            }
+            closeQuietly(reader);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return sb.toString();
+        // 删除换行符
+        String content = sb.toString().replace("\n", "");
+        content = content.replace("\r", "");
+
+        return content;
+    }
+
+    // 关闭流
+    public static void closeQuietly(Closeable is) {
+        if (is == null) {
+            return;
+        }
+
+        try {
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -35,7 +35,7 @@ class TestUIAPKAssetsKT : AppCompatActivity() {
 
         // 获取AssetManager
         val am: AssetManager = applicationContext.assets
-        kotlin.runCatching {
+        try {
             // 获取"config"目录下的子项
             val filenames: Array<String>? = am.list("config")
             if (filenames == null) {
@@ -53,8 +53,8 @@ class TestUIAPKAssetsKT : AppCompatActivity() {
                 binding.tvLog.append("\n文件内容：$it")
                 Log.i(TAG, "文件内容：$content")
             }
-        }.onFailure {
-            it.printStackTrace()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
         // 关闭AssetManager后，整个进程都无法再使用它，因此该方法不能由开发者调用。

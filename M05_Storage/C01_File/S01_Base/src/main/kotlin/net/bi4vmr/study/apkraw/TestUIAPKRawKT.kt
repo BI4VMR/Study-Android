@@ -38,18 +38,15 @@ class TestUIAPKRawKT : AppCompatActivity() {
 
         // 读取"raw/test.txt"
         val resources: Resources = applicationContext.resources
-        var stream: InputStream? = null
         try {
             // 传入资源ID，获取输入流。
-            stream = resources.openRawResource(R.raw.test)
+            val stream: InputStream = resources.openRawResource(R.raw.test)
             // 从输入流读取文本。
             val content: String = IOUtil.readFile(stream)
             binding.tvLog.append("test.txt文件的内容为：\n$content")
             Log.i(TAG, "test.txt文件的内容为：$content")
         } catch (e: Exception) {
             e.printStackTrace()
-        } finally {
-            IOUtil.closeQuietly(stream)
         }
     }
 

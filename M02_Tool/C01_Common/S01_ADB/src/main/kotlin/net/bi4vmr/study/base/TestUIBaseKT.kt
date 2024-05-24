@@ -31,7 +31,7 @@ class TestUIBaseKT : AppCompatActivity() {
         // 命令语句
         val cmd = "free -h"
 
-        runCatching {
+        try {
             // 执行命令
             val process: Process = Runtime.getRuntime().exec(cmd)
             // 阻塞当前线程等待命令执行完毕
@@ -52,6 +52,8 @@ class TestUIBaseKT : AppCompatActivity() {
                 Log.i(TAG, "标准错误输出：\n$text")
                 binding.tvLog.append("标准错误输出：\n$text\n")
             }
-        }.onFailure { it.printStackTrace() }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

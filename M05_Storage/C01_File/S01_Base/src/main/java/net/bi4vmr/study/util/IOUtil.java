@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
  */
 public class IOUtil {
 
-    // 读取文件内容，返回字符串。
+    // 读取文件内容，返回字符串，并关闭流。
     public static String readFile(InputStream is) {
         InputStreamReader isReader = new InputStreamReader(is);
         BufferedReader reader = new BufferedReader(isReader);
@@ -30,11 +30,7 @@ public class IOUtil {
             } while (true);
 
             // 释放资源
-            reader.close();
-            isReader.close();
-            if (is != null) {
-                is.close();
-            }
+            closeQuietly(reader);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -56,7 +56,6 @@ class TestUIPrivateInternalKT : AppCompatActivity() {
         binding.tvLog.append("\n--- 写入文件---\n")
         Log.i(TAG, "--- 写入文件 ---")
 
-        var stream: FileOutputStream? = null
         try {
             /*
              * 打开指定文件的输出流。
@@ -67,14 +66,12 @@ class TestUIPrivateInternalKT : AppCompatActivity() {
              *              "MODE_PRIVATE"表示清空写入；"MODE_APPEND"表示追加写入。
              * @return FileOutputStream实例。
              */
-            stream = openFileOutput("test.txt", MODE_PRIVATE)
+            val stream: FileOutputStream = openFileOutput("test.txt", MODE_PRIVATE)
             stream.write("我能吞下玻璃而不伤身体。".toByteArray(StandardCharsets.UTF_8))
             binding.tvLog.append("\n写入test.txt成功。")
             Log.i(TAG, "写入test.txt成功。")
         } catch (e: Exception) {
             e.printStackTrace()
-        } finally {
-            IOUtil.closeQuietly(stream)
         }
     }
 
@@ -83,7 +80,6 @@ class TestUIPrivateInternalKT : AppCompatActivity() {
         binding.tvLog.append("\n--- 读取文件---\n")
         Log.i(TAG, "--- 读取文件 ---")
 
-        var stream: FileInputStream? = null
         try {
             /*
              * 打开指定文件的输入流。
@@ -93,7 +89,7 @@ class TestUIPrivateInternalKT : AppCompatActivity() {
              * @return FileInputStream实例。
              * @exception FileNotFoundException: 目标文件不存在。
              */
-            stream = openFileInput("test.txt")
+            val stream: FileInputStream = openFileInput("test.txt")
             val content: String = IOUtil.readFile(stream)
             binding.tvLog.append("\n读取test.txt的内容：\n$content")
             Log.i(TAG, "读取test.txt的内容： $content")
@@ -101,8 +97,6 @@ class TestUIPrivateInternalKT : AppCompatActivity() {
             binding.tvLog.append("\n文件不存在或出现其他异常！")
             Log.e(TAG, "文件不存在或出现其他异常！")
             e.printStackTrace()
-        } finally {
-            IOUtil.closeQuietly(stream)
         }
     }
 }
