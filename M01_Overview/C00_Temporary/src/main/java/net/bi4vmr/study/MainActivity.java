@@ -17,7 +17,6 @@ import net.bi4vmr.study.analogclock.TestUIAnalogClock;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.textclock.TestUITextClock;
 import net.bi4vmr.study.view.TestUIView;
-import net.bi4vmr.study.window.TestWindow;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,18 +24,11 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TestWindow window;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        window = new TestWindow(this);
-        // TODO
-        binding.btnSpannableString.setOnClickListener(v -> {
-            window.show();
-        });
 
         Button btnTextClock = findViewById(R.id.btnTextClock);
         btnTextClock.setOnClickListener(v -> {

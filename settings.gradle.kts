@@ -102,8 +102,8 @@ include(":M03_UI:C05_CtrlMD:S02_FloatingActionButton")
 include(":M03_UI:C05_CtrlMD:S04_Chip")
 include(":M03_UI:C05_CtrlMD:S05_TabLayout")
 include(":M03_UI:C07_CtrlCustom:S01_Base")
-include(":M03_UI:C08_Resource:S01_Text")
-include(":M03_UI:C08_Resource:S02_Color")
+include(":M03_UI:C08_Resource:S02_Text")
+include(":M03_UI:C08_Resource:S03_Color")
 
 /* ----- 系统组件 ----- */
 include(":M04_System:C01_Common:S01_Bundle")

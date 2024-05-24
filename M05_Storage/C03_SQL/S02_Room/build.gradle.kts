@@ -30,6 +30,25 @@ android {
         }
     }
 
+    signingConfigs {
+        create("AOSP") {
+            storeFile =
+                file("${rootDir.absolutePath}${File.separator}script/keystore/AOSP.keystore")
+            storePassword = "AOSPSystem"
+            keyAlias = "AOSPSystem"
+            keyPassword = "AOSPSystem"
+        }
+    }
+
+    buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("AOSP")
+        }
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("AOSP")
+        }
+    }
+
     sourceSets {
         getByName("main") {
             java {
