@@ -32,5 +32,10 @@
         <activity
             android:name=".base.TestUIBaseKT"
             android:exported="false" />
+
+        <!-- 示例界面：XML属性(KT) -->
+        <activity
+            android:name=".xmlattrs.TestUIXMLAttrsKT"
+            android:exported="false" />
     </application>
 </manifest>

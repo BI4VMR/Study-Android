@@ -15,15 +15,7 @@ import androidx.annotation.Nullable;
 import net.bi4vmr.study.R;
 
 /**
- * Name        : BusinessCard
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2024-04-22 17:22
- * <p>
- * Description : 自定义控件示例 - 名片。
+ * 自定义控件示例 - 名片。
  */
 public class BusinessCard extends FrameLayout {
 
@@ -34,9 +26,9 @@ public class BusinessCard extends FrameLayout {
     private TextView tvPhone;
 
     /**
-     * Name        : 构造方法1
+     * 构造方法1。
      * <p>
-     * Description : 该方法是必选的，当我们在代码中动态创建BusinessCard实例时，该方法将被调用。
+     * 该方法是必选的，当我们在代码中动态创建BusinessCard实例时，该方法将被调用。
      *
      * @param context 上下文环境。
      *                <p>
@@ -54,9 +46,9 @@ public class BusinessCard extends FrameLayout {
     }
 
     /**
-     * Name        : 构造方法2
+     * 构造方法2。
      * <p>
-     * Description : 如果我们需要在布局文件中引用控件，该方法是必选的，否则系统解析XML时将会报错。
+     * 如果我们需要在布局文件中引用控件，该方法是必选的，否则系统解析XML时将会报错。
      *
      * @param context 上下文环境。
      *                <p>
@@ -69,9 +61,9 @@ public class BusinessCard extends FrameLayout {
     }
 
     /**
-     * Name        : 构造方法3
+     * 构造方法3。
      * <p>
-     * Description : 可选
+     * 可选，与主题有关。
      *
      * @param context      上下文环境。
      *                     <p>
@@ -85,9 +77,9 @@ public class BusinessCard extends FrameLayout {
     }
 
     /**
-     * Name        : 构造方法4
+     * 构造方法4。
      * <p>
-     * Description : 可选
+     * 可选，与主题有关。
      *
      * @param context      上下文环境。
      *                     <p>
@@ -102,9 +94,7 @@ public class BusinessCard extends FrameLayout {
     }
 
     /**
-     * Name        : 更新文本与图像资源
-     * <p>
-     * Description : 无。
+     * 更新文本与图像资源。
      *
      * @param name        姓名。
      * @param phone       电话号码。

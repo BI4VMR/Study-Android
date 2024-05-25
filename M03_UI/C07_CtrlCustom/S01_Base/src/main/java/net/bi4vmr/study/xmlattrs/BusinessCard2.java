@@ -15,15 +15,7 @@ import net.bi4vmr.study.R;
 import net.bi4vmr.study.databinding.BusinessCardBinding;
 
 /**
- * Name        : BusinessCard2
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2024-04-22 17:22
- * <p>
- * Description : 自定义控件示例 - 名片（XML属性）。
+ * 自定义控件示例 - 名片2。
  */
 public class BusinessCard2 extends FrameLayout {
 
@@ -41,7 +33,7 @@ public class BusinessCard2 extends FrameLayout {
     public BusinessCard2(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         // 初始化视图
-        initView(context);
+        initView();
 
         // 如果当前实例不是通过布局文件生成的，则不必解析XML属性。
         if (attrs == null) {
@@ -49,34 +41,33 @@ public class BusinessCard2 extends FrameLayout {
         }
 
         // 获取自定义属性数组
-        TypedArray taBusinessCard = context.obtainStyledAttributes(attrs, R.styleable.BusinessCard2);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BusinessCard2);
         // 获取属性，并设置到子控件上。
-        if (taBusinessCard.hasValue(R.styleable.BusinessCard2_name)) {
-            String name = taBusinessCard.getString(R.styleable.BusinessCard2_name);
+        if (ta.hasValue(R.styleable.BusinessCard2_name)) {
+            String name = ta.getString(R.styleable.BusinessCard2_name);
             binding.tvName.setText(name);
         }
-        if (taBusinessCard.hasValue(R.styleable.BusinessCard2_phone)) {
-            String phone = taBusinessCard.getString(R.styleable.BusinessCard2_phone);
+        if (ta.hasValue(R.styleable.BusinessCard2_phone)) {
+            String phone = ta.getString(R.styleable.BusinessCard2_phone);
             binding.tvPhone.setText(phone);
         }
-        if (taBusinessCard.hasValue(R.styleable.BusinessCard2_avatar)) {
-            Drawable avatar = taBusinessCard.getDrawable(R.styleable.BusinessCard2_avatar);
+        if (ta.hasValue(R.styleable.BusinessCard2_avatar)) {
+            Drawable avatar = ta.getDrawable(R.styleable.BusinessCard2_avatar);
             binding.ivAvatar.setImageDrawable(avatar);
         }
 
         // 释放TypedArray资源
-        taBusinessCard.recycle();
+        ta.recycle();
     }
 
-    private void initView(Context context) {
+    // 初始化视图
+    private void initView() {
         // 将布局文件渲染生成View实例
-        binding = BusinessCardBinding.inflate(LayoutInflater.from(context), this, true);
+        binding = BusinessCardBinding.inflate(LayoutInflater.from(getContext()), this, true);
     }
 
     /**
-     * Name        : 更新文本与图像资源
-     * <p>
-     * Description : 无。
+     * 更新文本与图像资源。
      *
      * @param name        姓名。
      * @param phone       电话号码。

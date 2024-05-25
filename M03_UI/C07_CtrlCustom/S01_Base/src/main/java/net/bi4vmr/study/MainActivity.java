@@ -9,6 +9,7 @@ import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.xmlattrs.TestUIXMLAttrs;
+import net.bi4vmr.study.xmlattrs.TestUIXMLAttrsKT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
+            startActivity(intent);
+        });
+
+        // XML属性(KT)
+        binding.btnXMLAttrsKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIXMLAttrsKT.class);
             startActivity(intent);
         });
     }

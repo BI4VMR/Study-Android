@@ -24,7 +24,7 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <net.bi4vmr.study.xmlattrs.BusinessCard2
+        <net.bi4vmr.study.xmlattrs.BusinessCard2KT
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:avatar="@drawable/ic_funny_256"
