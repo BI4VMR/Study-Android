@@ -8,7 +8,7 @@ import net.bi4vmr.study.databinding.TestuiBaseBinding
 class TestUIBaseKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-" + TestUIBaseKT::class.java.simpleName
+        private val TAG: String = "TestApp-${TestUIBaseKT::class.java.simpleName}"
     }
 
     private val binding: TestuiBaseBinding by lazy {
