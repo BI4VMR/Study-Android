@@ -4,11 +4,11 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
 }
 
-val versionMinSDK: Int = app.versions.minSdk.get().toInt()
-val versionCompileSDK: Int = app.versions.compileSdk.get().toInt()
-val versionTargetSDK: Int = app.versions.targetSdk.get().toInt()
-val versionModuleCode: Int = app.versions.moduleCode.get().toInt()
-val versionModuleName: String = app.versions.moduleName.get()
+val versionMinSDK: Int = agp.versions.minSdk.get().toInt()
+val versionCompileSDK: Int = agp.versions.compileSdk.get().toInt()
+val versionTargetSDK: Int = agp.versions.targetSdk.get().toInt()
+val versionModuleCode: Int = agp.versions.moduleCode.get().toInt()
+val versionModuleName: String = agp.versions.moduleName.get()
 
 @Suppress("UnstableApiUsage")
 android {

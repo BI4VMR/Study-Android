@@ -53,10 +53,10 @@ dependencyResolutionManagement {
             // 导入依赖版本配置文件
             from(files("script/version/dependency.toml"))
         }
-        // 声明命名空间"app"
-        create("app") {
+        // 声明命名空间"agp"
+        create("agp") {
             // 导入依赖版本配置文件
-            from(files("script/version/app.toml"))
+            from(files("script/version/agp.toml"))
         }
     }
 }
