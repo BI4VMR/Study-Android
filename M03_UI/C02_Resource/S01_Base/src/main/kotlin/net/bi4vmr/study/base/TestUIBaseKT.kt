@@ -20,7 +20,7 @@ class TestUIBaseKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
-            btn01.setOnClickListener { test() }
+            // btn01.setOnClickListener { test() }
         }
     }
 
