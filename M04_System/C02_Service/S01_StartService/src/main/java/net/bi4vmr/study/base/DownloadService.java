@@ -8,15 +8,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 /**
- * Name        : DownloadService
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-03-15 15:42
- * <p>
- * Description : 启动服务示例。
+ * 启动服务示例：下载服务。
+ *
+ * @author BI4VMR
  */
 public class DownloadService extends Service {
 
@@ -26,9 +20,7 @@ public class DownloadService extends Service {
     private Thread downloadThread;
 
     /**
-     * Name        : "onCreate()"
-     * <p>
-     * Description : 生命周期回调方法，服务首次被创建时该方法将被触发，用于进行初始化操作。
+     * 生命周期回调方法，服务首次被创建时该方法将被触发，用于进行初始化操作。
      * <p>
      * 只要服务实例没有被销毁，后续服务被启动或绑定时不会再触发此回调方法。
      */
@@ -38,16 +30,14 @@ public class DownloadService extends Service {
     }
 
     /**
-     * Name        : "onStartCommand()"
-     * <p>
-     * Description : 回调方法，当外部组件调用"startService()"方法启动本服务时，该方法将被触发。
+     * 生命周期回调方法，当外部组件调用"startService()"方法启动本服务时，该方法将被触发。
      * <p>
      * 外部组件每次调用"startService()"时本方法都会触发，但"onCreate()"方法仅会在服务未启动时被调用一次。
      *
      * @param intent  外部组件启动服务时创建的Intent，可能是空值。
      * @param flags   标志位。
-     * @param startId 外部组件每次调用"startService()"方法都会生成不同的ID，可以配合"stopSelf(startId)"
-     *                方法实现所有任务完成后终止服务。
+     * @param startId 外部组件每次调用"startService()"方法都会生成不同的ID，可以配合"stopSelf(startId)"方法实现所有任务完成后终
+     *                止服务。
      * @return 表示服务因内存不足而被系统强制关闭后的处理方式，取值为Service类中的"START"系列常量。
      */
     @Override
@@ -78,10 +68,7 @@ public class DownloadService extends Service {
     }
 
     /**
-     * Name        : "onDestroy()"
-     * <p>
-     * Description : 生命周期回调方法，服务内部自行调用"stopSelf()"方法或被外部组件调用"stopService()"方法
-     * 关闭时，该方法将被触发，用于释放资源。
+     * 生命周期回调方法，服务内部自行调用"stopSelf()"方法或被外部组件调用"stopService()"方法关闭时，该方法将被触发，用于释放资源。
      */
     @Override
     public void onDestroy() {

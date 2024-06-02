@@ -44,7 +44,7 @@ public class ForegroundService extends Service {
          * @param id 通知的唯一标识。
          * @param notification 通知实例。
          */
-        startForeground(100, notification);
+        // startForeground(100, notification);
     }
 
     @Override
