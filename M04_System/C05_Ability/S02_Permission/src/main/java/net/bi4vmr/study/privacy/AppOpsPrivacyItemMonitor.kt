@@ -1,48 +1,53 @@
 package net.bi4vmr.study.privacy
 
 import android.app.AppOpsManager
-import androidx.annotation.VisibleForTesting
+import android.content.Context
+import android.os.UserHandle
+import net.bi4vmr.study.appops.AppOpsController
 
 /**
  * TODO 添加简述。
  *
  * TODO 添加详情。
  */
-class AppOpsPrivacyItemMonitor @Inject constructor(
+class AppOpsPrivacyItemMonitor constructor(
     private val appOpsController: AppOpsController,
     private val userTracker: UserTracker,
     private val privacyConfig: PrivacyConfig,
-    private val bgExecutor: DelayableExecutor,
-    private val logger: PrivacyLogger
+    private val bgExecutor: DelayableExecutor
 ) : PrivacyItemMonitor {
 
-    @VisibleForTesting
     companion object {
         val OPS_MIC_CAMERA = intArrayOf(
-            AppOpsManager.OP_CAMERA,
-            AppOpsManager.OP_PHONE_CALL_CAMERA,
-            AppOpsManager.OP_RECORD_AUDIO,
-            AppOpsManager.OP_PHONE_CALL_MICROPHONE,
-            AppOpsManager.OP_RECEIVE_AMBIENT_TRIGGER_AUDIO,
-            AppOpsManager.OP_RECEIVE_EXPLICIT_USER_INTERACTION_AUDIO,
-            AppOpsManager.OP_RECEIVE_SANDBOX_TRIGGER_AUDIO)
+            // AppOpsManager.OP_CAMERA
+            AppProtoEnums.APP_OP_CAMERA,
+            AppProtoEnums.APP_OP_PHONE_CALL_CAMERA,
+            AppProtoEnums.APP_OP_RECORD_AUDIO,
+            AppProtoEnums.APP_OP_PHONE_CALL_MICROPHONE,
+            AppProtoEnums.APP_OP_RECEIVE_AMBIENT_TRIGGER_AUDIO,
+            AppProtoEnums.APP_OP_RECEIVE_EXPLICIT_USER_INTERACTION_AUDIO,
+            AppProtoEnums.APP_OP_RECEIVE_SANDBOX_TRIGGER_AUDIO
+        )
         val OPS_LOCATION = intArrayOf(
-            AppOpsManager.OP_COARSE_LOCATION,
-            AppOpsManager.OP_FINE_LOCATION)
+            AppProtoEnums.APP_OP_COARSE_LOCATION,
+            AppProtoEnums.APP_OP_FINE_LOCATION
+        )
         val OPS = OPS_MIC_CAMERA + OPS_LOCATION
-        val USER_INDEPENDENT_OPS = intArrayOf(AppOpsManager.OP_PHONE_CALL_CAMERA,
-            AppOpsManager.OP_PHONE_CALL_MICROPHONE)
+        val USER_INDEPENDENT_OPS = intArrayOf(
+            AppProtoEnums.APP_OP_PHONE_CALL_CAMERA,
+            AppProtoEnums.APP_OP_PHONE_CALL_MICROPHONE
+        )
     }
 
     private val lock = Any()
 
-    
+
     private var callback: PrivacyItemMonitor.Callback? = null
-    
+
     private var micCameraAvailable = privacyConfig.micCameraAvailable
-    
+
     private var locationAvailable = privacyConfig.locationAvailable
-    
+
     private var listening = false
 
     private val appOpsCallback = object : AppOpsController.Callback {
@@ -62,7 +67,7 @@ class AppOpsPrivacyItemMonitor @Inject constructor(
                 }
                 if (userTracker.userProfiles.any { it.id == UserHandle.getUserId(uid) } ||
                     code in USER_INDEPENDENT_OPS) {
-                    logger.logUpdatedItemFromAppOps(code, uid, packageName, active)
+                    // logger.logUpdatedItemFromAppOps(code, uid, packageName, active)
                     dispatchOnPrivacyItemsChanged()
                 }
             }
@@ -126,7 +131,7 @@ class AppOpsPrivacyItemMonitor @Inject constructor(
      * This is only called from private (add/remove)Callback and from the config listener, all in
      * main thread.
      */
-    
+
     private fun setListeningStateLocked() {
         val shouldListen = callback != null && (micCameraAvailable || locationAvailable)
         if (listening == shouldListen) {
@@ -156,7 +161,7 @@ class AppOpsPrivacyItemMonitor @Inject constructor(
         }.distinct()
     }
 
-    
+
     private fun privacyItemForAppOpEnabledLocked(code: Int): Boolean {
         if (code in OPS_LOCATION) {
             return locationAvailable
@@ -167,7 +172,7 @@ class AppOpsPrivacyItemMonitor @Inject constructor(
         }
     }
 
-    
+
     private fun toPrivacyItemLocked(appOpItem: AppOpItem): PrivacyItem? {
         if (!privacyItemForAppOpEnabledLocked(appOpItem.code)) {
             return null
@@ -175,13 +180,16 @@ class AppOpsPrivacyItemMonitor @Inject constructor(
         val type: PrivacyType = when (appOpItem.code) {
             AppOpsManager.OP_PHONE_CALL_CAMERA,
             AppOpsManager.OP_CAMERA -> PrivacyType.TYPE_CAMERA
+
             AppOpsManager.OP_COARSE_LOCATION,
             AppOpsManager.OP_FINE_LOCATION -> PrivacyType.TYPE_LOCATION
+
             AppOpsManager.OP_PHONE_CALL_MICROPHONE,
             AppOpsManager.OP_RECEIVE_AMBIENT_TRIGGER_AUDIO,
             AppOpsManager.OP_RECEIVE_EXPLICIT_USER_INTERACTION_AUDIO,
             AppOpsManager.OP_RECEIVE_SANDBOX_TRIGGER_AUDIO,
             AppOpsManager.OP_RECORD_AUDIO -> PrivacyType.TYPE_MICROPHONE
+
             else -> return null
         }
         val app = PrivacyApplication(appOpItem.packageName, appOpItem.uid)
@@ -189,8 +197,8 @@ class AppOpsPrivacyItemMonitor @Inject constructor(
     }
 
     private fun onCurrentProfilesChanged() {
-        val currentUserIds = userTracker.userProfiles.map { it.id }
-        logger.logCurrentProfilesChanged(currentUserIds)
+        // val currentUserIds = userTracker.userProfiles.map { it.id }
+        // logger.logCurrentProfilesChanged(currentUserIds)
         dispatchOnPrivacyItemsChanged()
     }
 
