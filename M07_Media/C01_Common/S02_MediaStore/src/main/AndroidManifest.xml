@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.bi4vmr.study">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +15,10 @@
 
         <activity
             android:name=".base.AudioActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".base.ImageActivity"
             android:exported="false" />
 
         <activity

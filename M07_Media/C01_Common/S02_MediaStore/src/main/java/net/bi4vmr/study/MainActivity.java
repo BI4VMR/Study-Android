@@ -6,7 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.base.AudioActivity;
+import net.bi4vmr.study.base.ImageActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +16,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button btAudio = findViewById(R.id.btAudio);
-        btAudio.setOnClickListener(v -> startActivity(new Intent(this, AudioActivity.class)));
+        btAudio.setOnClickListener(v -> startActivity(new Intent(this, ImageActivity.class)));
     }
 }
