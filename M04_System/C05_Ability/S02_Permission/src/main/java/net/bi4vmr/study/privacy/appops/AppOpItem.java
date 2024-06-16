@@ -1,4 +1,4 @@
-package net.bi4vmr.study.appops;
+package net.bi4vmr.study.privacy.appops;
 
 /**
  * TODO 添加简述。

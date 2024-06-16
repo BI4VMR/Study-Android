@@ -9,10 +9,9 @@ import java.lang.ref.WeakReference
  *
  * @author bi4vmr@outlook.com
  */
-class PrivacyConfig @Inject constructor(
-    @Main private val uiExecutor: DelayableExecutor,
-    private val deviceConfigProxy: DeviceConfigProxy,
-    dumpManager: DumpManager
+class PrivacyConfig constructor(
+    private val uiExecutor: DelayableExecutor,
+    private val deviceConfigProxy: DeviceConfigProxy
 ) {
 
     internal companion object {
@@ -60,7 +59,6 @@ class PrivacyConfig @Inject constructor(
         }
 
     init {
-        dumpManager.registerDumpable(TAG, this)
         deviceConfigProxy.addOnPropertiesChangedListener(
             DeviceConfig.NAMESPACE_PRIVACY,
             uiExecutor,

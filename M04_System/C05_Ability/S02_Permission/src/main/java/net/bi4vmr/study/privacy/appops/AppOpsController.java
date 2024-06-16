@@ -1,4 +1,4 @@
-package net.bi4vmr.study.appops;
+package net.bi4vmr.study.privacy.appops;
 
 /*
  * Copyright (C) 2018 The Android Open Source Project

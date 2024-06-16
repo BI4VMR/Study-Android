@@ -1,9 +1,8 @@
 package net.bi4vmr.study.privacy
 
-import android.app.AppOpsManager
 import android.content.Context
-import android.os.UserHandle
-import net.bi4vmr.study.appops.AppOpsController
+import net.bi4vmr.study.privacy.appops.AppOpItem
+import net.bi4vmr.study.privacy.appops.AppOpsController
 
 /**
  * TODO 添加简述。
@@ -25,8 +24,8 @@ class AppOpsPrivacyItemMonitor constructor(
             AppProtoEnums.APP_OP_RECORD_AUDIO,
             AppProtoEnums.APP_OP_PHONE_CALL_MICROPHONE,
             AppProtoEnums.APP_OP_RECEIVE_AMBIENT_TRIGGER_AUDIO,
-            AppProtoEnums.APP_OP_RECEIVE_EXPLICIT_USER_INTERACTION_AUDIO,
-            AppProtoEnums.APP_OP_RECEIVE_SANDBOX_TRIGGER_AUDIO
+            AppProtoEnums.APP_OP_RECEIVE_SANDBOX_TRIGGER_AUDIO,
+            AppProtoEnums.APP_OP_RECEIVE_EXPLICIT_USER_INTERACTION_AUDIO
         )
         val OPS_LOCATION = intArrayOf(
             AppProtoEnums.APP_OP_COARSE_LOCATION,
@@ -40,7 +39,6 @@ class AppOpsPrivacyItemMonitor constructor(
     }
 
     private val lock = Any()
-
 
     private var callback: PrivacyItemMonitor.Callback? = null
 
@@ -65,24 +63,22 @@ class AppOpsPrivacyItemMonitor constructor(
                 if (code in OPS_LOCATION && !locationAvailable) {
                     return
                 }
-                if (userTracker.userProfiles.any { it.id == UserHandle.getUserId(uid) } ||
+                if (userTracker.userProfiles.any { it.id == UserHandleExt.getUserId(uid) } ||
                     code in USER_INDEPENDENT_OPS) {
-                    // logger.logUpdatedItemFromAppOps(code, uid, packageName, active)
                     dispatchOnPrivacyItemsChanged()
                 }
             }
         }
     }
 
-    @VisibleForTesting
-    internal val userTrackerCallback = object : UserTracker.Callback {
+    private val userTrackerCallback = object : UserTracker.Callback {
         override fun onUserChanged(newUser: Int, userContext: Context) {
             onCurrentProfilesChanged()
         }
 
-        override fun onProfilesChanged(profiles: List<UserInfo>) {
-            onCurrentProfilesChanged()
-        }
+        // override fun onProfilesChanged(profiles: List<UserInfo>) {
+        //     onCurrentProfilesChanged()
+        // }
     }
 
     private val configCallback = object : PrivacyConfig.Callback {
@@ -155,12 +151,13 @@ class AppOpsPrivacyItemMonitor constructor(
 
         return synchronized(lock) {
             activeAppOps.filter {
-                currentUserProfiles.any { user -> user.id == UserHandle.getUserId(it.uid) } ||
-                        it.code in USER_INDEPENDENT_OPS
+                it.code in USER_INDEPENDENT_OPS
+                // currentUserProfiles.any { user ->
+                //     user.id == UserHandleExt.getUserId(it.uid)
+                // } || it.code in USER_INDEPENDENT_OPS
             }.mapNotNull { toPrivacyItemLocked(it) }
         }.distinct()
     }
-
 
     private fun privacyItemForAppOpEnabledLocked(code: Int): Boolean {
         if (code in OPS_LOCATION) {
@@ -172,23 +169,22 @@ class AppOpsPrivacyItemMonitor constructor(
         }
     }
 
-
     private fun toPrivacyItemLocked(appOpItem: AppOpItem): PrivacyItem? {
         if (!privacyItemForAppOpEnabledLocked(appOpItem.code)) {
             return null
         }
         val type: PrivacyType = when (appOpItem.code) {
-            AppOpsManager.OP_PHONE_CALL_CAMERA,
-            AppOpsManager.OP_CAMERA -> PrivacyType.TYPE_CAMERA
+            AppProtoEnums.APP_OP_PHONE_CALL_CAMERA,
+            AppProtoEnums.APP_OP_CAMERA -> PrivacyType.TYPE_CAMERA
 
-            AppOpsManager.OP_COARSE_LOCATION,
-            AppOpsManager.OP_FINE_LOCATION -> PrivacyType.TYPE_LOCATION
+            AppProtoEnums.APP_OP_COARSE_LOCATION,
+            AppProtoEnums.APP_OP_FINE_LOCATION -> PrivacyType.TYPE_LOCATION
 
-            AppOpsManager.OP_PHONE_CALL_MICROPHONE,
-            AppOpsManager.OP_RECEIVE_AMBIENT_TRIGGER_AUDIO,
-            AppOpsManager.OP_RECEIVE_EXPLICIT_USER_INTERACTION_AUDIO,
-            AppOpsManager.OP_RECEIVE_SANDBOX_TRIGGER_AUDIO,
-            AppOpsManager.OP_RECORD_AUDIO -> PrivacyType.TYPE_MICROPHONE
+            AppProtoEnums.APP_OP_PHONE_CALL_MICROPHONE,
+            AppProtoEnums.APP_OP_RECEIVE_AMBIENT_TRIGGER_AUDIO,
+            AppProtoEnums.APP_OP_RECEIVE_EXPLICIT_USER_INTERACTION_AUDIO,
+            AppProtoEnums.APP_OP_RECEIVE_SANDBOX_TRIGGER_AUDIO,
+            AppProtoEnums.APP_OP_RECORD_AUDIO -> PrivacyType.TYPE_MICROPHONE
 
             else -> return null
         }

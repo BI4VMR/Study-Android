@@ -1,26 +1,9 @@
-package net.bi4vmr.study.appops;
-
-/*
- * Copyright (C) 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package net.bi4vmr.study.privacy.appops;
 
 import static android.hardware.SensorPrivacyManager.Sensors.CAMERA;
 import static android.hardware.SensorPrivacyManager.Sensors.MICROPHONE;
 import static android.media.AudioManager.ACTION_MICROPHONE_MUTE_CHANGED;
 
-import android.annotation.Nullable;
 import android.app.AppOpsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -28,42 +11,38 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.AudioRecordingConfiguration;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.UserHandle;
-import android.permission.PermissionManager;
+import android.os.SystemClock;
 import android.util.ArraySet;
 import android.util.Log;
 import android.util.SparseArray;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 
-import com.android.internal.annotations.GuardedBy;
-import com.android.internal.annotations.VisibleForTesting;
-import com.android.systemui.Dumpable;
 import com.android.systemui.broadcast.BroadcastDispatcher;
-import com.android.systemui.dagger.SysUISingleton;
-import com.android.systemui.dagger.qualifiers.Background;
-import com.android.systemui.dump.DumpManager;
-import com.android.systemui.statusbar.policy.IndividualSensorPrivacyController;
-import com.android.systemui.util.Assert;
-import com.android.systemui.util.time.SystemClock;
 
-import java.io.PrintWriter;
+import net.bi4vmr.study.privacy.AppProtoEnums;
+import net.bi4vmr.study.privacy.IndividualSensorPrivacyController;
+import net.bi4vmr.study.privacy.UserHandleExt;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
-import javax.inject.Inject;
-
 /**
- * Controller to keep track of applications that have requested access to given App Ops
- *
- * It can be subscribed to with callbacks. Additionally, it passes on the information to
- * NotificationPresenter to be displayed to the user.
+ * 控制器，用于跟踪已请求访问给定应用程序操作的应用程序
+ * <p>
+ * 可以通过回调订阅。此外，它还将信息传递给
+ * 要向用户显示的 NotificationPresenter。
  */
+@RequiresApi(api = Build.VERSION_CODES.S)
 public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsController,
         AppOpsManager.OnOpActiveChangedListener,
         AppOpsManager.OnOpNotedInternalListener,
@@ -76,12 +55,11 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
     private static final String TAG = "AppOpsControllerImpl";
     private static final boolean DEBUG = false;
 
-    private final BroadcastDispatcher mDispatcher;
     private final Context mContext;
     private final AppOpsManager mAppOps;
     private final AudioManager mAudioManager;
+    private final BroadcastDispatcher mDispatcher;
     private final IndividualSensorPrivacyController mSensorPrivacyController;
-    private final SystemClock mClock;
 
     private H mBGHandler;
     private final Executor mBgExecutor;
@@ -91,36 +69,32 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
     private boolean mMicMuted;
     private boolean mCameraDisabled;
 
-    @GuardedBy("mActiveItems")
     private final List<AppOpItem> mActiveItems = new ArrayList<>();
-    @GuardedBy("mNotedItems")
     private final List<AppOpItem> mNotedItems = new ArrayList<>();
-    @GuardedBy("mActiveItems")
     private final SparseArray<ArrayList<AudioRecordingConfiguration>> mRecordingsByUid =
             new SparseArray<>();
 
-    @VisibleForTesting
-    protected static final int[] OPS_MIC = new int[] {
-            AppOpsManager.OP_RECORD_AUDIO,
-            AppOpsManager.OP_PHONE_CALL_MICROPHONE,
-            AppOpsManager.OP_RECEIVE_AMBIENT_TRIGGER_AUDIO,
-            AppOpsManager.OP_RECEIVE_SANDBOX_TRIGGER_AUDIO,
-            AppOpsManager.OP_RECEIVE_EXPLICIT_USER_INTERACTION_AUDIO
+    protected static final int[] OPS_MIC = new int[]{
+            AppProtoEnums.APP_OP_RECORD_AUDIO,
+            AppProtoEnums.APP_OP_PHONE_CALL_MICROPHONE,
+            AppProtoEnums.APP_OP_RECEIVE_AMBIENT_TRIGGER_AUDIO,
+            AppProtoEnums.APP_OP_RECEIVE_SANDBOX_TRIGGER_AUDIO,
+            AppProtoEnums.APP_OP_RECEIVE_EXPLICIT_USER_INTERACTION_AUDIO
     };
 
-    protected static final int[] OPS_CAMERA = new int[] {
-            AppOpsManager.OP_CAMERA,
-            AppOpsManager.OP_PHONE_CALL_CAMERA
+    protected static final int[] OPS_CAMERA = new int[]{
+            AppProtoEnums.APP_OP_CAMERA,
+            AppProtoEnums.APP_OP_PHONE_CALL_CAMERA
     };
 
-    protected static final int[] OPS_LOC = new int[] {
-            AppOpsManager.OP_FINE_LOCATION,
-            AppOpsManager.OP_COARSE_LOCATION,
-            AppOpsManager.OP_MONITOR_HIGH_POWER_LOCATION
+    protected static final int[] OPS_LOC = new int[]{
+            AppProtoEnums.APP_OP_COARSE_LOCATION,
+            AppProtoEnums.APP_OP_FINE_LOCATION,
+            AppProtoEnums.APP_OP_MONITOR_HIGH_POWER_LOCATION
     };
 
-    protected static final int[] OPS_OTHERS = new int[] {
-            AppOpsManager.OP_SYSTEM_ALERT_WINDOW
+    protected static final int[] OPS_OTHERS = new int[]{
+            AppProtoEnums.APP_OP_SYSTEM_ALERT_WINDOW
     };
 
     protected static final int[] OPS = concatOps(OPS_MIC, OPS_CAMERA, OPS_LOC, OPS_OTHERS);
@@ -129,7 +103,7 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
      * @param opArrays the given op arrays.
      * @return the concatenations of the given op arrays. Null arrays are treated as empty.
      */
-    private static int[] concatOps(@Nullable int[]...opArrays) {
+    private static int[] concatOps(@Nullable int[]... opArrays) {
         if (opArrays == null) {
             return new int[0];
         }
@@ -150,24 +124,20 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
         return concatOps;
     }
 
-    @Inject
     public AppOpsControllerImpl(
             Context context,
-            @Background Looper bgLooper,
-            @Background Executor bgExecutor,
-            DumpManager dumpManager,
+            Looper bgLooper,
+            Executor bgExecutor,
             AudioManager audioManager,
             IndividualSensorPrivacyController sensorPrivacyController,
-            BroadcastDispatcher dispatcher,
-            SystemClock clock
+            BroadcastDispatcher dispatcher
     ) {
         mDispatcher = dispatcher;
         mAppOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
         mBGHandler = new H(bgLooper);
         mBgExecutor = bgExecutor;
-        final int numOps = OPS.length;
-        for (int i = 0; i < numOps; i++) {
-            mCallbacksByCode.put(OPS[i], new ArraySet<>());
+        for (int op : OPS) {
+            mCallbacksByCode.put(op, new ArraySet<>());
         }
         mAudioManager = audioManager;
         mSensorPrivacyController = sensorPrivacyController;
@@ -175,16 +145,12 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
                 || mSensorPrivacyController.isSensorBlocked(MICROPHONE);
         mCameraDisabled = mSensorPrivacyController.isSensorBlocked(CAMERA);
         mContext = context;
-        mClock = clock;
-        dumpManager.registerDumpable(TAG, this);
     }
 
-    @VisibleForTesting
     protected void setBGHandler(H handler) {
         mBGHandler = handler;
     }
 
-    @VisibleForTesting
     protected void setListening(boolean listening) {
         mListening = listening;
         // Move IPCs to the background.
@@ -237,12 +203,16 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
                                 entry.getOpStr(),
                                 op.getUid(),
                                 op.getPackageName(),
-                                /* attributionTag= */ attributedOpEntry.getKey(),
-                                /* active= */ true,
+                                /* attributionTag= */
+                                attributedOpEntry.getKey(),
+                                /* active= */
+                                true,
                                 // AppOpsManager doesn't have a way to fetch attribution flags or
                                 // chain ID given an op entry, so default them to none.
-                                AppOpsManager.ATTRIBUTION_FLAGS_NONE,
-                                AppOpsManager.ATTRIBUTION_CHAIN_ID_NONE);
+                                // AppOpsManager.ATTRIBUTION_FLAGS_NONE <-> 0
+                                0,
+                                // AppOpsManager.ATTRIBUTION_CHAIN_ID_NONE <-> -1
+                                -1);
                     }
                 }
             }
@@ -255,7 +225,6 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
      *
      * @param callback Callback to report changes
      * @param opsCodes App Ops the callback is interested in checking
-     *
      * @see #removeCallback(int[], Callback)
      */
     @Override
@@ -280,7 +249,6 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
      *
      * @param callback Callback to stop reporting changes
      * @param opsCodes App Ops the callback was interested in checking
-     *
      * @see #addCallback(int[], Callback)
      */
     @Override
@@ -295,7 +263,7 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
         if (mCallbacks.isEmpty()) setListening(false);
     }
 
-    // Find item number in list, only call if the list passed is locked
+    // 在列表中查找项目编号，仅在传递的列表被锁定时调用。
     private AppOpItem getAppOpItemLocked(List<AppOpItem> appOpList, int code, int uid,
                                          String packageName) {
         final int itemsQ = appOpList.size();
@@ -313,7 +281,7 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
         synchronized (mActiveItems) {
             AppOpItem item = getAppOpItemLocked(mActiveItems, code, uid, packageName);
             if (item == null && active) {
-                item = new AppOpItem(code, uid, packageName, mClock.elapsedRealtime());
+                item = new AppOpItem(code, uid, packageName, SystemClock.elapsedRealtime());
                 if (isOpMicrophone(code)) {
                     item.setDisabled(isAnyRecordingPausedLocked(uid));
                 } else if (isOpCamera(code)) {
@@ -355,9 +323,9 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
         synchronized (mNotedItems) {
             item = getAppOpItemLocked(mNotedItems, code, uid, packageName);
             if (item == null) {
-                item = new AppOpItem(code, uid, packageName, mClock.elapsedRealtime());
+                item = new AppOpItem(code, uid, packageName, SystemClock.elapsedRealtime());
                 mNotedItems.add(item);
-                if (DEBUG) Log.w(TAG, "Added item: " + item.toString());
+                if (DEBUG) Log.w(TAG, "Added item: " + item);
                 createdNew = true;
             }
         }
@@ -367,8 +335,10 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
         return createdNew;
     }
 
+    // 判断是否为包含"android"字样的系统包
     private boolean isUserVisible(String packageName) {
-        return PermissionManager.shouldShowPackageForIndicatorCached(mContext, packageName);
+        // return PermissionManager.shouldShowPackageForIndicatorCached(mContext, packageName);
+        return true;
     }
 
     @WorkerThread
@@ -378,36 +348,36 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
 
     /**
      * Returns a copy of the list containing all the active AppOps that the controller tracks.
-     *
+     * <p>
      * Call from a worker thread as it may perform long operations.
      *
      * @return List of active AppOps information
      */
     @WorkerThread
     public List<AppOpItem> getActiveAppOps(boolean showPaused) {
-        return getActiveAppOpsForUser(UserHandle.USER_ALL, showPaused);
+        // UserHandleExt.USER_ALL <-> -1
+        return getActiveAppOpsForUser(-1, showPaused);
     }
 
     /**
      * Returns a copy of the list containing all the active AppOps that the controller tracks, for
      * a given user id.
-     *
+     * <p>
      * Call from a worker thread as it may perform long operations.
      *
-     * @param userId User id to track, can be {@link UserHandle#USER_ALL}
-     *
+     * @param userId User id to track, can be UserHandleExt.USER_ALL
      * @return List of active AppOps information for that user id
      */
     @WorkerThread
     public List<AppOpItem> getActiveAppOpsForUser(int userId, boolean showPaused) {
-        Assert.isNotMainThread();
         List<AppOpItem> list = new ArrayList<>();
         synchronized (mActiveItems) {
             final int numActiveItems = mActiveItems.size();
             for (int i = 0; i < numActiveItems; i++) {
                 AppOpItem item = mActiveItems.get(i);
-                if ((userId == UserHandle.USER_ALL
-                        || UserHandle.getUserId(item.getUid()) == userId)
+                // "-1" <-> UserHandleExt.USER_ALL
+                if ((userId == -1
+                        || UserHandleExt.getUserId(item.getUid()) == userId)
                         && isUserVisible(item.getPackageName())
                         && (showPaused || !item.isDisabled())) {
                     list.add(item);
@@ -418,8 +388,9 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
             final int numNotedItems = mNotedItems.size();
             for (int i = 0; i < numNotedItems; i++) {
                 AppOpItem item = mNotedItems.get(i);
-                if ((userId == UserHandle.USER_ALL
-                        || UserHandle.getUserId(item.getUid()) == userId)
+                // "-1" <-> UserHandleExt.USER_ALL
+                if ((userId == -1
+                        || UserHandleExt.getUserId(item.getUid()) == userId)
                         && isUserVisible(item.getPackageName())) {
                     list.add(item);
                 }
@@ -435,7 +406,7 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
     /**
      * Required to override, delegate to other. Should not be called.
      */
-    public void onOpActiveChanged(String op, int uid, String packageName, boolean active) {
+    public void onOpActiveChanged(@NonNull String op, int uid, @NonNull String packageName, boolean active) {
         onOpActiveChanged(op, uid, packageName, null, active,
                 AppOpsManager.ATTRIBUTION_FLAGS_NONE, AppOpsManager.ATTRIBUTION_CHAIN_ID_NONE);
     }
@@ -447,7 +418,7 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
         int code = AppOpsManager.strOpToOp(op);
         if (DEBUG) {
             Log.w(TAG, String.format("onActiveChanged(%d,%d,%s,%s,%d,%d)", code, uid, packageName,
-                    Boolean.toString(active), attributionChainId, attributionFlags));
+                    active, attributionChainId, attributionFlags));
         }
         if (active && attributionChainId != AppOpsManager.ATTRIBUTION_CHAIN_ID_NONE
                 && attributionFlags != AppOpsManager.ATTRIBUTION_FLAGS_NONE
@@ -494,7 +465,7 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
     private void notifySuscribersWorker(int code, int uid, String packageName, boolean active) {
         if (mCallbacksByCode.contains(code) && isUserVisible(packageName)) {
             if (DEBUG) Log.d(TAG, "Notifying of change in package " + packageName);
-            for (Callback cb: mCallbacksByCode.get(code)) {
+            for (Callback cb : mCallbacksByCode.get(code)) {
                 cb.onActiveStateChanged(code, uid, packageName, active);
             }
         }
@@ -587,16 +558,18 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
         return mMicMuted;
     }
 
+    // 判断参数传入的操作目标是否为摄像头
     private boolean isOpCamera(int op) {
-        for (int i = 0; i < OPS_CAMERA.length; i++) {
-            if (op == OPS_CAMERA[i]) return true;
+        for (int i : OPS_CAMERA) {
+            if (op == i) return true;
         }
         return false;
     }
 
+    // 判断参数传入的操作目标是否为麦克风
     private boolean isOpMicrophone(int op) {
-        for (int i = 0; i < OPS_MIC.length; i++) {
-            if (op == OPS_MIC[i]) return true;
+        for (int i : OPS_MIC) {
+            if (op == i) return true;
         }
         return false;
     }
