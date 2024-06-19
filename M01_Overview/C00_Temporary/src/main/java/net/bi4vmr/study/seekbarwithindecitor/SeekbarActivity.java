@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.R;
 
-public class MainActivity1 extends AppCompatActivity {
+public class SeekbarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
