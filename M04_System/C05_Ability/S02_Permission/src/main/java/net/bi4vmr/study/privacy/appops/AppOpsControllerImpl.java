@@ -55,7 +55,6 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
     private static final String TAG = "AppOpsControllerImpl";
     private static final boolean DEBUG = false;
 
-    private final Context mContext;
     private final AppOpsManager mAppOps;
     private final AudioManager mAudioManager;
     private final BroadcastDispatcher mDispatcher;
@@ -65,7 +64,6 @@ public class AppOpsControllerImpl extends BroadcastReceiver implements AppOpsCon
     private final Executor mBgExecutor;
     private final List<AppOpsController.Callback> mCallbacks = new ArrayList<>();
     private final SparseArray<Set<Callback>> mCallbacksByCode = new SparseArray<>();
-    private boolean mListening;
     private boolean mMicMuted;
     private boolean mCameraDisabled;
 
