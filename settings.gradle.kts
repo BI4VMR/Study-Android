@@ -134,7 +134,8 @@ include(":M04_System:C05_Ability:S04_Configuration")
 include(":M04_System:C05_Ability:S05_Package")
 include(":M04_System:C05_Ability:S06_UsageStats")
 include(":M04_System:C05_Ability:S07_NDK")
-include(":M04_System:C06_Parallelism:S01_Handler")
+include(":M04_System:C06_Parallelism:S01_Base")
+include(":M04_System:C06_Parallelism:S02_Handler")
 
 /* ----- 数据存储 ----- */
 include(":M05_Storage:C01_File:S01_Base")
