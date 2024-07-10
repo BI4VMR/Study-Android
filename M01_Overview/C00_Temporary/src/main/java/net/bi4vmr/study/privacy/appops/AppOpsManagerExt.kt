@@ -72,20 +72,44 @@ class AppOpsManagerExt private constructor(private val mContext: Context) {
     //     }
     // }
 
-    fun getPackagesForOps(ops: IntArray?) {
+    fun getPackagesForOps(ops: IntArray? = null) {
         try {
             val method: Method = mOpsManagerClass.getMethod("getPackagesForOps", IntArray::class.java)
-            val list = method.invoke(mOpsManager, null)
-            if (list is List<*>) {
-                list.forEach {
-                    Log.i(TAG, "ops:[$it]")
-                    val methods = it!!.javaClass.methods
-                    methods.forEach {
-                        Log.i(TAG, "fun:[${it!!.name}]")
+            // 获取应用程序的近期操作，返回值类型为List<AppOpsManager.PackageOps>，AppOpsManager.PackageOps是隐藏API。
+            val packageOPList: List<*> = method.invoke(mOpsManager, ops) as List<*>
+            packageOPList.forEach { pkgOP ->
+                if (pkgOP != null) {
+                    Log.i(TAG, "PackageOps ---------------->")
+                    // val methods = pkgOP.javaClass.methods
+                    // methods.forEach {
+                    //     Log.i(TAG, "pkgOP func:[${it!!.name}]")
+                    // }
+                    // 获取包名
+                    val methodGetPkgName = pkgOP.javaClass.getMethod("getPackageName")
+                    val packageName: String = methodGetPkgName.invoke(pkgOP) as String
+                    // 获取UID
+                    val methodGetUID = pkgOP.javaClass.getMethod("getUid")
+                    val uid: Int = methodGetUID.invoke(pkgOP) as Int
+                    Log.i(TAG, "Package:[$packageName] UID:[$uid]")
+                    // 获取OP列表
+                    val methodGetOps = pkgOP.javaClass.getMethod("getOps")
+                    val opList: List<*> = methodGetOps.invoke(pkgOP) as List<*>
+                    opList.forEach { entry ->
+                        if (entry != null) {
+                            Log.i(TAG, "OPEntry ---------------->")
+                            // val methods = entry.javaClass.methods
+                            // methods.forEach {
+                            //     Log.i(TAG, "opentries func:[${it!!.name}]")
+                            // }
+                            // 获取OP代码
+                            val methodGetOP = entry.javaClass.getMethod("getOp")
+                            val opCode: Int = methodGetOP.invoke(entry) as Int
+                            // 获取当前是否正在运行
+                            val methodIsRunning = entry.javaClass.getMethod("isRunning")
+                            val running: Boolean = methodIsRunning.invoke(entry) as Boolean
+                            Log.i(TAG, "OPCode:[$opCode] OP:[${AppOps.valueOf(opCode)}] Running:[$running]")
+                        }
                     }
-                    val mmm = it.javaClass.getMethod("getPackageName")
-                    val txt = mmm.invoke(it)
-                    Log.i(TAG, "getPackageName:[${txt}]")
                 }
             }
         } catch (e: Exception) {

@@ -64,12 +64,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i("TestApp", "onDestroy.");
-    }
-
     // Bitmap.CompressFormat.PNG
     public void drawableToFile(Drawable drawable, String filePath, Bitmap.CompressFormat format) {
         if (drawable == null)
