@@ -3,9 +3,9 @@ package net.bi4vmr.study.privacy.appops
 /**
  * AppOp枚举。
  *
- * 内容来自AOSP的"android/app/AppProtoEnums.java"。
+ * 本类的内容来自AOSP的"android/app/AppProtoEnums.java"。
  *
- * @author 詹屹罡。
+ * @author bi4vmr@outlook.com
  */
 enum class AppOps(
     /**

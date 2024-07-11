@@ -2,16 +2,21 @@ package net.bi4vmr.study.privacy.appops
 
 import android.annotation.SuppressLint
 import android.app.AppOpsManager
+import android.app.AsyncNotedAppOp
+import android.app.SyncNotedAppOp
 import android.content.Context
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import java.lang.reflect.Method
+import java.util.concurrent.Executors
 
 /**
  * TODO 添加简述。
  *
  * TODO 添加详情。
  *
- * @author 詹屹罡。
+ * @author bi4vmr@outlook.com
  */
 class AppOpsManagerExt private constructor(private val mContext: Context) {
 
@@ -36,54 +41,19 @@ class AppOpsManagerExt private constructor(private val mContext: Context) {
         private val TAG = "TestApp-${AppOpsManagerExt::class.java.simpleName}"
     }
 
-    private val mOpsManagerClass = AppOpsManager::class.java
-    private val mOpsManager: AppOpsManager = mContext.getSystemService(mOpsManagerClass)
+    private val opsManagerClass = AppOpsManager::class.java
+    private val opsManager: AppOpsManager = mContext.getSystemService(opsManagerClass)
 
     // @RequiresPermission("Manifest.permission.GET_APP_OPS_STATS")
-    // fun getPackagesForOps(ops: IntArray?) {
-    //     val OPS_MIC_CAMERA: IntArray = intArrayOf(
-    //         AppOps.CAMERA.code,
-    //         AppOps.PHONE_CALL_CAMERA.code,
-    //         AppOps.RECORD_AUDIO.code,
-    //         AppOps.PHONE_CALL_MICROPHONE.code,
-    //         AppOps.RECEIVE_AMBIENT_TRIGGER_AUDIO.code,
-    //         AppOps.RECEIVE_SANDBOX_TRIGGER_AUDIO.code,
-    //         AppOps.RECEIVE_EXPLICIT_USER_INTERACTION_AUDIO.code
-    //     )
-    //     val OPS_LOCATION: IntArray = intArrayOf(
-    //         AppOps.COARSE_LOCATION.code,
-    //         AppOps.FINE_LOCATION.code,
-    //         AppOps.MONITOR_HIGH_POWER_LOCATION.code
-    //     )
-    //
-    //     val pOps: List<AppOpsManager.PackageOps> = mOpsManager.getPackagesForOps(OPS_MIC_CAMERA)
-    //     for (pOp in pOps) {
-    //         // 获取当前记录对应的包名
-    //         val pkgName: String = pOp.getPackageName()
-    //         Log.i(TAG, "pkgName:[$pkgName]")
-    //         val entrys: List<AppOpsManager.OpEntry> = pOp.getOps()
-    //
-    //         // 遍历OpEntry集合
-    //         entrys.forEach {
-    //             val opCode: Int = it.getOp()
-    //             val isRunning: Boolean = it.isRunning()
-    //             Log.i(TAG, "isRunning:[$isRunning] opCode:[$opCode] op:[${AppOps.valueOf(opCode)}]")
-    //         }
-    //     }
-    // }
-
+    @RequiresApi(Build.VERSION_CODES.R)
     fun getPackagesForOps(ops: IntArray? = null) {
         try {
-            val method: Method = mOpsManagerClass.getMethod("getPackagesForOps", IntArray::class.java)
+            val method: Method = opsManagerClass.getMethod("getPackagesForOps", IntArray::class.java)
             // 获取应用程序的近期操作，返回值类型为List<AppOpsManager.PackageOps>，AppOpsManager.PackageOps是隐藏API。
-            val packageOPList: List<*> = method.invoke(mOpsManager, ops) as List<*>
+            val packageOPList: List<*> = method.invoke(opsManager, ops) as List<*>
             packageOPList.forEach { pkgOP ->
                 if (pkgOP != null) {
                     Log.i(TAG, "PackageOps ---------------->")
-                    // val methods = pkgOP.javaClass.methods
-                    // methods.forEach {
-                    //     Log.i(TAG, "pkgOP func:[${it!!.name}]")
-                    // }
                     // 获取包名
                     val methodGetPkgName = pkgOP.javaClass.getMethod("getPackageName")
                     val packageName: String = methodGetPkgName.invoke(pkgOP) as String
@@ -115,5 +85,21 @@ class AppOpsManagerExt private constructor(private val mContext: Context) {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        Log.i(TAG,"oopsManagersetOnOpNotedCallback")
+        opsManager.setOnOpNotedCallback(Executors.newSingleThreadExecutor(),object : AppOpsManager.OnOpNotedCallback() {
+
+
+            override fun onNoted(op: SyncNotedAppOp) {
+                Log.i(TAG,"onNoted:[${op.op}]")
+            }
+
+            override fun onSelfNoted(op: SyncNotedAppOp) {
+                Log.i(TAG,"onSelfNoted:[${op.op}]")
+            }
+
+            override fun onAsyncNoted(asyncOp: AsyncNotedAppOp) {
+                Log.i(TAG,"onAsyncNoted:[${asyncOp.op}]")
+            }
+        })
     }
 }
