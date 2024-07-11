@@ -82,24 +82,17 @@ class AppOpsManagerExt private constructor(private val mContext: Context) {
                     }
                 }
             }
+
+            val OPS_LOCATION: Array<String> = arrayOf(
+                AppOps.COARSE_LOCATION.name,
+                AppOps.FINE_LOCATION.name,
+                AppOps.MONITOR_HIGH_POWER_LOCATION.name
+            )
+            Log.i(TAG, "startWatchingActive.")
+            opsManager.startWatchingActive(OPS_LOCATION,Executors.newSingleThreadExecutor()
+            ) { op, uid, packageName, active -> Log.i(TAG, "onOpActiveChanged. op:[$op] [$packageName] a:[$active]") }
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        Log.i(TAG,"oopsManagersetOnOpNotedCallback")
-        opsManager.setOnOpNotedCallback(Executors.newSingleThreadExecutor(),object : AppOpsManager.OnOpNotedCallback() {
-
-
-            override fun onNoted(op: SyncNotedAppOp) {
-                Log.i(TAG,"onNoted:[${op.op}]")
-            }
-
-            override fun onSelfNoted(op: SyncNotedAppOp) {
-                Log.i(TAG,"onSelfNoted:[${op.op}]")
-            }
-
-            override fun onAsyncNoted(asyncOp: AsyncNotedAppOp) {
-                Log.i(TAG,"onAsyncNoted:[${asyncOp.op}]")
-            }
-        })
     }
 }

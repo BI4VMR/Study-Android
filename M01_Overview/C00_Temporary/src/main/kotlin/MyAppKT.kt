@@ -1,6 +1,7 @@
 package net.bi4vmr.study
 
 import android.app.Application
+import android.location.LocationRequest
 import android.util.Log
 import net.bi4vmr.study.privacy.appops.AppOps
 import net.bi4vmr.study.privacy.appops.AppOpsManagerExt
@@ -38,7 +39,6 @@ class MyAppKT : Application() {
     override fun onCreate() {
         super.onCreate()
         Log.i(TAG, "OnCreate.")
-
         AppOpsManagerExt.getInstance(applicationContext)
             .getPackagesForOps(OPS_CAMERA)
     }
