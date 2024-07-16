@@ -15,7 +15,7 @@ android {
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.system.parallelism.handler"
+        applicationId = "net.bi4vmr.study.system.concurrent.base"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
