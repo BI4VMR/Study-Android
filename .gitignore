@@ -10,13 +10,12 @@ desktop.ini
 # ----- 编译工具输出目录 -----
 # Maven
 target/
-/out/
+out/
 # Gradle
 build/
 # CMake
 cmake-build-*/
-# CMake - Android NDK
-.cxx/
+
 
 # ----- 编译工具临时文件 -----
 # Gradle
@@ -38,3 +37,6 @@ hs_err_pid*.log
 # ----- Android工程 -----
 # 本地属性配置文件
 local.properties
+# CMake - Android NDK
+.cxx/
+.externalNativeBuild/
