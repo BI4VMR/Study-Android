@@ -2,8 +2,6 @@ package net.bi4vmr.study.privacy.appops
 
 import android.annotation.SuppressLint
 import android.app.AppOpsManager
-import android.app.AsyncNotedAppOp
-import android.app.SyncNotedAppOp
 import android.content.Context
 import android.os.Build
 import android.util.Log
