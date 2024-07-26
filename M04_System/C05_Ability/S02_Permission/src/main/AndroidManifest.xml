@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.bi4vmr.study">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ProtectedPermissions,ExportedService">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- 查询所有应用的权限使用记录 -->
+    <uses-permission android:name="android.permission.GET_APP_OPS_STATS" />
 
     <application
         android:allowBackup="true"
@@ -31,5 +35,10 @@
         <activity
             android:name=".contracts.TestUIContracts"
             android:exported="false" />
+
+        <!-- 示例服务：隐私权限使用状态监控 -->
+        <service
+            android:name=".privacy.TestServicePrivacy"
+            android:exported="true" />
     </application>
 </manifest>

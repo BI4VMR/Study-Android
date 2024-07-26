@@ -168,7 +168,7 @@ enum class AppOps(
          */
         @JvmStatic
         fun valueOf(code: Int): AppOps? {
-            values().forEach {
+            entries.forEach {
                 if (it.code == code) {
                     return it
                 }
