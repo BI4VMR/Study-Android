@@ -19,13 +19,17 @@ pluginManagement {
         println("Current host in private LAN? [$isInPrivateLAN]")
 
         if (hostName.startsWith("BI4VMR") && isInPrivateLAN) {
-            println("Current host is in private network, add private repositorys.")
+            println("Current host is in private network, add LAN repositorys.")
             maven {
                 isAllowInsecureProtocol = true
                 setUrl("http://172.18.5.1:8081/repository/maven-union/")
             }
         } else {
-            println("Current host not in private network.")
+            println("Current host is not in private network, add VPN repositorys.")
+            maven {
+                isAllowInsecureProtocol = true
+                setUrl("http://192.168.128.1:8081/repository/maven-union/")
+            }
         }
 
         // 腾讯云仓库镜像：Maven中心仓库
@@ -36,7 +40,8 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
 
-        mavenLocal()
+        // TestOnly
+        // mavenLocal()
     }
 }
 
@@ -65,6 +70,11 @@ dependencyResolutionManagement {
                 isAllowInsecureProtocol = true
                 setUrl("http://172.18.5.1:8081/repository/maven-union/")
             }
+        } else {
+            maven {
+                isAllowInsecureProtocol = true
+                setUrl("http://192.168.128.1:8081/repository/maven-union/")
+            }
         }
 
         // 腾讯云仓库镜像：Maven中心仓库
@@ -72,7 +82,8 @@ dependencyResolutionManagement {
 
         mavenCentral()
 
-        mavenLocal()
+        // TestOnly
+        // mavenLocal()
     }
 
     // 版本管理配置
@@ -82,10 +93,15 @@ dependencyResolutionManagement {
             // 导入依赖版本配置文件
             from(files("script/version/dependency.toml"))
         }
-        // 声明命名空间"agp"
+
+        // AGP相关配置
         create("agp") {
-            // 导入依赖版本配置文件
             from(files("script/version/agp.toml"))
+        }
+
+        // 基础组件库
+        create("baselibs") {
+            from(files("script/version/dependency_baselib.toml"))
         }
     }
 }
