@@ -25,10 +25,15 @@ pluginManagement {
                 setUrl("http://172.18.5.1:8081/repository/maven-union/")
             }
         } else {
-            println("Current host is not in private network, add VPN repositorys.")
-            maven {
-                isAllowInsecureProtocol = true
-                setUrl("http://192.168.128.1:8081/repository/maven-union/")
+            if (java.net.InetAddress.getByName("192.168.128.1").isReachable(5)) {
+                println("Current host is not in private network, add VPN repositorys.")
+                maven {
+                    isAllowInsecureProtocol = true
+                    setUrl("http://192.168.128.1:8081/repository/maven-union/")
+                }
+            } else {
+                println("Current host is not in private network, add LOCAL repositorys.")
+                mavenLocal()
             }
         }
 
@@ -39,9 +44,6 @@ pluginManagement {
 
         mavenCentral()
         gradlePluginPortal()
-
-        // TestOnly
-        // mavenLocal()
     }
 }
 
@@ -71,9 +73,13 @@ dependencyResolutionManagement {
                 setUrl("http://172.18.5.1:8081/repository/maven-union/")
             }
         } else {
-            maven {
-                isAllowInsecureProtocol = true
-                setUrl("http://192.168.128.1:8081/repository/maven-union/")
+            if (java.net.InetAddress.getByName("192.168.128.1").isReachable(5)) {
+                maven {
+                    isAllowInsecureProtocol = true
+                    setUrl("http://192.168.128.1:8081/repository/maven-union/")
+                }
+            } else {
+                mavenLocal()
             }
         }
 
@@ -81,9 +87,6 @@ dependencyResolutionManagement {
         maven { setUrl("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
 
         mavenCentral()
-
-        // TestOnly
-        // mavenLocal()
     }
 
     // 版本管理配置

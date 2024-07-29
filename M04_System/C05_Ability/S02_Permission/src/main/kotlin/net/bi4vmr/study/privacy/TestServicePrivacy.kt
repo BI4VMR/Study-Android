@@ -11,7 +11,7 @@ import net.bi4vmr.study.privacy.appops.AppOpsManagerExt
  * 示例服务：隐私权限使用状况。
  *
  * ```text
- * am start-foreground-service "net.bi4vmr.study.system.ability.permission/net.bi4vmr.study.privacy.TestServicePrivacy" -ei "Type" 1
+ * am start-service "net.bi4vmr.study.system.ability.permission/net.bi4vmr.study.privacy.TestServicePrivacy"
  * ```
  *
  * @author bi4vmr@outlook.com
@@ -43,24 +43,33 @@ class TestServicePrivacy : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        Log.i(TAG, "OnStartCommand.")
-
-        // 获取Extra参数
-        val type: Int = intent.getIntExtra("Type", -1)
-        val opArray: IntArray? = when (type) {
-            1 -> OPS_LOCATION
-            2 -> OPS_MIC
-            3 -> OPS_CAMERA
-            else -> null
-        }
-
-        Log.i(TAG, "GetPackagesOps. Type:[${intent.hasExtra("Type111")}]")
+        Log.i(TAG, "GetPackagesOps. Type:[LOCATION]")
         AppOpsManagerExt.getInstance(applicationContext)
             // 查询OP记录
-            .getPackagesOps(opArray)
+            .getPackagesOps(OPS_LOCATION)
             // 输出到日志
             .forEach {
-                // Log.i(TAG, "APP:[${it.packageName}] OP:[${it.opName}] Running:[${it.isRunning}]")
+                Log.i(TAG, "APP:[${it.packageName}] OP:[${it.opName}] Running:[${it.isRunning}]")
+            }
+
+        Log.i(TAG, "------")
+        Log.i(TAG, "GetPackagesOps. Type:[MIC]")
+        AppOpsManagerExt.getInstance(applicationContext)
+            // 查询OP记录
+            .getPackagesOps(OPS_MIC)
+            // 输出到日志
+            .forEach {
+                Log.i(TAG, "APP:[${it.packageName}] OP:[${it.opName}] Running:[${it.isRunning}]")
+            }
+
+        Log.i(TAG, "------")
+        Log.i(TAG, "GetPackagesOps. Type:[CAMERA]")
+        AppOpsManagerExt.getInstance(applicationContext)
+            // 查询OP记录
+            .getPackagesOps(OPS_CAMERA)
+            // 输出到日志
+            .forEach {
+                Log.i(TAG, "APP:[${it.packageName}] OP:[${it.opName}] Running:[${it.isRunning}]")
             }
         return START_NOT_STICKY
     }
