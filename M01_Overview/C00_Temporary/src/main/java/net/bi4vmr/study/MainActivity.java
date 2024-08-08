@@ -44,13 +44,15 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnView = findViewById(R.id.btnView);
         btnView.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIView.class);
-            startActivity(intent);
+            // Intent intent = new Intent(this, TestUIView.class);
+            // startActivity(intent);
             //
             // WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
             //
             // final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
             // drawableToFile(wallpaperDrawable, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/1.png", Bitmap.CompressFormat.PNG);
+
+            // SizeUtil.dp2px(100);
         });
     }
 
