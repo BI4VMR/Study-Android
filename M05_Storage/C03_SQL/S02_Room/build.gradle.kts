@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.kotlin.ksp)
+    alias(libAndroid.plugins.application)
+    alias(libAndroid.plugins.kotlin)
+    alias(libKotlin.plugins.ksp)
 }
 
 val versionMinSDK: Int = agp.versions.minSdk.get().toInt()
@@ -33,7 +33,7 @@ android {
     signingConfigs {
         create("AOSP") {
             storeFile =
-                file("${rootDir.absolutePath}${File.separator}script/keystore/AOSP.keystore")
+                file("${rootDir.absolutePath}${File.separator}misc/keystore/AOSP.keystore")
             storePassword = "AOSPSystem"
             keyAlias = "AOSPSystem"
             keyPassword = "AOSPSystem"
@@ -74,16 +74,16 @@ android {
 }
 
 dependencies {
-    implementation(libs.bundles.android.coreWithKT)
+    implementation(libAndroid.bundles.baseWithKT)
     // Room核心
-    implementation(libs.android.room.runtime)
+    implementation(libAndroid.room.runtime)
     // Room Kotlin语言扩展
-    implementation(libs.android.room.ktx)
+    implementation(libAndroid.room.ktx)
 
     // Room注解处理器(Java)
-    // annotationProcessor(libs.android.room.compiler)
+    // annotationProcessor(libAndroid.room.compiler)
     // Room注解处理器(Kotlin-KAPT)
-    // kapt(libs.android.room.compiler)
+    // kapt(libAndroid.room.compiler)
     // Room注解处理器(Kotlin-KSP)
-    ksp(libs.android.room.compiler)
+    ksp(libAndroid.room.compiler)
 }

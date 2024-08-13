@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.android.kotlin)
+    alias(libAndroid.plugins.application)
+    alias(libAndroid.plugins.kotlin)
 }
 
 val versionMinSDK: Int = agp.versions.minSdk.get().toInt()
@@ -34,7 +34,7 @@ android {
         signingConfigs {
             create("AOSP") {
                 storeFile =
-                    file("${rootDir.absolutePath}${File.separator}script/keystore/AOSP.keystore")
+                    file("${rootDir.absolutePath}${File.separator}misc/keystore/AOSP.keystore")
                 storePassword = "AOSPSystem"
                 keyAlias = "AOSPSystem"
                 keyPassword = "AOSPSystem"
@@ -68,5 +68,5 @@ android {
 }
 
 dependencies {
-    implementation(libs.bundles.android.coreWithKT)
+    implementation(libAndroid.bundles.baseWithKT)
 }

@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.android.kotlin)
+    alias(libAndroid.plugins.application)
+    alias(libAndroid.plugins.kotlin)
 }
 
 def version_MinSDK = Integer.valueOf(agp.versions.minSdk.get())
@@ -27,6 +27,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.bundles.android.core)
-    implementation(libs.android.utilcodex)
+    implementation(libAndroid.bundles.baseWithKT)
+    implementation(libAndroid.utilCodeX)
 }

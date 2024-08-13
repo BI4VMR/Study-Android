@@ -15,7 +15,7 @@ android {
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.storage.kv.sharedpreferences"
+        applicationId = "net.bi4vmr.study.network.common.connectstate"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode

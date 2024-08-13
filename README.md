@@ -13,7 +13,7 @@ android {
     signingConfigs {
         create("AOSP") {
             storeFile =
-                file("${rootDir.absolutePath}${File.separator}script/keystore/AOSP.keystore")
+                file("${rootDir.absolutePath}${File.separator}misc/keystore/AOSP.keystore")
             storePassword = "AOSPSystem"
             keyAlias = "AOSPSystem"
             keyPassword = "AOSPSystem"

@@ -1,6 +1,5 @@
 # 版本号
 [versions]
-# ----- Android -----
 # SDK版本
 minSdk = "26"
 targetSdk = "33"
