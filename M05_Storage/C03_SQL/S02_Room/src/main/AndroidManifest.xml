@@ -7,7 +7,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_funny_256"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DEFAULT">
+        android:theme="@style/Theme.Default">
 
         <activity
             android:name=".MainActivity"

@@ -74,7 +74,7 @@ android {
 }
 
 dependencies {
-    implementation(libAndroid.bundles.baseWithKT)
+    implementation(libAndroid.bundles.appBaseKT)
     // Room核心
     implementation(libAndroid.room.runtime)
     // Room Kotlin语言扩展

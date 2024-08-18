@@ -66,5 +66,5 @@ android {
 }
 
 dependencies {
-    implementation(libAndroid.bundles.baseWithKT)
+    implementation(libAndroid.bundles.appBaseKT)
 }

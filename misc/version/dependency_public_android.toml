@@ -84,8 +84,8 @@ room-test = { group = "androidx.room", name = "room-testing", version.ref = "roo
 # 编组
 [bundles]
 # ----- 核心组件 -----
-base = ["appcompat", "material", "constraintLayout"]
-baseWithKT = ["appcompat", "material", "constraintLayout", "ktx_core", "ktx_coroutine", "ktx_lifecycleRuntime", "ktx_lifecycleViewModel"]
+appBase = ["appcompat", "material", "constraintLayout"]
+appBaseKT = ["appcompat", "material", "constraintLayout", "ktx_core", "ktx_coroutine", "ktx_lifecycleRuntime", "ktx_lifecycleViewModel"]
 
 
 # ----- 图像处理 -----
