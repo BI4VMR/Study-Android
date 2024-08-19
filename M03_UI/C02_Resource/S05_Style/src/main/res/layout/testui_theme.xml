@@ -44,30 +44,5 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="选项二" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="单选框："
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="A" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="B" />
-        </RadioGroup>
     </LinearLayout>
 </ScrollView>

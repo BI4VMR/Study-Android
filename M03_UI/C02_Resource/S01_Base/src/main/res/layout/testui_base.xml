@@ -40,17 +40,10 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnGetResolution"
+                android:id="@+id/btnGetDisplayInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="获取物理分辨率（旧API）"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnGetResolution2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="获取物理分辨率（新API）"
+                android:text="获取屏幕信息"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
