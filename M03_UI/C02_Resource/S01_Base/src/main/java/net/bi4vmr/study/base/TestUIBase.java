@@ -1,13 +1,11 @@
 package net.bi4vmr.study.base;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.databinding.TestuiBaseBinding;
@@ -25,6 +23,7 @@ public class TestUIBase extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnGetDisplayInfo.setOnClickListener(v -> testGetDisplayInfo());
+        binding.btnUnitConversion.setOnClickListener(v -> testUnitConversion());
     }
 
     // 获取屏幕信息
@@ -38,32 +37,44 @@ public class TestUIBase extends AppCompatActivity {
         Log.i(TAG, "像素密度：" + dm.densityDpi);
         Log.i(TAG, "缩放倍率(DP)：" + dm.density);
         Log.i(TAG, "缩放倍率(SP)：" + dm.scaledDensity);
-
-        // Log.i(TAG, "100 dp2px: " + dp2px(100));
-        // Log.i(TAG, "100 px2dp: " + px2dp(this, 100));
     }
 
+    // 单位转换
     private void testUnitConversion() {
-        // DP -> PX
+        Log.i(TAG, "--- 单位转换 ---");
+        binding.tvLog.append("\n--- 单位转换 ---\n");
+
+        Log.i(TAG, "100dp -> ?px: " + dpToPX(100));
+        Log.i(TAG, "100dp -> ?sx: " + spToPX(100));
+        Log.i(TAG, "30px -> ?dp: " + pxToDP(30));
+        Log.i(TAG, "30px -> ?sp: " + pxToSP(30));
     }
 
     // 将DP转换为PX
-    public static int dpToPX(float dp) {
-        float rawValue = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, Resources.getSystem().getDisplayMetrics());
+    public static int dpToPX(float dpValue) {
+        // "applyDimension()"方法用于将指定的非标准单位转换为像素
+        float rawValue = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, Resources.getSystem().getDisplayMetrics());
         // 物理像素不可能为小数，因此保留整数部分即可。
         return Math.round(rawValue);
     }
 
-    // // 将DP转换为PX
-    // public static int dpToPixel(float dp) {
-    //     float rawValue = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_, dp, Resources.getSystem().getDisplayMetrics());
-    //     // 物理像素不可能为小数，因此保留整数部分即可。
-    //     return Math.round(rawValue);
-    // }
+    // 将SP转换为PX
+    public static int spToPX(float spValue) {
+        float rawValue = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, Resources.getSystem().getDisplayMetrics());
+        return Math.round(rawValue);
+    }
 
-    public static float pxToDP(@NonNull Context context, int pxValue) {
+    // 将PX转换为DP
+    public static int pxToDP(int pxValue) {
         // 获取缩放倍率
-        float density = context.getResources().getDisplayMetrics().density;
-        return (int) (px / scaledDensity + 0.5f);
+        float density = Resources.getSystem().getDisplayMetrics().density;
+        return Math.round(pxValue / density);
+    }
+
+    // 将PX转换为SP
+    public static int pxToSP(int pxValue) {
+        // 获取字体缩放倍率
+        float density = Resources.getSystem().getDisplayMetrics().scaledDensity;
+        return Math.round(pxValue / density);
     }
 }
