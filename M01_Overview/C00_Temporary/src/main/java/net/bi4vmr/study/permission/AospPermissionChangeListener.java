@@ -1,4 +1,4 @@
-package net.bi4vmr.study;
+package net.bi4vmr.study.permission;
 
 import android.util.Log;
 
