@@ -1,5 +1,7 @@
 package net.bi4vmr.study;
 
+import android.util.Log;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -24,7 +26,7 @@ public class AospPermissionChangeListener implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) {
         if (method == null) {
-            LogHelper.i("invoke methodName is null!");
+            Log.d("TestApp","invoke methodName is null!");
             return null;
         }
         proxy = method.getName();

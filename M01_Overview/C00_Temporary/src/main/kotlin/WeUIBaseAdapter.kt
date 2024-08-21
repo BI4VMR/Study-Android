@@ -17,15 +17,14 @@ abstract class WeUIBaseAdapter<T>(
     protected val context: Context,
     protected val list: MutableList<T>,
     protected vararg val layoutIds: Int
-) : RecyclerView.Adapter<BaseHolder>(), IWeUIRVHelper<T> {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val mConvertViews = SparseArray<View>()
     protected var mLInflater: LayoutInflater = LayoutInflater.from(context)
-    var weuiItemClick: IWeUIItemClick<T>? = null
 
-    protected abstract fun onBindData(viewHolder: BaseHolder, position: Int, item: T)
+    protected abstract fun onBindData(viewHolder: RecyclerView.ViewHolder, position: Int, item: T)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType < 0 || viewType > layoutIds.size)
             throw ArrayIndexOutOfBoundsException("layoutIndex")
 
@@ -35,25 +34,21 @@ abstract class WeUIBaseAdapter<T>(
         val layoutId = layoutIds[viewType]
         val view: View = mConvertViews.get(layoutId) ?: mLInflater.inflate(layoutId, parent, false)
 
-        var viewHolder: BaseHolder?
-        view.let {
-            viewHolder = if (view.tag == null) {
-                null
-            } else {
-                view.tag as BaseHolder
-            }
-        }
-        if (viewHolder == null || viewHolder?.getLayoutId() != layoutId) {
-            viewHolder = BaseHolder(context, layoutId, view)
-        }
-        return viewHolder!!
+        // if (viewHolder == null || viewHolder?.getLayoutId() != layoutId) {
+        //     viewHolder = BaseHolder(context, layoutId, view)
+        // }
+        return VH(view)
     }
 
-    override fun onBindViewHolder(holder: BaseHolder, position: Int) {
+    class VH(view:View):RecyclerView.ViewHolder(view){
+
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
-        holder.itemView.setOnClickListener {
-            weuiItemClick?.onItemClick(it, position, item)
-        }
+        // holder.itemView.setOnClickListener {
+        //     weuiItemClick?.onItemClick(it, position, item)
+        // }
         onBindData(holder, position, item)
     }
 
@@ -67,59 +62,59 @@ abstract class WeUIBaseAdapter<T>(
 
     open fun getLayoutIndex(position: Int, item: T) = 0
 
-    override fun addAll(list: List<T>): Boolean {
+     fun addAll(list: List<T>): Boolean {
         val result = this.list.addAll(list)
         notifyItemRangeInserted(0, this.list.size)
         return result
     }
 
-    override fun addAll(position: Int, list: List<T>): Boolean {
+     fun addAll(position: Int, list: List<T>): Boolean {
         val result = this.list.addAll(position, list)
         notifyItemRangeInserted(0, this.list.size)
         return result
     }
 
-    override fun add(data: T) {
+     fun add(data: T) {
         list.add(data)
         notifyItemInserted(list.indexOf(data))
     }
 
-    override fun add(position: Int, data: T) {
+     fun add(position: Int, data: T) {
         list.add(position, data)
         notifyItemInserted(position)
     }
 
-    override fun clear() {
+     fun clear() {
         list.clear()
         notifyDataSetChanged()
     }
 
-    override fun contains(data: T): Boolean {
+     fun contains(data: T): Boolean {
         return list.contains(data)
     }
 
-    override fun getData(index: Int): T {
+     fun getData(index: Int): T {
         return list[index]
     }
 
-    override fun getData(): List<T> {
+     fun getData(): List<T> {
         return list
     }
 
-    override fun modify(oldData: T, newData: T) {
+     fun modify(oldData: T, newData: T) {
         modify(list.indexOf(oldData), newData)
     }
 
-    override fun modify(index: Int, newData: T) {
+     fun modify(index: Int, newData: T) {
         list[index] = newData
         notifyItemChanged(index)
     }
 
-    override fun remove(data: T): Boolean {
+     fun remove(data: T): Boolean {
         return remove(list.indexOf(data))
     }
 
-    override fun remove(index: Int): Boolean {
+     fun remove(index: Int): Boolean {
         val result = list.removeAt(index)
         notifyItemRemoved(index)
         return result != null

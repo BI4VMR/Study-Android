@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.UserHandle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.lang.reflect.Method;
 
@@ -59,7 +60,7 @@ public class AospPermissionMgr implements AospPermissionChangeListener.ChangeCal
     public void startListenPermissionChange(PermissionChangeListener listener) {
         this.mListener = listener;
         if (mPermissionListener != null) {
-            LogHelper.i("startListenPermissionChange: The inner listener added already");
+            Log.d("TestApp","startListenPermissionChange: The inner listener added already");
             return;
         }
         try {
@@ -74,7 +75,7 @@ public class AospPermissionMgr implements AospPermissionChangeListener.ChangeCal
 
     @SuppressLint("PrivateApi")
     public void stopListenPermissionChange() {
-        LogHelper.i("stopListenPermissionChange: ");
+        Log.d("TestApp","stopListenPermissionChange: ");
         if (mPermissionListener == null) {
             return;
         }
@@ -92,7 +93,7 @@ public class AospPermissionMgr implements AospPermissionChangeListener.ChangeCal
 
     @Override
     public void onRuntimePermissionChange(int uid) {
-        LogHelper.i("onRuntimePermissionChange: " + uid);
+        Log.d("TestApp","onRuntimePermissionChange: " + uid);
         if (mPackageManager == null) return;
         String[] pkgs = mPackageManager.getPackagesForUid(uid);
         if (pkgs == null) {
@@ -140,7 +141,7 @@ public class AospPermissionMgr implements AospPermissionChangeListener.ChangeCal
 
     private void setRuntimePermission(String packageName, String permission, boolean isGrant) {
         int uid = getUidFromPackageName(packageName);
-        LogHelper.i("setRuntimePermission: permission = " + permission + ", packageName = "
+        Log.d("TestApp","setRuntimePermission: permission = " + permission + ", packageName = "
                 + packageName + ", uid = " + uid + ", isGrant = " + isGrant);
         int appOpsMode = isGrant ? AppOpsManager.MODE_ALLOWED : AppOpsManager.MODE_IGNORED;
         setAndroidPermissionState(permission, uid, appOpsMode);
@@ -193,22 +194,22 @@ public class AospPermissionMgr implements AospPermissionChangeListener.ChangeCal
 
     private boolean isPermissionGranted(String packageName, String permission) {
         PackageInfo packageInfo = getPackageInfoFromPackageName(packageName);
-        LogHelper.i("isPermissionGranted: " + packageInfo);
+        Log.d("TestApp","isPermissionGranted: " + packageInfo);
         boolean bool = false;
         if (packageInfo == null || TextUtils.isEmpty(permission)) {
-            LogHelper.e("isPermissionGranted packageInfo is null!");
+            Log.e("TestApp","isPermissionGranted packageInfo is null!");
             return false;
         }
         String[] allPermission = packageInfo.requestedPermissions;
         if (allPermission == null) {
-            LogHelper.e("isPermissionGrant: allPermission is null!");
+            Log.e("TestApp","isPermissionGrant: allPermission is null!");
             return false;
         }
         int requestedPermissionCount = packageInfo.requestedPermissionsFlags.length;
-        LogHelper.d("isPermissionGranted: requestedPermissionCount = " + requestedPermissionCount);
+        Log.d("TestApp","isPermissionGranted: requestedPermissionCount = " + requestedPermissionCount);
         for (int i = 0; i < allPermission.length; i++) {
             String item = allPermission[i];
-            LogHelper.d("isPermissionGranted: compare -> " + item);
+            Log.d("TestApp","isPermissionGranted: compare -> " + item);
             if (permission.equals(item) && i < requestedPermissionCount) {
                 if ((packageInfo.requestedPermissionsFlags[i] & 0x2) != 0) {
                     bool = true;
@@ -221,7 +222,7 @@ public class AospPermissionMgr implements AospPermissionChangeListener.ChangeCal
 
     private void setAndroidPermissionState(String permission, int uid, int mode) {
         String str = AppOpsManager.permissionToOp(permission);
-        LogHelper.i("setAndroidPermissionState: str = " + str);
+        Log.d("TestApp","setAndroidPermissionState: str = " + str);
         if (str == null) return;
         AppOpsManager appOpsManager = this.mContext.getSystemService(AppOpsManager.class);
         try {
@@ -236,7 +237,7 @@ public class AospPermissionMgr implements AospPermissionChangeListener.ChangeCal
     private int getUidFromPackageName(String packageName) {
         try {
             int uid = mPackageManager.getPackageUid(packageName, 0);
-            LogHelper.i("getUidFromPackageName: package -> " + packageName + ", uid -> " + uid);
+            Log.d("TestApp","getUidFromPackageName: package -> " + packageName + ", uid -> " + uid);
             return uid;
         } catch (PackageManager.NameNotFoundException exception) {
             exception.printStackTrace();

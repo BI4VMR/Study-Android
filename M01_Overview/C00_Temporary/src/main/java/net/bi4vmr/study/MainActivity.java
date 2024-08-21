@@ -1,5 +1,6 @@
 package net.bi4vmr.study;
 
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -21,6 +22,7 @@ import net.bi4vmr.study.view.TestUIView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             // final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
             // drawableToFile(wallpaperDrawable, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/1.png", Bitmap.CompressFormat.PNG);
 
-            // SizeUtil.dp2px(100);
+            TaskUtil.INSTANCE.getbgapps(getApplicationContext());
         });
     }
 
