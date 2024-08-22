@@ -80,21 +80,21 @@ class TestUIBaseKT : AppCompatActivity() {
     }
 
     // 将SP转换为PX
-    fun spToPX(spValue: Float): Int {
+    private fun spToPX(spValue: Float): Int {
         val dm = Resources.getSystem().displayMetrics
         val rawValue = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, dm)
         return rawValue.roundToInt()
     }
 
     // 将PX转换为DP
-    fun pxToDP(pxValue: Int): Int {
+    private fun pxToDP(pxValue: Int): Int {
         // 获取DP缩放倍率
         val density = Resources.getSystem().displayMetrics.density
         return (pxValue / density).roundToInt()
     }
 
     // 将PX转换为SP
-    fun pxToSP(pxValue: Int): Int {
+    private fun pxToSP(pxValue: Int): Int {
         // 获取SP缩放倍率
         val density = Resources.getSystem().displayMetrics.scaledDensity
         return (pxValue / density).roundToInt()

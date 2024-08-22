@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 val versionMinSDK: Int = agp.versions.minSdk.get().toInt()
 val versionCompileSDK: Int = agp.versions.compileSdk.get().toInt()
 val versionTargetSDK: Int = agp.versions.targetSdk.get().toInt()
@@ -9,7 +11,6 @@ plugins {
     alias(libAndroid.plugins.kotlin)
 }
 
-@Suppress("UnstableApiUsage")
 android {
     namespace = "net.bi4vmr.study"
     compileSdk = versionCompileSDK
