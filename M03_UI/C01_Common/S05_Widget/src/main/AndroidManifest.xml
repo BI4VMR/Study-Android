@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Default">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例界面：基本应用 -->
+        <activity
+            android:name=".base.TestUIBase"
+            android:exported="false" />
+
+        <!-- 示例界面：使用代码表示颜色 -->
+        <activity
+            android:name=".colorincode.TestUIColorInCode"
+            android:exported="false" />
+
+        <!-- 示例界面：颜色选择器 -->
+        <activity
+            android:name=".selector.TestUISelector"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：使用代码表示颜色(KT) -->
+        <activity
+            android:name=".colorincode.TestUIColorInCodeKT"
+            android:exported="false" />
+
+        <!-- 示例界面：颜色选择器(KT) -->
+        <activity
+            android:name=".selector.TestUISelectorKT"
+            android:exported="false" />
+    </application>
+</manifest>
