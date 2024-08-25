@@ -20,11 +20,11 @@ class TestUIFontKT : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // 获取字体实例（从"asset"目录加载）
+        // 获取字体对象（从"asset"目录加载）
         val typefaceFromAssert: Typeface =
             Typeface.createFromAsset(application.assets, "fonts/jetbrainsmono_regular.ttf")
 
-        // 获取字体实例（从"res"目录加载）
+        // 获取字体对象（从"res"目录加载）
         val typeface: Typeface = application.resources.getFont(R.font.jetbrainsmono)
         // 将字体设置到控件上
         binding.tvFontFile.typeface = typeface

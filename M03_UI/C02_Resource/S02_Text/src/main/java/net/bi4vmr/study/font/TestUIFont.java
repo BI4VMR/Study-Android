@@ -20,10 +20,10 @@ public class TestUIFont extends AppCompatActivity {
         binding = TestuiFontBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 获取字体实例（从"asset"目录加载）
+        // 获取字体对象（从"asset"目录加载）
         Typeface typefaceFromAssert = Typeface.createFromAsset(getApplication().getAssets(), "fonts/jetbrainsmono_regular.ttf");
 
-        // 获取字体实例（从"res"目录加载）
+        // 获取字体对象（从"res"目录加载）
         Typeface typeface = getApplication().getResources().getFont(R.font.jetbrainsmono);
         // 将字体设置到控件上
         binding.tvFontFile.setTypeface(typeface);

@@ -1,6 +1,5 @@
 package net.bi4vmr.study;
 
-import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -17,12 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.bi4vmr.study.analogclock.TestUIAnalogClock;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.textclock.TestUITextClock;
-import net.bi4vmr.study.view.TestUIView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

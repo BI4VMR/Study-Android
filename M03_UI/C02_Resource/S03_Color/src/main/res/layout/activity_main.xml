@@ -26,15 +26,6 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/btnColorInCode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="在代码中处理颜色"
-        android:textAllCaps="false" />
-
-    <Button
         android:id="@+id/btnSelector"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,15 +50,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="基本应用"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/btnColorInCodeKT"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="在代码中处理颜色"
         android:textAllCaps="false" />
 
     <Button
