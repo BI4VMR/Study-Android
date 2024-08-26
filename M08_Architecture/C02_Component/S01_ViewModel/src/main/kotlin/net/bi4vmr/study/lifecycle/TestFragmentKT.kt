@@ -10,15 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import net.bi4vmr.study.databinding.FragmentTestBinding
 
 /**
- * Name        : TestFragmentKT
+ * 测试Fragment。
  *
- * Author      : BI4VMR
- *
- * Email       : bi4vmr@outlook.com
- *
- * Date        : 2024-04-01 23:20
- *
- * Description : 测试Fragment。
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 class TestFragmentKT : Fragment() {
 

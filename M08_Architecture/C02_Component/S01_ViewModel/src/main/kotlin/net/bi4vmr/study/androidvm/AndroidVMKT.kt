@@ -6,15 +6,10 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 
 /**
- * Name        : AndroidVMKT
+ * 自定义ViewModel：AndroidViewModel。
  *
- * Author      : BI4VMR
- *
- * Email       : bi4vmr@outlook.com
- *
- * Date        : 2023-05-11 21:10
- *
- * Description : ViewModel：AndroidViewModel测试。
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 class AndroidVMKT(application: Application) : AndroidViewModel(application) {
 

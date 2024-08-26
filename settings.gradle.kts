@@ -221,6 +221,6 @@ include(":M07_Media:C01_Common:S02_MediaStore")
 include(":M07_Media:C03_Audio:S01_AudioFocus")
 
 /* ----- 工程架构 ----- */
-include(":M08_Architecture:C01_Component:S01_ViewModel")
-include(":M08_Architecture:C01_Component:S02_LiveData")
-include(":M08_Architecture:C01_Component:S03_ViewBinding")
+include(":M08_Architecture:C02_Component:S01_ViewModel")
+include(":M08_Architecture:C02_Component:S02_LiveData")
+include(":M08_Architecture:C02_Component:S03_ViewBinding")

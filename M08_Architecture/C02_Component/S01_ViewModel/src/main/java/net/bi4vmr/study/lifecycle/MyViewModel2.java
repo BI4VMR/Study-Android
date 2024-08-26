@@ -7,15 +7,10 @@ import androidx.lifecycle.ViewModel;
 import java.util.UUID;
 
 /**
- * Name        : MyViewModel2
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-05-11 21:10
- * <p>
- * Description : ViewModel：生命周期测试。
+ * 自定义ViewModel：生命周期测试。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class MyViewModel2 extends ViewModel {
 
