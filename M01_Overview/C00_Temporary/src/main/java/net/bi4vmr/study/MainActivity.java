@@ -3,8 +3,10 @@ package net.bi4vmr.study;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LevelListDrawable;
 import android.os.Bundle;
 import android.os.LocaleList;
 import android.util.Log;
@@ -53,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
 
             TaskUtil.INSTANCE.getbgapps(getApplicationContext());
         });
+
+        LevelListDrawable drawable = (LevelListDrawable) getResources().getDrawable(R.drawable.ic_status_wlan);
+        drawable.setLevel(2);
+        Drawable d = drawable;
+        Log.i("TestApp", "d list: " + d.getLevel());
+        binding.ivDraw.setImageDrawable(drawable);
+        // binding.ivDraw.getDrawable().getLevel();
+        Log.i("TestApp", "d2 list: " + binding.ivDraw.getDrawable().getLevel());
     }
 
     @Override
