@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 // 构建工具的依赖配置
 pluginManagement {
     // 声明Gradle插件仓库
@@ -48,7 +50,6 @@ pluginManagement {
 }
 
 // 所有模块的依赖配置
-@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     // 声明Maven组件仓库

@@ -12,6 +12,10 @@ ktx_lifecycleViewModel = "2.5.1"
 
 desugarLibs = "2.0.4"
 
+compose_BOM = "2024.04.01"
+compose_Activity = "1.8.0"
+
+
 # ----- 实用工具 -----
 utilCodeX = "1.31.1"
 
@@ -42,17 +46,34 @@ constraintLayout = { group = "androidx.constraintlayout", name = "constraintlayo
 # Google Material Design
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
-# Android Kotlin扩展（核心）
+# Android Kotlin扩展 - 核心
 ktx_core = { group = "androidx.core", name = "core-ktx", version.ref = "ktx_core" }
-# Android Kotlin扩展（协程）
+# Android Kotlin扩展 - 协程
 ktx_coroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "ktx_coroutine" }
-# Android Kotlin扩展（Lifecycle-Runtime）
+# Android Kotlin扩展 - Lifecycle-Runtime
 ktx_lifecycleRuntime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "ktx_lifecycleRuntime" }
-# Android Kotlin扩展（Lifecycle-ViewModel）
+# Android Kotlin扩展 - Lifecycle-ViewModel
 ktx_lifecycleViewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "ktx_lifecycleViewModel" }
 
-# Android Kotlin扩展（Lifecycle-ViewModel）
+# JVM8-11兼容模块
 desugarLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugarLibs" }
+
+# Jetpack Compose BOM版本配置
+compose_bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose_BOM" }
+
+# Jetpack Compose 组件
+compose_ui = { group = "androidx.compose.ui", name = "ui" }
+compose_ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose_ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose_ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+# Jetpack Compose Material3支持
+compose_material3 = { group = "androidx.compose.material3", name = "material3" }
+# Jetpack Compose 测试工具
+compose_ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+compose_ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+
+# Jetpack Compose Activity支持
+compose_activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose_Activity" }
 
 
 # ----- 实用工具 -----
@@ -71,21 +92,25 @@ coil-gif = { group = "io.coil-kt", name = "coil-gif", version.ref = "coil-gif" }
 
 
 # ----- 数据存储 -----
-# Room核心
+# Room 核心
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
-# Room注解处理器
+# Room 注解处理器
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 # Room Kotlin扩展
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
-# Room测试支持
+# Room 测试工具
 room-test = { group = "androidx.room", name = "room-testing", version.ref = "room" }
 
 
 # 编组
 [bundles]
 # ----- 核心组件 -----
+# APP组件
 appBase = ["appcompat", "material", "constraintLayout"]
 appBaseKT = ["appcompat", "material", "constraintLayout", "ktx_core", "ktx_coroutine", "ktx_lifecycleRuntime", "ktx_lifecycleViewModel"]
+
+# Jetpack Compose
+compose = ["compose_ui", "compose_ui-graphics", "compose_ui-tooling", "compose_ui-tooling-preview", "compose_material3", "compose_activity"]
 
 
 # ----- 图像处理 -----
