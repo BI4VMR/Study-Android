@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.analogclock.TestUIAnalogClock;
+import net.bi4vmr.study.compose.TestUICompose;
+import net.bi4vmr.study.compose.TestUIComposeKt;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.textclock.TestUITextClock;
 
@@ -53,16 +55,18 @@ public class MainActivity extends AppCompatActivity {
             // final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
             // drawableToFile(wallpaperDrawable, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/1.png", Bitmap.CompressFormat.PNG);
 
-            TaskUtil.INSTANCE.getbgapps(getApplicationContext());
+            Intent intent = new Intent(this, TestUICompose.class);
+            startActivity(intent);
+            // TaskUtil.INSTANCE.getbgapps(getApplicationContext());
         });
 
-        LevelListDrawable drawable = (LevelListDrawable) getResources().getDrawable(R.drawable.ic_status_wlan);
-        drawable.setLevel(2);
-        Drawable d = drawable;
-        Log.i("TestApp", "d list: " + d.getLevel());
-        binding.ivDraw.setImageDrawable(drawable);
-        // binding.ivDraw.getDrawable().getLevel();
-        Log.i("TestApp", "d2 list: " + binding.ivDraw.getDrawable().getLevel());
+        // LevelListDrawable drawable = (LevelListDrawable) getResources().getDrawable(R.drawable.ic_status_wlan);
+        // drawable.setLevel(2);
+        // Drawable d = drawable;
+        // Log.i("TestApp", "d list: " + d.getLevel());
+        // binding.ivDraw.setImageDrawable(drawable);
+        // // binding.ivDraw.getDrawable().getLevel();
+        // Log.i("TestApp", "d2 list: " + binding.ivDraw.getDrawable().getLevel());
     }
 
     @Override

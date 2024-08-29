@@ -12,8 +12,8 @@ ktx_lifecycleViewModel = "2.5.1"
 
 desugarLibs = "2.0.4"
 
-compose_BOM = "2024.04.01"
-compose_Activity = "1.8.0"
+compose_bom = "2023.08.00"
+compose_activity = "1.6.1"
 
 
 # ----- 实用工具 -----
@@ -59,9 +59,8 @@ ktx_lifecycleViewModel = { group = "androidx.lifecycle", name = "lifecycle-viewm
 desugarLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugarLibs" }
 
 # Jetpack Compose BOM版本配置
-compose_bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose_BOM" }
-
-# Jetpack Compose 组件
+compose_bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose_bom" }
+# Jetpack Compose 核心组件
 compose_ui = { group = "androidx.compose.ui", name = "ui" }
 compose_ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose_ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
@@ -73,7 +72,7 @@ compose_ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-mani
 compose_ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 
 # Jetpack Compose Activity支持
-compose_activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose_Activity" }
+compose_activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose_activity" }
 
 
 # ----- 实用工具 -----
@@ -105,12 +104,16 @@ room-test = { group = "androidx.room", name = "room-testing", version.ref = "roo
 # 编组
 [bundles]
 # ----- 核心组件 -----
-# APP组件
+# APP核心组件
 appBase = ["appcompat", "material", "constraintLayout"]
 appBaseKT = ["appcompat", "material", "constraintLayout", "ktx_core", "ktx_coroutine", "ktx_lifecycleRuntime", "ktx_lifecycleViewModel"]
 
-# Jetpack Compose
-compose = ["compose_ui", "compose_ui-graphics", "compose_ui-tooling", "compose_ui-tooling-preview", "compose_material3", "compose_activity"]
+# Jetpack Compose 核心组件
+compose_core = ["compose_ui", "compose_ui-graphics", "compose_material3", "compose_activity"]
+compose_debug = ["compose_ui-tooling", "compose_ui-tooling-preview"]
+
+# Jetpack Compose 测试工具
+compose_test = ["compose_ui-test-manifest", "compose_ui-test-junit4"]
 
 
 # ----- 图像处理 -----

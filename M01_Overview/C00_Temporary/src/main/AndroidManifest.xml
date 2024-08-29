@@ -55,6 +55,10 @@
             android:name=".seekbarwithindecitor.SeekbarActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".compose.TestUICompose"
+            android:exported="false" />
+
         <service
             android:name=".wallpaper.MyWallpaperService"
             android:enabled="true"

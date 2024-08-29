@@ -60,7 +60,9 @@ android {
         // 指定Kotlin源码编译目标版本
         jvmTarget = "11"
     }
-
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
     viewBinding {
         enable = true
     }
@@ -68,4 +70,11 @@ android {
 
 dependencies {
     implementation(libAndroid.bundles.appBaseKT)
+
+    // Jetpack Compose BOM版本配置
+    implementation(platform(libAndroid.compose.bom))
+    // Jetpack Compose 核心组件
+    implementation(libAndroid.bundles.compose.core)
+    // Jetpack Compose 调试工具
+    debugImplementation(libAndroid.bundles.compose.debug)
 }
