@@ -1,4 +1,4 @@
-package net.bi4vmr.study
+package net.bi4vmr.study.net.bi4vmr.study
 
 import android.content.Context
 import android.util.SparseArray

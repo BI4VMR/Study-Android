@@ -1,4 +1,4 @@
-package net.bi4vmr.study.compose.theme
+package net.bi4vmr.study.base.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,46 +1,25 @@
-@file:Suppress("UnstableApiUsage")
+plugins {
+    alias(libAndroid.plugins.application)
+    alias(libAndroid.plugins.kotlin)
+}
 
 val versionMinSDK: Int = agp.versions.minSdk.get().toInt()
 val versionCompileSDK: Int = agp.versions.compileSdk.get().toInt()
 val versionTargetSDK: Int = agp.versions.targetSdk.get().toInt()
 val versionModuleCode: Int = agp.versions.moduleCode.get().toInt()
 val versionModuleName: String = agp.versions.moduleName.get()
-val versionComposeCompiler: String = libAndroid.versions.compose.compiler.get()
 
-plugins {
-    alias(libAndroid.plugins.application)
-    alias(libAndroid.plugins.kotlin)
-}
-
+@Suppress("UnstableApiUsage")
 android {
     namespace = "net.bi4vmr.study"
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.overview.temporary"
+        applicationId = "net.bi4vmr.study.architecture.component.databinding"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
         versionName = versionModuleName
-    }
-
-    signingConfigs {
-        create("AOSP") {
-            storeFile =
-                file("${rootDir.absolutePath}${File.separator}misc/keystore/AOSP.keystore")
-            storePassword = "AOSPSystem"
-            keyAlias = "AOSPSystem"
-            keyPassword = "AOSPSystem"
-        }
-    }
-
-    buildTypes {
-        getByName("debug") {
-            signingConfig = signingConfigs.getByName("AOSP")
-        }
-        getByName("release") {
-            signingConfig = signingConfigs.getByName("AOSP")
-        }
     }
 
     sourceSets {
@@ -62,8 +41,8 @@ android {
         jvmTarget = "11"
     }
 
-    buildFeatures {
-        viewBinding = true
+    viewBinding {
+        enable = true
     }
 }
 

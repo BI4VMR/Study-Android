@@ -17,7 +17,7 @@ android {
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.overview.temporary"
+        applicationId = "net.bi4vmr.study.architecture.component.compose"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
@@ -64,9 +64,26 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        /**
+         * Jetpack Compose注解处理器版本，需要与Kotlin版本相匹配，对应关系可在Android官方网页查询：
+         *
+         * https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
+         */
+        kotlinCompilerExtensionVersion = versionComposeCompiler
     }
 }
 
 dependencies {
     implementation(libAndroid.bundles.appBaseKT)
+
+    // Jetpack Compose BOM
+    implementation(platform(libAndroid.compose.bom))
+    // Jetpack Compose 核心组件
+    implementation(libAndroid.bundles.compose.core)
+    // Jetpack Compose 调试工具
+    debugImplementation(libAndroid.bundles.compose.debug)
 }
