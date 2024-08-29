@@ -12,8 +12,9 @@ ktx_lifecycleViewModel = "2.5.1"
 
 desugarLibs = "2.0.4"
 
-compose_bom = "2023.08.00"
+compose_bom = "2023.06.01"
 compose_activity = "1.6.1"
+compose_compiler = "1.5.7"
 
 
 # ----- 实用工具 -----

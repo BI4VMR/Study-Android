@@ -5,6 +5,7 @@ val versionCompileSDK: Int = agp.versions.compileSdk.get().toInt()
 val versionTargetSDK: Int = agp.versions.targetSdk.get().toInt()
 val versionModuleCode: Int = agp.versions.moduleCode.get().toInt()
 val versionModuleName: String = agp.versions.moduleName.get()
+val versionComposeCompiler: String = libAndroid.versions.compose.compiler.get()
 
 plugins {
     alias(libAndroid.plugins.application)
@@ -60,11 +61,19 @@ android {
         // 指定Kotlin源码编译目标版本
         jvmTarget = "11"
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+
+    buildFeatures {
+        viewBinding = true
+        compose = true
     }
-    viewBinding {
-        enable = true
+
+    composeOptions {
+        /**
+         * Jetpack Compose注解处理器版本，需要与Kotlin版本相匹配，对应关系可在Android官方网页查询：
+         *
+         * https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
+         */
+        kotlinCompilerExtensionVersion = versionComposeCompiler
     }
 }
 
