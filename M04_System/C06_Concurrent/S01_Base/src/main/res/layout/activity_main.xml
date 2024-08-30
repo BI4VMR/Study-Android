@@ -21,10 +21,10 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnBaseKT"
+            android:id="@+id/btnKTCoroutine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="基本应用"
+            android:text="Kotlin协程"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

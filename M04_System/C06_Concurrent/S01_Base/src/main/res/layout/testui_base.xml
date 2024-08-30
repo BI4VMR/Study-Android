@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="基本应用"
+        android:text="Kotlin协程"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
@@ -42,10 +42,24 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn01"
+                android:id="@+id/btnLifeCycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="功能按钮"
+                android:text="LifeCycle协程"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnViewModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ViewModel协程"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnGlobal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="全局协程"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>

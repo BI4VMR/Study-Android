@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 val versionMinSDK: Int = agp.versions.minSdk.get().toInt()
 val versionCompileSDK: Int = agp.versions.compileSdk.get().toInt()
 val versionTargetSDK: Int = agp.versions.targetSdk.get().toInt()
@@ -9,7 +11,6 @@ plugins {
     alias(libAndroid.plugins.kotlin)
 }
 
-@Suppress("UnstableApiUsage")
 android {
     namespace = "net.bi4vmr.study"
     compileSdk = versionCompileSDK
@@ -60,11 +61,18 @@ android {
         jvmTarget = "11"
     }
 
-    viewBinding {
-        enable = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
     implementation(libAndroid.bundles.appBaseKT)
+
+    // 基本的协程支持
+    implementation(libAndroid.ktx.coroutine)
+    // LifeCycleScope
+    implementation(libAndroid.ktx.lifecycleRuntime)
+    // ViewModelScope
+    implementation(libAndroid.ktx.lifecycleViewModel)
 }

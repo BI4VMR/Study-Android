@@ -18,14 +18,9 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：基本应用 -->
+        <!-- 示例界面：Kotlin协程 -->
         <activity
-            android:name=".base.TestUIBase"
-            android:exported="false" />
-
-        <!-- 示例界面：基本应用(KT) -->
-        <activity
-            android:name=".base.TestUIBaseKT"
+            android:name=".coroutine.TestUICoroutineKT"
             android:exported="false" />
     </application>
 </manifest>
