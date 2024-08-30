@@ -14,8 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.analogclock.TestUIAnalogClock;
-import net.bi4vmr.study.compose.TestUICompose;
-import net.bi4vmr.study.compose.TestUIComposeKt;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.textclock.TestUITextClock;
 
@@ -53,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
             // final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
             // drawableToFile(wallpaperDrawable, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/1.png", Bitmap.CompressFormat.PNG);
 
-            Intent intent = new Intent(this, TestUICompose.class);
-            startActivity(intent);
             // TaskUtil.INSTANCE.getbgapps(getApplicationContext());
         });
 
