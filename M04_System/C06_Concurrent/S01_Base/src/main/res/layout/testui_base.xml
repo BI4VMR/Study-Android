@@ -59,7 +59,7 @@
                 android:id="@+id/btnGlobal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="全局协程"
+                android:text="进程级协程"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>

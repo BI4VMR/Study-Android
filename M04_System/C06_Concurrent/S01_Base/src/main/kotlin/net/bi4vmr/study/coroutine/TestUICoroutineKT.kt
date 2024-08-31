@@ -3,6 +3,7 @@ package net.bi4vmr.study.coroutine
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -11,6 +12,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import net.bi4vmr.study.databinding.TestuiBaseBinding
 
+/**
+ * 测试界面：Kotlin协程。
+ *
+ * @since 1.0.0
+ * @author bi4vmr@outlook.com
+ */
 class TestUICoroutineKT : AppCompatActivity() {
 
     companion object {
@@ -27,7 +34,7 @@ class TestUICoroutineKT : AppCompatActivity() {
 
         with(binding) {
             btnLifeCycle.setOnClickListener { testLifeCycle() }
-            btnViewModel.setOnClickListener { }
+            btnViewModel.setOnClickListener { testViewModel() }
             btnGlobal.setOnClickListener { testGlobal() }
         }
     }
@@ -43,6 +50,7 @@ class TestUICoroutineKT : AppCompatActivity() {
         }
     }
 
+    // LifeCycle协程
     private fun testLifeCycle() {
         Log.i(TAG, "--- LifeCycle协程 ---")
         binding.tvLog.append("\n--- LifeCycle协程 ---\n")
@@ -57,6 +65,22 @@ class TestUICoroutineKT : AppCompatActivity() {
         finish()
     }
 
+    // ViewModel协程
+    private fun testViewModel() {
+        Log.i(TAG, "--- ViewModel协程 ---")
+        binding.tvLog.append("\n--- ViewModel协程 ---\n")
+
+        // 获取当前Activity的MyViewModel实例
+        val vm: MyViewModel = ViewModelProvider(this)[MyViewModel::class.java]
+        // 调用VM实例中的方法启动协程
+        vm.task()
+
+        // 关闭当前页面
+        Log.d(TAG, "Finish activity.")
+        finish()
+    }
+
+    // 进程级协程
     private fun testGlobal() {
         Log.i(TAG, "--- 全局协程 ---")
         binding.tvLog.append("\n--- 全局协程 ---\n")

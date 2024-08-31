@@ -8,6 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.bi4vmr.study.coroutine.TestUICoroutineKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 
+/**
+ * 主界面。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
