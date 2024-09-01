@@ -9,7 +9,7 @@ import net.bi4vmr.study.coroutine.TestUICoroutineKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 
 /**
- * 主界面。
+ * 主页。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0

@@ -2,7 +2,6 @@ package net.bi4vmr.study;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +9,12 @@ import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 
+/**
+ * 主页。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

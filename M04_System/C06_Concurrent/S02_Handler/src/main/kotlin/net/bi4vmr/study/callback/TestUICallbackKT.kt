@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.callback
 
 import android.os.Bundle
 import android.os.Handler
@@ -9,15 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiBaseBinding
 
 /**
- * 测试界面：基本应用。
+ * 测试界面：Kotlin协程。
  *
  * @since 1.0.0
  * @author bi4vmr@outlook.com
  */
-class TestUIBaseKT : AppCompatActivity() {
+class TestUICallbackKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-${TestUIBaseKT::class.java.simpleName}"
+        private val TAG: String = "TestApp-${TestUICallbackKT::class.java.simpleName}"
 
         // 声明常量表示不同的消息
         private const val MSG_TEST_01: Int = 0x01
@@ -31,17 +31,16 @@ class TestUIBaseKT : AppCompatActivity() {
         override fun handleMessage(msg: Message) {
             // 根据"what"属性区分消息
             val code: Int = msg.what
+            Log.d(TAG, "HandleMessage. Code:[$code]")
             when (code) {
                 0x01 -> {
-                    Log.d(TAG, "HandleMessage 1.")
-                    binding.tvLog.append("\nHandleMessage 1.")
                     // 在此处编写收到1号消息后需要执行的逻辑...
+                    Log.d(TAG, "HandleMessage 1.")
                 }
 
                 0x02 -> {
-                    Log.d(TAG, "HandleMessage 2. Arg1:[${msg.arg1}] Arg2:[${msg.arg2}]")
-                    binding.tvLog.append("\nHandleMessage 2. Arg1:[${msg.arg1}] Arg2:[${msg.arg2}]")
                     // 在此处编写收到2号消息后需要执行的逻辑...
+                    Log.d(TAG, "HandleMessage 2.")
                 }
             }
         }
@@ -83,31 +82,25 @@ class TestUIBaseKT : AppCompatActivity() {
         // 设置参数
         msg.arg1 = 114514
         msg.arg2 = 1919810
-
-        // 其他形式的参数
-        // msg.obj = "Hello World!"
-        // msg.data = Bundle()
-
         // 发送消息
         mHandler.sendMessage(msg)
     }
 
-    // 向队列中发送消息（延时）
+    // 向队列中发送消息1（延时）
     private fun testSendMessageDelay() {
-        Log.i(TAG, "--- 向队列中发送消息（延时） ---")
-        binding.tvLog.append("\n--- 向队列中发送消息（延时） ---\n")
+        Log.i(TAG, "--- 向队列中发送消息1（延时） ---")
+        binding.tvLog.append("\n--- 向队列中发送消息1（延时） ---\n")
 
-        // 4秒后向队列发送消息
+        // 5秒后向队列发送消息
         mHandler.sendEmptyMessageDelayed(MSG_TEST_01, 5000L)
-        mHandler.sendEmptyMessageDelayed(MSG_TEST_02, 5000L)
-        // 8秒后向队列发送消息
+        // 10秒后向队列发送消息
         mHandler.sendEmptyMessageDelayed(MSG_TEST_01, 10000L)
     }
 
-    // 移除队列中尚未执行的消息1
+    // 取消尚未进入队列的消息1
     private fun testCancelMessage() {
-        Log.i(TAG, "--- 移除队列中尚未执行的消息1 ---")
-        binding.tvLog.append("\n--- 移除队列中尚未执行的消息1 ---\n")
+        Log.i(TAG, "--- 取消尚未进入队列的消息1 ---")
+        binding.tvLog.append("\n--- 取消尚未进入队列的消息1 ---\n")
 
         // 移除所有编号为1的消息
         mHandler.removeMessages(MSG_TEST_01)

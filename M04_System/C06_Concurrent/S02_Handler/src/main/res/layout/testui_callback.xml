@@ -42,31 +42,10 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnSendMsg1"
+                android:id="@+id/btnPostTask"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="向队列中发送消息1"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnSendMsg2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="向队列中发送消息2"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnSendMsgDelay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="向队列中发送消息（延时）"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnCancelMsg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="移除队列中尚未执行的消息1"
+                android:text="向队列中提交任务"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
