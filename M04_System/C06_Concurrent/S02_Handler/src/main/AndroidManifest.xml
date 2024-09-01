@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.bi4vmr.study">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -10,7 +9,7 @@
         android:theme="@style/Theme.Default">
 
         <activity
-            android:name="net.bi4vmr.study.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +18,14 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例：基本应用 -->
+        <!-- 示例界面：基本应用 -->
         <activity
-            android:name=".base.DemoBaseUI"
+            android:name=".base.TestUIBase"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
             android:exported="false" />
     </application>
 </manifest>
