@@ -100,8 +100,11 @@ class TestUIBaseKT : AppCompatActivity() {
         // 向队列发送消息，延时4秒后执行。
         mHandler.sendEmptyMessageDelayed(MSG_TEST_01, 4000L)
         mHandler.sendEmptyMessageDelayed(MSG_TEST_02, 4000L)
+
         // 向队列发送消息，延时8秒后执行。
-        mHandler.sendEmptyMessageDelayed(MSG_TEST_01, 8000L)
+        val msg: Message = Message.obtain()
+        msg.what = MSG_TEST_01
+        mHandler.sendMessageDelayed(msg, 8000L)
     }
 
     // 移除队列中尚未执行的消息1
