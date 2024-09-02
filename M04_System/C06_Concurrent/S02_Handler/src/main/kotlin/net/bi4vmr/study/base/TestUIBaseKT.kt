@@ -92,16 +92,16 @@ class TestUIBaseKT : AppCompatActivity() {
         mHandler.sendMessage(msg)
     }
 
-    // 向队列中发送消息（延时）
+    // 向队列中发送消息（延时执行）
     private fun testSendMessageDelay() {
-        Log.i(TAG, "--- 向队列中发送消息（延时） ---")
-        binding.tvLog.append("\n--- 向队列中发送消息（延时） ---\n")
+        Log.i(TAG, "--- 向队列中发送消息（延时执行） ---")
+        binding.tvLog.append("\n--- 向队列中发送消息（延时执行） ---\n")
 
-        // 4秒后向队列发送消息
-        mHandler.sendEmptyMessageDelayed(MSG_TEST_01, 5000L)
-        mHandler.sendEmptyMessageDelayed(MSG_TEST_02, 5000L)
-        // 8秒后向队列发送消息
-        mHandler.sendEmptyMessageDelayed(MSG_TEST_01, 10000L)
+        // 向队列发送消息，延时4秒后执行。
+        mHandler.sendEmptyMessageDelayed(MSG_TEST_01, 4000L)
+        mHandler.sendEmptyMessageDelayed(MSG_TEST_02, 4000L)
+        // 向队列发送消息，延时8秒后执行。
+        mHandler.sendEmptyMessageDelayed(MSG_TEST_01, 8000L)
     }
 
     // 移除队列中尚未执行的消息1
