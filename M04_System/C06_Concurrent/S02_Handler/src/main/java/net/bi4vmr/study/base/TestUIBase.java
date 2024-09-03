@@ -57,6 +57,7 @@ public class TestUIBase extends AppCompatActivity {
         binding.btnSendMsg1.setOnClickListener(v -> testSendMessage1());
         binding.btnSendMsg2.setOnClickListener(v -> testSendMessage2());
         binding.btnSendMsgDelay.setOnClickListener(v -> testSendMessageDelay());
+        binding.btnPostCallback.setOnClickListener(v -> testPostCallback());
         binding.btnCancelMsg.setOnClickListener(v -> testCancelMessage());
     }
 
@@ -94,14 +95,34 @@ public class TestUIBase extends AppCompatActivity {
         Log.i(TAG, "--- 向队列中发送消息（延时执行） ---");
         binding.tvLog.append("\n--- 向队列中发送消息（延时执行） ---\n");
 
-        // 向队列发送消息，延时4秒后执行。
+        // 向队列发送消息1，延时4秒后执行。
         mHandler.sendEmptyMessageDelayed(MSG_TEST_01, 4000L);
-        mHandler.sendEmptyMessageDelayed(MSG_TEST_02, 4000L);
 
-        // 向队列发送消息，延时8秒后执行。
+        // 向队列发送消息2，延时8秒后执行。
         Message msg = Message.obtain();
-        msg.what = MSG_TEST_01;
+        msg.what = MSG_TEST_02;
+        msg.arg1 = -100;
         mHandler.sendMessageDelayed(msg, 8000L);
+    }
+
+    // 向队列中提交回调方法
+    private void testPostCallback() {
+        Log.i(TAG, "--- 向队列中提交回调方法 ---");
+        binding.tvLog.append("\n--- 向队列中提交回调方法 ---\n");
+
+        // 向队列提交回调方法，立刻执行。
+        mHandler.post(new Runnable() {
+
+            @Override
+            public void run() {
+                Log.i(TAG, "HandleCallback A");
+            }
+        });
+
+        // 向队列提交回调方法，延时4秒后执行。
+        mHandler.postDelayed(() -> {
+            Log.i(TAG, "HandleCallback B");
+        }, 4000L);
     }
 
     // 移除队列中尚未执行的消息1

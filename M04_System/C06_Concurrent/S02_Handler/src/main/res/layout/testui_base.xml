@@ -63,6 +63,13 @@
                 android:textAllCaps="false" />
 
             <Button
+                android:id="@+id/btnPostCallback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="向队列中提交回调方法"
+                android:textAllCaps="false" />
+
+            <Button
                 android:id="@+id/btnCancelMsg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
