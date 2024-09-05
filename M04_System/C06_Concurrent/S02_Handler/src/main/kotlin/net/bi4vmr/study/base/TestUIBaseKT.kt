@@ -7,6 +7,7 @@ import android.os.Message
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiBaseBinding
+import kotlin.concurrent.thread
 
 /**
  * 测试界面：基本应用。
@@ -47,8 +48,25 @@ class TestUIBaseKT : AppCompatActivity() {
         }
     }
 
+    // 子线程的Handler
+    private lateinit var mSubHandler: Handler
+
     private val binding: TestuiBaseBinding by lazy {
         TestuiBaseBinding.inflate(layoutInflater)
+    }
+
+    init {
+        // 在子线程中初始化Handler
+        thread {
+            // 创建本线程的Looper对象
+            Looper.prepare()
+            // 使用当前线程的Looper创建Handler对象
+            Looper.myLooper()?.let {
+                mSubHandler = Handler(it)
+            }
+            // 开始事件循环
+            Looper.loop()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +80,7 @@ class TestUIBaseKT : AppCompatActivity() {
             btnPostCallback.setOnClickListener { testPostCallback() }
             btnCancelMsg.setOnClickListener { testCancelMessage() }
             btnWrap.setOnClickListener { testWrap() }
+            btnUseSubThreadHandler.setOnClickListener { testUseSubThreadHandler() }
         }
     }
 
@@ -165,5 +184,17 @@ class TestUIBaseKT : AppCompatActivity() {
                 binding.tvLog.append("\nCall Activity.runOnUiThread()")
             }
         })
+    }
+
+    // 使用子线程的Handler
+    private fun testUseSubThreadHandler() {
+        Log.i(TAG, "--- 使用子线程的Handler ---")
+        binding.tvLog.append("\n--- 使用子线程的Handler ---\n")
+
+        // 向队列提交回调方法，立刻执行。
+        mSubHandler.post { Log.i(TAG, "HandleCallback A") }
+
+        // 向队列提交回调方法，延时4秒后执行。
+        mSubHandler.postDelayed({ Log.i(TAG, "HandleCallback B") }, 4000L)
     }
 }

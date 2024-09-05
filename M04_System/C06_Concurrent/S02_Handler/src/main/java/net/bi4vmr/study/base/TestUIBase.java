@@ -46,7 +46,25 @@ public class TestUIBase extends AppCompatActivity {
         }
     };
 
+    // 子线程的Handler
+    private Handler mSubHandler = null;
+
     private TestuiBaseBinding binding;
+
+    {
+        // 在子线程中初始化Handler
+        new Thread(() -> {
+            // 创建本线程的Looper对象
+            Looper.prepare();
+            // 使用当前线程的Looper创建Handler对象
+            Looper looper = Looper.myLooper();
+            if (looper != null) {
+                mSubHandler = new Handler(looper);
+            }
+            // 开始事件循环
+            Looper.loop();
+        }).start();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +78,7 @@ public class TestUIBase extends AppCompatActivity {
         binding.btnPostCallback.setOnClickListener(v -> testPostCallback());
         binding.btnCancelMsg.setOnClickListener(v -> testCancelMessage());
         binding.btnWrap.setOnClickListener(v -> testWrap());
+        binding.btnUseSubThreadHandler.setOnClickListener(v -> testUseSubThreadHandler());
     }
 
     // 向队列中发送消息1
@@ -137,6 +156,9 @@ public class TestUIBase extends AppCompatActivity {
 
     // 更新UI的快捷方法
     private void testWrap() {
+        Log.i(TAG, "--- 更新UI的快捷方法 ---");
+        binding.tvLog.append("\n--- 更新UI的快捷方法 ---\n");
+
         // 向View的事件队列中提交回调方法。
         binding.tvLog.post(new Runnable() {
 
@@ -163,5 +185,17 @@ public class TestUIBase extends AppCompatActivity {
                 binding.tvLog.append("\nCall Activity.runOnUiThread()");
             }
         });
+    }
+
+    // 使用子线程的Handler
+    private void testUseSubThreadHandler() {
+        Log.i(TAG, "--- 使用子线程的Handler ---");
+        binding.tvLog.append("\n--- 使用子线程的Handler ---\n");
+
+        // 向队列提交回调方法，立刻执行。
+        mSubHandler.post(() -> Log.i(TAG, "HandleCallback A"));
+
+        // 向队列提交回调方法，延时4秒后执行。
+        mSubHandler.postDelayed(() -> Log.i(TAG, "HandleCallback B"), 4000L);
     }
 }

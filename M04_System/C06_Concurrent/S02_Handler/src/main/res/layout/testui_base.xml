@@ -82,6 +82,13 @@
                 android:layout_height="wrap_content"
                 android:text="更新UI的快捷方法"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnUseSubThreadHandler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="使用子线程的Handler"
+                android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
