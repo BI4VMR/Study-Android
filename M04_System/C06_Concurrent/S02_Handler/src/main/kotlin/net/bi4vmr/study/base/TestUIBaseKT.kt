@@ -61,6 +61,7 @@ class TestUIBaseKT : AppCompatActivity() {
             btnSendMsgDelay.setOnClickListener { testSendMessageDelay() }
             btnPostCallback.setOnClickListener { testPostCallback() }
             btnCancelMsg.setOnClickListener { testCancelMessage() }
+            btnWrap.setOnClickListener { testWrap() }
         }
     }
 
@@ -134,5 +135,35 @@ class TestUIBaseKT : AppCompatActivity() {
 
         // 移除所有编号为1的消息
         mHandler.removeMessages(MSG_TEST_01)
+    }
+
+    // 更新UI的快捷方法
+    private fun testWrap() {
+        Log.i(TAG, "--- 更新UI的快捷方法 ---")
+        binding.tvLog.append("\n--- 更新UI的快捷方法 ---\n")
+
+        // 向View的事件队列中提交回调方法。
+        binding.tvLog.post(object : Runnable {
+
+            override fun run() {
+                binding.tvLog.append("\nCall View.post()")
+            }
+        })
+
+        // 向View的事件队列中提交回调方法，延时执行。
+        binding.tvLog.postDelayed(object : Runnable {
+
+            override fun run() {
+                binding.tvLog.append("\nCall View.postDelayed()")
+            }
+        }, 5000L)
+
+        // 向Activity的事件队列中提交回调方法。
+        runOnUiThread(object : Runnable {
+
+            override fun run() {
+                binding.tvLog.append("\nCall Activity.runOnUiThread()")
+            }
+        })
     }
 }

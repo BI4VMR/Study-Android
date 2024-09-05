@@ -118,9 +118,7 @@ appBaseKT = ["appcompat", "material", "constraintLayout", "ktx_core", "ktx_corou
 
 # Jetpack Compose
 # 核心组件
-compose_core = ["compose_ui", "compose_ui-graphics", "compose_material3", "compose_activity"]
-# 调试工具
-compose_debug = ["compose_ui-tooling", "compose_ui-tooling-preview"]
+compose_core = ["compose_ui", "compose_ui-graphics", "compose_material3", "compose_activity", "compose_ui-tooling", "compose_ui-tooling-preview"]
 # 测试工具
 compose_test = ["compose_ui-test-manifest", "compose_ui-test-junit4"]
 

@@ -59,6 +59,7 @@ public class TestUIBase extends AppCompatActivity {
         binding.btnSendMsgDelay.setOnClickListener(v -> testSendMessageDelay());
         binding.btnPostCallback.setOnClickListener(v -> testPostCallback());
         binding.btnCancelMsg.setOnClickListener(v -> testCancelMessage());
+        binding.btnWrap.setOnClickListener(v -> testWrap());
     }
 
     // 向队列中发送消息1
@@ -132,5 +133,35 @@ public class TestUIBase extends AppCompatActivity {
 
         // 移除所有编号为1的消息
         mHandler.removeMessages(MSG_TEST_01);
+    }
+
+    // 更新UI的快捷方法
+    private void testWrap() {
+        // 向View的事件队列中提交回调方法。
+        binding.tvLog.post(new Runnable() {
+
+            @Override
+            public void run() {
+                binding.tvLog.append("\nCall View.post()");
+            }
+        });
+
+        // 向View的事件队列中提交回调方法，延时执行。
+        binding.tvLog.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                binding.tvLog.append("\nCall View.postDelayed()");
+            }
+        }, 5000L);
+
+        // 向Activity的事件队列中提交回调方法。
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                binding.tvLog.append("\nCall Activity.runOnUiThread()");
+            }
+        });
     }
 }

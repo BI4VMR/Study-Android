@@ -75,6 +75,13 @@
                 android:layout_height="wrap_content"
                 android:text="移除队列中尚未执行的消息1"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnWrap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="更新UI的快捷方法"
+                android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
