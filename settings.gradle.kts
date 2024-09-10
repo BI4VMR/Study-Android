@@ -175,6 +175,7 @@ include(":M03_UI:C06_CtrlMD:S02_FloatingActionButton")
 include(":M03_UI:C06_CtrlMD:S04_Chip")
 include(":M03_UI:C06_CtrlMD:S05_TabLayout")
 include(":M03_UI:C08_CtrlCustom:S01_Base")
+include(":M03_UI:C08_CtrlCustom:S02_AnalogClock")
 
 /* ----- 系统组件 ----- */
 include(":M04_System:C01_Common:S01_Bundle")
