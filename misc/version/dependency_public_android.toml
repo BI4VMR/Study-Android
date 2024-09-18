@@ -32,6 +32,10 @@ coil_gif = "0.9.5"
 room = "2.5.1"
 
 
+# ----- 网络通讯 -----
+okdownload_core = "1.0.7"
+
+
 # ----- Gradle插件 -----
 plugin_agp = "7.4.2"
 plugin_kotlin = "1.9.21"
@@ -108,6 +112,12 @@ room_compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 room_ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 # 测试工具
 room_test = { group = "androidx.room", name = "room-testing", version.ref = "room" }
+
+
+# ----- 网络通讯 -----
+# < OkDownload >
+# 核心
+okdownload_core = { group = "com.liulishuo.okdownload", name = "okdownload", version.ref = "okdownload_core" }
 
 
 # 编组
