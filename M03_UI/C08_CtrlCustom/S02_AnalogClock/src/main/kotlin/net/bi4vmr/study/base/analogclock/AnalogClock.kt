@@ -117,17 +117,27 @@ class AnalogClock @JvmOverloads constructor(
         return secondPointerSmoothMove
     }
 
+    /**
+     * 是否开启秒针平滑移动。
+     *
+     * @param[newState] "true"表示开启秒针平滑移动；"false"表示关闭秒针平滑移动。
+     */
     fun setSecondPointerSmoothMove(newState: Boolean) {
-        secondPointerSmoothMove = newState
-        // 该属性被更新后，轮询任务能够取到最新数值，因此不必手动执行刷新操作。
-    }
+        synchronized(this) {
+            if (secondPointerSmoothMove == newState) {
+                return
+            }
 
+            secondPointerSmoothMove = newState
+            stopTasks()
+            startTasks()
+        }
+    }
 
     /* ----- 重写方法 ----- */
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        updatePointer()
         startTasks()
     }
 
@@ -139,7 +149,7 @@ class AnalogClock @JvmOverloads constructor(
     /* ----- 内部方法 ----- */
 
     // 更新指针位置
-    private fun updatePointer() {
+    private fun updatePointerAngle() {
         val localTime: LocalTime = LocalTime.now();
         val second: Int = localTime.second
         val minute: Int = localTime.minute
@@ -188,7 +198,7 @@ class AnalogClock @JvmOverloads constructor(
         }
 
         val interval = if (secondPointerSmoothMove) INTERVAL_FAST else INTERVAL_SLOW
-        executor?.scheduleWithFixedDelay({ updatePointer() }, interval, interval, TimeUnit.MILLISECONDS)
+        executor?.scheduleWithFixedDelay({ updatePointerAngle() }, 0, interval, TimeUnit.MILLISECONDS)
     }
 
     // 关闭定时任务
