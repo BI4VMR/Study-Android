@@ -6,16 +6,22 @@ import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.databinding.DestActivityBinding;
+import net.bi4vmr.study.databinding.ActivityBookinfoBinding;
 
-public class DstActivity extends AppCompatActivity {
+/**
+ * 测试界面：书籍信息界面。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
+public class BookInfoActivity extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-" + DstActivity.class.getSimpleName();
+    private static final String TAG = "TestApp-" + BookInfoActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DestActivityBinding binding = DestActivityBinding.inflate(LayoutInflater.from(this));
+        ActivityBookinfoBinding binding = ActivityBookinfoBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
         // 从Intent中取出Bundle对象
@@ -28,7 +34,7 @@ public class DstActivity extends AppCompatActivity {
             boolean isSoldout = bundle.getBoolean("KEY_SOLDOUT", true);
 
             String bookInfo = "ID:" + id + "\n名称:" + name + "\n价格:" + price + "\n售空:" + isSoldout;
-            Log.i(TAG, bookInfo);
+            Log.d(TAG, bookInfo);
             binding.tvInfo.setText(bookInfo);
         }
     }

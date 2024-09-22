@@ -9,6 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
+/**
+ * 测试界面：Bundle的基本应用。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class TestUIBase extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();
@@ -37,7 +43,7 @@ public class TestUIBase extends AppCompatActivity {
         bundle.putBoolean("KEY_SOLDOUT", false);
 
         Intent intent = new Intent();
-        intent.setClass(this, DstActivity.class);
+        intent.setClass(this, BookInfoActivity.class);
         // 将数据存入Intent，然后启动目标Activity。
         intent.putExtras(bundle);
         startActivity(intent);

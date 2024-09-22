@@ -24,9 +24,19 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 接收数据的Activity -->
+        <!-- 接收数据的Activity：书籍信息 -->
         <activity
-            android:name=".base.DstActivity"
+            android:name=".base.BookInfoActivity"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 接收数据的Activity：书籍信息(KT) -->
+        <activity
+            android:name=".base.BookInfoActivityKT"
             android:exported="false" />
     </application>
 </manifest>

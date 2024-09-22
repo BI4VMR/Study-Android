@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_funny_256"
@@ -24,9 +26,10 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 接收数据的Activity -->
+        <!-- 示例界面：基本应用 -->
         <activity
-            android:name=".base.DstActivity"
+            android:name=".pendingintent.TestUIPendingIntent"
             android:exported="false" />
+
     </application>
 </manifest>
