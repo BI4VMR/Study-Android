@@ -13,7 +13,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.analogclock.TestUIAnalogClock;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.textclock.TestUITextClock;
 
@@ -32,12 +31,6 @@ public class MainActivity extends AppCompatActivity {
         Button btnTextClock = findViewById(R.id.btnTextClock);
         btnTextClock.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUITextClock.class);
-            startActivity(intent);
-        });
-
-        Button btnAnalogClock = findViewById(R.id.btnAnalogClock);
-        btnAnalogClock.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIAnalogClock.class);
             startActivity(intent);
         });
 

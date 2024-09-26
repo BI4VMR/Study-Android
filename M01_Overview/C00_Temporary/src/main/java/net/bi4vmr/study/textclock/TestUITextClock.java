@@ -20,9 +20,10 @@ public class TestUITextClock extends AppCompatActivity {
         setContentView(R.layout.testui_textclock);
 
         TextClock textClock = findViewById(R.id.textClock);
-        textClock.setFormat24Hour("HH:mm:ss");
-        SpannableString ss = new SpannableString("HH:mm:ss");
+        // textClock.setFormat24Hour("HH:mm:ss");
+        SpannableString ss = new SpannableString("hh:mm");
         ss.setSpan(new BackgroundColorSpan(Color.RED),0,2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        textClock.setFormat24Hour(ss);
+        // textClock.setFormat24Hour(ss);
+        textClock.setFormat12Hour(ss);
     }
 }
