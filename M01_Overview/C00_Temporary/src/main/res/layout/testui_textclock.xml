@@ -13,4 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp" />
+
+    <AnalogClock
+        android:layout_width="100dp"
+        android:hand_second="@color/black"
+        android:layout_height="100dp" />
 </LinearLayout>
