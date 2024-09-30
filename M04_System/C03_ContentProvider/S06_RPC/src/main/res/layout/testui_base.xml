@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="URI"
+        android:text="基本应用"
         android:textColor="@color/black"
         android:textSize="22sp" />
 
@@ -30,20 +30,26 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btnURI"
+        android:id="@+id/btnNotify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="解析URI"
-        android:textAllCaps="false" />
+        android:text="通知URI的数据变更" />
 
     <Button
-        android:id="@+id/btnURIMatcher"
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="匹配URI"
-        android:textAllCaps="false" />
+        android:text="注册数据监听器" />
+
+    <Button
+        android:id="@+id/btnUnregister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="注销数据监听器" />
 </LinearLayout>

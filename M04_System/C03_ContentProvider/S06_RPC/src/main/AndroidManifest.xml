@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.bi4vmr.study">
-
-    <!-- 查询联系人数据的权限声明 -->
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-
-    <queries>
-        <provider android:authorities="net.bi4vmr.study.provider" />
-        <provider android:authorities="net.bi4vmr.study.provider2" />
-    </queries>
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -18,7 +10,7 @@
         android:theme="@style/Theme.Default">
 
         <activity
-            android:name="net.bi4vmr.study.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,14 +19,16 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：URI -->
+        <!-- 示例界面：基本应用 -->
         <activity
-            android:name=".uri.TestUIURI"
+            android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 示例界面：URI(KT) -->
-        <activity
-            android:name=".uri.TestUIURIKT"
-            android:exported="false" />
+        <!-- 自定义Provider：测试数据 -->
+        <provider
+            android:name=".base.TestProvider"
+            android:authorities="net.bi4vmr.provider.testobserver"
+            android:exported="true"
+            tools:ignore="ExportedContentProvider" />
     </application>
 </manifest>

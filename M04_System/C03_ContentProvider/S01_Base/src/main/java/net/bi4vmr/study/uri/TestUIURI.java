@@ -4,12 +4,17 @@ import android.content.UriMatcher;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.databinding.TestuiUriBinding;
 
+/**
+ * 测试界面：URI。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class TestUIURI extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUIURI.class.getSimpleName();
@@ -19,7 +24,7 @@ public class TestUIURI extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiUriBinding.inflate(LayoutInflater.from(this));
+        binding = TestuiUriBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.btnURI.setOnClickListener(v -> testURI());
