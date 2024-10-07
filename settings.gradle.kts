@@ -94,9 +94,6 @@ dependencyResolutionManagement {
                 maven { setUrl("https://www.jitpack.io/") }
             }
         }
-
-        // Nexus无法镜像JitPack仓库，此处需要单独配置。
-        // maven { setUrl("https://www.jitpack.io/") }
     }
 
     // 版本管理配置
