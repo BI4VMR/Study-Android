@@ -39,10 +39,6 @@
         </activity>
 
         <activity
-            android:name=".textclock.TestUITextClock"
-            android:exported="false" />
-
-        <activity
             android:name=".view.TestUIView"
             android:exported="false" />
 
