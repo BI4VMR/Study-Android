@@ -80,6 +80,9 @@ dependencies {
     // Room Kotlin语言扩展
     implementation(libAndroid.room.ktx)
 
+    // Web调试工具
+    debugImplementation(libAndroid.debugDB)
+
     // Room注解处理器(Java)
     // annotationProcessor(libAndroid.room.compiler)
     // Room注解处理器(Kotlin-KAPT)
