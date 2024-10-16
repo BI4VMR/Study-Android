@@ -23,9 +23,19 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：外观定制 -->
+        <activity
+            android:name=".style.TestUIStyle"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：外观定制(KT) -->
+        <activity
+            android:name=".style.TestUIStyleKT"
             android:exported="false" />
     </application>
 </manifest>
