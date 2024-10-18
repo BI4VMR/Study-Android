@@ -190,6 +190,7 @@ include(":M03_UI:C06_CtrlMD:S05_TabLayout")
 include(":M03_UI:C08_CtrlCustom:S01_Base")
 include(":M03_UI:C08_CtrlCustom:S02_AnalogClock")
 include(":M03_UI:C10_Compose:S01_Base")
+include(":M03_UI:C10_Compose:S02_Layout")
 
 /* ----- 系统组件 ----- */
 include(":M04_System:C01_Common:S01_Bundle")

@@ -17,7 +17,7 @@ android {
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.ui.compose.base"
+        applicationId = "net.bi4vmr.study.ui.compose.layout"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
@@ -84,4 +84,8 @@ dependencies {
     implementation(platform(libAndroid.compose.bom))
     // Jetpack Compose 核心组件
     implementation(libAndroid.bundles.compose.core)
+
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1"){
+        exclude("org.jetbrains.kotlin","kotlin-stdlib-jdk8")
+    }
 }
