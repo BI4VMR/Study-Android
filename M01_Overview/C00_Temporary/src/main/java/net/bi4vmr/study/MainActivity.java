@@ -1,6 +1,11 @@
 package net.bi4vmr.study;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -14,13 +19,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.databinding.ActivityMainBinding;
-import net.bi4vmr.study.textclock.TestUITextClock;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
+    public boolean isAppEnabled(Context context, String packageName) {
+        PackageManager packageManager = context.getPackageManager();
+        try {
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, 0);
+            return applicationInfo.enabled;
+        } catch (PackageManager.NameNotFoundException e) {
+            // 应用未安装
+            return false;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +42,18 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // 创建IntentFilter并添加ACTION_PACKAGE_CHANGED
+        // IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_CHANGED);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+        // 注册BroadcastReceiver
+        registerReceiver(new PackageChangedReceiver(), filter);
+
         Button btnTextClock = findViewById(R.id.btnTextClock);
         btnTextClock.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUITextClock.class);
-            startActivity(intent);
+            // Intent intent = new Intent(this, TestUITextClock.class);
+            // startActivity(intent);
+            Log.d("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.tencent.libpag.sample.libpag_sample"));
         });
 
         Button btnView = findViewById(R.id.btnView);
@@ -86,6 +108,21 @@ public class MainActivity extends AppCompatActivity {
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static class PackageChangedReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String packageName = intent.getData().getSchemeSpecificPart();
+            Log.d("TestAPP", "Package changed: " + packageName);
+            try {
+                boolean b2 = context.getPackageManager().getApplicationInfo(packageName, 0).enabled;
+                Log.d("TestAPP", "Package state: " + b2);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
