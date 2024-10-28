@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         // IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_CHANGED);
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+        filter.addDataScheme("package");
         // 注册BroadcastReceiver
         registerReceiver(new PackageChangedReceiver(), filter);
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         btnTextClock.setOnClickListener(v -> {
             // Intent intent = new Intent(this, TestUITextClock.class);
             // startActivity(intent);
-            Log.d("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.tencent.libpag.sample.libpag_sample"));
+            Log.d("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
         });
 
         Button btnView = findViewById(R.id.btnView);
