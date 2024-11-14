@@ -19,10 +19,5 @@ public class TestUIBase extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // 通过Resources实例获取颜色资源
-        int colorValue = ContextCompat.getColor(getApplicationContext(), R.color.color_sample);
-        // 将颜色设置到控件上
-        binding.tvRefColorInCode.setTextColor(colorValue);
     }
 }
