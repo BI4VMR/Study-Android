@@ -9,6 +9,12 @@ import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 
+/**
+ * 主页。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
