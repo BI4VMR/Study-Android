@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.shellinapp;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,9 +11,15 @@ import net.bi4vmr.study.util.IOUtil;
 
 import java.io.InputStream;
 
-public class TestUIBase extends AppCompatActivity {
+/**
+ * 测试界面：在应用程序中执行ADB命令。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
+public class TestUIShellInAPP extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();
+    private static final String TAG = "TestApp-" + TestUIShellInAPP.class.getSimpleName();
 
     private TestuiBaseBinding binding;
 

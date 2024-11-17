@@ -21,10 +21,10 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnBase"
+            android:id="@+id/btnBuildConfig"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="在应用程序中执行ADB命令"
+            android:text="读取BuildConfig中的变量"
             android:textAllCaps="false" />
 
         <TextView
@@ -35,10 +35,10 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnBaseKT"
+            android:id="@+id/btnBuildConfigKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="在应用程序中执行ADB命令"
+            android:text="读取BuildConfig中的变量"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

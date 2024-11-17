@@ -85,6 +85,10 @@ dependencyResolutionManagement {
             }
             maven {
                 isAllowInsecureProtocol = true
+                setUrl("http://172.18.5.1:8081/repository/maven-jitpack/")
+            }
+            maven {
+                isAllowInsecureProtocol = true
                 setUrl("http://172.18.5.1:8081/repository/maven-private/")
             }
         } else {
@@ -92,6 +96,10 @@ dependencyResolutionManagement {
                 maven {
                     isAllowInsecureProtocol = true
                     setUrl("http://192.168.128.1:8081/repository/maven-mirror-tencent/")
+                }
+                maven {
+                    isAllowInsecureProtocol = true
+                    setUrl("http://192.168.128.1:8081/repository/maven-jitpack/")
                 }
                 maven {
                     isAllowInsecureProtocol = true
@@ -161,6 +169,8 @@ include(":M02_Tool:C01_Common:S01_ADB")
 include(":M02_Tool:C01_Common:S02_AVD")
 include(":M02_Tool:C01_Common:S03_Logcat")
 include(":M02_Tool:C01_Common:S04_Scrcpy")
+include(":M02_Tool:C02_Build:S01_Base")
+include(":M02_Tool:C02_Build:S02_Advance")
 
 /* ----- 用户界面 ----- */
 include(":M03_UI:C01_Common:S01_View")

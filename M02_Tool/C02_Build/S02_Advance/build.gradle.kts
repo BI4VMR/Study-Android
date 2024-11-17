@@ -16,7 +16,7 @@ android {
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.tool.common.avd"
+        applicationId = "net.bi4vmr.study.tool.build.advance"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
@@ -36,9 +36,15 @@ android {
     buildTypes {
         getByName("debug") {
             signingConfig = signingConfigs.getByName("AOSP")
+
+            // 向BuildConfig类添加字段
+            buildConfigField("String", "SERVER_NAME", "\"http://test.example.net/\"")
         }
         getByName("release") {
             signingConfig = signingConfigs.getByName("AOSP")
+
+            // 向BuildConfig类添加字段
+            buildConfigField("String", "SERVER_NAME", "\"http://prod.example.net/\"")
         }
     }
 
@@ -63,6 +69,9 @@ android {
 
     buildFeatures {
         viewBinding = true
+
+        // 此配置项可以禁止本模块生成BuildConfig文件
+        // buildConfig = false
     }
 }
 

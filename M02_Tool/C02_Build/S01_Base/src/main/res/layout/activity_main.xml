@@ -24,7 +24,7 @@
             android:id="@+id/btnBase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="在应用程序中执行ADB命令"
+            android:text="基本应用"
             android:textAllCaps="false" />
 
         <TextView
@@ -38,7 +38,7 @@
             android:id="@+id/btnBaseKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="在应用程序中执行ADB命令"
+            android:text="基本应用"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

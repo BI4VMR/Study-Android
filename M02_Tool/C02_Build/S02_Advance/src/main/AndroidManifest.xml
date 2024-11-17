@@ -18,14 +18,14 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：在应用程序中执行ADB命令 -->
+        <!-- 示例界面：读取BuildConfig中的变量 -->
         <activity
-            android:name=".shellinapp.TestUIShellInAPP"
+            android:name=".buildconfig.TestUIBuildConfig"
             android:exported="false" />
 
-        <!-- 示例界面：在应用程序中执行ADB命令(KT) -->
+        <!-- 示例界面：读取BuildConfig中的变量(KT) -->
         <activity
-            android:name=".shellinapp.TestUIShellInAPPKT"
+            android:name=".buildconfig.TestUIBuildConfigKT"
             android:exported="false" />
     </application>
 </manifest>

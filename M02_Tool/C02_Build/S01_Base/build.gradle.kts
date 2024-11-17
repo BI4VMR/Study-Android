@@ -16,7 +16,7 @@ android {
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.tool.common.avd"
+        applicationId = "net.bi4vmr.study.tool.build.base"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode

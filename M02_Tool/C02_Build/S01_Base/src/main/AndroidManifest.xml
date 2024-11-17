@@ -18,14 +18,14 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：在应用程序中执行ADB命令 -->
+        <!-- 示例界面：基本应用 -->
         <activity
-            android:name=".shellinapp.TestUIShellInAPP"
+            android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 示例界面：在应用程序中执行ADB命令(KT) -->
+        <!-- 示例界面：基本应用(KT) -->
         <activity
-            android:name=".shellinapp.TestUIShellInAPPKT"
+            android:name=".base.TestUIBaseKT"
             android:exported="false" />
     </application>
 </manifest>

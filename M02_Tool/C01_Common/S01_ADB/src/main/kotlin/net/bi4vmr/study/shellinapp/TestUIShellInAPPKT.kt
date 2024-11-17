@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.shellinapp
 
 import android.os.Bundle
 import android.util.Log
@@ -7,10 +7,16 @@ import net.bi4vmr.study.databinding.TestuiBaseBinding
 import net.bi4vmr.study.util.IOUtil
 import java.io.InputStream
 
-class TestUIBaseKT : AppCompatActivity() {
+/**
+ * 测试界面：在应用程序中执行ADB命令。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
+class TestUIShellInAPPKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-" + TestUIBaseKT::class.java.simpleName
+        private val TAG: String = "TestApp-" + TestUIShellInAPPKT::class.java.simpleName
     }
 
     private val binding: TestuiBaseBinding by lazy {
