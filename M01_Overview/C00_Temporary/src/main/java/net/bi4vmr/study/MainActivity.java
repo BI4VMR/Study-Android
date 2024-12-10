@@ -1,5 +1,6 @@
 package net.bi4vmr.study;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import net.bi4vmr.study.databinding.ActivityMainBinding;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 public class MainActivity extends AppCompatActivity {
     public boolean isAppEnabled(Context context, String packageName) {
@@ -68,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
             // drawableToFile(wallpaperDrawable, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/1.png", Bitmap.CompressFormat.PNG);
 
             // TaskUtil.INSTANCE.getbgapps(getApplicationContext());
+            // Log.d("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
+            int userID = UserManagerExtend.getInstance(getApplicationContext()).getCurrentUserID();
+            Log.d("TestAPP", "userID:" +userID +"          -- :"+currentApplication());
+
         });
 
         // LevelListDrawable drawable = (LevelListDrawable) getResources().getDrawable(R.drawable.ic_status_wlan);
@@ -78,7 +84,16 @@ public class MainActivity extends AppCompatActivity {
         // // binding.ivDraw.getDrawable().getLevel();
         // Log.i("TestApp", "d2 list: " + binding.ivDraw.getDrawable().getLevel());
     }
-
+    public static Application currentApplication() {
+        try {
+            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
+            Method application = activityThreadClass.getDeclaredMethod("currentApplication");
+            application.setAccessible(true);
+            return (Application) application.invoke(null);
+        } catch (Exception e) {
+            return null;
+        }
+    }
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
