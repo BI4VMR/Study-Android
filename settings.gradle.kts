@@ -244,6 +244,7 @@ include(":M04_System:C05_Ability:S04_Configuration")
 include(":M04_System:C05_Ability:S05_Package")
 include(":M04_System:C05_Ability:S06_UsageStats")
 include(":M04_System:C05_Ability:S07_NDK")
+include(":M04_System:C05_Ability:S08_User")
 include(":M04_System:C06_Concurrent:S01_Base")
 include(":M04_System:C06_Concurrent:S02_Handler")
 
