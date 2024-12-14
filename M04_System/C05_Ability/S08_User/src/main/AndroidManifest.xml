@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.MANAGE_USERS" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_funny_256"
@@ -18,14 +20,24 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：基本应用 -->
+        <!-- 示例界面：用户信息API -->
         <activity
             android:name=".base.TestUIUserInfo"
             android:exported="false" />
 
+        <!-- 示例界面：用户管理API -->
+        <activity
+            android:name=".base.TestUIUserManager"
+            android:exported="false" />
+
+        <!-- 示例界面：跨用户交互API -->
+        <!-- <activity -->
+        <!--     android:name=".base.TestUI" -->
+        <!--     android:exported="false" /> -->
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
-            android:name=".base.TestUIBaseKT"
+            android:name=".base.TestUIUserInfoKT"
             android:exported="false" />
     </application>
 </manifest>

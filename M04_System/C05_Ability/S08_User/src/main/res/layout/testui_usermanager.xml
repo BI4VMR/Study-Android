@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="用户信息API"
+        android:text="用户管理API"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
@@ -42,17 +42,10 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnGetUserHandle"
+                android:id="@+id/btnSupportMultiUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="获取当前用户的UserHandle对象"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnGetUserID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="获取当前用户的ID"
+                android:text="判断当前系统是否支持多用户"
                 android:textAllCaps="false" />
 
             <Button
@@ -60,6 +53,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="获取当前应用的UID"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnGetUserHandle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="获取当前用户的UserHandle对象"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>

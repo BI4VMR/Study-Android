@@ -8,14 +8,12 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.databinding.TestuiBaseBinding;
+import net.bi4vmr.study.databinding.TestuiUserinfoBinding;
 
 import java.lang.reflect.Method;
 
 /**
- * 测试界面：TODO 添加简述。
- * <p>
- * TODO 添加详情。
+ * 测试界面：用户身份API。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
@@ -24,27 +22,17 @@ public class TestUIUserInfo extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUIUserInfo.class.getSimpleName();
 
-    private TestuiBaseBinding binding;
+    private TestuiUserinfoBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiBaseBinding.inflate(getLayoutInflater());
+        binding = TestuiUserinfoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btnGetUserHandle.setOnClickListener(v -> testGetUserHandle());
         binding.btnGetUserID.setOnClickListener(v -> testGetUserID());
         binding.btnGetUID.setOnClickListener(v -> testGetUID());
-    }
-
-    // 获取当前用户的UserHandle对象
-    private void testGetUserHandle() {
-        Log.i(TAG, "--- 获取当前用户的UserHandle对象 ---");
-        binding.tvLog.append("\n--- 获取当前用户的UserHandle对象 ---\n");
-
-        UserHandle userHandle = Process.myUserHandle();
-        Log.i(TAG, userHandle.toString());
-        binding.tvLog.append("\n" + userHandle + "\n");
+        binding.btnGetUserHandle.setOnClickListener(v -> testGetUserHandle());
     }
 
     // 获取当前用户的ID
@@ -70,23 +58,34 @@ public class TestUIUserInfo extends AppCompatActivity {
         Log.i(TAG, "--- 获取当前应用的UID ---");
         binding.tvLog.append("\n--- 获取当前应用的UID ---\n");
 
+        // 获取当前应用的UID
         int uid = Process.myUid();
-        Log.i(TAG, String.valueOf(uid));
-        binding.tvLog.append("\n" + uid + "\n");
+        Log.i(TAG, "当前应用的UID：" + uid);
+        binding.tvLog.append("当前应用的UID：" + uid + "\n");
 
-        // 1010105
-        // int i = 10 * 100000 + (10140 % 100000);
-        int uid1 = 10105 / PER_USER_RANGE;
-        int aid = 10105 % PER_USER_RANGE;
-        binding.tvLog.append("\n uid1:" + uid1 + "\n");
-        binding.tvLog.append("\n aid:" + aid + "\n");
-        binding.tvLog.append("\n 10 % 1010:" + 10 % 1010 + "\n");
-        binding.tvLog.append("\n zzz:" + getUid(10, 10105) + "\n");
+        // 推算UserID和AppID
+
+        // UserID的范围，用于分离UserID和AppID。
+        final int PER_USER_RANGE = 100000;
+
+        int userID = uid / PER_USER_RANGE;
+        int appID = uid % PER_USER_RANGE;
+        Log.i(TAG, "UserID: " + userID + ", AppID: " + appID);
+        binding.tvLog.append("UserID: " + userID + ", AppID: " + appID + "\n");
+
+        // 将UserID和AppID组合成UID
+        int uid2 = (userID * PER_USER_RANGE) + (appID % PER_USER_RANGE);
+        Log.i(TAG, "组合生成UID: " + uid2);
+        binding.tvLog.append("组合生成UID: " + uid2 + "\n");
     }
 
-    public static final int PER_USER_RANGE = 100000;
+    // 获取当前用户的UserHandle对象
+    private void testGetUserHandle() {
+        Log.i(TAG, "--- 获取当前用户的UserHandle对象 ---");
+        binding.tvLog.append("\n--- 获取当前用户的UserHandle对象 ---\n");
 
-    public static int getUid(int userId, int appId) {
-        return userId * PER_USER_RANGE + (appId % PER_USER_RANGE);
+        UserHandle userHandle = Process.myUserHandle();
+        Log.i(TAG, userHandle.toString());
+        binding.tvLog.append("\n" + userHandle + "\n");
     }
 }

@@ -21,10 +21,24 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnBase"
+            android:id="@+id/btnUserInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="基本应用"
+            android:text="用户身份API"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnUserManager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="用户管理API"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnAcrossUsers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="跨用户交互API"
             android:textAllCaps="false" />
 
         <TextView
@@ -35,10 +49,24 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnBaseKT"
+            android:id="@+id/btnUserInfoKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="基本应用"
+            android:text="用户身份API"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnUserManagerKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="用户管理API"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnAcrossUsersKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="跨用户交互API"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>
