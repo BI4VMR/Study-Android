@@ -1,5 +1,11 @@
 package net.bi4vmr.study.base;
 
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Process;
 import android.os.UserHandle;
@@ -8,7 +14,12 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.bi4vmr.study.ContextExtend;
+import net.bi4vmr.study.UserManagerExtend;
 import net.bi4vmr.study.databinding.TestuiUsermanagerBinding;
+
+import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * 测试界面：用户管理API。
@@ -31,31 +42,119 @@ public class TestUIUserManager extends AppCompatActivity {
 
         userManager = getSystemService(UserManager.class);
 
-        binding.btnSupportMultiUser.setOnClickListener(v -> testSupportMultiUser());
-        binding.btnGetUID.setOnClickListener(v -> testGetUID());
-        binding.btnGetUserHandle.setOnClickListener(v -> testGetUserHandle());
+        binding.btnFeatures.setOnClickListener(v -> testFeatures());
+        binding.btnUserInfo.setOnClickListener(v -> testGetUserInfo());
+        // binding.btnGetUserHandle.setOnClickListener(v -> testGetUserHandle());
     }
 
-    // 判断当前系统是否支持多用户
-    private void testSupportMultiUser() {
-        Log.i(TAG, "--- 判断当前系统是否支持多用户 ---");
-        binding.tvLog.append("\n--- 判断当前系统是否支持多用户 ---\n");
+    // 多用户支持
+    private void testFeatures() {
+        Log.i(TAG, "--- 多用户支持 ---");
+        binding.tvLog.append("\n--- 多用户支持 ---\n");
 
+        // 判断当前系统是否支持多用户
         boolean supportMultiUser = UserManager.supportsMultipleUsers();
         Log.i(TAG, "当前系统是否支持多用户：" + supportMultiUser);
         binding.tvLog.append("当前系统是否支持多用户：" + supportMultiUser + "\n");
 
-        // String name = userManager.getUserName();
-        // Log.i(TAG, "name：" + name);
-        // binding.tvLog.append("name：" + name + "\n");
+        // 判断当前系统用户是否为Headless模式
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            boolean isInHeadlessMode = UserManager.isHeadlessSystemUserMode();
+            Log.i(TAG, "当前系统用户是否为Headless模式：" + isInHeadlessMode);
+            binding.tvLog.append("当前系统用户是否为Headless模式：" + isInHeadlessMode + "\n");
+        } else {
+            Log.i(TAG, "API <= 30 (Android 11), not support.");
+            binding.tvLog.append("API <= 30 (Android 11), not support.\n");
+        }
+
+        // 获取用户数量
+        int userCount = userManager.getUserCount();
+        Log.i(TAG, "用户数量：" + userCount);
+        binding.tvLog.append("用户数量：" + userCount);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.intent.action.USER_SWITCHED");
+        filter.addAction(Intent.ACTION_USER_UNLOCKED);
+        // registerReceiver(new UserEventReceiver(), filter);
+        ContextExtend.registerReceiver(new UserEventReceiver(),filter, UserManagerExtend.USER_HANDLE_ALL);
     }
 
-    // 获取当前应用的UID
-    private void testGetUsers() {
-        Log.i(TAG, "--- 获取当前应用的UID ---");
-        binding.tvLog.append("\n--- 获取当前应用的UID ---\n");
+    private class UserEventReceiver extends BroadcastReceiver {
 
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Log.i(TAG, "--- action --- " + action);
+            binding.tvLog.append("\n--- action --- " + action);
+            if ("android.intent.action.USER_SWITCHED".equals(action)) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    UserHandle userHandle = intent.getParcelableExtra(Intent.EXTRA_USER, UserHandle.class);
+                    Log.i(TAG, "--- userHandle --- " + userHandle);
+                    binding.tvLog.append("\n--- userHandle --- " + userHandle);
+                } else {
+                    int userID = intent.getIntExtra("android.intent.extra.user_handle", -1000);
+                    Log.i(TAG, "--- userID --- " + userID);
+                    binding.tvLog.append("\n--- userID --- " + userID);
+                }
+            }
+        }
+    }
 
+    // 获取当前用户信息
+    private void testGetUserInfo() {
+        Log.i(TAG, "--- 获取当前用户信息 ---");
+        binding.tvLog.append("\n--- 获取当前用户信息 ---\n");
+
+        // 判断当前用户是否为系统用户
+        boolean systemUser = userManager.isSystemUser();
+        Log.i(TAG, "当前用户是否为系统用户：" + systemUser);
+        binding.tvLog.append("当前用户是否为系统用户：" + systemUser + "\n");
+
+        // 判断当前用户是否已解锁
+        boolean userUnlocked = userManager.isUserUnlocked();
+        Log.i(TAG, "当前用户是否已解锁：" + userUnlocked);
+        binding.tvLog.append("当前用户是否已解锁：" + userUnlocked + "\n");
+
+        // 判断当前用户是否在前台
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            boolean userForeground = userManager.isUserForeground();
+            Log.i(TAG, "当前用户是否在前台：" + userForeground);
+            binding.tvLog.append("当前用户是否在前台：" + userForeground + "\n");
+        } else {
+            Log.i(TAG, "API <= 30 (Android 11), not support.");
+            binding.tvLog.append("API <= 30 (Android 11), not support.\n");
+        }
+
+        // 获取用户名称
+        String userName = userManager.getUserName();
+        Log.i(TAG, "用户名称：" + userName);
+        binding.tvLog.append("用户名称：" + userName + "\n");
+
+        try {
+            @SuppressLint("DiscouragedPrivateApi")
+            Method method = UserManager.class.getDeclaredMethod("getUsers");
+            Object object = method.invoke(userManager);
+            if (object instanceof List<?>) {
+                List<?> list = (List) object;
+                Log.d(TAG, "getUsers:" + list);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "反射操作失败：" + e.getMessage(), e);
+            binding.tvLog.append("\n反射操作失败：" + e.getMessage() + "\n");
+        }
+
+        try {
+            @SuppressLint("DiscouragedPrivateApi")
+            Method method = UserManager.class.getDeclaredMethod("getUserHandles", boolean.class);
+            Object object = method.invoke(userManager, false);
+            if (object instanceof List<?>) {
+                List<?> list = (List) object;
+                Log.d(TAG, "getUserHandles:" + list);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "反射操作失败：" + e.getMessage(), e);
+            binding.tvLog.append("\n反射操作失败：" + e.getMessage() + "\n");
+        }
     }
 
     // 获取当前用户的UserHandle对象

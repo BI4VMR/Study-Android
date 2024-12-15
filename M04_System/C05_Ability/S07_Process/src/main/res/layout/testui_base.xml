@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="用户管理API"
+        android:text="基本应用"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
@@ -42,25 +42,11 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnFeatures"
+                android:id="@+id/btn01"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="多用户支持"
+                android:text="功能按钮"
                 android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnUserInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="获取当前用户信息"
-                android:textAllCaps="false" />
-
-            <!-- <Button -->
-            <!--     android:id="@+id/btnGetUserHandle" -->
-            <!--     android:layout_width="match_parent" -->
-            <!--     android:layout_height="wrap_content" -->
-            <!--     android:text="获取当前用户的UserHandle对象" -->
-            <!--     android:textAllCaps="false" /> -->
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

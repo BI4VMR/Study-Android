@@ -1,0 +1,53 @@
+plugins {
+    alias(libAndroid.plugins.application)
+    alias(libAndroid.plugins.kotlin)
+}
+
+def version_MinSDK = Integer.valueOf(agp.versions.minSdk.get())
+def version_CompileSDK = Integer.valueOf(agp.versions.compileSdk.get())
+def version_TargetSDK = Integer.valueOf(agp.versions.targetSdk.get())
+def version_ModuleCode = Integer.valueOf(agp.versions.moduleCode.get())
+def version_ModuleName = agp.versions.moduleName.get()
+
+android {
+    namespace "net.bi4vmr.study"
+    compileSdk version_CompileSDK
+
+    defaultConfig {
+        applicationId "net.bi4vmr.study.system.ability.ndk"
+        minSdk version_MinSDK
+        targetSdk version_TargetSDK
+        versionCode version_ModuleCode
+        versionName version_ModuleName
+    }
+
+    // 指定NDK版本，覆盖AGP的默认版本。
+    ndkVersion = "25.2.9519653"
+    // C语言编译配置
+    externalNativeBuild {
+        cmake {
+            // 指定CMake配置文件
+            path file('src/main/cpp/CMakeLists.txt')
+            // 指定CMake版本
+            version '3.22.1'
+        }
+    }
+
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation(libAndroid.bundles.appBaseKT)
+}
+
+gradle.projectsEvaluated {
+    tasks.withType(Delete.class).tap {
+        configureEach {
+            def cppCacheDir = getProjectDir().absolutePath + File.separator + ".cxx"
+            // 清除C++构建缓存文件
+            delete(cppCacheDir)
+        }
+    }
+}

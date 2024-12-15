@@ -48,7 +48,7 @@ public class TestUIUserInfo extends AppCompatActivity {
             Log.i(TAG, String.valueOf(userID));
             binding.tvLog.append("\n" + userID + "\n");
         } catch (Exception e) {
-            Log.e(TAG, "反射操作失败：" + e.getMessage());
+            Log.e(TAG, "反射操作失败：" + e.getMessage(), e);
             binding.tvLog.append("\n反射操作失败：" + e.getMessage() + "\n");
         }
     }
