@@ -14,8 +14,6 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.ContextExtend;
-import net.bi4vmr.study.UserManagerExtend;
 import net.bi4vmr.study.databinding.TestuiUsermanagerBinding;
 
 import java.lang.reflect.Method;
@@ -73,10 +71,15 @@ public class TestUIUserManager extends AppCompatActivity {
         binding.tvLog.append("用户数量：" + userCount);
 
         IntentFilter filter = new IntentFilter();
+        // 用户切换
         filter.addAction("android.intent.action.USER_SWITCHED");
+        filter.addAction("android.intent.action.USER_ADDED");
+        filter.addAction("android.intent.action.USER_REMOVED");
+        filter.addAction(Intent.ACTION_USER_FOREGROUND);
+        filter.addAction(Intent.ACTION_USER_BACKGROUND);
+        // 用户私有存储区域已解锁
         filter.addAction(Intent.ACTION_USER_UNLOCKED);
-        // registerReceiver(new UserEventReceiver(), filter);
-        ContextExtend.registerReceiver(new UserEventReceiver(),filter, UserManagerExtend.USER_HANDLE_ALL);
+        registerReceiver(new UserEventReceiver(), filter);
     }
 
     private class UserEventReceiver extends BroadcastReceiver {
@@ -89,12 +92,13 @@ public class TestUIUserManager extends AppCompatActivity {
             if ("android.intent.action.USER_SWITCHED".equals(action)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     UserHandle userHandle = intent.getParcelableExtra(Intent.EXTRA_USER, UserHandle.class);
-                    Log.i(TAG, "--- userHandle --- " + userHandle);
-                    binding.tvLog.append("\n--- userHandle --- " + userHandle);
+                    Log.i(TAG, "当前的UserHandle：" + userHandle);
+                    binding.tvLog.append("当前的UserHandle：" + userHandle);
                 } else {
+                    // Intent.EXTRA_USER_HANDLE = "android.intent.extra.user_handle"
                     int userID = intent.getIntExtra("android.intent.extra.user_handle", -1000);
-                    Log.i(TAG, "--- userID --- " + userID);
-                    binding.tvLog.append("\n--- userID --- " + userID);
+                    Log.i(TAG, "当前的UserID：" + userID);
+                    binding.tvLog.append("当前的UserID：" + userID);
                 }
             }
         }
