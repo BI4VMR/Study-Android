@@ -19,12 +19,13 @@ public class TestUIView extends AppCompatActivity {
         binding = TestuiViewBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
-        View view1 = findViewById(R.id.view1);
-        view1.setScaleX(0.5F);
-        view1.setScaleY(0.5F);
-
-        view1.setAlpha(0.5F);
-
-        binding.getRoot().setScaleX(5);
+        // View view1 = findViewById(R.id.view1);
+        // view1.setScaleX(0.5F);
+        // view1.setScaleY(0.5F);
+        //
+        // view1.setAlpha(0.5F);
+        //
+        // binding.getRoot().setScaleX(5);
+        // binding.view1
     }
 }
