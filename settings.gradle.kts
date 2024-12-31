@@ -26,20 +26,12 @@ pluginManagement {
                 isAllowInsecureProtocol = true
                 setUrl("http://172.18.5.1:8081/repository/maven-mirror-tencent/")
             }
-            maven {
-                isAllowInsecureProtocol = true
-                setUrl("http://172.18.5.1:8081/repository/maven-private/")
-            }
         } else {
             if (java.net.InetAddress.getByName("192.168.128.1").isReachable(2000)) {
                 println("Current host is not in private network, add VPN repositorys.")
                 maven {
                     isAllowInsecureProtocol = true
                     setUrl("http://192.168.128.1:8081/repository/maven-mirror-tencent/")
-                }
-                maven {
-                    isAllowInsecureProtocol = true
-                    setUrl("http://192.168.128.1:8081/repository/maven-private/")
                 }
             } else {
                 println("Current host is not in private network, add LOCAL repositorys.")
@@ -51,10 +43,13 @@ pluginManagement {
         maven { setUrl("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
         // 阿里云仓库镜像：Maven中心仓库+JCenter
         maven { setUrl("https://maven.aliyun.com/repository/public/") }
+        // 阿里云仓库镜像：Google
+        maven { setUrl("https://maven.aliyun.com/repository/google/") }
         // 阿里云仓库镜像：Gradle社区插件
         maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin/") }
 
         mavenCentral()
+        google()
         gradlePluginPortal()
     }
 }
