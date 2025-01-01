@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Java实现："
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnIDBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID - 基本应用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnDimenBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="尺寸 - 基本应用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnConstBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="常量 - 基本应用"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kotlin实现："
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnIDBaseKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID - 基本应用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnDimenBaseKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="尺寸 - 基本应用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnConstBaseKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="常量 - 基本应用"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</ScrollView>

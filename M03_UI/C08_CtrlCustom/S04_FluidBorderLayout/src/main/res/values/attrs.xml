@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 流动边框布局 -->
+    <declare-styleable name="FluidBorderLayout">
+
+        <!-- 圆角半径 -->
+        <attr name="cornerRadius" format="dimension" />
+
+        <!-- 子View是否从边框内侧开始排列
+             `true` : 子View从边框内侧开始排列，边框不遮挡子View。
+             `false` : 子View从控件边缘开始排列，边框会遮挡子View。
+             默认值为 `false` 。
+         -->
+        <attr name="childInsideBorder" format="boolean" />
+
+        <!-- 边框是否可见 -->
+        <attr name="borderVisible" format="boolean" />
+
+        <!-- 边框宽度 -->
+        <attr name="borderWidth" format="dimension" />
+
+        <!-- 边框底色 -->
+        <attr name="borderBackgroundColor" format="color" />
+
+        <!-- 边框预设样式
+             与 BorderSchema 枚举常量对应；如果设置了自定义样式则该属性无效。
+         -->
+        <attr name="borderSchema" format="enum">
+            <enum name="colorful_full" value="0" />
+            <enum name="colorful_half" value="1" />
+            <enum name="colorful_diagon" value="2" />
+            <enum name="white_half" value="3" />
+        </attr>
+
+        <!-- 动画持续时间（毫秒） -->
+        <attr name="animDuration" format="integer" />
+    </declare-styleable>
+</resources>

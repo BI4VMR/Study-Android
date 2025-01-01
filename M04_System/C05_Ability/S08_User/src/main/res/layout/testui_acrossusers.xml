@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跨用户交互API"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <TextView
+            android:id="@+id/tvLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="日志输出区域："
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </ScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnGetUserID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="获取当前用户的ID"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnGetUID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="获取当前应用的UID"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnGetUserHandle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="获取当前用户的UserHandle对象"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Default">
+
+        <activity
+            android:name="net.bi4vmr.study.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例界面：读取raw目录资源 -->
+        <activity
+            android:name=".apkraw.TestUIAPKRaw"
+            android:exported="false" />
+
+        <!-- 示例界面：读取assets目录资源 -->
+        <activity
+            android:name=".apkassets.TestUIAPKAssets"
+            android:exported="false" />
+
+        <!-- 示例界面：读写应用私有数据（内部） -->
+        <activity
+            android:name=".private_internal.TestUIPrivateInternal"
+            android:exported="false" />
+
+        <!-- 示例界面：读写应用私有数据（外部） -->
+        <activity
+            android:name=".private_external.TestUIPrivateExternal"
+            android:exported="false" />
+
+        <!-- 示例界面：读写共享数据目录 -->
+        <activity
+            android:name=".public_data.TestUIPublicData"
+            android:exported="false" />
+
+        <!-- 示例界面：读取raw目录资源(KT) -->
+        <activity
+            android:name=".apkraw.TestUIAPKRawKT"
+            android:exported="false" />
+
+        <!-- 示例界面：读取assets目录资源(KT) -->
+        <activity
+            android:name=".apkassets.TestUIAPKAssetsKT"
+            android:exported="false" />
+
+        <!-- 示例界面：读写应用私有数据（内部）(KT) -->
+        <activity
+            android:name=".private_internal.TestUIPrivateInternalKT"
+            android:exported="false" />
+
+        <!-- 示例界面：读写应用私有数据（外部）(KT) -->
+        <activity
+            android:name=".private_external.TestUIPrivateExternalKT"
+            android:exported="false" />
+
+        <!-- 示例界面：读写共享数据目录(KT) -->
+        <activity
+            android:name=".public_data.TestUIPublicDataKT"
+            android:exported="false" />
+    </application>
+</manifest>

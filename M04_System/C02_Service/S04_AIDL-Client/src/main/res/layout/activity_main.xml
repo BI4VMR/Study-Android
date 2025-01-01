@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Java实现："
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="基本应用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnTypes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自定义数据类型"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnParamSync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="数据方向标签"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnThreads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="线程调度"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnException"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="异常处理"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="文件传输"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kotlin实现："
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnBaseKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="基本应用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnTypesKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自定义数据类型"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnThreadsKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="线程调度"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnExceptionKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="异常处理"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnFileKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="文件传输"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</ScrollView>

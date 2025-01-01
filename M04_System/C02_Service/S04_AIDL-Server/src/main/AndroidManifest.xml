@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ExportedService">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Default">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例界面：基本应用 -->
+        <activity
+            android:name=".base.TestUIBase"
+            android:exported="false" />
+
+        <!-- 示例服务：下载服务 -->
+        <service
+            android:name=".base.DownloadService"
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD" />
+            </intent-filter>
+        </service>
+
+        <!-- 示例界面：自定义数据类型 -->
+        <activity
+            android:name=".types.TestUITypes"
+            android:exported="false" />
+
+        <!-- 示例服务：下载服务2 -->
+        <service
+            android:name=".types.DownloadService2"
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD2" />
+            </intent-filter>
+        </service>
+
+        <!-- 示例界面：数据方向标签 -->
+        <activity
+            android:name=".paramsync.TestUIParamSync"
+            android:exported="false" />
+
+        <!-- 示例服务：参数同步测试服务 -->
+        <service
+            android:name=".paramsync.ParamSyncService"
+            android:exported="true"
+            android:process=":service" />
+
+        <!-- 示例界面：线程调度 -->
+        <activity
+            android:name=".threads.TestUIThreads"
+            android:exported="false" />
+
+        <!-- 示例服务：下载服务3 -->
+        <service
+            android:name=".threads.DownloadService3"
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD3" />
+            </intent-filter>
+        </service>
+
+        <!-- 示例界面：异常处理 -->
+        <activity
+            android:name=".exceptions.TestUIExceptions"
+            android:exported="false" />
+
+        <!-- 示例服务：异常处理 -->
+        <service
+            android:name=".exceptions.ExceptionTestService"
+            android:exported="true"
+            android:process=":service" />
+
+        <!-- 示例界面：文件传输 -->
+        <activity
+            android:name=".file.TestUIFile"
+            android:exported="false" />
+
+        <!-- 示例服务：文件传输 -->
+        <service
+            android:name=".file.FileService"
+            android:exported="true"
+            android:process=":service" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例服务：下载服务(KT) -->
+        <service
+            android:name=".base.DownloadServiceKT"
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD_KT" />
+            </intent-filter>
+        </service>
+
+        <!-- 示例界面：自定义数据类型(KT) -->
+        <activity
+            android:name=".types.TestUITypesKT"
+            android:exported="false" />
+
+        <!-- 示例服务：下载服务2(KT) -->
+        <service
+            android:name=".types.DownloadService2KT"
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD2_KT" />
+            </intent-filter>
+        </service>
+
+        <!-- 示例界面：线程调度(KT) -->
+        <activity
+            android:name=".threads.TestUIThreadsKT"
+            android:exported="false" />
+
+        <!-- 示例服务：下载服务3(KT) -->
+        <service
+            android:name=".threads.DownloadService3KT"
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD3_KT" />
+            </intent-filter>
+        </service>
+
+        <!-- 示例界面：异常处理(KT) -->
+        <activity
+            android:name=".exceptions.TestUIExceptionsKT"
+            android:exported="false" />
+
+        <!-- 示例服务：异常处理(KT) -->
+        <service
+            android:name=".exceptions.ExceptionTestServiceKT"
+            android:exported="true"
+            android:process=":service" />
+
+        <!-- 示例界面：文件传输(KT) -->
+        <activity
+            android:name=".file.TestUIFileKT"
+            android:exported="false" />
+
+        <!-- 示例服务：文件传输(KT) -->
+        <service
+            android:name=".file.FileServiceKT"
+            android:exported="true"
+            android:process=":service" />
+    </application>
+</manifest>

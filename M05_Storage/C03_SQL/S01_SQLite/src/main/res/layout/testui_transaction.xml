@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="事务支持"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tvLog"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/shape_log_area"
+        android:scrollbars="vertical"
+        android:text="日志输出区域："
+        android:textColor="?android:textColorPrimary"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/etID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="输入需要 新增/修改/删除 的记录ID"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <Button
+                android:id="@+id/btnFailed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="事务执行失败" />
+
+            <Button
+                android:id="@+id/btnSuccess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="事务执行成功" />
+
+            <Button
+                android:id="@+id/btnCoroutine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="事务与协程" />
+
+            <Button
+                android:id="@+id/btnQueryAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="查询所有记录" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

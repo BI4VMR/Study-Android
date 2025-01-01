@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Default">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例界面：基本应用 -->
+        <activity
+            android:name=".base.TestUIBase"
+            android:exported="false" />
+
+        <!-- 示例界面：表项点击事件 -->
+        <activity
+            android:name=".event.TestUIEvent"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：单一表项类型(KT) -->
+        <activity
+            android:name=".simple.TestUISimpleKT"
+            android:exported="false" />
+
+        <!-- 示例界面：表项点击事件(KT) -->
+        <activity
+            android:name=".event.TestUIEventKT"
+            android:exported="false" />
+
+        <!-- 示例界面：DiffUtil(KT) -->
+        <activity
+            android:name=".diffutil.TestUIDiffUtilKT"
+            android:exported="false" />
+
+        <!-- 示例界面：ViewBinding支持(KT) -->
+        <activity
+            android:name=".binding.TestUIBindingKT"
+            android:exported="false" />
+
+        <!-- 示例界面：ViewBinding支持（单一表项类型）(KT) -->
+        <activity
+            android:name=".binding_simple.TestUISimpleBindingKT"
+            android:exported="false" />
+    </application>
+</manifest>

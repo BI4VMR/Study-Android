@@ -1,0 +1,31 @@
+plugins {
+    alias(libAndroid.plugins.application)
+    alias(libAndroid.plugins.kotlin)
+}
+
+def version_MinSDK = Integer.valueOf(agp.versions.minSdk.get())
+def version_CompileSDK = Integer.valueOf(agp.versions.compileSdk.get())
+def version_TargetSDK = Integer.valueOf(agp.versions.targetSdk.get())
+def version_ModuleCode = Integer.valueOf(agp.versions.moduleCode.get())
+def version_ModuleName = agp.versions.moduleName.get()
+
+android {
+    namespace "net.bi4vmr.study"
+    compileSdk version_CompileSDK
+
+    defaultConfig {
+        applicationId "net.bi4vmr.study.system.ability.usagestats"
+        minSdk version_MinSDK
+        targetSdk version_TargetSDK
+        versionCode version_ModuleCode
+        versionName version_ModuleName
+    }
+
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation(libAndroid.bundles.appBaseKT)
+}

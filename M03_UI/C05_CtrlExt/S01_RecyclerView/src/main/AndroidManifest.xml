@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.bi4vmr.study">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Default">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例界面：基本应用 -->
+        <activity
+            android:name=".base.TestUIBase"
+            android:exported="false" />
+
+        <!-- 示例界面：点击事件 -->
+        <activity
+            android:name=".clickevent.TestUIClickEvent"
+            android:exported="false" />
+
+        <!-- 示例界面：加载多种表项 -->
+        <activity
+            android:name=".viewtype.TestUIViewType"
+            android:exported="false" />
+
+        <!-- 示例界面：动态更新表项 -->
+        <activity
+            android:name=".updatelist.TestUIUpdateList"
+            android:exported="false" />
+
+        <!-- 示例界面：局部刷新 -->
+        <activity
+            android:name=".updateitem.TestUIUpdateItem"
+            android:exported="false" />
+
+        <!-- 示例界面：DiffUtil -->
+        <activity
+            android:name=".diffutil.TestUIDiffUtil"
+            android:exported="false" />
+
+        <!-- 示例界面：DiffUtil - 异步计算 -->
+        <activity
+            android:name=".diffutilasync.TestUIDiffUtilAsync"
+            android:exported="false" />
+
+        <!-- 示例界面：缓存与复用 -->
+        <activity
+            android:name=".viewcache.TestUIViewCache"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：点击事件(KT) -->
+        <activity
+            android:name=".clickevent.TestUIClickEventKT"
+            android:exported="false" />
+
+        <!-- 示例界面：加载多种表项(KT) -->
+        <activity
+            android:name=".viewtype.TestUIViewTypeKT"
+            android:exported="false" />
+
+        <!-- 示例界面：动态更新表项(KT) -->
+        <activity
+            android:name=".updatelist.TestUIUpdateListKT"
+            android:exported="false" />
+
+        <!-- 示例界面：局部刷新(KT) -->
+        <activity
+            android:name=".updateitem.TestUIUpdateItemKT"
+            android:exported="false" />
+
+        <!-- 示例界面：DiffUtil(KT) -->
+        <activity
+            android:name=".diffutil.TestUIDiffUtilKT"
+            android:exported="false" />
+
+        <!-- 示例界面：DiffUtil - 异步计算(KT) -->
+        <activity
+            android:name=".diffutilasync.TestUIDiffUtilAsyncKT"
+            android:exported="false" />
+    </application>
+</manifest>

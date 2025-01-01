@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Default">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例界面：基本应用 -->
+        <activity
+            android:name=".base.TestUIBase"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：启动新的Activity -->
+        <activity
+            android:name=".gotopage.TestUIGotoPage"
+            android:exported="false" />
+
+        <!-- 示例界面：启动新的Activity(KT) -->
+        <activity
+            android:name=".gotopage.TestUIGotoPageKT"
+            android:exported="false" />
+
+        <!-- 跳转测试目标Activity -->
+        <activity
+            android:name=".gotopage.TestActivity"
+            android:exported="false" />
+
+        <!-- 跳转测试目标Activity(KT) -->
+        <activity
+            android:name=".gotopage.TestActivityKT"
+            android:exported="false" />
+
+        <!-- 示例界面：启动Activity并等待返回结果（旧） -->
+        <activity
+            android:name=".gotoforresult.TestUIGotoForResult"
+            android:exported="false" />
+
+        <!-- 示例界面：启动Activity并等待返回结果（旧）(KT) -->
+        <activity
+            android:name=".gotoforresult.TestUIGotoForResultKT"
+            android:exported="false" />
+
+        <!-- 返回结果测试Activity -->
+        <activity
+            android:name=".gotoforresult.ResultActivity"
+            android:exported="false" />
+
+        <!-- 返回结果测试Activity(KT) -->
+        <activity
+            android:name=".gotoforresult.ResultActivityKT"
+            android:exported="false" />
+
+        <!-- 示例界面：启动Activity并等待返回结果（新） -->
+        <activity
+            android:name=".gotoforresult2.TestUIGotoForResult2"
+            android:exported="false" />
+
+        <!-- 示例界面：启动Activity并等待返回结果（新）(KT) -->
+        <activity
+            android:name=".gotoforresult2.TestUIGotoForResult2KT"
+            android:exported="false" />
+
+        <!-- 示例界面：生命周期 -->
+        <activity
+            android:name=".lifecycle.TestUILifeCycle"
+            android:exported="false" />
+
+        <!--&lt;!&ndash; 示例界面：生命周期 &ndash;&gt;-->
+        <!--<activity-->
+        <!--    android:name=".lifecycle.TestUILifeCycleKT"-->
+        <!--    android:exported="false" />-->
+
+        <!-- 示例界面：视图数据保持 -->
+        <activity
+            android:name=".viewstate.TestUIViewState"
+            android:exported="false" />
+
+        <!-- 示例界面：视图数据保持(KT) -->
+        <activity
+            android:name=".viewstate.TestUIViewStateKT"
+            android:exported="false" />
+
+        <!-- 示例：处理配置变更 -->
+        <activity
+            android:name=".config.TestUIConfig"
+            android:configChanges="uiMode"
+            android:exported="false" />
+
+        <!-- 示例：启动模式 -->
+        <activity
+            android:name=".launchmode.TestUILaunchMode"
+            android:exported="false" />
+
+        <!-- 启动模式测试页：Standard -->
+        <activity
+            android:name=".launchmode.StandardActivity"
+            android:exported="true" />
+
+        <!-- 启动模式测试页：SingleTop -->
+        <activity
+            android:name=".launchmode.SingleTopActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+
+        <!-- 启动模式测试页：SingleTask -->
+        <activity
+            android:name=".launchmode.SingleTaskActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:taskAffinity=".affinity" />
+
+        <!-- 启动模式测试页：SingleInstance -->
+        <activity
+            android:name=".launchmode.SingleInstanceActivity"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:taskAffinity=".affinity" />
+    </application>
+</manifest>

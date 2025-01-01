@@ -1,0 +1,100 @@
+<resources>
+    <!-- 常用属性测试 -->
+    <style name="Theme.InternalAttrs" parent="Theme.MaterialComponents.DayNight">
+
+        <!--
+          ##### Material主题相关属性 #####
+          -->
+
+        <!-- 主要色调
+             ActionBar的默认背景颜色。 -->
+        <item name="colorPrimary">#6200EE</item>
+
+        <!-- 主要色调（暗色）
+             状态栏的默认背景颜色。 -->
+        <item name="colorPrimaryDark">#3700B3</item>
+
+        <!-- 主要文本色调
+             ActionBar的标题文本颜色。 -->
+        <item name="android:textColorPrimary">#FF00FF</item>
+
+        <!-- 次要文本色调
+             EditText、ProgressBar背景颜色，也可以用于辅助性的提示文本。 -->
+        <item name="android:textColorSecondary">#990099</item>
+
+        <!-- 强调颜色
+             具有选中状态控件的按钮颜色，例如RadioButton、CheckBox、ProcessBar等。 -->
+        <item name="colorAccent">#FFFF00</item>
+
+
+        <!--
+          ##### 系统界面相关属性 #####
+          -->
+
+        <!-- 是否隐藏ActionBar -->
+        <item name="windowNoTitle">false</item>
+
+        <!-- 是否隐藏状态栏与导航栏 -->
+        <item name="android:windowFullscreen">false</item>
+
+        <!-- 窗口背景
+             可以引用颜色或图片资源，但无法实现跨系统界面的透明效果，透明部分的底色为黑色。 -->
+        <item name="android:windowBackground">#1E1F22</item>
+
+        <!-- 状态栏背景颜色 -->
+        <item name="android:statusBarColor">#3700B3</item>
+
+        <!-- 状态栏背景是否透明
+             如果该属性为"true"，等同于"statusBarColor"="@android:color/transparent"。 -->
+        <item name="android:windowTranslucentStatus">false</item>
+
+        <!-- 反转状态栏图标颜色
+             系统默认颜色为深色背景、白色图标，如果该属性被设为"true"，则图标变为黑色。
+             该属性仅在API版本 >= 23时生效。 -->
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- 导航栏背景颜色 -->
+        <item name="android:navigationBarColor">#3700B3</item>
+
+        <!-- 导航栏背景是否透明
+             该属性会使导航栏背景变为透明，但不会改变状态栏的背景颜色。
+             该属性还会使得界面组件从状态栏与导航栏底部开始绘制，但ActionBar的位置不受影响。 -->
+        <item name="android:windowTranslucentNavigation">false</item>
+
+        <!-- 界面组件是否适应系统组件
+             如果"windowTranslucentNavigation"属性为"true"，界面组件将于状态栏、导航栏重叠，该属性可以防止重叠。 -->
+        <item name="android:fitsSystemWindows">false</item>
+
+
+        <!--
+          ##### 控件公共属性 #####
+          -->
+
+        <!-- 按钮英文字母是否自动大写 -->
+        <item name="android:textAllCaps">false</item>
+
+        <!-- 文本颜色
+             对TextView、Button等控件生效。 -->
+        <item name="android:textColor">#6AAB73</item>
+
+        <!-- EditText文本颜色 -->
+        <item name="android:editTextColor">#FFFFFF</item>
+
+        <!-- 可选中控件的文本颜色
+             影响RadioButton、CheckBox、Switch。 -->
+        <item name="android:textColorPrimaryDisableOnly">#8888FF</item>
+
+        <!-- 控件常态颜色
+             EditText的常态颜色、SeekBar的背景颜色。
+             未指定该属性时，默认使用"textColorSecondary"属性设置的颜色。 -->
+        <item name="android:colorControlNormal">#FF0000</item>
+
+        <!-- 控件被选中时的颜色
+             影响编辑状态的EditText、ProgressBar与SeekBar的前景色。
+             未指定该属性时，默认使用"colorAccent"属性设置的颜色。 -->
+        <item name="android:colorControlActivated">#FF7F50</item>
+
+        <!-- Material控件按压涟漪效果的颜色 -->
+        <item name="android:colorControlHighlight">#FF00FF</item>
+    </style>
+</resources>

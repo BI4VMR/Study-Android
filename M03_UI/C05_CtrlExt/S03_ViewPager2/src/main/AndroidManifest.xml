@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.bi4vmr.study">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Default">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例界面：基本应用 -->
+        <activity
+            android:name=".base.TestUIBase"
+            android:exported="false" />
+
+        <!-- 示例界面：外观定制 -->
+        <activity
+            android:name=".style.TestUIStyle"
+            android:exported="false" />
+
+        <!-- 示例界面：监听器 -->
+        <activity
+            android:name=".event.TestUIEvent"
+            android:exported="false" />
+
+        <!-- 示例界面：滑动控制 -->
+        <activity
+            android:name=".swipectrl.TestUISwipeCtrl"
+            android:exported="false" />
+
+        <!-- 示例界面：限制连续滑动 -->
+        <activity
+            android:name=".swipe1page.TestUISwipe1Page"
+            android:exported="false" />
+
+        <!-- 示例界面：循环滑动（实现一） -->
+        <activity
+            android:name=".loop1.TestUILoop1"
+            android:exported="false" />
+
+        <!-- 示例界面：循环滑动（实现二） -->
+        <activity
+            android:name=".loop2.TestUILoop2"
+            android:exported="false" />
+
+        <!-- 示例界面：缓存与复用 -->
+        <activity
+            android:name=".cache.TestUICache"
+            android:exported="false" />
+
+        <!-- 示例界面：生命周期 -->
+        <activity
+            android:name=".lifecycle.TestUILifeCycle"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：外观定制(KT) -->
+        <activity
+            android:name=".style.TestUIStyleKT"
+            android:exported="false" />
+
+        <!-- 示例界面：监听器(KT) -->
+        <activity
+            android:name=".event.TestUIEventKT"
+            android:exported="false" />
+
+        <!-- 示例界面：滑动控制 -->
+        <activity
+            android:name=".swipectrl.TestUISwipeCtrlKT"
+            android:exported="false" />
+
+        <!-- 示例界面：限制连续滑动(KT) -->
+        <activity
+            android:name=".swipe1page.TestUISwipe1PageKT"
+            android:exported="false" />
+
+        <!-- 示例界面：循环滑动（实现一）(KT) -->
+        <activity
+            android:name=".loop1.TestUILoop1KT"
+            android:exported="false" />
+
+        <!-- 示例界面：循环滑动（实现二）(KT) -->
+        <activity
+            android:name=".loop2.TestUILoop2KT"
+            android:exported="false" />
+
+        <!-- 示例界面：缓存与复用(KT) -->
+        <activity
+            android:name=".cache.TestUICacheKT"
+            android:exported="false" />
+
+        <!-- 示例界面：生命周期(KT) -->
+        <activity
+            android:name=".lifecycle.TestUILifeCycleKT"
+            android:exported="false" />
+
+        <!-- 示例：ViewPager2嵌套 -->
+        <!--<activity-->
+        <!--    android:name=".nested.DemoNestedUI"-->
+        <!--    android:exported="false" />-->
+    </application>
+</manifest>

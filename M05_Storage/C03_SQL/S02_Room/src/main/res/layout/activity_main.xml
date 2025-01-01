@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Java实现："
+            android:textColor="?android:textColorPrimary"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="基本应用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnSkills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="进阶技巧"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnTransaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="事务支持"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnUpgrade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="数据库版本升级"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kotlin实现："
+            android:textColor="?android:textColorPrimary"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnBaseKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="基本应用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnSkillsKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="进阶技巧"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnTransactionKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="事务支持"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnUpgradeKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="数据库版本升级"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</ScrollView>

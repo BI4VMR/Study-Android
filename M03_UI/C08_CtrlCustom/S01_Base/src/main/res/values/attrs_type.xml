@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AttrTypes">
+        <!-- 定义属性：基本数据类型 -->
+        <attr name="booleanValue" format="boolean" />
+        <attr name="integerValue" format="integer" />
+        <attr name="floatValue" format="float" />
+
+        <!-- 定义属性：文本类型 -->
+        <attr name="textValue1" format="string" />
+        <attr name="textValue2" format="string" />
+
+        <!-- 定义属性：尺寸类型 -->
+        <attr name="dimenValue" format="dimension" />
+
+        <!-- 定义属性：比例类型 -->
+        <attr name="fractionValue1" format="fraction" />
+        <attr name="fractionValue2" format="fraction" />
+
+        <!-- 定义属性：颜色类型 -->
+        <attr name="colorValue" format="color" />
+
+        <!-- 定义属性：枚举类型 -->
+        <attr name="enumValue" format="enum">
+            <enum name="vertical" value="0" />
+            <enum name="horizontal" value="1" />
+        </attr>
+
+        <!-- 定义属性：标志位类型 -->
+        <attr name="flagValue" format="flags">
+            <flag name="none" value="0" />
+            <flag name="vertical" value="0x1" />
+            <flag name="horizontal" value="2" />
+        </attr>
+
+        <!-- 定义属性：引用类型 -->
+        <attr name="refValue1" format="reference" />
+        <attr name="refValue2" format="reference" />
+        <attr name="refValue3" format="reference" />
+
+        <!-- 定义属性：组合类型 -->
+        <attr name="multiTypeValue" format="color|reference" />
+    </declare-styleable>
+</resources>

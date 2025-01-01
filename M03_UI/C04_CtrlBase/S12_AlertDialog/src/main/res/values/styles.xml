@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 自定义弹窗样式 -->
+    <style name="DialogCustom" parent="@style/Theme.AppCompat.Dialog">
+        <!-- Dialog的背景，可以引用Color、Drawable，直接设置"#RGB"是无效的，填入"@null"表示透明。 -->
+        <item name="android:windowBackground">@drawable/dialog_bg</item>
+        <!-- Dialog外围区域是否变暗，"true"表示变暗，"false"表示不变暗。 -->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>

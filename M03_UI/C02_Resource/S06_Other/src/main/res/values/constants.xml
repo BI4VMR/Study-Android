@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 定义布尔值 -->
+    <bool name="booleanValue">false</bool>
+
+    <!-- 定义整数值 -->
+    <integer name="intValue">-1000</integer>
+
+    <!-- 定义字符串 -->
+    <string name="stringValue">AB<b>CDE</b>FG</string>
+
+
+    <!-- 定义整数数组 -->
+    <integer-array name="intArray">
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+    </integer-array>
+
+    <!-- 定义字符串数组 -->
+    <string-array name="stringArray">
+        <item>A</item>
+        <item><b>B</b></item>
+        <item>C</item>
+        <item><b>D</b></item>
+    </string-array>
+
+
+    <!-- 定义其他类型的数组 -->
+    <array name="colorResArray">
+        <item>@color/purple_200</item>
+        <item>@color/purple_500</item>
+        <item>@color/purple_700</item>
+        <item>@color/teal_200</item>
+        <item>@color/teal_700</item>
+    </array>
+</resources>

@@ -1,0 +1,21 @@
+<resources>
+    <!-- 定义样式：自定义文本
+         该样式作为其他MyText系列的父样式，即使没有任何属性也不能省略。
+     -->
+    <style name="MyText" />
+
+    <!-- 定义样式：普通文本
+         没有指明父样式时，默认继承自名称中的前缀MyText。
+    -->
+    <style name="MyText.Normal">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- 定义样式：强调文本
+         继承自普通文本。 -->
+    <style name="MyText.Emphasize" parent="MyText.Normal">
+        <!-- 定义颜色属性，覆盖普通文本中的值。 -->
+        <item name="android:textColor">#FF0000</item>
+    </style>
+</resources>

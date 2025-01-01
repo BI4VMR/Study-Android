@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.bi4vmr.study">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Default">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例：基本应用 -->
+        <activity
+            android:name=".base.DemoBaseUI"
+            android:exported="false" />
+
+        <!-- 示例：传递初始化参数 -->
+        <activity
+            android:name=".initdata.DemoInitDataUI"
+            android:exported="false" />
+
+        <!-- 示例：Fragment管理 -->
+        <activity
+            android:name=".manage.DemoManageUI"
+            android:exported="false" />
+
+        <!-- 示例：回退栈 -->
+        <activity
+            android:name=".backstack.DemoBackStackUI"
+            android:exported="false" />
+
+        <!-- 示例：获取并使用Context -->
+        <activity
+            android:name=".usecontext.DemoUseContextUI"
+            android:exported="false" />
+    </application>
+</manifest>

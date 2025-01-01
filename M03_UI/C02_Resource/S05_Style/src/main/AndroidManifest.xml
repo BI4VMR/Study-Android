@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Default">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例界面：样式 - 基本应用 -->
+        <activity
+            android:name=".base.TestUIBase"
+            android:exported="false" />
+
+        <!-- 示例界面：主题 - 基本应用 -->
+        <activity
+            android:name=".theme.TestUITheme"
+            android:exported="false"
+            android:theme="@style/Theme.Custom" />
+
+        <!-- 示例界面：主题 - 内置属性 -->
+        <activity
+            android:name=".themeattrsinternal.TestUIThemeAttrsInternal"
+            android:exported="false"
+            android:theme="@style/Theme.InternalAttrs" />
+
+        <!-- 示例界面：主题 - 自定义属性 -->
+        <activity
+            android:name=".themeattrscustom.TestUIThemeAttrsCustom"
+            android:exported="false"
+            android:theme="@style/Theme.TypeA" />
+
+        <!-- 示例界面：主题 - 深色模式 -->
+        <activity
+            android:name=".themedark.TestUIThemeDark"
+            android:configChanges="uiMode"
+            android:exported="false" />
+
+        <!-- 示例界面：样式 - 基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：主题 - 基本应用(KT) -->
+        <activity
+            android:name=".theme.TestUIThemeKT"
+            android:exported="false"
+            android:theme="@style/Theme.Custom" />
+
+        <!-- 示例界面：主题 - 内置属性(KT) -->
+        <activity
+            android:name=".themeattrsinternal.TestUIThemeAttrsInternalKT"
+            android:exported="false"
+            android:theme="@style/Theme.InternalAttrs" />
+
+        <!-- 示例界面：主题 - 自定义属性(KT) -->
+        <activity
+            android:name=".themeattrscustom.TestUIThemeAttrsCustomKT"
+            android:exported="false"
+            android:theme="@style/Theme.TypeA" />
+
+        <!-- 示例界面：主题 - 深色模式(KT) -->
+        <activity
+            android:name=".themedark.TestUIThemeDarkKT"
+            android:exported="false" />
+    </application>
+</manifest>

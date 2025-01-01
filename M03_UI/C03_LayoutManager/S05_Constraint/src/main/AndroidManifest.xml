@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.bi4vmr.study">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Default">
+
+        <activity
+            android:name="net.bi4vmr.study.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例：基本应用 -->
+        <activity
+            android:name=".base.DemoBaseUI"
+            android:exported="false" />
+
+        <!-- 示例：乖离率 -->
+        <activity
+            android:name=".bias.DemoBiasUI"
+            android:exported="false" />
+
+        <!-- 示例：尺寸约束 -->
+        <activity
+            android:name=".sizeconstraint.DemoSizeConstraintUI"
+            android:exported="false" />
+
+        <!-- 示例：链式约束 -->
+        <activity
+            android:name=".chainconstraint.DemoChainConstraintUI"
+            android:exported="false" />
+
+        <!-- 示例：角度约束 -->
+        <activity
+            android:name=".circleconstraint.DemoCircleConstraintUI"
+            android:exported="false" />
+
+        <!-- 示例：GoneMargin属性 -->
+        <activity
+            android:name=".gonemargin.DemoGoneMarginUI"
+            android:exported="false" />
+
+        <!-- 示例：辅助线 -->
+        <activity
+            android:name=".guideline.DemoGuideLineUI"
+            android:exported="false" />
+
+        <!-- 示例：屏障 -->
+        <activity
+            android:name=".barrier.DemoBarrierUI"
+            android:exported="false" />
+
+        <!-- 示例：动态调整约束条件 -->
+        <activity
+            android:name=".changeconstraints.DemoChangeConstraintsUI"
+            android:exported="false" />
+    </application>
+</manifest>

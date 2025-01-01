@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">!用户界面-自定义控件-概述</string>
+
+    <!-- 带格式的测试文本 -->
+    <string name="text_with_format">AB<b>CD</b>EF</string>
+
+    <!-- 文本数组 -->
+    <string-array name="text_array">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+    </string-array>
+</resources>

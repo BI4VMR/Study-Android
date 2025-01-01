@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="net.bi4vmr.study">
+    <!-- 测试改写Properties时需要设置此项 -->
+    <!-- android:sharedUserId="android.uid.system"-->
+    <!-- android:sharedUserMaxSdkVersion="32">-->
+
+    <!-- 改写System区域的配置项
+     对应权限设置界面中的“允许修改系统设置”项。 -->
+    <!--<uses-permission-->
+    <!--    android:name="android.permission.WRITE_SETTINGS"-->
+    <!--    tools:ignore="ProtectedPermissions" />-->
+
+    <!--&lt;!&ndash; 改写Global区域与Secure区域的配置项 &ndash;&gt;-->
+    <!--<uses-permission-->
+    <!--    android:name="android.permission.WRITE_SECURE_SETTINGS"-->
+    <!--    tools:ignore="ProtectedPermissions" />-->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_funny_256"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Default">
+
+        <activity
+            android:name="net.bi4vmr.study.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 示例：Settings-基本应用 -->
+        <activity
+            android:name=".settings_base.DemoSettingsBaseUI"
+            android:exported="false" />
+
+        <!-- 示例：Settings-监听配置项改变 -->
+        <activity
+            android:name=".settings_observe.DemoSettingsObserveUI"
+            android:exported="false" />
+
+        <!-- 示例：Properties-基本应用 -->
+        <activity
+            android:name=".properties_base.DemoPropertiesBaseUI"
+            android:exported="false" />
+    </application>
+</manifest>
