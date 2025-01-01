@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.permission.AospPermissionMgr;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -60,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnView = findViewById(R.id.btnView);
         btnView.setOnClickListener(v -> {
+            AospPermissionMgr mgr = AospPermissionMgr.getInstance(this);
+            mgr.startListenPermissionChange2(pkg -> Log.d("TestApp", "pkg: " + pkg));
+
             // Intent intent = new Intent(this, TestUIView.class);
             // startActivity(intent);
             //
