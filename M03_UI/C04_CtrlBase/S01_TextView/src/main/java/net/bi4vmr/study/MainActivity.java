@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.bi4vmr.study.autosize.TestUIAutoSize;
+import net.bi4vmr.study.autosize.TestUIAutoSizeKT;
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
@@ -41,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 自动文本尺寸(KT)
+        binding.btnAutoSize.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIAutoSize.class);
+            startActivity(intent);
+        });
+
         // SpannableString
         binding.btnSpan.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUISpan.class);
@@ -62,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
         // 超长内容滚动显示(KT)
         binding.btnScrollDisplayKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIScrollDisplayKT.class);
+            startActivity(intent);
+        });
+
+        // 自动文本尺寸(KT)
+        binding.btnAutoSizeKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIAutoSizeKT.class);
             startActivity(intent);
         });
 

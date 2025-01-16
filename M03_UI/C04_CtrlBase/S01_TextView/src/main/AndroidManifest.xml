@@ -33,6 +33,11 @@
             android:name=".scrolldisplay.TestUIScrollDisplay"
             android:exported="false" />
 
+        <!-- 示例界面：自动文本尺寸 -->
+        <activity
+            android:name=".autosize.TestUIAutoSize"
+            android:exported="false" />
+
         <!-- 示例界面：SpannableString -->
         <activity
             android:name=".span.TestUISpan"
@@ -51,6 +56,11 @@
         <!-- 示例界面：超长内容滚动显示(KT) -->
         <activity
             android:name=".scrolldisplay.TestUIScrollDisplayKT"
+            android:exported="false" />
+
+        <!-- 示例界面：自动文本尺寸(KT) -->
+        <activity
+            android:name=".autosize.TestUIAutoSizeKT"
             android:exported="false" />
 
         <!-- 示例界面：SpannableString(KT) -->

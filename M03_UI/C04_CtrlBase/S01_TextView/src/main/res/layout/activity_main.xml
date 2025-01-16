@@ -42,6 +42,13 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/btnAutoSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自动文本尺寸"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btnSpan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,6 +81,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="超长内容滚动显示"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnAutoSizeKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自动文本尺寸"
             android:textAllCaps="false" />
 
         <Button
