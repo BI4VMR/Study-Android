@@ -33,5 +33,6 @@ class TestUIAutoSizeKT : AppCompatActivity() {
 
         // 设置文本
         // binding.tvMarquee.text = text
+        binding.textView4.isSelected = true
     }
 }
