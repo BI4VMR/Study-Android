@@ -14,7 +14,11 @@ import android.graphics.drawable.LevelListDrawable;
 import android.os.Bundle;
 import android.os.LocaleList;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -81,6 +85,17 @@ public class MainActivity extends AppCompatActivity {
         drawable.setLevel(0);
         binding.ivDraw.setImageDrawable(drawable);
         // binding.ivDraw.setImageResource(R.drawable.ic_status_wlan_disconnected);
+
+        binding.ivDraw.setOnClickListener(v -> {
+            View v2 = LayoutInflater.from(this).inflate(R.layout.popup_subjects, null);
+            PopupWindow window = new PopupWindow(v2, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            window.setFocusable(true);
+            window.update();
+            window.setOverlapAnchor(true);
+            window.showAsDropDown(v);
+            // window.showAtLocation(v, Gravity.BOTTOM, 0, 0);
+
+        });
     }
 
     @Override
