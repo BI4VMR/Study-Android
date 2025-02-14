@@ -1,7 +1,9 @@
 package net.bi4vmr.study.i18n;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,9 +71,9 @@ public class TestUIMultiLanguage extends AppCompatActivity {
             Class<?> c = Class.forName("com.android.internal.app.LocalePicker");
             Method method = c.getMethod("getAllAssetLocales", Context.class, boolean.class);
             Object o = method.invoke(null, this, false);
-            Log.i("TESTapp", o.getClass().getSimpleName());
+            Log.i("TESTapp", o.toString());
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("TESTapp", "e", e);
         }
 
 
