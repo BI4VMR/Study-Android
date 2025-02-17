@@ -1,0 +1,13 @@
+<resources>
+    <!-- 主题A -->
+    <style name="Theme.TypeA" parent="Theme.Material3.DayNight">
+        <!-- 为"titleColor"属性赋值 -->
+        <item name="titleColor">@color/black</item>
+    </style>
+
+    <!-- 主题B -->
+    <style name="Theme.TypeB" parent="Theme.Material3.DayNight">
+        <!-- 为"titleColor"属性赋值 -->
+        <item name="titleColor">#FFFF00</item>
+    </style>
+</resources>

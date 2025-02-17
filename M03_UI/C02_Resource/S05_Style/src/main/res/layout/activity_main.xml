@@ -31,14 +31,28 @@
             android:id="@+id/btnTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="主题"
+            android:text="主题 - 简介"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnThemeAttr"
+            android:id="@+id/btnThemeAttrsInternal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="常用主题属性"
+            android:text="主题 - 内置属性"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnThemeAttrsCustom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="主题 - 自定义属性"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnThemeDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="主题 - 深色主题"
             android:textAllCaps="false" />
 
         <TextView
@@ -59,14 +73,28 @@
             android:id="@+id/btnThemeKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="主题"
+            android:text="主题 - 简介"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnThemeAttrKT"
+            android:id="@+id/btnThemeAttrsInternalKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="常用主题属性"
+            android:text="主题 - 内置属性"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnThemeAttrsCustomKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="主题 - 自定义属性"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnThemeDarkKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="主题 - 深色主题"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

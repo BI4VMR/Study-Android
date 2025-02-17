@@ -35,6 +35,12 @@
             android:exported="false"
             android:theme="@style/Theme.AttrTest" />
 
+        <!-- 示例界面：主题 - 自定义属性 -->
+        <activity
+            android:name=".themeattrscustom.TestUIThemeAttrsCustom"
+            android:exported="false"
+            android:theme="@style/Theme.TypeA" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
@@ -51,5 +57,11 @@
             android:name=".themeattr.TestUIThemeAttrKT"
             android:exported="false"
             android:theme="@style/Theme.AttrTest" />
+
+        <!-- 示例界面：主题 - 自定义属性(KT) -->
+        <activity
+            android:name=".themeattrscustom.TestUIThemeAttrsCustomKT"
+            android:exported="false"
+            android:theme="@style/Theme.TypeA" />
     </application>
 </manifest>

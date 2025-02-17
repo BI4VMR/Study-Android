@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 定义一个属性，名称为"titleColor"，类型为“颜色”。 -->
+    <attr name="titleColor" format="color" />
+</resources>

@@ -12,6 +12,8 @@ import net.bi4vmr.study.theme.TestUITheme;
 import net.bi4vmr.study.theme.TestUIThemeKT;
 import net.bi4vmr.study.themeattr.TestUIThemeAttr;
 import net.bi4vmr.study.themeattr.TestUIThemeAttrKT;
+import net.bi4vmr.study.themeattrscustom.TestUIThemeAttrsCustom;
+import net.bi4vmr.study.themeattrscustom.TestUIThemeAttrsCustomKT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,9 +35,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 常用属性
-        binding.btnThemeAttr.setOnClickListener(v -> {
+        // 主题 - 内置属性
+        binding.btnThemeAttrsInternal.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIThemeAttr.class);
+            startActivity(intent);
+        });
+
+        // 主题 - 自定义属性
+        binding.btnThemeAttrsCustom.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIThemeAttrsCustom.class);
             startActivity(intent);
         });
 
@@ -51,9 +59,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 常用属性(KT)
-        binding.btnThemeAttrKT.setOnClickListener(v -> {
+        // 主题 - 内置属性(KT)
+        binding.btnThemeAttrsInternalKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIThemeAttrKT.class);
+            startActivity(intent);
+        });
+
+        // 主题 - 自定义属性(KT)
+        binding.btnThemeAttrsCustomKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIThemeAttrsCustomKT.class);
             startActivity(intent);
         });
     }
