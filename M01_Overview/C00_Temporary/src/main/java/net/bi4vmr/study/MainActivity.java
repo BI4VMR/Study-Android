@@ -11,8 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LevelListDrawable;
-import android.media.session.MediaController;
-import android.media.session.MediaSessionManager;
 import android.os.Bundle;
 import android.os.LocaleList;
 import android.util.Log;
@@ -23,8 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.media3.exoplayer.ExoPlayer;
 
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.permission.AospPermissionMgr;
@@ -32,7 +30,6 @@ import net.bi4vmr.study.permission.AospPermissionMgr;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public boolean isAppEnabled(Context context, String packageName) {
@@ -101,19 +98,22 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        Log.d("Test123", "addOnActiveSessionsChangedListener: ");
-        MediaSessionManager manager = getSystemService(MediaSessionManager.class);
-        manager.addOnActiveSessionsChangedListener(new MediaSessionManager.OnActiveSessionsChangedListener() {
-            @Override
-            public void onActiveSessionsChanged(@Nullable List<MediaController> controllers) {
-                if (controllers != null) {
-                    for (MediaController controller : controllers) {
-                        Log.d("Test123", "onActiveSessionsChanged: " + controller.getPackageName());
+        // Log.d("Test123", "addOnActiveSessionsChangedListener: ");
+        // MediaSessionManager manager = getSystemService(MediaSessionManager.class);
+        // manager.addOnActiveSessionsChangedListener(new MediaSessionManager.OnActiveSessionsChangedListener() {
+        //     @Override
+        //     public void onActiveSessionsChanged(@Nullable List<MediaController> controllers) {
+        //         if (controllers != null) {
+        //             for (MediaController controller : controllers) {
+        //                 Log.d("Test123", "onActiveSessionsChanged: " + controller.getPackageName());
+        //
+        //             }
+        //         }
+        //     }
+        // }, null);
 
-                    }
-                }
-            }
-        }, null);
+        ExoPlayer player = new ExoPlayer.Builder(this).build();
+        binding.playerView.setPlayer(player);
     }
 
     @Override

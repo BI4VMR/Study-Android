@@ -69,4 +69,6 @@ android {
 
 dependencies {
     implementation(libAndroid.bundles.appBaseKT)
+    implementation(libAndroid.media3.exoplayer)
+    implementation(libAndroid.media3.ui)
 }
