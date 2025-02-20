@@ -52,7 +52,7 @@
             android:id="@+id/btnThemeDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="主题 - 深色主题"
+            android:text="主题 - 深色模式"
             android:textAllCaps="false" />
 
         <TextView
@@ -94,7 +94,7 @@
             android:id="@+id/btnThemeDarkKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="主题 - 深色主题"
+            android:text="主题 - 深色模式"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

@@ -14,6 +14,8 @@ import net.bi4vmr.study.themeattr.TestUIThemeAttr;
 import net.bi4vmr.study.themeattr.TestUIThemeAttrKT;
 import net.bi4vmr.study.themeattrscustom.TestUIThemeAttrsCustom;
 import net.bi4vmr.study.themeattrscustom.TestUIThemeAttrsCustomKT;
+import net.bi4vmr.study.themedark.TestUIThemeDark;
+import net.bi4vmr.study.themedark.TestUIThemeDarkKT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 主题 - 深色模式
+        binding.btnThemeDark.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIThemeDark.class);
+            startActivity(intent);
+        });
+
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
@@ -68,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
         // 主题 - 自定义属性(KT)
         binding.btnThemeAttrsCustomKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIThemeAttrsCustomKT.class);
+            startActivity(intent);
+        });
+
+        // 主题 - 深色模式(KT)
+        binding.btnThemeDarkKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIThemeDarkKT.class);
             startActivity(intent);
         });
     }

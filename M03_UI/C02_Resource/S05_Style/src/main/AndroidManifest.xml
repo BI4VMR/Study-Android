@@ -41,6 +41,11 @@
             android:exported="false"
             android:theme="@style/Theme.TypeA" />
 
+        <!-- 示例界面：主题 - 深色模式 -->
+        <activity
+            android:name=".themedark.TestUIThemeDark"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
@@ -63,5 +68,10 @@
             android:name=".themeattrscustom.TestUIThemeAttrsCustomKT"
             android:exported="false"
             android:theme="@style/Theme.TypeA" />
+
+        <!-- 示例界面：主题 - 深色模式(KT) -->
+        <activity
+            android:name=".themedark.TestUIThemeDarkKT"
+            android:exported="false" />
     </application>
 </manifest>

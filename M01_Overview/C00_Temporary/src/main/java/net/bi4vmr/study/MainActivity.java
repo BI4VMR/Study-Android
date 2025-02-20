@@ -1,6 +1,7 @@
 package net.bi4vmr.study;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -21,8 +22,13 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.util.UnstableApi;
 import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.ui.PlayerView;
 
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.permission.AospPermissionMgr;
@@ -112,8 +118,17 @@ public class MainActivity extends AppCompatActivity {
         //     }
         // }, null);
 
-        ExoPlayer player = new ExoPlayer.Builder(this).build();
+        ExoPlayer player = new ExoPlayer.Builder(this)
+                .build();
+        binding.playerView.hideController();
         binding.playerView.setPlayer(player);
+
+        // String uri = ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + "/raw/ba";
+        // MediaItem item = MediaItem.fromUri(uri);
+        // player.setMediaItem(item);
+
+        // player.prepare();
+        // player.play();
     }
 
     @Override

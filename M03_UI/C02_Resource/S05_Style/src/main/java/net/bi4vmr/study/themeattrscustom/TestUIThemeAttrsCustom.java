@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,21 +40,32 @@ public class TestUIThemeAttrsCustom extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // 通过代码引用主题属性，为控件设置颜色。
-        TypedArray ta = getTheme().obtainStyledAttributes(new int[]{R.attr.titleColor});
-        try (ta) {
+        TypedArray ta = null;
+        try {
+            ta = getTheme().obtainStyledAttributes(new int[]{R.attr.titleColor});
             int color = ta.getColor(0, Color.BLACK);
             binding.text2.setTextColor(color);
+        } catch (Exception e) {
+            Log.e(TAG, "Get color from attr failed!", e);
+        } finally {
+            if (ta != null) {
+                ta.recycle();
+            }
         }
 
         binding.btnSwitchTheme.setOnClickListener(v -> switchTheme());
     }
 
+    // 切换主题
     private void switchTheme() {
         Intent intent = new Intent();
         intent.putExtra("Theme", themeType = (themeType == 0) ? 1 : 0);
         intent.setClass(this, this.getClass());
+        // 禁止启动动画（可选）
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        // 在某些设备上"FLAG_ACTIVITY_NO_ANIMATION"无效，需要额外添加此配置。
+        overridePendingTransition(0, 0);
 
         finish();
     }

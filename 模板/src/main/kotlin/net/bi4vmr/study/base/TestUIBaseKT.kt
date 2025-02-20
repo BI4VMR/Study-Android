@@ -11,7 +11,7 @@ import net.bi4vmr.study.databinding.TestuiBaseBinding
  * TODO 添加详情。
  *
  * @author bi4vmr@outlook.com
- * @since 1.0.0
+ * @version 1.0
  */
 class TestUIBaseKT : AppCompatActivity() {
 
