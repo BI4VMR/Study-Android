@@ -1,5 +1,6 @@
 package net.bi4vmr.study.themedark
 
+import android.app.UiModeManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiThemeDarkBinding
@@ -25,13 +26,13 @@ class TestUIThemeDarkKT : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        binding.btnSwitchTheme.setOnClickListener {
-            switchTheme()
+        binding.btnSwitchMode.setOnCheckedChangeListener { _, isChecked ->
+            switchMode(isChecked)
         }
     }
 
-    // 切换主题
-    private fun switchTheme() {
+    // 切换模式
+    private fun switchMode(checked:Boolean) {
         // val intent = Intent()
         // intent.putExtra("Theme", themeType xor 1)
         // intent.setClass(this, this::class.java)
@@ -42,5 +43,15 @@ class TestUIThemeDarkKT : AppCompatActivity() {
         // overridePendingTransition(0, 0)
         //
         // finish()
+        val u:UiModeManager = getSystemService(UiModeManager::class.java)
+        if (checked){
+            u.nightMode = UiModeManager.MODE_NIGHT_YES
+            // u.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES)
+        }else{
+            u.nightMode = UiModeManager.MODE_NIGHT_NO
+            // u.setApplicationNightMode(UiModeManager.MODE_NIGHT_NO)
+        }
+
+        // u.nightMode
     }
 }

@@ -25,7 +25,7 @@ public class TestUIThemeDark extends AppCompatActivity {
         binding = TestuiThemeDarkBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btnSwitchTheme.setOnClickListener(v -> switchTheme());
+        // binding.btnSwitchTheme.setOnClickListener(v -> switchTheme());
     }
 
     // 切换深色模式

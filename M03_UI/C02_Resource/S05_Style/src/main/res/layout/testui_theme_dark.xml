@@ -39,17 +39,18 @@
             android:id="@+id/text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="10dp"
+            android:checked="true"
+            android:enabled="false"
             android:text="我能够吞下玻璃而不伤身。"
-            android:textColor="?android:attr/colorControlNormal" />
+            android:textColor="@color/textColor" />
 
-        <Button
-            android:id="@+id/btnSwitchTheme"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/btnSwitchMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="切换主题" />
+            android:text="切换模式" />
     </LinearLayout>
 </ScrollView>
