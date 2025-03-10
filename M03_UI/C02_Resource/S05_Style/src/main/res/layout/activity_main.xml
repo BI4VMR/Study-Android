@@ -24,14 +24,14 @@
             android:id="@+id/btnBase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="基本应用"
+            android:text="样式 - 基本应用"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/btnTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="主题 - 简介"
+            android:text="主题 - 基本应用"
             android:textAllCaps="false" />
 
         <Button
@@ -66,14 +66,14 @@
             android:id="@+id/btnBaseKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="基本应用"
+            android:text="样式 - 基本应用"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/btnThemeKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="主题 - 简介"
+            android:text="主题 - 基本应用"
             android:textAllCaps="false" />
 
         <Button

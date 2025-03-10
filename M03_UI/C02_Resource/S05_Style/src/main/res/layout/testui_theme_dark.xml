@@ -40,8 +40,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:checked="true"
-            android:enabled="false"
             android:text="我能够吞下玻璃而不伤身。"
             android:textColor="@color/textColor" />
 
