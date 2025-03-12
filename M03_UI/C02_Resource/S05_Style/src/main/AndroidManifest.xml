@@ -29,11 +29,11 @@
             android:exported="false"
             android:theme="@style/Theme.Custom" />
 
-        <!-- 示例界面：常用属性 -->
+        <!-- 示例界面：主题 - 内置属性 -->
         <activity
             android:name=".themeattr.TestUIThemeAttr"
             android:exported="false"
-            android:theme="@style/Theme.AttrTest" />
+            android:theme="@style/Theme.InternalAttrs" />
 
         <!-- 示例界面：主题 - 自定义属性 -->
         <activity
@@ -57,11 +57,11 @@
             android:exported="false"
             android:theme="@style/Theme.Custom" />
 
-        <!-- 示例界面：常用属性(KT) -->
+        <!-- 示例界面：主题 - 内置属性(KT) -->
         <activity
             android:name=".themeattr.TestUIThemeAttrKT"
             android:exported="false"
-            android:theme="@style/Theme.AttrTest" />
+            android:theme="@style/Theme.InternalAttrs" />
 
         <!-- 示例界面：主题 - 自定义属性(KT) -->
         <activity
