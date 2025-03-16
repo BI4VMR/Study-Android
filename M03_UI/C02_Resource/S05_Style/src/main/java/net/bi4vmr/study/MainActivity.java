@@ -10,8 +10,8 @@ import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.theme.TestUITheme;
 import net.bi4vmr.study.theme.TestUIThemeKT;
-import net.bi4vmr.study.themeattr.TestUIThemeAttr;
-import net.bi4vmr.study.themeattr.TestUIThemeAttrKT;
+import net.bi4vmr.study.themeattrsinternal.TestUIThemeAttrsInternal;
+import net.bi4vmr.study.themeattrsinternal.TestUIThemeAttrsInternalKT;
 import net.bi4vmr.study.themeattrscustom.TestUIThemeAttrsCustom;
 import net.bi4vmr.study.themeattrscustom.TestUIThemeAttrsCustomKT;
 import net.bi4vmr.study.themedark.TestUIThemeDark;
@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 基本应用
+        // 样式 - 基本应用
         binding.btnBase.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBase.class);
             startActivity(intent);
         });
 
-        // 主题
+        // 主题 - 基本应用
         binding.btnTheme.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUITheme.class);
             startActivity(intent);
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 主题 - 内置属性
         binding.btnThemeAttrsInternal.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIThemeAttr.class);
+            Intent intent = new Intent(this, TestUIThemeAttrsInternal.class);
             startActivity(intent);
         });
 
@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 基本应用(KT)
+        // 样式 - 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
             startActivity(intent);
         });
 
-        // 主题(KT)
+        // 主题 - 基本应用(KT)
         binding.btnThemeKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIThemeKT.class);
             startActivity(intent);
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 主题 - 内置属性(KT)
         binding.btnThemeAttrsInternalKT.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIThemeAttrKT.class);
+            Intent intent = new Intent(this, TestUIThemeAttrsInternalKT.class);
             startActivity(intent);
         });
 

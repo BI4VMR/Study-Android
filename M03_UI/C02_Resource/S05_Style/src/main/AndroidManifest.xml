@@ -31,7 +31,7 @@
 
         <!-- 示例界面：主题 - 内置属性 -->
         <activity
-            android:name=".themeattr.TestUIThemeAttr"
+            android:name=".themeattrsinternal.TestUIThemeAttrsInternal"
             android:exported="false"
             android:theme="@style/Theme.InternalAttrs" />
 
@@ -59,7 +59,7 @@
 
         <!-- 示例界面：主题 - 内置属性(KT) -->
         <activity
-            android:name=".themeattr.TestUIThemeAttrKT"
+            android:name=".themeattrsinternal.TestUIThemeAttrsInternalKT"
             android:exported="false"
             android:theme="@style/Theme.InternalAttrs" />
 
