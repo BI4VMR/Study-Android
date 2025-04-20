@@ -28,6 +28,11 @@
             android:name=".template.TestUITemplate"
             android:exported="false" />
 
+        <!-- 示例界面：复数 -->
+        <activity
+            android:name=".plurals.TestUIPlurals"
+            android:exported="false" />
+
         <!-- 示例界面：多语言支持 -->
         <activity
             android:name=".i18n.TestUIMultiLanguage"

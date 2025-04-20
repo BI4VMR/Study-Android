@@ -12,6 +12,7 @@ import net.bi4vmr.study.font.TestUIFont;
 import net.bi4vmr.study.font.TestUIFontKT;
 import net.bi4vmr.study.i18n.TestUIMultiLanguage;
 import net.bi4vmr.study.i18n.TestUIMultiLanguageKT;
+import net.bi4vmr.study.plurals.TestUIPlurals;
 import net.bi4vmr.study.template.TestUITemplate;
 import net.bi4vmr.study.template.TestUITemplateKT;
 
@@ -35,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 复数
+        binding.btnPlurals.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIPlurals.class);
+            startActivity(intent);
+        });
+
         // 多语言支持
         binding.btnI18N.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIMultiLanguage.class);
@@ -50,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
+            startActivity(intent);
+        });
+
+        // 字符串模板(KT)
+        binding.btnTemplateKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUITemplateKT.class);
             startActivity(intent);
         });
 
