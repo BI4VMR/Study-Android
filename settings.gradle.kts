@@ -43,6 +43,10 @@ pluginManagement {
                 }
             } else {
                 println("Current host is not in private network, add LOCAL repositorys.")
+                maven {
+                    isAllowInsecureProtocol = true
+                    setUrl("http://127.0.0.1:8081/repository/maven-mirror-tencent/")
+                }
                 mavenLocal()
             }
         }
@@ -106,6 +110,14 @@ dependencyResolutionManagement {
                     setUrl("http://192.168.128.1:8081/repository/maven-private/")
                 }
             } else {
+                maven {
+                    isAllowInsecureProtocol = true
+                    setUrl("http://127.0.0.1:8081/repository/maven-mirror-tencent/")
+                }
+                maven {
+                    isAllowInsecureProtocol = true
+                    setUrl("http://127.0.0.1:8081/repository/maven-mirror-jitpack/")
+                }
                 mavenLocal()
             }
         }
