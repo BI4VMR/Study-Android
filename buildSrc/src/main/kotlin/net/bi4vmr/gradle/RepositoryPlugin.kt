@@ -80,16 +80,6 @@ class RepositoryPlugin : Plugin<Project> {
     }
 
     override fun apply(target: Project) {
-        println("apply-----[${target}]")
-        // target.dependencyResolutionManagement.repositories.forEach { repository ->
-        //     println("----- ${repository.name}")
-        //     if (repository is MavenArtifactRepository) {
-        //         println("Maven Repository - Name: ${repository.name}, URL: ${repository.url}")
-        //         println("Credentials - Username: ${repository.credentials.username}, Password: ${"*".repeat(8)}")
-        //     }else{
-        //         println("it -> ${repository::class.simpleName}")
-        //     }
-        // }
         repo.addAll(PRE_REPO)
         addRepos(target.repositories, false)
     }

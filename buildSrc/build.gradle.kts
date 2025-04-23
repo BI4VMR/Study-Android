@@ -6,10 +6,11 @@ plugins {
 }
 
 repositories {
-    maven {
-        isAllowInsecureProtocol = true
-        setUrl("http://172.16.5.1:8081/repository/maven-mirror-tencent/")
-    }
+    mavenCentral()
+    // maven {
+    //     isAllowInsecureProtocol = true
+    //     setUrl("http://127.0.0.1:8081/repository/maven-mirror-tencent/")
+    // }
 }
 
 gradlePlugin {
