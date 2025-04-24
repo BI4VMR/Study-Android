@@ -1,4 +1,4 @@
-package net.bi4vmr.gradle.entity
+package net.bi4vmr.gradle.data
 
 /**
  * Maven仓库。

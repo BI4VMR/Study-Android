@@ -9,7 +9,7 @@ package net.bi4vmr.gradle.entity
 data class MavenRepo(
     val name: String,
     val url: String,
+    val description: String? = null,
     val username: String? = null,
-    val password: String? = null,
-    val description: String = ""
+    val password: String? = null
 )

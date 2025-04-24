@@ -4,53 +4,6 @@
 pluginManagement {
     // 声明Gradle插件仓库
     repositories {
-        // // 添加本地私有仓库与代理镜像，无法直连时应当禁用该配置。
-        // val hostName: String = java.net.InetAddress.getLocalHost().hostName
-        // println("Current host name is [$hostName]")
-        // var isInPrivateLAN = false
-        // run {
-        //     java.net.NetworkInterface.getNetworkInterfaces().toList().forEach {
-        //         it.inetAddresses.toList().forEach { addr ->
-        //             if ((addr is java.net.Inet4Address) && (addr.hostAddress.startsWith("172.16."))) {
-        //                 isInPrivateLAN = true
-        //                 return@run
-        //             }
-        //         }
-        //     }
-        // }
-        // println("Current host in private LAN? [$isInPrivateLAN]")
-        //
-        // if (hostName.startsWith("BI4VMR") && isInPrivateLAN) {
-        //     println("Current host is in private network, add LAN repositorys.")
-        //     maven {
-        //         isAllowInsecureProtocol = true
-        //         setUrl("http://172.16.5.1:8081/repository/maven-mirror-tencent/")
-        //     }
-        //     maven {
-        //         isAllowInsecureProtocol = true
-        //         setUrl("http://172.16.5.1:8081/repository/maven-private/")
-        //     }
-        // } else {
-        //     if (java.net.InetAddress.getByName("192.168.128.1").isReachable(2000)) {
-        //         println("Current host is not in private network, add VPN repositorys.")
-        //         maven {
-        //             isAllowInsecureProtocol = true
-        //             setUrl("http://192.168.128.1:8081/repository/maven-mirror-tencent/")
-        //         }
-        //         maven {
-        //             isAllowInsecureProtocol = true
-        //             setUrl("http://192.168.128.1:8081/repository/maven-private/")
-        //         }
-        //     } else {
-        //         println("Current host is not in private network, add LOCAL repositorys.")
-        //         maven {
-        //             isAllowInsecureProtocol = true
-        //             setUrl("http://127.0.0.1:8081/repository/maven-mirror-tencent/")
-        //         }
-        //         mavenLocal()
-        //     }
-        // }
-
         // 腾讯云仓库镜像：Maven中心仓库+Google+JCenter
         maven { setUrl("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
         // 阿里云仓库镜像：Maven中心仓库+JCenter
@@ -58,82 +11,15 @@ pluginManagement {
         // 阿里云仓库镜像：Gradle社区插件
         maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin/") }
 
-        mavenCentral()
         gradlePluginPortal()
+        mavenCentral()
+        google()
     }
 }
 
+
 // 所有模块的依赖配置
 dependencyResolutionManagement {
-    // repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    // // 声明Maven组件仓库
-    // repositories {
-    //     // 添加本地私有仓库与代理镜像，无法直连时应当禁用该配置。
-    //     val hostName: String = java.net.InetAddress.getLocalHost().hostName
-    //     var isInPrivateLAN = false
-    //     run {
-    //         java.net.NetworkInterface.getNetworkInterfaces().toList().forEach {
-    //             it.inetAddresses.toList().forEach { addr ->
-    //                 if ((addr is java.net.Inet4Address) && (addr.hostAddress.startsWith("172.16."))) {
-    //                     isInPrivateLAN = true
-    //                     return@run
-    //                 }
-    //             }
-    //         }
-    //     }
-    //
-    //     if (hostName.startsWith("BI4VMR") && isInPrivateLAN) {
-    //         maven {
-    //             isAllowInsecureProtocol = true
-    //             setUrl("http://172.16.5.1:8081/repository/maven-mirror-tencent/")
-    //         }
-    //         maven {
-    //             isAllowInsecureProtocol = true
-    //             setUrl("http://172.16.5.1:8081/repository/maven-jitpack/")
-    //         }
-    //         maven {
-    //             isAllowInsecureProtocol = true
-    //             setUrl("http://172.16.5.1:8081/repository/maven-private/")
-    //         }
-    //     } else {
-    //         if (java.net.InetAddress.getByName("192.168.128.1").isReachable(2000)) {
-    //             maven {
-    //                 isAllowInsecureProtocol = true
-    //                 setUrl("http://192.168.128.1:8081/repository/maven-mirror-tencent/")
-    //             }
-    //             maven {
-    //                 isAllowInsecureProtocol = true
-    //                 setUrl("http://192.168.128.1:8081/repository/maven-jitpack/")
-    //             }
-    //             maven {
-    //                 isAllowInsecureProtocol = true
-    //                 setUrl("http://192.168.128.1:8081/repository/maven-private/")
-    //             }
-    //         } else {
-    //             maven {
-    //                 isAllowInsecureProtocol = true
-    //                 setUrl("http://127.0.0.1:8081/repository/maven-mirror-tencent/")
-    //             }
-    //             maven {
-    //                 isAllowInsecureProtocol = true
-    //                 setUrl("http://127.0.0.1:8081/repository/maven-mirror-jitpack/")
-    //             }
-    //             mavenLocal()
-    //         }
-    //     }
-    //
-    //     // 腾讯云仓库镜像：Maven中心仓库+Google+JCenter
-    //     maven { setUrl("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
-    //     // 阿里云仓库镜像：Maven中心仓库+JCenter
-    //     maven { setUrl("https://maven.aliyun.com/repository/public/") }
-    //     // 阿里云仓库镜像：Google
-    //     maven { setUrl("https://maven.aliyun.com/repository/google/") }
-    //
-    //     mavenCentral()
-    //     google()
-    //     maven { setUrl("https://jitpack.io/") }
-    // }
-
     // 版本管理配置
     versionCatalogs {
         // 公共组件(Java)
@@ -167,6 +53,7 @@ dependencyResolutionManagement {
         }
     }
 }
+
 
 /* ----- 工程结构声明 ----- */
 // 主工程名称
@@ -284,3 +171,8 @@ include(":M08_Architecture:C02_Component:S02_LiveData")
 include(":M08_Architecture:C02_Component:S03_ViewBinding")
 include(":M08_Architecture:C02_Component:S04_DataBinding")
 include(":M08_Architecture:C02_Component:S05_Compose")
+
+
+// 清空缓存目录
+delete("build")
+mkdir("build")

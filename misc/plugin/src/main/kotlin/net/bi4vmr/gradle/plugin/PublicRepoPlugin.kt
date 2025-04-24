@@ -1,13 +1,14 @@
 package net.bi4vmr.gradle.plugin
 
+import net.bi4vmr.gradle.data.MavenRepos
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.dsl.RepositoryHandler
+import org.gradle.kotlin.dsl.repositories
 
 /**
- * TODO 添加简述。
+ * Maven公共仓库插件。
  *
- * TODO 添加详情。
+ * 自动为子模块添加常用的公共仓库。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
@@ -15,71 +16,35 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
 class PublicRepoPlugin : Plugin<Project> {
 
     companion object {
-        private val repo: MutableList<MavenRepo> = mutableListOf()
-
-        /**
-         * 预置公共仓库，私有仓库请在```maven_config.json```中添加
-         */
-        val PRE_REPO = mutableListOf(
-            MavenRepo(
-                alias = "JITPACK",
-                repoUrl = "https://jitpack.io"
-            ),
-            MavenRepo(
-                alias = "ALIYUN_GOOGLE",
-                repoUrl = "https://maven.aliyun.com/repository/google"
-            ),
-            MavenRepo(
-                alias = "ALIYUN_CENTRAL",
-                repoUrl = "https://maven.aliyun.com/repository/central"
-            ),
-            MavenRepo(
-                alias = "ALIYUN_PUBLIC",
-                repoUrl = "https://maven.aliyun.com/repository/public"
-            )
+        // 预设仓库列表
+        private val REPOS = listOf(
+            MavenRepos.PUBLIC_TENCENT,
+            MavenRepos.PUBLIC_ALIYUN,
+            MavenRepos.GOOGLE_ALIYUN,
+            MavenRepos.JITPACK
         )
     }
 
-    data class MavenRepo(
-        // 别名 short name
-        val alias: String,
-        // url
-        val repoUrl: String,
-        // 用户名
-        val repoUserName: String = "",
-        // 密码
-        val repoPassword: String = ""
-    ) {
-        override fun toString(): String {
-            val maskedPassword = if (repoPassword.isNotEmpty()) "*".repeat(8) else ""
-            return "MavenRepo(alias='$alias', repoUrl='$repoUrl', repoUserName='$repoUserName', repoPassword='$maskedPassword')"
-        }
-    }
-
-    private fun addRepos(handler: RepositoryHandler, showLog: Boolean) {
-        with(handler) {
-            repo.addAll(PRE_REPO)
-            repo.filter {
-                it.repoUrl.isNotEmpty()
-            }.forEach {
+    override fun apply(target: Project) {
+        target.repositories {
+            REPOS.forEach {
                 maven {
-                    isAllowInsecureProtocol = true
-                    if (it.repoPassword.isNotEmpty() && it.repoUserName.isNotEmpty()) {
+                    setUrl(it.url)
+                    if (it.url.startsWith("http://")) {
+                        isAllowInsecureProtocol = true
+                    }
+
+                    if (it.username != null && it.password != null) {
                         credentials {
-                            username = it.repoUserName
-                            password = it.repoPassword
+                            username = it.username
+                            password = it.password
                         }
                     }
-                    setUrl(it.repoUrl)
                 }
             }
-            google()
-            mavenCentral()
-        }
-    }
 
-    override fun apply(target: Project) {
-        repo.addAll(PRE_REPO)
-        addRepos(target.repositories, false)
+            mavenCentral()
+            google()
+        }
     }
 }
