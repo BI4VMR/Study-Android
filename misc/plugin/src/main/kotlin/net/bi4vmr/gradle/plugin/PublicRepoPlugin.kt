@@ -1,9 +1,8 @@
-package net.bi4vmr.gradle
+package net.bi4vmr.gradle.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
-
 
 /**
  * TODO 添加简述。
@@ -13,7 +12,7 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class RepositoryPlugin : Plugin<Project> {
+class PublicRepoPlugin : Plugin<Project> {
 
     companion object {
         private val repo: MutableList<MavenRepo> = mutableListOf()

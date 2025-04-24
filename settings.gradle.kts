@@ -4,52 +4,52 @@
 pluginManagement {
     // 声明Gradle插件仓库
     repositories {
-        // 添加本地私有仓库与代理镜像，无法直连时应当禁用该配置。
-        val hostName: String = java.net.InetAddress.getLocalHost().hostName
-        println("Current host name is [$hostName]")
-        var isInPrivateLAN = false
-        run {
-            java.net.NetworkInterface.getNetworkInterfaces().toList().forEach {
-                it.inetAddresses.toList().forEach { addr ->
-                    if ((addr is java.net.Inet4Address) && (addr.hostAddress.startsWith("172.16."))) {
-                        isInPrivateLAN = true
-                        return@run
-                    }
-                }
-            }
-        }
-        println("Current host in private LAN? [$isInPrivateLAN]")
-
-        if (hostName.startsWith("BI4VMR") && isInPrivateLAN) {
-            println("Current host is in private network, add LAN repositorys.")
-            maven {
-                isAllowInsecureProtocol = true
-                setUrl("http://172.16.5.1:8081/repository/maven-mirror-tencent/")
-            }
-            maven {
-                isAllowInsecureProtocol = true
-                setUrl("http://172.16.5.1:8081/repository/maven-private/")
-            }
-        } else {
-            if (java.net.InetAddress.getByName("192.168.128.1").isReachable(2000)) {
-                println("Current host is not in private network, add VPN repositorys.")
-                maven {
-                    isAllowInsecureProtocol = true
-                    setUrl("http://192.168.128.1:8081/repository/maven-mirror-tencent/")
-                }
-                maven {
-                    isAllowInsecureProtocol = true
-                    setUrl("http://192.168.128.1:8081/repository/maven-private/")
-                }
-            } else {
-                println("Current host is not in private network, add LOCAL repositorys.")
-                maven {
-                    isAllowInsecureProtocol = true
-                    setUrl("http://127.0.0.1:8081/repository/maven-mirror-tencent/")
-                }
-                mavenLocal()
-            }
-        }
+        // // 添加本地私有仓库与代理镜像，无法直连时应当禁用该配置。
+        // val hostName: String = java.net.InetAddress.getLocalHost().hostName
+        // println("Current host name is [$hostName]")
+        // var isInPrivateLAN = false
+        // run {
+        //     java.net.NetworkInterface.getNetworkInterfaces().toList().forEach {
+        //         it.inetAddresses.toList().forEach { addr ->
+        //             if ((addr is java.net.Inet4Address) && (addr.hostAddress.startsWith("172.16."))) {
+        //                 isInPrivateLAN = true
+        //                 return@run
+        //             }
+        //         }
+        //     }
+        // }
+        // println("Current host in private LAN? [$isInPrivateLAN]")
+        //
+        // if (hostName.startsWith("BI4VMR") && isInPrivateLAN) {
+        //     println("Current host is in private network, add LAN repositorys.")
+        //     maven {
+        //         isAllowInsecureProtocol = true
+        //         setUrl("http://172.16.5.1:8081/repository/maven-mirror-tencent/")
+        //     }
+        //     maven {
+        //         isAllowInsecureProtocol = true
+        //         setUrl("http://172.16.5.1:8081/repository/maven-private/")
+        //     }
+        // } else {
+        //     if (java.net.InetAddress.getByName("192.168.128.1").isReachable(2000)) {
+        //         println("Current host is not in private network, add VPN repositorys.")
+        //         maven {
+        //             isAllowInsecureProtocol = true
+        //             setUrl("http://192.168.128.1:8081/repository/maven-mirror-tencent/")
+        //         }
+        //         maven {
+        //             isAllowInsecureProtocol = true
+        //             setUrl("http://192.168.128.1:8081/repository/maven-private/")
+        //         }
+        //     } else {
+        //         println("Current host is not in private network, add LOCAL repositorys.")
+        //         maven {
+        //             isAllowInsecureProtocol = true
+        //             setUrl("http://127.0.0.1:8081/repository/maven-mirror-tencent/")
+        //         }
+        //         mavenLocal()
+        //     }
+        // }
 
         // 腾讯云仓库镜像：Maven中心仓库+Google+JCenter
         maven { setUrl("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
@@ -171,6 +171,8 @@ dependencyResolutionManagement {
 /* ----- 工程结构声明 ----- */
 // 主工程名称
 rootProject.name = "Study-Android"
+// 加载自定义插件
+includeBuild("misc/plugin/")
 
 /* ----- 基础知识 ----- */
 include(":M01_Overview:C00_Temporary")
