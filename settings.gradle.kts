@@ -4,19 +4,20 @@
 pluginManagement {
     // 声明Gradle插件仓库
     repositories {
-        // 腾讯云仓库镜像：Maven中心仓库+Google+JCenter
-        maven { setUrl("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
-        // 阿里云仓库镜像：Maven中心仓库+JCenter
-        maven { setUrl("https://maven.aliyun.com/repository/public/") }
         // 阿里云仓库镜像：Gradle社区插件
         maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin/") }
+        // 阿里云仓库镜像：Maven中心仓库+JCenter
+        maven { setUrl("https://maven.aliyun.com/repository/public/") }
+        // 阿里云仓库镜像：Google仓库
+        maven { setUrl("https://maven.aliyun.com/repository/google/") }
+        // 腾讯云仓库镜像：Maven中心仓库+Google+JCenter
+        maven { setUrl("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
 
         gradlePluginPortal()
         mavenCentral()
         google()
     }
 }
-
 
 // 所有模块的依赖配置
 dependencyResolutionManagement {
@@ -54,12 +55,11 @@ dependencyResolutionManagement {
     }
 }
 
-
 /* ----- 工程结构声明 ----- */
 // 主工程名称
 rootProject.name = "Study-Android"
 // 加载自定义插件
-includeBuild("misc/plugin/")
+includeBuild("plugin")
 
 /* ----- 基础知识 ----- */
 include(":M01_Overview:C00_Temporary")
@@ -171,8 +171,3 @@ include(":M08_Architecture:C02_Component:S02_LiveData")
 include(":M08_Architecture:C02_Component:S03_ViewBinding")
 include(":M08_Architecture:C02_Component:S04_DataBinding")
 include(":M08_Architecture:C02_Component:S05_Compose")
-
-
-// 清空缓存目录
-delete("build")
-mkdir("build")

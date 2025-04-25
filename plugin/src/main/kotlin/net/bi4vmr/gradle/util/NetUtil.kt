@@ -14,7 +14,7 @@ object NetUtil {
         var socket: Socket? = null
         try {
             socket = Socket(ip, port)
-            socket.soTimeout = 500
+            socket.soTimeout = 2000
             return true
         } catch (e: Exception) {
             System.err.println("TCP connect test failed! IP:[$ip] Port:[$port] Reason:[${e.message}]")

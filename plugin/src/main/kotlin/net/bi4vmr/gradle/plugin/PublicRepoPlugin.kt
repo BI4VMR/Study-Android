@@ -16,6 +16,8 @@ import org.gradle.kotlin.dsl.repositories
 class PublicRepoPlugin : Plugin<Project> {
 
     companion object {
+        const val NAME: String = "net.bi4vmr.gradle.plugin.repo.public"
+
         // 预设仓库列表
         private val REPOS = listOf(
             MavenRepos.PUBLIC_TENCENT,
