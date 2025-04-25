@@ -6,6 +6,7 @@ import net.bi4vmr.gradle.util.NetUtil
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
+import org.gradle.kotlin.dsl.extra
 import java.io.File
 
 /**
@@ -17,8 +18,21 @@ import java.io.File
  * @since 1.0.0
  */
 class PrivateRepoPlugin : Plugin<Project> {
+    companion object {
+        var aaa = 1
+    }
 
     override fun apply(target: Project) {
+        aaa += 1
+        println("apply:aaa[$aaa]")
+        if (target.rootProject.extra.has("AAA")) {
+            val a = target.rootProject.extra.get("AAA") as Int
+            target.rootProject.extra.set("AAA", a + 1)
+            println("apply:a[$a]")
+        } else {
+            target.rootProject.extra.set("AAA", 0)
+        }
+
         // 如果网络测试结果不存在，则先进行测试；否则根据测试结果选择仓库。
         val testResult = File("${target.rootDir}${File.separatorChar}build${File.separatorChar}net-test.txt")
         if (!testResult.exists()) {
