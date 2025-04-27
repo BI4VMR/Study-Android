@@ -4,17 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import net.bi4vmr.study.base.theme.TestComposeTheme
 
@@ -32,59 +28,60 @@ class TestUIBase2 : ComponentActivity() {
         setContent {
             // 应用主题
             TestComposeTheme {
-                // 应用布局
-                Scaffold(modifier = Modifier.fillMaxSize()) { _ ->
-                    // 放置控件
-                    Greeting()
+                Row {
+                    TaskInfo()
                 }
             }
         }
     }
 
-    // 声明Compose组件
     @Composable
-    fun Greeting() {
+    fun TaskInfo() {
+        // 声明状态变量，每当状态变量被改变时，该Composable函数将被运行环境调用重绘UI。
         val count: MutableState<Int> = remember { mutableStateOf(0) }
+
         Column {
-            Text("当前数值： ${count.value}")
-            Button(onClick = { count.value++ }) {
-                Text("增加")
-            }
-            Button(onClick = { count.value-- }) {
-                Text("减少")
+            // 读取状态变量
+            Text("待办事项：${count.value}")
+            Row {
+                // 按钮被点击后修改状态变量的值
+                Button(onClick = { count.value++ }) {
+                    Text("增加")
+                }
+                Button(onClick = { count.value-- }) {
+                    Text("减少")
+                }
             }
         }
     }
 
-    @Composable
-    fun Greeting2() {
-        var count: Int by remember { mutableStateOf(0) }
-        Column {
-            Text("当前数值： $count")
-            Button(onClick = { count++ }) {
-                Text("增加")
-            }
-            Button(onClick = { count-- }) {
-                Text("减少")
-            }
-        }
-    }
-
-    // 声明Compose组件预览
     @Preview(showBackground = true)
     @Composable
-    fun GreetingPreview() {
+    fun TaskInfoPreview() {
         TestComposeTheme {
-            Greeting()
+            TaskInfo()
         }
     }
 
-    // 声明Compose组件预览
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview2() {
-        TestComposeTheme {
-            Greeting2()
-        }
-    }
+    // @Composable
+    // fun Greeting2() {
+    //     var count: Int by remember { mutableStateOf(0) }
+    //     Column {
+    //         Text("待办事项：$count")
+    //         Button(onClick = { count++ }) {
+    //             Text("增加")
+    //         }
+    //         Button(onClick = { count-- }) {
+    //             Text("减少")
+    //         }
+    //     }
+    // }
+
+    // @Preview(showBackground = true)
+    // @Composable
+    // fun GreetingPreview2() {
+    //     TestComposeTheme {
+    //         TaskInfo()
+    //     }
+    // }
 }
