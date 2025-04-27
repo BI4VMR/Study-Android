@@ -115,6 +115,8 @@ include(":M03_UI:C08_CtrlCustom:S01_Base")
 include(":M03_UI:C08_CtrlCustom:S02_AnalogClock")
 include(":M03_UI:C10_Compose:S01_Base")
 include(":M03_UI:C10_Compose:S02_Layout")
+include(":M03_UI:C10_Compose:S03_Ctrl")
+include(":M03_UI:C10_Compose:S04_State")
 
 /* ----- 系统组件 ----- */
 include(":M04_System:C01_Common:S01_Bundle")
