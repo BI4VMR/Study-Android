@@ -1,5 +1,6 @@
 package net.bi4vmr.gradle.util
 
+import java.net.InetSocketAddress
 import java.net.Socket
 
 /**
@@ -11,16 +12,16 @@ import java.net.Socket
 object NetUtil {
 
     fun scanByTCP(ip: String, port: Int): Boolean {
-        var socket: Socket? = null
+        val socket = Socket()
         try {
-            socket = Socket(ip, port)
-            socket.soTimeout = 2000
+            socket.connect(InetSocketAddress(ip, port), 2000)
+            println("TCP connect test success! IP:[$ip] Port:[$port]")
             return true
         } catch (e: Exception) {
             System.err.println("TCP connect test failed! IP:[$ip] Port:[$port] Reason:[${e.message}]")
             return false
         } finally {
-            socket?.close()
+            socket.close()
         }
     }
 }
