@@ -3,26 +3,17 @@ package net.bi4vmr.study.base
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.toSize
 import net.bi4vmr.study.base.theme.TestComposeTheme
 
 /**
@@ -39,71 +30,90 @@ class TestUIBase : ComponentActivity() {
         setContent {
             // 应用主题
             TestComposeTheme {
-                // 应用布局
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    // 放置控件
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Column {
+                    Text("示例一：")
+                    TaskInfo()
+                    Text("示例二：")
+                    TaskInfo2()
                 }
             }
         }
     }
 
-    // 声明Compose组件
+    /**
+     * 示例一：状态的简单应用。
+     *
+     * 在本示例中，我们为Composable组件添加状态，实现待办事项统计功能。
+     */
     @Composable
-    fun Greeting(name: String, modifier: Modifier = Modifier) {
-        // 声明文本框
-        Text(
-            text = "Hello $name!",
-            modifier = modifier
-        )
-    }
+    fun TaskInfo() {
+        // 声明状态变量，每当状态变量被改变时，该Composable函数将被运行环境调用重绘UI。
+        val count: MutableState<Int> = remember { mutableStateOf(0) }
 
-    // 声明Compose组件预览
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview() {
-        TestComposeTheme {
-            Greeting("Android")
-        }
-    }
-
-    @Composable
-    @Preview(showBackground = true)
-    fun ClickableMessagePreview() {
-        TestComposeTheme {
+        Column {
+            // 读取状态变量
+            Text("待办事项：${count.value}")
             Row {
-                RecommendSpeech("Test 0101")
-                RecommendSpeech("Test")
-                RecommendSpeech("T")
+                // 按钮被点击后修改状态变量的值
+                Button(onClick = { count.value++ }) {
+                    Text("增加")
+                }
+                Button(onClick = { count.value-- }) {
+                    Text("减少")
+                }
             }
         }
     }
 
+    @Preview(showBackground = true)
     @Composable
-    fun RecommendSpeech(
-        content: String
-    ) {
-        BoxWithConstraints {
-            val textSize = remember { mutableStateOf(Size.Zero) }
+    fun TaskInfoPreview() {
+        TestComposeTheme {
+            TaskInfo()
+        }
+    }
 
-            Box(
-                modifier = Modifier
-                    .alpha(0.1F)
-                    .background(MaterialTheme.colorScheme.error, RoundedCornerShape(24.dp))
-                    .matchParentSize()
-            )
+    @Composable
+    fun TaskInfo2() {
+        // 将普通变量委托给 `remember` 函数
+        var count: Int by remember { mutableStateOf(0) }
 
-            Text(
-                text = "“$content”",
-                modifier = Modifier
-                    .padding(24.dp, 8.dp)
-                    .onGloballyPositioned { coordinates ->
-                        textSize.value = coordinates.size.toSize()
-                    }
-            )
+        Column {
+            Text("待办事项：$count")
+            Row {
+                Button(onClick = { count++ }) {
+                    Text("增加")
+                }
+                Button(onClick = { count-- }) {
+                    Text("减少")
+                }
+            }
+        }
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun TaskInfo2Preview() {
+        TestComposeTheme {
+            TaskInfo2()
+        }
+    }
+
+    @Composable
+    fun TaskInfo3() {
+        // 将普通变量委托给 `remember` 函数
+        var count: Int by remember { mutableStateOf(0) }
+
+        Column {
+            Text("待办事项：$count")
+            Row {
+                Button(onClick = { count++ }) {
+                    Text("增加")
+                }
+                Button(onClick = { count-- }) {
+                    Text("减少")
+                }
+            }
         }
     }
 }
