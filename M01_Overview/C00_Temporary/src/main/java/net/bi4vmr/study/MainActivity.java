@@ -36,6 +36,9 @@ import net.bi4vmr.study.permission.AospPermissionMgr;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     public boolean isAppEnabled(Context context, String packageName) {
@@ -54,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        getLanguages().forEach(locale -> {
+            // Log.d("TestApp","locale: "+ locale);
+        });
 
         // 创建IntentFilter并添加ACTION_PACKAGE_CHANGED
         // IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_CHANGED);
@@ -178,4 +185,35 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     * 获取当前系统支持的语言集
+     *
+     *
+     * @return
+     */
+    private List<String> getLanguages(){
+        List<String> list=new ArrayList<>();
+        Locale[] lg = Locale.getAvailableLocales();
+        for(Locale language:lg){
+            String name=language.getDisplayLanguage();
+            //去掉重复的语言
+            // if (!list.contains(name)){
+                list.add(name);
+            // }
+            Log.d("TestApp","locale: "+ language.toLanguageTag());
+        }
+        return list;
+    }
+
+    /**
+     * 获取当前系统语言
+     *      * settings get system system_locales
+     * @return
+     */
+    private String getCurrentLanguage(){
+        Locale locale=getResources().getConfiguration().locale;
+        return locale.getDisplayLanguage();
+    }
+
 }
