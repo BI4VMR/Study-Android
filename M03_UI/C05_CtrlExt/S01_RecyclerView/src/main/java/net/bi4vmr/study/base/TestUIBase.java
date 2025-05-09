@@ -12,15 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Name        : TestUIBase
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-04-04 15:38
- * <p>
- * Description : 测试界面：基本应用。
+ * 测试界面：基本应用。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class TestUIBase extends AppCompatActivity {
 

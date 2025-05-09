@@ -15,15 +15,10 @@ import net.bi4vmr.study.R;
 import java.util.List;
 
 /**
- * Name        : MyAdapter
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-04-04 15:38
- * <p>
- * Description : RecyclerView的适配器。
+ * RecyclerView的适配器。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
@@ -61,7 +56,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // 将布局文件实例化为View对象
         View view = LayoutInflater.from(mContext)
-                // 此方法的第三参数必须为"false"，因为控件将会在需要时自行Attach至视图。
+                // 此处的第三参数必须为"false"，因为控件将由ViewHolder控制Attach与Detach。
                 .inflate(R.layout.list_item_simple, parent, false);
         // 创建ViewHolder实例，并将View对象保存在其中。
         return new MyViewHolder(view);
@@ -119,14 +114,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
 
         /**
-         * Name        : 绑定数据
+         * 绑定数据。
          * <p>
-         * Description : 将数据源中的VO属性与View中的控件绑定。
+         * 取出数据源集合中与当前Item位置一致的数据项，并更新到View中的控件。
          */
         public void bindData() {
-            // 获取当前项的数据
+            // 获取当前Item位置对应的数据项
             SimpleVO vo = dataSource.get(getAdapterPosition());
-            // 将数据设置到控件中
+            // 将数据设置到视图中
             tvTitle.setText(vo.getTitle());
         }
     }
