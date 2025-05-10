@@ -26,7 +26,7 @@
 
         <!-- 示例界面：点击事件 -->
         <activity
-            android:name=".clickevent.DemoClickEventUI"
+            android:name=".clickevent.TestUIClickEvent"
             android:exported="false" />
 
         <!-- 示例界面：多种View类型 -->

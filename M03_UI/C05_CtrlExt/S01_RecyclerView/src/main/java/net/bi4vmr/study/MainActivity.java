@@ -7,7 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
-import net.bi4vmr.study.clickevent.DemoClickEventUI;
+import net.bi4vmr.study.clickevent.TestUIClickEvent;
 import net.bi4vmr.study.diffutil.DemoDiffUtilUI;
 import net.bi4vmr.study.updateitem.DemoUpdateItemUI;
 import net.bi4vmr.study.updatelist.DemoUpdateListUI;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         // 点击事件
         Button btnClickEvent = findViewById(R.id.btnClickEvent);
         btnClickEvent.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemoClickEventUI.class);
+            Intent intent = new Intent(this, TestUIClickEvent.class);
             startActivity(intent);
         });
 

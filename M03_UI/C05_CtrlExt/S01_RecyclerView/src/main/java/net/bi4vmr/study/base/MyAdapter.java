@@ -24,6 +24,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     // 上下文环境
     private final Context mContext;
+
     // 数据源
     private final List<SimpleVO> dataSource;
 
