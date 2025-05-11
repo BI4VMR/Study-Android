@@ -30,7 +30,7 @@ class TestUIBaseKT : AppCompatActivity() {
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
         // 设置适配器
-        val adapter = MyAdapterKT()
+        val adapter = MyAdapterKT(datas)
         recyclerView.adapter = adapter
     }
 }

@@ -37,7 +37,7 @@ public class TestUIClickEvent extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         // 设置适配器
-        MyAdapter adapter = new MyAdapter(getApplicationContext(), datas);
+        MyAdapter adapter = new MyAdapter(datas);
         recyclerView.setAdapter(adapter);
         // 设置表项点击监听器
         adapter.setItemClickListener((position, item) -> {

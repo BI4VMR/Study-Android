@@ -1,6 +1,7 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.clickevent
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,7 @@ import net.bi4vmr.study.R
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TestUIBaseKT : AppCompatActivity() {
+class TestUIClickEventKT : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +31,13 @@ class TestUIBaseKT : AppCompatActivity() {
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
         // 设置适配器
-        val adapter = MyAdapterKT()
+        val adapter = MyAdapterKT(datas)
         recyclerView.adapter = adapter
+        // 设置表项点击监听器
+        adapter.setItemClickListener { position: Int, _: SimpleVOKT ->
+            /* “表项被点击”事件回调 */
+            Toast.makeText(this, "表项" + (position + 1), Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 }

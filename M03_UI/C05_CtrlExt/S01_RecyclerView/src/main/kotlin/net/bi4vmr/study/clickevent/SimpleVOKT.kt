@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.clickevent
 
 /**
  * 列表项的实体类。

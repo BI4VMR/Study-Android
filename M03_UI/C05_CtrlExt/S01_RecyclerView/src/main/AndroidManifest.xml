@@ -53,5 +53,15 @@
         <activity
             android:name=".viewcache.DemoViewCacheUI"
             android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：点击事件(KT) -->
+        <activity
+            android:name=".clickevent.TestUIClickEventKT"
+            android:exported="false" />
     </application>
 </manifest>
