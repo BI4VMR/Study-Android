@@ -4,9 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import net.bi4vmr.study.R;
+import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +18,13 @@ import java.util.List;
  */
 public class TestUIBase extends AppCompatActivity {
 
+    private TestuiBaseBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testui_base);
+        binding = TestuiBaseBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // 制造测试数据
         List<SimpleVO> datas = new ArrayList<>();
@@ -30,13 +32,11 @@ public class TestUIBase extends AppCompatActivity {
             datas.add(new SimpleVO("项目" + (i + 1)));
         }
 
-        // 获取控件实例
-        RecyclerView recyclerView = findViewById(R.id.rvContent);
         // 设置布局管理器
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        binding.rvContent.setLayoutManager(linearLayoutManager);
         // 设置适配器
         MyAdapter adapter = new MyAdapter(datas);
-        recyclerView.setAdapter(adapter);
+        binding.rvContent.setAdapter(adapter);
     }
 }

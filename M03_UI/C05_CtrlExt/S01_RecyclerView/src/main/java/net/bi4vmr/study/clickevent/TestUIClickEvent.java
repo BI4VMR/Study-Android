@@ -5,9 +5,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import net.bi4vmr.study.R;
+import net.bi4vmr.study.databinding.TestuiClickeventBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +19,13 @@ import java.util.List;
  */
 public class TestUIClickEvent extends AppCompatActivity {
 
+    private TestuiClickeventBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_demo_clickevent);
+        binding = TestuiClickeventBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // 制造测试数据
         List<SimpleVO> datas = new ArrayList<>();
@@ -31,14 +33,12 @@ public class TestUIClickEvent extends AppCompatActivity {
             datas.add(new SimpleVO("项目" + (i + 1)));
         }
 
-        // 获取控件实例
-        RecyclerView recyclerView = findViewById(R.id.rvContent);
         // 设置布局管理器
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        binding.rvContent.setLayoutManager(linearLayoutManager);
         // 设置适配器
         MyAdapter adapter = new MyAdapter(datas);
-        recyclerView.setAdapter(adapter);
+        binding.rvContent.setAdapter(adapter);
         // 设置表项点击监听器
         adapter.setItemClickListener((position, item) -> {
             /* “表项被点击”事件回调 */
