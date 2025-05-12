@@ -30,7 +30,7 @@ class MyAdapterKT(
     /**
      * RecyclerView创建ViewHolder的回调方法。
      *
-     * 当RecyclerView需要新的表项时，将会回调此方法。我们应当在此处创建对应的View，并封装进ViewHolder返回给RecyclerView。
+     * 当RecyclerView创建新的ViewHolder时，将会回调此方法。我们应当在此处创建表项对应的View，并封装进ViewHolder返回给RecyclerView。
      *
      * @param[parent]   当前表项将要被放入的视图容器。
      * @param[viewType] 待创建的View类型。
