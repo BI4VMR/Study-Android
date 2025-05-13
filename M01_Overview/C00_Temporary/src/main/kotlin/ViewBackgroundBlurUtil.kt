@@ -74,31 +74,31 @@ object ViewBackgroundBlurUtil {
         return drawable
     }
 
-    // 在 BaseActivity 中统一管理
-    override fun onDestroy() {
-        // 遍历根布局解除所有 BlurDrawable
-        window.decorView.rootView.let { root ->
-            root.background?.let {
-                if (it is BackgroundBlurDrawable) releaseBlurDrawable(root)
-            }
-            clearBlurInViewHierarchy(root)
-        }
-        super.onDestroy()
-    }
-    private fun clearBlurInViewHierarchy(view: View) {
-        if (view is ViewGroup) {
-            for (i in 0 until view.childCount) {
-                val child = view.getChildAt(i)
-                child.background?.let {
-                    if (it is BackgroundBlurDrawable) {
-                        releaseBlurDrawable(child)
-                    }
-                }
-                if (child is ViewGroup) {
-                    clearBlurInViewHierarchy(child)
-                }
-            }
-        }
-    }
+    // // 在 BaseActivity 中统一管理
+    // override fun onDestroy() {
+    //     // 遍历根布局解除所有 BlurDrawable
+    //     window.decorView.rootView.let { root ->
+    //         root.background?.let {
+    //             if (it is BackgroundBlurDrawable) releaseBlurDrawable(root)
+    //         }
+    //         clearBlurInViewHierarchy(root)
+    //     }
+    //     super.onDestroy()
+    // }
+    // private fun clearBlurInViewHierarchy(view: View) {
+    //     if (view is ViewGroup) {
+    //         for (i in 0 until view.childCount) {
+    //             val child = view.getChildAt(i)
+    //             child.background?.let {
+    //                 if (it is BackgroundBlurDrawable) {
+    //                     releaseBlurDrawable(child)
+    //                 }
+    //             }
+    //             if (child is ViewGroup) {
+    //                 clearBlurInViewHierarchy(child)
+    //             }
+    //         }
+    //     }
+    // }
 
 }
