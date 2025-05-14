@@ -99,17 +99,20 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
+    /**
+     * RecyclerView获取表项总数的回调方法。
+     *
+     * @return 表项总数。
+     */
     @Override
     public int getItemCount() {
         return dataSource.size();
     }
 
     /**
-     * Name        : getItemViewType()
-     * <p>
-     * Description : 获取当前位置的Item类型。
+     * RecyclerView获取表项类型的回调方法。
      *
-     * @param position Item在列表中的位置索引
+     * @param position 表项在列表中的位置。
      */
     @Override
     public int getItemViewType(int position) {
@@ -117,7 +120,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return dataSource.get(position).getViewType();
     }
 
-    /* 第一种表项的ViewHolder */
+    /**
+     * 第一种表项的ViewHolder。
+     */
     class Type1VH extends RecyclerView.ViewHolder {
 
         TextView tvTitle;
@@ -138,7 +143,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    /* 第二种表项的ViewHolder */
+    /**
+     * 第二种表项的ViewHolder。
+     */
     class Type2VH extends RecyclerView.ViewHolder {
 
         TextView tvInfo;
