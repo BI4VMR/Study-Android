@@ -14,7 +14,7 @@ import net.bi4vmr.study.diffutil.DemoDiffUtilUI;
 import net.bi4vmr.study.updateitem.DemoUpdateItemUI;
 import net.bi4vmr.study.updatelist.DemoUpdateListUI;
 import net.bi4vmr.study.viewcache.DemoViewCacheUI;
-import net.bi4vmr.study.viewtype.DemoViewTypeUI;
+import net.bi4vmr.study.viewtype.TestUIViewType;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 多种View类型
         binding.btnViewType.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemoViewTypeUI.class);
+            Intent intent = new Intent(this, TestUIViewType.class);
             startActivity(intent);
         });
 

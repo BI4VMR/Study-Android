@@ -1,6 +1,5 @@
 package net.bi4vmr.study.viewtype;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,32 +14,41 @@ import net.bi4vmr.study.R;
 import java.util.List;
 
 /**
- * Name        : MyAdapter
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-04-04 15:38
- * <p>
- * Description : RecyclerView的适配器。
+ * RecyclerView的适配器。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    // 上下文环境
-    private final Context mContext;
-    // 数据源
+    /**
+     * 数据源。
+     */
     private final List<ListItem> dataSource;
 
-    public MyAdapter(Context context, List<ListItem> dataSource) {
-        this.mContext = context;
+    /**
+     * 构造方法。
+     *
+     * @param dataSource 初始数据源。
+     */
+    public MyAdapter(List<ListItem> dataSource) {
         this.dataSource = dataSource;
     }
 
+    /**
+     * RecyclerView创建ViewHolder的回调方法。
+     * <p>
+     * 当RecyclerView创建新的ViewHolder时，将会回调此方法。我们应当在此处创建表项对应的View，并封装进ViewHolder返回给RecyclerView。
+     *
+     * @param parent   当前表项将要被放入的视图容器。
+     * @param viewType 待创建的View类型。
+     * @return ViewHolder实例。
+     */
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+
         RecyclerView.ViewHolder vh;
         // 根据ViewType参数创建对应的视图实例与ViewHolder
         switch (viewType) {
@@ -61,6 +69,15 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return vh;
     }
 
+    /**
+     * RecyclerView将数据与ViewHolder绑定的回调方法。
+     * <p>
+     * 当RecyclerView将View显示到屏幕上之前，将会回调此方法。我们需要从数据源中根据位置索引找到对应的数据项，然后通过ViewHolder设置各个
+     * 控件，实现View与数据的同步。
+     *
+     * @param holder   ViewHolder实例。
+     * @param position 表项在列表中的位置索引。
+     */
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         // 获取该位置的Item类型

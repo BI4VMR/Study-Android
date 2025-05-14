@@ -31,7 +31,7 @@
 
         <!-- 示例界面：多种View类型 -->
         <activity
-            android:name=".viewtype.DemoViewTypeUI"
+            android:name=".viewtype.TestUIViewType"
             android:exported="false" />
 
         <!-- 示例界面：动态更新列表 -->
