@@ -44,6 +44,7 @@
         <!-- 示例界面：主题 - 深色模式 -->
         <activity
             android:name=".themedark.TestUIThemeDark"
+            android:configChanges="uiMode"
             android:exported="false" />
 
         <!-- 示例界面：样式 - 基本应用(KT) -->

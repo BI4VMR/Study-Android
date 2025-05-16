@@ -1,9 +1,12 @@
 package net.bi4vmr.study.themedark;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.bi4vmr.study.R;
 import net.bi4vmr.study.databinding.TestuiThemeDarkBinding;
 
 /**
@@ -26,6 +29,15 @@ public class TestUIThemeDark extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // binding.btnSwitchTheme.setOnClickListener(v -> switchTheme());
+        binding.btnSwitchMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            binding.vvv.setBackgroundResource(R.drawable.widget_list_item_bg);
+        });
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        binding.vvv.setBackgroundResource(R.drawable.widget_list_item_bg);
     }
 
     // 切换深色模式

@@ -43,6 +43,11 @@
             android:text="我能够吞下玻璃而不伤身。"
             android:textColor="@color/textColor" />
 
+        <View
+            android:id="@+id/vvv"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/btnSwitchMode"
             android:layout_width="wrap_content"
