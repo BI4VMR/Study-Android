@@ -14,7 +14,7 @@ object NetUtil {
     fun scanByTCP(ip: String, port: Int): Boolean {
         val socket = Socket()
         try {
-            socket.connect(InetSocketAddress(ip, port), 2000)
+            socket.connect(InetSocketAddress(ip, port), 500)
             println("TCP connect test success! IP:[$ip] Port:[$port]")
             return true
         } catch (e: Exception) {

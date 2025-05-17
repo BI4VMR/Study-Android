@@ -142,7 +142,7 @@ class ViewBackgroundBlurHelper(private val mView: View) {
         drawable.setBlurRadius(mBlurRadius)
         drawable.setCornerRadius(mCornerRadius)
         if (mBlurColor != -1) {
-            drawable.setColor(mBlurColor)
+            // drawable.setColor(mBlurColor)
         }
         return drawable
     }
