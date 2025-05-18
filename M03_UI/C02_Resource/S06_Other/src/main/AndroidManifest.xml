@@ -28,6 +28,11 @@
             android:name=".dimen.base.TestUIDimenBase"
             android:exported="false" />
 
+        <!-- 示例界面：常量 - 基本应用 -->
+        <activity
+            android:name=".constant.base.TestUIConstantBase"
+            android:exported="false" />
+
         <!-- 示例界面：ID - 基本应用(KT) -->
         <activity
             android:name=".id.base.TestUIIDBaseKT"
@@ -36,6 +41,11 @@
         <!-- 示例界面：尺寸 - 基本应用(KT) -->
         <activity
             android:name=".dimen.base.TestUIDimenBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：常量 - 基本应用(KT) -->
+        <activity
+            android:name=".constant.base.TestUIConstantBaseKT"
             android:exported="false" />
     </application>
 </manifest>
