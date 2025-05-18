@@ -21,38 +21,24 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnBase"
+            android:id="@+id/btnIDBase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="样式 - 基本应用"
+            android:text="ID - 基本应用"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnTheme"
+            android:id="@+id/btnDimenBase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="主题 - 基本应用"
+            android:text="尺寸 - 基本应用"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnThemeAttrsInternal"
+            android:id="@+id/btnConstBase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="主题 - 内置属性"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnThemeAttrsCustom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="主题 - 自定义属性"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnThemeDark"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="主题 - 深色模式"
+            android:text="常量 - 基本应用"
             android:textAllCaps="false" />
 
         <TextView
@@ -63,38 +49,24 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnBaseKT"
+            android:id="@+id/btnIDBaseKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="样式 - 基本应用"
+            android:text="ID - 基本应用"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnThemeKT"
+            android:id="@+id/btnDimenBaseKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="主题 - 基本应用"
+            android:text="尺寸 - 基本应用"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnThemeAttrsInternalKT"
+            android:id="@+id/btnConstBaseKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="主题 - 内置属性"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnThemeAttrsCustomKT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="主题 - 自定义属性"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnThemeDarkKT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="主题 - 深色模式"
+            android:text="常量 - 基本应用"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

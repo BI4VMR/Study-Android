@@ -13,10 +13,10 @@ import net.bi4vmr.study.databinding.TestuiIdBaseBinding
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TestUIBaseKT : AppCompatActivity() {
+class TestUIIDBaseKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-${TestUIBaseKT::class.java.simpleName}"
+        private val TAG: String = "TestApp-${TestUIIDBaseKT::class.java.simpleName}"
     }
 
     private val binding: TestuiIdBaseBinding by lazy {
@@ -30,7 +30,7 @@ class TestUIBaseKT : AppCompatActivity() {
         // 根据ID获取控件
         val button1 = findViewById<Button>(R.id.btnTest)
         button1.setOnClickListener {
-            Toast.makeText(this@TestUIBaseKT, "btnTest被点击了", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@TestUIIDBaseKT, "btnTest被点击了", Toast.LENGTH_SHORT).show()
         }
 
         // 使用代码设置控件的ID
@@ -41,7 +41,7 @@ class TestUIBaseKT : AppCompatActivity() {
         // 根据ID获取控件
         val button2_ID = findViewById<Button>(R.id.btnTest2)
         button2_ID.setOnClickListener {
-            Toast.makeText(this@TestUIBaseKT, "btnTest2被点击了", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@TestUIIDBaseKT, "btnTest2被点击了", Toast.LENGTH_SHORT).show()
         }
     }
 }
