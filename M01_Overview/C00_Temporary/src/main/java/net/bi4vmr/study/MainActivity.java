@@ -136,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
 
         // player.prepare();
         // player.play();
+
+        binding.CircularProgressBar.setProgress(11F);
     }
 
     @Override
