@@ -1,56 +1,164 @@
 package net.bi4vmr.study
 
-/**
- * TODO 添加简述。
- *
- * TODO 添加详情。
- *
- * @author yigangzhan@pateo.com.cn
- * @since 1.0.0
- */
-import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
+import androidx.annotation.ColorInt
+import androidx.annotation.Px
+import androidx.annotation.UiContext
 
+/**
+ * 饼状进度条。
+ *
+ * 参考工程：
+ *
+ * - [EasyView](https://github.com/lilongweidev/EasyView) : PieProgressBar
+ *
+ * @author bi4vmr@outlook.com
+ * @version 1.0
+ */
 class PieProgressBar @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
+    @UiContext
+    private val mContext: Context,
+    attrs: AttributeSet? = null
+) : View(mContext, attrs) {
 
     companion object {
+
+        private const val TAG: String = "PieProgressBar"
+
         /**
-         * 默认起始角度 - 12点位置。
+         * 最小进度：0。
          */
-        const val DEFAULT_STARTDEGREE: Int = 270
+        const val PROGRESS_MIN: Int = 0
+
+        /**
+         * 初始进度（默认值：50）。
+         */
+        const val PROGRESS_DEFAULT: Int = 50
+
+        /**
+         * 最大进度（默认值：100）。
+         */
+        const val PROGRESS_MAX_DEFAULT: Int = 100
+
+        /**
+         * 起始绘制角度（默认值：12点位置）。
+         */
+        const val START_DEGREE_DEFAULT: Float = 270.0F
+
+        /**
+         * 饼图与圆环颜色（默认值：绿色）。
+         */
+        const val COLOR_DEFAULT: Int = Color.GREEN
+
+        /**
+         * 圆环宽度（默认值：4 px）。
+         */
+        const val RING_WIDTH_DEFAULT: Int = 4
+
+        /**
+         * 是否显示圆环（默认值：显示）。
+         */
+        const val RING_DISPLAY_DEFAULT: Boolean = true
     }
 
-    private var mRadius: Int = 80
-    private var mStrokeWidth: Int = 8
-    private var mProgressColor: Int = Color.BLACK
-    private var mStartDegree: Int = DEFAULT_STARTDEGREE
+    /**
+     * 当前进度。
+     */
+    @get:JvmName("getProgressColor")
+    @get:ColorInt
+    @set:JvmName("setProgressColor")
+    var mProgress: Int = COLOR_DEFAULT
+        set(@ColorInt value) {
+            field = value
+            invalidate()
+        }
 
-    @get:JvmName("getEdf") // 定义Java getter方法名为 getJavaName
-    @set:JvmName("setJavaName") // 定义Java setter方法名为 setJavaName
-    var mEndAngle: Int = 360
+    /**
+     * 最大进度。
+     */
+    @get:JvmName("getProgressColor")
+    @get:ColorInt
+    @set:JvmName("setProgressColor")
+    var mMaxProgress: Int = COLOR_DEFAULT
+        set(@ColorInt value) {
+            field = value
+            invalidate()
+        }
+
+    /**
+     * 起始绘制角度。
+     */
+    @get:JvmName("getStartDegree")
+    @set:JvmName("setStartDegree")
+    var mStartDegree: Float = START_DEGREE_DEFAULT
         set(value) {
             field = value
             invalidate()
         }
-    private var mMaxProgress: Float = 100f
+
+    /**
+     * 饼图颜色。
+     */
+    @get:JvmName("getProgressColor")
+    @get:ColorInt
+    @set:JvmName("setProgressColor")
+    var mPieColor: Int = COLOR_DEFAULT
+        set(@ColorInt value) {
+            field = value
+            invalidate()
+        }
+
+    /**
+     * 圆环颜色。
+     */
+    @get:JvmName("getRingColor")
+    @get:ColorInt
+    @set:JvmName("setRingColor")
+    var mRingColor: Int = COLOR_DEFAULT
+        set(@ColorInt value) {
+            field = value
+            invalidate()
+        }
+
+    /**
+     * 圆环宽度。
+     */
+    @get:JvmName("getRingWidth")
+    @get:Px
+    @set:JvmName("setRingWidth")
+    var mRingWidth: Int = RING_WIDTH_DEFAULT
+        set(@Px value) {
+            field = value
+            invalidate()
+        }
+
+    /**
+     * 是否显示圆环。
+     */
+    @get:JvmName("isRingDisplay")
+    @set:JvmName("setRingDisplay")
+    var mRingDisplay: Boolean = RING_DISPLAY_DEFAULT
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    private var mStrokeWidth: Int = 8
+
+    // private var mMaxProgress: Float = 100f
     private var mCurrentProgress: Float = 0f
     private var isGradient: Boolean = false
     private var colorArray: IntArray? = null
-    private var mDuration: Long = 1000
-    private var animationEnable: Boolean = false
     private var isCounterClockwise: Boolean = false
     private var mCurrentAngle: Float = 0f
     private val rectF by lazy { RectF() }
     private val strokePaint by lazy {
         Paint().apply {
-            color = mProgressColor
+            color = mPieColor
             style = Paint.Style.STROKE
             strokeWidth = mStrokeWidth.toFloat()
             isAntiAlias = true
@@ -58,15 +166,24 @@ class PieProgressBar @JvmOverloads constructor(
     }
 
     init {
-        context.obtainStyledAttributes(attrs, R.styleable.PieProgressBar, defStyleAttr, 0).apply {
-            mRadius = getDimensionPixelSize(R.styleable.PieProgressBar_radius, 80)
-            mStrokeWidth = getDimensionPixelSize(R.styleable.PieProgressBar_strokeWidth, 8)
-            mProgressColor = getColor(R.styleable.PieProgressBar_progressbarColor, Color.BLACK)
-            mMaxProgress = getInt(R.styleable.PieProgressBar_maxProgress, 100).toFloat()
-            mCurrentProgress = getInt(R.styleable.PieProgressBar_progress, 0).toFloat()
-            isGradient = getBoolean(R.styleable.PieProgressBar_gradient, false)
+        if (attrs != null) {
+            parseXMLAttrs(attrs)
+        }
+    }
+
+    // 解析XML属性
+    private fun parseXMLAttrs(attrs: AttributeSet) {
+        mContext.obtainStyledAttributes(attrs, R.styleable.PieProgressBar).use {
+            mProgress = it.getInt(R.styleable.PieProgressBar_progress, PROGRESS_DEFAULT)
+            mMaxProgress = it.getInt(R.styleable.PieProgressBar_maxProgress, PROGRESS_MAX_DEFAULT)
+            mPieColor = it.getColor(R.styleable.PieProgressBar_pieColor, COLOR_DEFAULT)
+            mRingColor = it.getColor(R.styleable.PieProgressBar_ringColor, COLOR_DEFAULT)
+            mRingWidth = it.getDimensionPixelSize(R.styleable.PieProgressBar_ringWidth, RING_WIDTH_DEFAULT)
+            mRingDisplay = it.getBoolean(R.styleable.PieProgressBar_ringDisplay, RING_DISPLAY_DEFAULT)
+
+            // isGradient = getBoolean(R.styleable.PieProgressBar_gradient, false)
             mStartDegree = getInt(R.styleable.PieProgressBar_startDegree, DEFAULT_STARTDEGREE)
-            isCounterClockwise = getBoolean(R.styleable.PieProgressBar_counterClockwise, false)
+            // isCounterClockwise = getBoolean(R.styleable.PieProgressBar_counterClockwise, false)
             val textArray = getTextArray(R.styleable.PieProgressBar_gradientColorArray)
             textArray?.let {
                 colorArray = IntArray(it.size).apply {
@@ -75,23 +192,18 @@ class PieProgressBar @JvmOverloads constructor(
                     }
                 }
             }
-            recycle()
         }
-    }
-
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = when (MeasureSpec.getMode(widthMeasureSpec)) {
-            MeasureSpec.UNSPECIFIED, MeasureSpec.AT_MOST -> mRadius * 2
-            else -> MeasureSpec.getSize(widthMeasureSpec)
-        }
-        setMeasuredDimension(width, width)
     }
 
     override fun onDraw(canvas: Canvas) {
+        Log.d("PieProgressBar", "OnDraw. Width:[$width] Height:[$height]")
         val centerX = (width / 2).toFloat()
-        rectF.set(0f, 0f, centerX * 2, centerX * 2)
+        val centerY = (height / 2).toFloat()
+        rectF.set(0f, 0f, centerX * 2, centerY * 2)
         // Draw stroke
-        canvas.drawCircle(centerX, centerX, mRadius - (mStrokeWidth / 2).toFloat(), strokePaint)
+        // canvas.drawCircle(centerX, centerY, mRadius - (mStrokeWidth / 2).toFloat(), strokePaint)
+        // canvas.drawCircle(centerX, centerY, (width / 2).toFloat(), strokePaint)
+        canvas.drawCircle(centerX, centerY, ((width / 2) - (mStrokeWidth / 2)).toFloat(), strokePaint)
         // Draw progress
         val paint = Paint().apply {
             style = Paint.Style.FILL
@@ -108,12 +220,16 @@ class PieProgressBar @JvmOverloads constructor(
                 Shader.TileMode.MIRROR
             )
         }
-        val currentAngle = if (animationEnable) mCurrentAngle else 360 * (mCurrentProgress / mMaxProgress)
-        val (startAngle, sweepAngle) = if (isCounterClockwise) {
-            Pair(mStartDegree - 360f, -currentAngle)
-        } else {
-            Pair(mStartDegree.toFloat(), currentAngle)
+
+        mCurrentAngle = 360 * (mCurrentProgress / mMaxProgress)
+
+        var startAngle: Float = mStartDegree
+        var sweepAngle: Float = mCurrentAngle
+        if (isCounterClockwise) {
+            startAngle = mStartDegree - 360.0F
+            sweepAngle = -mCurrentAngle
         }
+
         canvas.drawArc(rectF, startAngle, sweepAngle, true, paint)
     }
 
@@ -142,23 +258,5 @@ class PieProgressBar @JvmOverloads constructor(
         var validProgress = progress.coerceAtLeast(0f).coerceAtMost(mMaxProgress)
         mCurrentProgress = validProgress
         mCurrentAngle = 360 * (validProgress / mMaxProgress)
-        setAnimator(mStartDegree.toFloat(), mCurrentAngle)
-    }
-
-    fun setAnimationEnable(){
-        animationEnable = true
-    }
-
-    private fun setAnimator(start: Float, target: Float) {
-
-        ValueAnimator.ofFloat(start, target).apply {
-            duration = mDuration
-            setTarget(mCurrentAngle)
-            addUpdateListener {
-                mCurrentAngle = it.animatedValue as Float
-                invalidate()
-            }
-            start()
-        }
     }
 }

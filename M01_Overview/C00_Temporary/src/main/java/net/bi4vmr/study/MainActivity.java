@@ -1,7 +1,6 @@
 package net.bi4vmr.study;
 
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -13,7 +12,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LevelListDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.LocaleList;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +23,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.media3.common.MediaItem;
-import androidx.media3.common.util.UnstableApi;
 import androidx.media3.exoplayer.ExoPlayer;
-import androidx.media3.ui.PlayerView;
 
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.permission.AospPermissionMgr;
@@ -137,7 +133,21 @@ public class MainActivity extends AppCompatActivity {
         // player.prepare();
         // player.play();
 
-        PieProgressBar pb =  new PieProgressBar(this);
+        // PieProgressBar pb =  new PieProgressBar(this);
+        new Thread(() -> {
+            for (int i = 0; i <= 100; i += 5) {
+                try {
+                    Thread.sleep(5000L);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                int finalI = i;
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    binding.progress.setProgress(finalI);
+                });
+            }
+        }).start();
     }
 
     @Override
@@ -191,30 +201,30 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 获取当前系统支持的语言集
      *
-     *
      * @return
      */
-    private List<String> getLanguages(){
-        List<String> list=new ArrayList<>();
+    private List<String> getLanguages() {
+        List<String> list = new ArrayList<>();
         Locale[] lg = Locale.getAvailableLocales();
-        for(Locale language:lg){
-            String name=language.getDisplayLanguage();
-            //去掉重复的语言
+        for (Locale language : lg) {
+            String name = language.getDisplayLanguage();
+            // 去掉重复的语言
             // if (!list.contains(name)){
-                list.add(name);
+            list.add(name);
             // }
-            Log.d("TestApp","locale: "+ language.toLanguageTag());
+            Log.d("TestApp", "locale: " + language.toLanguageTag());
         }
         return list;
     }
 
     /**
      * 获取当前系统语言
-     *      * settings get system system_locales
+     * * settings get system system_locales
+     *
      * @return
      */
-    private String getCurrentLanguage(){
-        Locale locale=getResources().getConfiguration().locale;
+    private String getCurrentLanguage() {
+        Locale locale = getResources().getConfiguration().locale;
         return locale.getDisplayLanguage();
     }
 
