@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--饼状进度条-->
+    <declare-styleable name="PieProgressBar">
+        <!--半径-->
+        <attr name="radius" />
+        <!--最大进度-->
+        <attr name="maxProgress" />
+        <!--当前进度-->
+        <attr name="progress" />
+        <!--进度条进度颜色-->
+        <attr name="progressbarColor" />
+        <!--进度条描边宽度-->
+        <attr name="strokeWidth" />
+        <!--进度是否渐变-->
+        <attr name="gradient" />
+        <!--渐变颜色数组-->
+        <attr name="gradientColorArray" />
+        <!--自定义开始角度-->
+        <attr name="startDegree" format="integer" />
+        <!--是否逆时针方向-->
+        <attr name="counterClockwise" />
+    </declare-styleable>
+</resources>

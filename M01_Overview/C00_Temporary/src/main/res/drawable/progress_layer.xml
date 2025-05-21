@@ -1,4 +1,0 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/outer_ring" /> <!-- 外圈 -->
-    <item android:drawable="@drawable/inner_pie" />   <!-- 内层饼图 -->
-</layer-list>
