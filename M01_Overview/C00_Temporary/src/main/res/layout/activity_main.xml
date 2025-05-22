@@ -57,8 +57,9 @@
         <net.bi4vmr.study.PieProgressBar
             android:id="@+id/progress"
             android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
+            app:reverseDraw="false"
             android:background="#44FF00FF"
-            app:progress="50" />
+            app:progress="40" />
     </LinearLayout>
 </ScrollView>
