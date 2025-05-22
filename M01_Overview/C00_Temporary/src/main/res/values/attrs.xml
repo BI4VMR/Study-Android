@@ -5,10 +5,16 @@
     <declare-styleable name="PieProgressBar">
 
         <!-- 初始进度 -->
-        <attr name="progress" format="integer" />
+        <attr name="progress" format="float" />
+
+        <!-- 最小进度 -->
+        <attr name="minProgress" format="float" />
 
         <!-- 最大进度 -->
-        <attr name="maxProgress" format="integer" />
+        <attr name="maxProgress" format="float" />
+
+        <!-- 圆的半径 -->
+        <attr name="radius" format="integer" />
 
         <!-- 起始绘制角度 -->
         <attr name="startDegree" format="integer" />
