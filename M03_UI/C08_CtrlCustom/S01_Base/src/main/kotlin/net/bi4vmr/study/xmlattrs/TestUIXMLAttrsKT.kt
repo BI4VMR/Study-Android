@@ -4,6 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiXmlattrsKtBinding
 
+/**
+ * 测试界面：XML属性。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 class TestUIXMLAttrsKT : AppCompatActivity() {
 
     companion object {

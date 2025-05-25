@@ -20,15 +20,43 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="XML属性："
+            android:text="XML属性的基本应用："
             android:textColor="@color/black"
             android:textSize="16sp" />
 
+        <!-- XML属性的基本应用 -->
         <net.bi4vmr.study.xmlattrs.BusinessCard2
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:avatar="@drawable/ic_funny_256"
             app:name="田所浩二"
             app:phone="11451419198" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="XML属性类型测试："
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <!-- XML属性类型测试 -->
+        <net.bi4vmr.study.xmlattrs.AttrTestView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:booleanValue="true"
+            app:colorValue="@color/purple_700"
+            app:dimenValue="100dp"
+            app:enumValue="horizontal"
+            app:flagValue="horizontal|vertical"
+            app:floatValue="0.05"
+            app:integerValue="-1000"
+            app:multiTypeValue="@drawable/ic_funny_256"
+            app:refValue1="@drawable/ic_funny_256"
+            app:refValue2="@color/color_state_list"
+            app:refValue3="@array/text_array"
+            app:textValue1="@string/text_with_format"
+            app:textValue2="@string/text_with_format" />
     </LinearLayout>
 </ScrollView>

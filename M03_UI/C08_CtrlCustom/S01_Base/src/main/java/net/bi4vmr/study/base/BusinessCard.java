@@ -15,7 +15,10 @@ import androidx.annotation.Nullable;
 import net.bi4vmr.study.R;
 
 /**
- * 自定义控件示例 - 名片。
+ * 自定义控件：名片。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class BusinessCard extends FrameLayout {
 

@@ -8,7 +8,10 @@ import androidx.annotation.DrawableRes
 import net.bi4vmr.study.databinding.BusinessCardBinding
 
 /**
- * 自定义控件示例 - 名片。
+ * 自定义控件：名片。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 class BusinessCardKT : FrameLayout {
 

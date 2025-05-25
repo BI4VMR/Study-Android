@@ -15,7 +15,10 @@ import net.bi4vmr.study.R;
 import net.bi4vmr.study.databinding.BusinessCardBinding;
 
 /**
- * 自定义控件示例 - 名片2。
+ * 自定义控件：名片2。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class BusinessCard2 extends FrameLayout {
 
