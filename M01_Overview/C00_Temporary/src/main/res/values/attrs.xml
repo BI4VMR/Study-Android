@@ -14,7 +14,7 @@
         <attr name="maxProgress" format="float" />
 
         <!-- 圆的半径 -->
-        <attr name="radius" format="integer" />
+        <attr name="radius" format="dimension" />
 
         <!-- 起始绘制角度 -->
         <attr name="startDegree" format="integer" />

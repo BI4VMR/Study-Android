@@ -66,7 +66,7 @@ public class BusinessCard extends FrameLayout {
     /**
      * 构造方法3。
      * <p>
-     * 可选，与主题有关。
+     * 可选，支持使用主题提供的资源。
      *
      * @param context      上下文环境。
      *                     <p>
@@ -82,7 +82,7 @@ public class BusinessCard extends FrameLayout {
     /**
      * 构造方法4。
      * <p>
-     * 可选，与主题有关。
+     * 可选，支持使用样式提供的资源。
      *
      * @param context      上下文环境。
      *                     <p>

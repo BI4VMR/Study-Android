@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        getLanguages().forEach(locale -> {
-            // Log.d("TestApp","locale: "+ locale);
-        });
+        // getLanguages().forEach(locale -> {
+        //     // Log.d("TestApp","locale: "+ locale);
+        // });
 
         // 创建IntentFilter并添加ACTION_PACKAGE_CHANGED
         // IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_CHANGED);

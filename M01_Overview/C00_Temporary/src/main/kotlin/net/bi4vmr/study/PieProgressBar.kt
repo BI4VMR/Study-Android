@@ -16,9 +16,9 @@ import kotlin.math.min
 /**
  * 饼状进度条。
  *
- * 参考工程：
+ * 参考资料：
  *
- * - [EasyView](https://github.com/lilongweidev/EasyView) : PieProgressBar
+ * - [EasyView - PieProgressBar](https://github.com/lilongweidev/EasyView)
  *
  * @author bi4vmr@outlook.com
  * @version 1.0
@@ -104,18 +104,6 @@ class PieProgressBar @JvmOverloads constructor(
         }
 
     /**
-     * 圆的半径。
-     *
-     * 特殊值 [RADIUS_DEFAULT] 表示与控件最短的边对齐，此时取 [mMaxRadius] 的值作为半径。
-     */
-    @set:JvmName("setRadius")
-    var mRadius: Int = RADIUS_DEFAULT
-        set(value) {
-            field = value
-            invalidate()
-        }
-
-    /**
      * 起始绘制角度。
      */
     @get:JvmName("getStartDegree")
@@ -127,7 +115,7 @@ class PieProgressBar @JvmOverloads constructor(
         }
 
     /**
-     * 起始绘制角度。
+     * 是否逆时针绘制。
      */
     @get:JvmName("isReverseDraw")
     @set:JvmName("setReverseDraw")
@@ -184,15 +172,31 @@ class PieProgressBar @JvmOverloads constructor(
             invalidate()
         }
 
+    /**
+     * 最大饼图半径。
+     *
+     * 饼图只能是圆形，因此最大值为控件最短的边的一半。
+     */
     private var mMaxRadius: Int = 0
+
+    /**
+     * 用户自定义的饼图半径。
+     *
+     * 特殊值 [RADIUS_DEFAULT] 表示与控件最短的边对齐，此时取 [mMaxRadius] 的值作为半径。
+     */
+    private var mRadius: Int = RADIUS_DEFAULT
 
     /**
      * 当前进度。
      */
     private var mProgress: Float = PROGRESS_DEFAULT
 
+    /**
+     * 当前进度对应的角度。
+     */
     private var mDegree: Float = 0F
 
+    // 饼图绘制区域
     private val pieRect = RectF()
 
     // 饼图的画笔
@@ -224,6 +228,7 @@ class PieProgressBar @JvmOverloads constructor(
             mProgress = it.getFloat(R.styleable.PieProgressBar_progress, PROGRESS_DEFAULT)
             mMinProgress = it.getFloat(R.styleable.PieProgressBar_minProgress, PROGRESS_MIN_DEFAULT)
             mMaxProgress = it.getFloat(R.styleable.PieProgressBar_maxProgress, PROGRESS_MAX_DEFAULT)
+            mRadius = it.getDimensionPixelSize(R.styleable.PieProgressBar_radius, RADIUS_DEFAULT)
             mStartDegree = it.getFloat(R.styleable.PieProgressBar_startDegree, START_DEGREE_DEFAULT)
             mReverseDraw = it.getBoolean(R.styleable.PieProgressBar_reverseDraw, REVERSE_DRAW_DEFAULT)
             mPieColor = it.getColor(R.styleable.PieProgressBar_pieColor, COLOR_DEFAULT)
@@ -234,13 +239,13 @@ class PieProgressBar @JvmOverloads constructor(
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        Log.d("PieProgressBar", "OnSizeChanged. Width:[$w] Height:[$h]")
+        // Log.d("PieProgressBar", "OnSizeChanged. Width:[$w] Height:[$h]")
         // 控件不是正方形时，以短边为最大直径绘制圆形。
         mMaxRadius = min(w, h) / 2
 
         if ((mRadius != RADIUS_DEFAULT) && (mRadius > mMaxRadius)) {
-            Log.w(TAG, "mRadius is too large.")
-            mRadius = mMaxRadius
+            Log.w(TAG, "Radius [$mRadius] is out of view bounds, reset to max value [$mMaxRadius].")
+            mRadius = RADIUS_DEFAULT
         }
 
         val rectEdge: Float = (getRadius() * 2).toFloat()
@@ -252,7 +257,7 @@ class PieProgressBar @JvmOverloads constructor(
     }
 
     override fun onDraw(canvas: Canvas) {
-        Log.d("PieProgressBar", "OnDraw. Width:[$width] Height:[$height]")
+        // Log.d("PieProgressBar", "OnDraw. Width:[$width] Height:[$height]")
 
         drawPie(canvas)
         drawRing(canvas)
@@ -270,26 +275,70 @@ class PieProgressBar @JvmOverloads constructor(
         }
 
         val sweepDegree: Float = mDegree * (if (mReverseDraw) -1 else 1)
-
         canvas.drawArc(pieRect, startDegree, sweepDegree, true, piePaint)
     }
 
     // 绘制圆环
     private fun drawRing(canvas: Canvas) {
         if (mRingDisplay) {
-            val centerX = (width / 2).toFloat()
-            val centerY = (height / 2).toFloat()
-            canvas.drawCircle(centerX, centerY, ((width / 2) - (mRingWidth / 2)).toFloat(), ringPaint)
+            val centerX: Float = width / 2.0F
+            val centerY: Float = height / 2.0F
+            // 为了避免圆环超出控件边界，圆环向圆心一侧绘制。
+            val ringRadius: Float = getRadius() - (mRingWidth / 2.0F)
+            canvas.drawCircle(centerX, centerY, ringRadius, ringPaint)
         }
     }
 
-    fun setProgress(progress: Float) {
-        val validProgress = progress.coerceAtLeast(PROGRESS_MIN_DEFAULT).coerceAtMost(mMaxProgress)
-        mProgress = validProgress
-        mDegree = 360 * (validProgress / mMaxProgress)
+    /**
+     * 获取当前进度。
+     *
+     * @return 进度值。
+     */
+    fun getProgress(): Float {
+        return mProgress
     }
 
+    /**
+     * 设置当前进度。
+     *
+     * @param[progress] 进度值。
+     */
+    fun setProgress(progress: Float) {
+        val newProgress = progress.coerceAtLeast(mMinProgress).coerceAtMost(mMaxProgress)
+        if (mProgress != newProgress) {
+            mProgress = newProgress
+            invalidate()
+        }
+    }
+
+    /**
+     * 获取饼图半径。
+     *
+     * @return 半径，单位为像素。
+     */
     fun getRadius(): Int {
         return if (mRadius == RADIUS_DEFAULT) mMaxRadius else mRadius
+    }
+
+    /**
+     * 设置饼图半径。
+     *
+     * @param[radius] 半径，单位为像素。
+     */
+    fun setRadius(radius: Int) {
+        // 如果最大半径为初始值，说明View还没有开始绘制，可以直接设置半径，有效性等到 `onSizeChanged()` 方法回调时进行判断。
+        if (mMaxRadius == 0) {
+            mRadius = radius
+            return
+        }
+
+        if (radius > mMaxRadius) {
+            Log.w(TAG, "Radius [$radius] is out of view bounds, reset to max value [$mMaxRadius].")
+            mRadius = RADIUS_DEFAULT
+        } else {
+            mRadius = radius
+        }
+
+        invalidate()
     }
 }
