@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.annotation.DrawableRes
-import androidx.annotation.UiContext
 import net.bi4vmr.study.databinding.BusinessCardBinding
 
 /**
@@ -15,12 +14,11 @@ import net.bi4vmr.study.databinding.BusinessCardBinding
  * @since 1.0.0
  */
 class BusinessCardSimpleKT @JvmOverloads constructor(
-    @UiContext
-    private val mContext: Context,
+    context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
     defStyleRes: Int = 0
-) : FrameLayout(mContext, attrs, defStyleAttr, defStyleRes) {
+) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     companion object {
         private val TAG: String = "TestApp-${BusinessCardSimpleKT::class.java.simpleName}"
@@ -29,6 +27,10 @@ class BusinessCardSimpleKT @JvmOverloads constructor(
     private val binding: BusinessCardBinding by lazy {
         // 将布局文件渲染生成View实例
         BusinessCardBinding.inflate(LayoutInflater.from(context), this, true)
+    }
+
+    init {
+        // 在此处放置构造阶段的初始化逻辑...
     }
 
     /**

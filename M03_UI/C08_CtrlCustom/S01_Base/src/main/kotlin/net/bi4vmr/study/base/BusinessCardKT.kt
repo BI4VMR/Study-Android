@@ -56,7 +56,7 @@ class BusinessCardKT : FrameLayout {
      *
      *                      后续控件的资源需要基于该实例获取，由于存在深色主题等，因此使用者需要注意区别传入的实例类型。
      * @param[attrs]        XML属性，可能为空值。
-     * @param[defStyleAttr] <>。
+     * @param[defStyleAttr] 主题属性。
      */
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
@@ -69,8 +69,8 @@ class BusinessCardKT : FrameLayout {
      *
      *                      后续控件的资源需要基于该实例获取，由于存在深色主题等，因此使用者需要注意区别传入的实例类型。
      * @param[attrs]        XML属性，可能为空值。
-     * @param[defStyleAttr] <>。
-     * @param[defStyleRes]  <>。
+     * @param[defStyleAttr] 主题属性。
+     * @param[defStyleRes]  样式属性。
      */
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(
         context,

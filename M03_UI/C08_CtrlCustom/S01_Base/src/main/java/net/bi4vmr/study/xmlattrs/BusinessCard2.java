@@ -34,7 +34,18 @@ public class BusinessCard2 extends FrameLayout {
 
     // 构造方法2
     public BusinessCard2(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
+    }
+
+    // 构造方法3
+    public BusinessCard2(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        this(context, attrs, defStyleAttr, 0);
+    }
+
+    // 构造方法4
+    public BusinessCard2(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+
         // 初始化视图
         initView();
 
@@ -44,7 +55,7 @@ public class BusinessCard2 extends FrameLayout {
         }
 
         // 获取自定义属性数组
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BusinessCard2);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BusinessCard2, defStyleAttr, defStyleRes);
         // 获取属性，并设置到子控件上。
         if (ta.hasValue(R.styleable.BusinessCard2_name)) {
             String name = ta.getString(R.styleable.BusinessCard2_name);

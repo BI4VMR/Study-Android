@@ -52,10 +52,5 @@
             android:id="@+id/playerView"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
-
-        <net.bi4vmr.study.PieProgressBar
-            android:id="@+id/progress"
-            android:layout_width="200dp"
-            android:layout_height="200dp" />
     </LinearLayout>
 </ScrollView>

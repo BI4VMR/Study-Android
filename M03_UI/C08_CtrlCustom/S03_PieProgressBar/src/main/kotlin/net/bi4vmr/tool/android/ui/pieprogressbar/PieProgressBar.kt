@@ -1,4 +1,4 @@
-package net.bi4vmr.study
+package net.bi4vmr.tool.android.ui.pieprogressbar
 
 import android.content.Context
 import android.graphics.Canvas
@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
-import androidx.annotation.UiContext
 import kotlin.math.min
 
 /**
@@ -24,9 +23,10 @@ import kotlin.math.min
  * @version 1.0
  */
 class PieProgressBar @JvmOverloads constructor(
-    @UiContext
     private val mContext: Context,
-    attrs: AttributeSet? = null
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+    defStyleRes: Int = 0
 ) : View(mContext, attrs) {
 
     companion object {
@@ -223,8 +223,8 @@ class PieProgressBar @JvmOverloads constructor(
     }
 
     // 解析XML属性
-    private fun parseXMLAttrs(attrs: AttributeSet) {
-        mContext.obtainStyledAttributes(attrs, R.styleable.PieProgressBar).use {
+    private fun parseXMLAttrs(attrs: AttributeSet, defStyleAttr: Int = 0, defStyleRes: Int = 0) {
+        mContext.obtainStyledAttributes(attrs, R.styleable.PieProgressBar, defStyleAttr, defStyleRes).use {
             mProgress = it.getFloat(R.styleable.PieProgressBar_progress, PROGRESS_DEFAULT)
             mMinProgress = it.getFloat(R.styleable.PieProgressBar_minProgress, PROGRESS_MIN_DEFAULT)
             mMaxProgress = it.getFloat(R.styleable.PieProgressBar_maxProgress, PROGRESS_MAX_DEFAULT)

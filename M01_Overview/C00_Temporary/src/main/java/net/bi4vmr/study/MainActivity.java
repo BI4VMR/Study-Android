@@ -132,22 +132,6 @@ public class MainActivity extends AppCompatActivity {
 
         // player.prepare();
         // player.play();
-
-        // PieProgressBar pb =  new PieProgressBar(this);
-        new Thread(() -> {
-            for (int i = 0; i <= 100; i += 5) {
-                try {
-                    Thread.sleep(5000L);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-
-                int finalI = i;
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    binding.progress.setProgress(finalI);
-                });
-            }
-        }).start();
     }
 
     @Override

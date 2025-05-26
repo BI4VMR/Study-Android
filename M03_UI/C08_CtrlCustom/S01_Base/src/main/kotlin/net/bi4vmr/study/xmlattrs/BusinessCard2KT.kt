@@ -1,6 +1,5 @@
 package net.bi4vmr.study.xmlattrs
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
@@ -17,7 +16,12 @@ import net.bi4vmr.study.databinding.BusinessCardBinding
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class BusinessCard2KT : FrameLayout {
+class BusinessCard2KT @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+    defStyleRes: Int = 0
+) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     companion object {
         private val TAG: String = "TestApp-${BusinessCard2KT::class.java.simpleName}"
@@ -28,38 +32,27 @@ class BusinessCard2KT : FrameLayout {
         BusinessCardBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
-    /**
-     * 构造方法1。
-     *
-     * 调用构造方法2，XML属性集合传入空值，避免重复书写“初始化视图”的逻辑。
-     */
-    constructor(context: Context) : this(context, null)
-
-    // 构造方法2
-    @SuppressLint("CustomViewStyleable")
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+    init {
         // 初始化视图
         // 此处留空，因为"binding"变量已经通过"lazy"函数延迟初始化。
 
         // 如果当前实例不是通过布局文件生成的，则不必解析XML属性。
-        if (attrs == null) {
-            return
-        }
-
-        // 获取自定义属性数组
-        val ta: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.BusinessCard2)
-        ta.use {
-            if (ta.hasValue(R.styleable.BusinessCard2_name)) {
-                val name: String? = ta.getString(R.styleable.BusinessCard2_name)
-                binding.tvName.text = name
-            }
-            if (ta.hasValue(R.styleable.BusinessCard2_phone)) {
-                val phone: String? = ta.getString(R.styleable.BusinessCard2_phone)
-                binding.tvPhone.text = phone
-            }
-            if (ta.hasValue(R.styleable.BusinessCard2_avatar)) {
-                val avatar: Drawable? = ta.getDrawable(R.styleable.BusinessCard2_avatar)
-                binding.ivAvatar.setImageDrawable(avatar)
+        if (attrs != null) {
+            // 获取自定义属性数组
+            val ta: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.BusinessCard2)
+            ta.use {
+                if (ta.hasValue(R.styleable.BusinessCard2_name)) {
+                    val name: String? = ta.getString(R.styleable.BusinessCard2_name)
+                    binding.tvName.text = name
+                }
+                if (ta.hasValue(R.styleable.BusinessCard2_phone)) {
+                    val phone: String? = ta.getString(R.styleable.BusinessCard2_phone)
+                    binding.tvPhone.text = phone
+                }
+                if (ta.hasValue(R.styleable.BusinessCard2_avatar)) {
+                    val avatar: Drawable? = ta.getDrawable(R.styleable.BusinessCard2_avatar)
+                    binding.ivAvatar.setImageDrawable(avatar)
+                }
             }
         }
     }
