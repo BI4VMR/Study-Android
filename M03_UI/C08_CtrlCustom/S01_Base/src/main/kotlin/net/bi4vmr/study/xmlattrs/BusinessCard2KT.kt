@@ -1,5 +1,6 @@
 package net.bi4vmr.study.xmlattrs
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
@@ -16,6 +17,7 @@ import net.bi4vmr.study.databinding.BusinessCardBinding
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
+@SuppressLint("CustomViewStyleable")
 class BusinessCard2KT @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -39,7 +41,8 @@ class BusinessCard2KT @JvmOverloads constructor(
         // 如果当前实例不是通过布局文件生成的，则不必解析XML属性。
         if (attrs != null) {
             // 获取自定义属性数组
-            val ta: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.BusinessCard2)
+            val ta: TypedArray =
+                context.obtainStyledAttributes(attrs, R.styleable.BusinessCard2, defStyleAttr, defStyleRes)
             ta.use {
                 if (ta.hasValue(R.styleable.BusinessCard2_name)) {
                     val name: String? = ta.getString(R.styleable.BusinessCard2_name)

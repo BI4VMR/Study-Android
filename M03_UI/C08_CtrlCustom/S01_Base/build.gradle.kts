@@ -30,24 +30,22 @@ android {
         }
     }
 
-    android {
-        signingConfigs {
-            create("AOSP") {
-                storeFile =
-                    file("${rootDir.absolutePath}${File.separator}misc${File.separator}keystore${File.separator}AOSP.keystore")
-                storePassword = "AOSPSystem"
-                keyAlias = "AOSPSystem"
-                keyPassword = "AOSPSystem"
-            }
+    signingConfigs {
+        create("AOSP") {
+            storeFile =
+                file("${rootDir.absolutePath}${File.separator}misc${File.separator}keystore${File.separator}AOSP.keystore")
+            storePassword = "AOSPSystem"
+            keyAlias = "AOSPSystem"
+            keyPassword = "AOSPSystem"
         }
+    }
 
-        buildTypes {
-            getByName("debug") {
-                signingConfig = signingConfigs.getByName("AOSP")
-            }
-            getByName("release") {
-                signingConfig = signingConfigs.getByName("AOSP")
-            }
+    buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("AOSP")
+        }
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("AOSP")
         }
     }
 
