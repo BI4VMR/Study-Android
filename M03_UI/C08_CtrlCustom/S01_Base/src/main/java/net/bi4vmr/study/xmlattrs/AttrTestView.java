@@ -92,6 +92,7 @@ public class AttrTestView extends FrameLayout {
         // 获取文本（忽略格式）
         String textValue1 = ta.getString(R.styleable.AttrTypes_textValue1);
         binding.tvTextValue1.setText(textValue1);
+
         // 获取文本（解析格式）
         CharSequence textValue2 = ta.getText(R.styleable.AttrTypes_textValue2);
         binding.tvTextValue2.setText(textValue2);

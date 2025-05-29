@@ -86,7 +86,7 @@ class AttrTestViewKT @JvmOverloads constructor(
 
             // 获取文本（解析格式）
             val textValue2: CharSequence? = it.getText(R.styleable.AttrTypes_textValue2)
-            binding.tvTextValue1.text = textValue2
+            binding.tvTextValue2.text = textValue2
         }
     }
 
