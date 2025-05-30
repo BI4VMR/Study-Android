@@ -13,6 +13,10 @@
         <!-- 定义属性：尺寸类型 -->
         <attr name="dimenValue" format="dimension" />
 
+        <!-- 定义属性：比例类型 -->
+        <attr name="fractionValue1" format="fraction" />
+        <attr name="fractionValue2" format="fraction" />
+
         <!-- 定义属性：颜色类型 -->
         <attr name="colorValue" format="color" />
 

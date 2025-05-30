@@ -51,6 +51,7 @@ public class AttrTestView extends FrameLayout {
         testBaseType(attrs);
         testTextType(attrs);
         testDimenType(attrs);
+        testFractionType(attrs);
         testColorType(attrs);
         testEnumType(attrs);
         testFlagType(attrs);
@@ -121,7 +122,26 @@ public class AttrTestView extends FrameLayout {
     }
 
     /**
-     * 示例六：颜色类型属性的使用方法。
+     * 示例六：比例类型属性的使用方法。
+     * <p>
+     * 在本示例中，我们定义一些比例类型的XML属性，并在自定义View中解析它们。
+     */
+    private void testFractionType(AttributeSet attrs) {
+        TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.AttrTypes);
+
+        // 解析比例
+        Float fractionValue1 = ta.getFraction(R.styleable.AttrTypes_fractionValue1, 500, 1000, 1.0F);
+        binding.tvFractionValue1.setText(fractionValue1 + "");
+
+        // 解析比例
+        Float fractionValue2 = ta.getFraction(R.styleable.AttrTypes_fractionValue2, 500, 1000, 1.0F);
+        binding.tvFractionValue2.setText(fractionValue2 + "");
+
+        ta.recycle();
+    }
+
+    /**
+     * 示例七：颜色类型属性的使用方法。
      * <p>
      * 在本示例中，我们定义一些颜色类型的XML属性，并在自定义View中解析它们。
      */
@@ -137,7 +157,7 @@ public class AttrTestView extends FrameLayout {
     }
 
     /**
-     * 示例七：枚举类型属性的使用方法。
+     * 示例八：枚举类型属性的使用方法。
      * <p>
      * 在本示例中，我们定义一些枚举类型的XML属性，并在自定义View中解析它们。
      */
@@ -152,7 +172,7 @@ public class AttrTestView extends FrameLayout {
     }
 
     /**
-     * 示例八：标志位属性的使用方法。
+     * 示例九：标志位属性的使用方法。
      * <p>
      * 在本示例中，我们定义一些标志位类型的XML属性，并在自定义View中解析它们。
      */
@@ -167,7 +187,7 @@ public class AttrTestView extends FrameLayout {
     }
 
     /**
-     * 示例九：引用属性的使用方法。
+     * 示例十：引用属性的使用方法。
      * <p>
      * 在本示例中，我们定义一些引用类型的XML属性，并在自定义View中解析它们。
      */
@@ -190,7 +210,7 @@ public class AttrTestView extends FrameLayout {
     }
 
     /**
-     * 示例十：组合属性的使用方法。
+     * 示例十一：组合属性的使用方法。
      * <p>
      * 在本示例中，我们定义一些支持多种类型的XML属性，并在自定义View中解析它们。
      */

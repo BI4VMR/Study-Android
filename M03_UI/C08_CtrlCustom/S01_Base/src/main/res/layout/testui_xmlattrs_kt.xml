@@ -51,6 +51,8 @@
             app:enumValue="horizontal"
             app:flagValue="horizontal|vertical"
             app:floatValue="0.05"
+            app:fractionValue1="50%"
+            app:fractionValue2="50%p"
             app:integerValue="-1000"
             app:multiTypeValue="@drawable/ic_funny_256"
             app:refValue1="@drawable/ic_funny_256"

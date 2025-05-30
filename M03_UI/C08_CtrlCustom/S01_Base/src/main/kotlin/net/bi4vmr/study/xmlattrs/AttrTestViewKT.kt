@@ -44,6 +44,7 @@ class AttrTestViewKT @JvmOverloads constructor(
             testBaseType(attrs)
             testTextType(attrs)
             testDimenType(attrs)
+            testFractionType(attrs)
             testColorType(attrs)
             testEnumType(attrs)
             testFlagType(attrs)
@@ -109,7 +110,24 @@ class AttrTestViewKT @JvmOverloads constructor(
     }
 
     /**
-     * 示例六：颜色类型属性的使用方法。
+     * 示例六：比例类型属性的使用方法。
+     *
+     * 在本示例中，我们定义一些比例类型的XML属性，并在自定义View中解析它们。
+     */
+    private fun testFractionType(attrs: AttributeSet) {
+        context.obtainStyledAttributes(attrs, R.styleable.AttrTypes).use {
+            // 解析比例
+            val fractionValue1 = it.getFraction(R.styleable.AttrTypes_fractionValue1, 500, 1000, 1.0f)
+            binding.tvFractionValue1.text = fractionValue1.toString() + ""
+
+            // 解析比例
+            val fractionValue2 = it.getFraction(R.styleable.AttrTypes_fractionValue2, 500, 1000, 1.0f)
+            binding.tvFractionValue2.text = fractionValue2.toString() + ""
+        }
+    }
+
+    /**
+     * 示例七：颜色类型属性的使用方法。
      *
      * 在本示例中，我们定义一些颜色类型的XML属性，并在自定义View中解析它们。
      */
@@ -123,7 +141,7 @@ class AttrTestViewKT @JvmOverloads constructor(
     }
 
     /**
-     * 示例七：枚举类型属性的使用方法。
+     * 示例八：枚举类型属性的使用方法。
      *
      * 在本示例中，我们定义一些枚举类型的XML属性，并在自定义View中解析它们。
      */
@@ -136,7 +154,7 @@ class AttrTestViewKT @JvmOverloads constructor(
     }
 
     /**
-     * 示例八：标志位属性的使用方法。
+     * 示例九：标志位属性的使用方法。
      *
      * 在本示例中，我们定义一些标志位类型的XML属性，并在自定义View中解析它们。
      */
@@ -149,7 +167,7 @@ class AttrTestViewKT @JvmOverloads constructor(
     }
 
     /**
-     * 示例九：引用属性的使用方法。
+     * 示例十：引用属性的使用方法。
      *
      * 在本示例中，我们定义一些引用类型的XML属性，并在自定义View中解析它们。
      */
@@ -170,7 +188,7 @@ class AttrTestViewKT @JvmOverloads constructor(
     }
 
     /**
-     * 示例十：组合属性的使用方法。
+     * 示例十一：组合属性的使用方法。
      *
      * 在本示例中，我们定义一些支持多种类型的XML属性，并在自定义View中解析它们。
      */
