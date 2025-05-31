@@ -130,11 +130,11 @@ public class AttrTestView extends FrameLayout {
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.AttrTypes);
 
         // 解析比例
-        Float fractionValue1 = ta.getFraction(R.styleable.AttrTypes_fractionValue1, 500, 1000, 1.0F);
+        float fractionValue1 = ta.getFraction(R.styleable.AttrTypes_fractionValue1, 500, 1000, 1.0F);
         binding.tvFractionValue1.setText(fractionValue1 + "");
 
         // 解析比例
-        Float fractionValue2 = ta.getFraction(R.styleable.AttrTypes_fractionValue2, 500, 1000, 1.0F);
+        float fractionValue2 = ta.getFraction(R.styleable.AttrTypes_fractionValue2, 500, 1000, 1.0F);
         binding.tvFractionValue2.setText(fractionValue2 + "");
 
         ta.recycle();

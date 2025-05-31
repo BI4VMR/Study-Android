@@ -1,96 +1,71 @@
 @file:Suppress("UnstableApiUsage")
 
-val versionMinSDK: Int = Integer.valueOf(agp.versions.minSdk.get())
-val versionCompileSDK: Int = Integer.valueOf(agp.versions.compileSdk.get())
-
-val mvnGroupID: String = "net.bi4vmr.tool.android"
-val mvnArtifactID: String = "ui-pieprogressbar"
-val mvnVersion: String = "1.0.0"
+val versionMinSDK: Int = agp.versions.minSdk.get().toInt()
+val versionCompileSDK: Int = agp.versions.compileSdk.get().toInt()
+val versionTargetSDK: Int = agp.versions.targetSdk.get().toInt()
+val versionModuleCode: Int = agp.versions.moduleCode.get().toInt()
+val versionModuleName: String = agp.versions.moduleName.get()
 
 plugins {
-    alias(libAndroid.plugins.library)
+    alias(libAndroid.plugins.application)
     alias(libAndroid.plugins.kotlin)
-    id("maven-publish")
 }
 
 android {
-    namespace = "net.bi4vmr.tool.android.ui.pieprogressbar"
+    namespace = "net.bi4vmr.study"
     compileSdk = versionCompileSDK
 
     defaultConfig {
+        applicationId = "net.bi4vmr.study.ui.ctrlcustom.pieprogressbar"
         minSdk = versionMinSDK
+        targetSdk = versionTargetSDK
+        versionCode = versionModuleCode
+        versionName = versionModuleName
+    }
+
+    signingConfigs {
+        create("AOSP") {
+            storeFile =
+                file("${rootDir.absolutePath}${File.separator}misc${File.separator}keystore${File.separator}AOSP.keystore")
+            storePassword = "AOSPSystem"
+            keyAlias = "AOSPSystem"
+            keyPassword = "AOSPSystem"
+        }
+    }
+
+    buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("AOSP")
+        }
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("AOSP")
+        }
     }
 
     sourceSets {
         getByName("main") {
             java {
-                java.srcDirs("src/main/kotlin")
+                java.srcDir("src/main/kotlin")
             }
         }
     }
 
     compileOptions {
+        // 指定Java源码编译目标版本
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
+        // 指定Kotlin源码编译目标版本
         jvmTarget = "11"
     }
 
     buildFeatures {
         viewBinding = true
     }
-
-    publishing {
-        multipleVariants {
-            // 指定以下配置对所有Build Variant生效
-            allVariants()
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
 }
 
-publishing {
-    repositories {
-        // 私有仓库
-        maven {
-            name = "private"
-            isAllowInsecureProtocol = true
-            setUrl("http://172.16.5.1:8081/repository/maven-private/")
-            credentials {
-                username = "uploader"
-                password = "uploader"
-            }
-        }
-    }
-
-    publications {
-        // 创建名为"maven"的发布配置
-        create<MavenPublication>("maven") {
-            // 产物的基本信息
-            groupId = mvnGroupID
-            artifactId = mvnArtifactID
-            version = mvnVersion
-
-            // 在编译完成后，将"release"类型的产物作为程序包发布。
-            afterEvaluate {
-                from(components.getByName("release"))
-            }
-
-            // POM信息
-            pom {
-                name.set(mvnArtifactID)
-                url.set("https://github.com/BI4VMR/BaseLib-Android")
-                packaging = "aar"
-                developers {
-                    developer {
-                        name.set("BI4VMR")
-                        email.set("bi4vmr@outlook.com")
-                    }
-                }
-            }
-        }
-    }
+dependencies {
+    implementation(libAndroid.bundles.appBaseKT)
 }

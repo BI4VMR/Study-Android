@@ -117,12 +117,12 @@ class AttrTestViewKT @JvmOverloads constructor(
     private fun testFractionType(attrs: AttributeSet) {
         context.obtainStyledAttributes(attrs, R.styleable.AttrTypes).use {
             // 解析比例
-            val fractionValue1 = it.getFraction(R.styleable.AttrTypes_fractionValue1, 500, 1000, 1.0f)
-            binding.tvFractionValue1.text = fractionValue1.toString() + ""
+            val fractionValue1: Float = it.getFraction(R.styleable.AttrTypes_fractionValue1, 500, 1000, 1.0f)
+            binding.tvFractionValue1.text = fractionValue1.toString()
 
             // 解析比例
-            val fractionValue2 = it.getFraction(R.styleable.AttrTypes_fractionValue2, 500, 1000, 1.0f)
-            binding.tvFractionValue2.text = fractionValue2.toString() + ""
+            val fractionValue2: Float = it.getFraction(R.styleable.AttrTypes_fractionValue2, 500, 1000, 1.0f)
+            binding.tvFractionValue2.text = fractionValue2.toString()
         }
     }
 
