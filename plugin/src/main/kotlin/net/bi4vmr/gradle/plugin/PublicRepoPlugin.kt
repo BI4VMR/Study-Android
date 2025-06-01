@@ -23,6 +23,7 @@ class PublicRepoPlugin : Plugin<Project> {
             MavenRepos.PUBLIC_TENCENT,
             MavenRepos.PUBLIC_ALIYUN,
             MavenRepos.GOOGLE_ALIYUN,
+            MavenRepos.SPRING_ALIYUN,
             MavenRepos.JITPACK
         )
     }

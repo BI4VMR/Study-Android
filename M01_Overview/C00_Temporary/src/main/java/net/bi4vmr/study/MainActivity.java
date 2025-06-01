@@ -12,9 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LevelListDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.LocaleList;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +23,7 @@ import android.widget.PopupWindow;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.media3.exoplayer.ExoPlayer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.permission.AospPermissionMgr;
@@ -132,6 +131,16 @@ public class MainActivity extends AppCompatActivity {
 
         // player.prepare();
         // player.play();
+
+        List<VO> list = new ArrayList<>();
+        list.add(new VO("表项A", R.drawable.ic_funny_256));
+        list.add(new VO("表项B", R.drawable.ic_status_wlan_level1));
+        list.add(new VO("表项C", R.drawable.ic_status_wlan_level3));
+        MyAdapter adapter = new MyAdapter();
+        adapter.submit(list);
+
+        binding.rv.setLayoutManager(new LinearLayoutManager(this));
+        binding.rv.setAdapter(adapter);
     }
 
     @Override

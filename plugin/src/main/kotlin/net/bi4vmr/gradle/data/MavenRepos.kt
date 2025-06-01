@@ -37,6 +37,11 @@ object MavenRepos {
         url = "https://maven.aliyun.com/repository/google/",
         description = "阿里云镜像（Google）。"
     )
+    val SPRING_ALIYUN = MavenRepo(
+        name = "Spring-Aliyun",
+        url = "https://maven.aliyun.com/repository/spring/",
+        description = "阿里云镜像（Spring）。"
+    )
 
 
     /* ----- 私有仓库 ----- */

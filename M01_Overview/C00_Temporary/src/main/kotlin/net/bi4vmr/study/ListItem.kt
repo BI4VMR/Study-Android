@@ -1,4 +1,4 @@
-package android.view
+package net.bi4vmr.study
 
 /**
  * TODO 添加简述。
@@ -8,5 +8,9 @@ package android.view
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class ViewRootImpl {
+interface ListItem {
+
+    fun getViewType(): Int {
+        return 0
+    }
 }

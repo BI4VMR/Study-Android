@@ -1,6 +1,5 @@
-package net.bi4vmr.study.net.bi4vmr.study
+package net.bi4vmr.study
 
-import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -9,23 +8,30 @@ import androidx.recyclerview.widget.RecyclerView
  * @since 1.0.0
  * @author bi4vmr@outlook.com
  */
-abstract class BaseAdapter<T> @JvmOverloads constructor(
+abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>(
 
     /**
      * 数据源。
      */
     protected val dataSource: MutableList<T> = mutableListOf()
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<VH>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        TODO("Not yet implemented")
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun onBindViewHolder(holder: VH, position: Int) {
+        val item: T = dataSource[position]
+        holder.bindData(item)
     }
 
     override fun getItemCount(): Int {
         return dataSource.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        val item: T = dataSource[position]
+        return item.getViewType()
+    }
+
+    fun submit(newData: List<T>) {
+        dataSource.clear()
+        dataSource.addAll(newData)
     }
 }

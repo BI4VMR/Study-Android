@@ -1,4 +1,4 @@
-package net.bi4vmr.study.net.bi4vmr.study
+package net.bi4vmr.study
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
  * @since 1.0.0
  * @author bi4vmr@outlook.com
  */
-class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+abstract class BaseViewHolder<T : ListItem>(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+    abstract fun bindData(i: T)
 }

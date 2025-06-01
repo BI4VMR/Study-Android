@@ -21,6 +21,8 @@ compose_compiler = "1.5.7"
 # ----- 实用工具 -----
 utilCodeX = "1.31.1"
 
+freeReflection = "3.1.0"
+
 
 # ----- 媒体技术 -----
 glide_core = "4.16.0"
@@ -93,6 +95,9 @@ compose_ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-mani
 # ----- 实用工具 -----
 # UtilCodeX
 utilCodeX = { group = "com.blankj", name = "utilcodex", version.ref = "utilCodeX" }
+
+# FreeReflection（解除Android 10及以上版本的隐藏接口反射限制）
+freeReflection = { group = "com.github.tiann", name = "FreeReflection", version.ref = "freeReflection" }
 
 
 # ----- 媒体技术 -----
