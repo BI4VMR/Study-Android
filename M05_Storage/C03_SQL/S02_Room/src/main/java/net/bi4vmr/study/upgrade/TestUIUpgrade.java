@@ -2,7 +2,6 @@ package net.bi4vmr.study.upgrade;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +9,12 @@ import net.bi4vmr.study.databinding.TestuiUpgradeBinding;
 
 import java.util.List;
 
+/**
+ * 测试界面：数据库版本升级。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class TestUIUpgrade extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUIUpgrade.class.getSimpleName();

@@ -5,6 +5,12 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiSkillsBinding
 
+/**
+ * 测试界面：进阶技巧。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 class TestUISkillsKT : AppCompatActivity() {
 
     companion object {

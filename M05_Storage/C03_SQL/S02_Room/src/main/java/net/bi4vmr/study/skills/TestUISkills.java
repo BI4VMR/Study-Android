@@ -10,6 +10,12 @@ import net.bi4vmr.study.databinding.TestuiSkillsBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 测试界面：进阶技巧。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class TestUISkills extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUISkills.class.getSimpleName();

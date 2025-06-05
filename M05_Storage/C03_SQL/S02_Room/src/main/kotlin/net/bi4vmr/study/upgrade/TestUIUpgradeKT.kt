@@ -5,6 +5,12 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiUpgradeBinding
 
+/**
+ * 测试界面：数据库版本升级。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 class TestUIUpgradeKT : AppCompatActivity() {
 
     companion object {
