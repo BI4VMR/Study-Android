@@ -8,8 +8,8 @@ import androidx.room.Update
 
 /**
  * 数据访问类：学生信息。
- * <p>
- * 此处需要添加"@Dao"注解，使得Room能够识别到该DAO类。
+ *
+ * 此处需要添加 `@Dao` 注解，使得Room能够识别到该DAO类。
  */
 @Dao
 interface StudentDAOKT {

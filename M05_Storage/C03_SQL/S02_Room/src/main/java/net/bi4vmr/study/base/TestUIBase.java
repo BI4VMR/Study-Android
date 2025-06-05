@@ -9,6 +9,12 @@ import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
 import java.util.List;
 
+/**
+ * 测试界面：基本应用。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class TestUIBase extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();

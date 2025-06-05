@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 /**
  * 实体类：学生。
  * <p>
- * 此处需要添加"@Entity"注解，使得Room能够识别到该实体类。
+ * 此处需要添加 `@Entity` 注解，使得Room能够识别到该实体类。
  */
 @Entity(tableName = "student_info")
 public class Student {
