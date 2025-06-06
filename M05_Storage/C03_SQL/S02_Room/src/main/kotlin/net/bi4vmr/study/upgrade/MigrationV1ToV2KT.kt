@@ -17,10 +17,10 @@ class MigrationV1ToV2KT : Migration(1, 2) {
 
     override fun migrate(db: SupportSQLiteDatabase) {
         Log.i(TAG, "Migrate.")
-        // 修改旧表的名称，防止其他线程读取到旧数据。
+        // 修改旧表的名称
         db.execSQL("ALTER TABLE student_info RENAME TO student_info_temp;")
 
-        // 以新的数据结构创建学生信息表。
+        // 以新的数据结构创建学生信息表
         val createTableSQL: String = """
             CREATE TABLE student_info
             (
@@ -31,7 +31,7 @@ class MigrationV1ToV2KT : Migration(1, 2) {
         """.trimIndent()
         db.execSQL(createTableSQL)
 
-        // 读取旧表中的数据。
+        // 读取旧表中的数据
         val oldDatas: MutableList<StudentKT> = mutableListOf()
         val cursor: Cursor = db.query("SELECT * FROM student_info_temp")
         cursor.use {
@@ -58,7 +58,7 @@ class MigrationV1ToV2KT : Migration(1, 2) {
             db.execSQL(sql)
         }
 
-        // 删除旧表。
+        // 删除旧表
         db.execSQL("DROP TABLE student_info_temp")
     }
 }

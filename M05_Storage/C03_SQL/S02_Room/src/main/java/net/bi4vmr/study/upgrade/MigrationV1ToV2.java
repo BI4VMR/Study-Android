@@ -24,10 +24,10 @@ public class MigrationV1ToV2 extends Migration {
     @Override
     public void migrate(@NonNull SupportSQLiteDatabase db) {
         Log.i(TAG, "Migrate.");
-        // 修改旧表的名称，防止其他线程读取到旧数据。
+        // 修改旧表的名称
         db.execSQL("ALTER TABLE student_info RENAME TO student_info_temp;");
 
-        // 以新的数据结构创建学生信息表。
+        // 以新的数据结构创建学生信息表
         final String createTableSQL = "CREATE TABLE student_info" +
                 "(" +
                 "student_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
@@ -36,7 +36,7 @@ public class MigrationV1ToV2 extends Migration {
                 ")";
         db.execSQL(createTableSQL);
 
-        // 读取旧表中的数据。
+        // 读取旧表中的数据
         List<Student> oldDatas = new ArrayList<>();
         Cursor cursor = db.query("SELECT * FROM student_info_temp");
         try (cursor) {
@@ -64,7 +64,7 @@ public class MigrationV1ToV2 extends Migration {
             db.execSQL(sql);
         }
 
-        // 删除旧表。
+        // 删除旧表
         db.execSQL("DROP TABLE student_info_temp");
     }
 }

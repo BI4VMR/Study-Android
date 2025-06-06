@@ -52,10 +52,10 @@ public class StudentDBHelper extends SQLiteOpenHelper {
 
     // 版本1至版本2的数据结构升级逻辑。
     private void migrateV1ToV2(SQLiteDatabase db) {
-        // 修改旧表的名称，防止其他线程读取到旧数据。
+        // 修改旧表的名称
         db.execSQL("ALTER TABLE student_info RENAME TO student_info_temp;");
 
-        // 以新的数据结构创建学生信息表。
+        // 以新的数据结构创建学生信息表
         final String createTableSQL = "CREATE TABLE student_info" +
                 "(" +
                 "student_id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -64,7 +64,7 @@ public class StudentDBHelper extends SQLiteOpenHelper {
                 ")";
         db.execSQL(createTableSQL);
 
-        // 读取旧表中的数据。
+        // 读取旧表中的数据
         List<Student> oldDatas = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM student_info_temp", null);
         try (cursor) {
@@ -92,7 +92,7 @@ public class StudentDBHelper extends SQLiteOpenHelper {
             db.execSQL(sql);
         }
 
-        // 删除旧表。
+        // 删除旧表
         db.execSQL("DROP TABLE student_info_temp");
     }
 

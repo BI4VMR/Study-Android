@@ -1,9 +1,11 @@
 package net.bi4vmr.study.upgrade
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import java.util.concurrent.Executors
 
 /**
  * 数据库：学生信息。
@@ -41,6 +43,12 @@ abstract class StudentDBKT : RoomDatabase() {
                             StudentDBKT::class.java,
                             "student.db"
                         )
+                            // 设置SQL语句回调，便于调试。
+                            .setQueryCallback(object : QueryCallback {
+                                override fun onQuery(sqlQuery: String, bindArgs: List<Any?>) {
+                                    Log.d("StudentDBKT", "SQL:[$sqlQuery] | $bindArgs")
+                                }
+                            }, Executors.newSingleThreadExecutor())
                             // Room默认不允许在主线程执行操作，此配置允许在主线程操作，仅适用于调试。
                             .allowMainThreadQueries()
                             // 设置日志模式
