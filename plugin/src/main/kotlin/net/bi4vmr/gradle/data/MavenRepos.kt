@@ -25,7 +25,7 @@ object MavenRepos {
     val PUBLIC_TENCENT = MavenRepo(
         name = "Public-Tencent",
         url = "https://mirrors.cloud.tencent.com/nexus/repository/maven-public/",
-        description = "腾讯云镜像（Maven中心仓库+Google+JCenter）。"
+        description = "腾讯云镜像（Maven中心仓库+Spring+Google+JCenter）。"
     )
     val PUBLIC_ALIYUN = MavenRepo(
         name = "Public-Aliyun",

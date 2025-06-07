@@ -21,8 +21,17 @@ retrofit2_bom = "2.11.0"
 okhttps_core = "4.0.3"
 
 
+# ----- JavaEE框架 -----
+springBoot_bom = "3.5.0"
+
+
 # ----- 测试工具 -----
 junit5_jupiter = "5.10.2"
+
+
+# ----- 插件 -----
+spring_boot = "3.5.0"
+spring_dependency = "1.1.7"
 
 
 # 组件
@@ -33,7 +42,7 @@ junit5_jupiter = "5.10.2"
 apacheCommons_io = { group = "org.apache.commons", name = "commons-io", version.ref = "apacheCommons_io" }
 
 # < SLF4J >
-# SLF4J-Simple
+# SLF4J・Simple
 slf4j-simple = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j-simple" }
 
 # GSON
@@ -76,7 +85,33 @@ okhttps_gson = { group = "cn.zhxu", name = "okhttps-gson", version.ref = "okhttp
 okhttps_jackson = { group = "cn.zhxu", name = "okhttps-jackson", version.ref = "okhttps_core" }
 
 
+# ----- JavaEE框架 -----
+# < SpringBoot >
+# BOM文件（其他组件的版本配置文件）
+springBoot_bom = { group = "org.springframework.boot", name = "spring-boot-dependencies", version.ref = "springBoot_bom" }
+# Starter・核心
+springBoot_starter_core = { group = "org.springframework.boot", name = "spring-boot-starter" }
+# Starter・Web
+springBoot_starter_web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+# Starter・测试
+springBoot_starter_test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+
+
 # ----- 测试工具 -----
 # < JUnit >
 # Jupiter
 junit5_jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit5_jupiter" }
+
+
+# Gradle插件
+[plugins]
+# ----- Gradle内置插件 -----
+# Java Library
+java_library = { id = "org.gradle.java-library" }
+
+
+# ----- Spring -----
+# SpringBoot插件（提供打JAR/WAR包、调试应用等功能支持，版本号与SpringBoot同步。）
+spring_boot = { id = "org.springframework.boot", version.ref = "spring_boot" }
+# Spring版本插件（相当于SpringBoot BOM文件，子模块声明依赖时无需声明版本，以SpringBoot插件版本为准。）
+spring_dependency = { id = "io.spring.dependency-management", version.ref = "spring_dependency" }
