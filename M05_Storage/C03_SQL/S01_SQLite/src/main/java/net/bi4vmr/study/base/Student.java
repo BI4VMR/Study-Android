@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 
 /**
  * 实体类：学生。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class Student {
 

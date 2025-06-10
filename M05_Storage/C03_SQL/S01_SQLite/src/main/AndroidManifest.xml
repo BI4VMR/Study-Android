@@ -23,6 +23,11 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：事务 -->
+        <activity
+            android:name=".transaction.TestUITransaction"
+            android:exported="false" />
+
         <!-- 示例界面：数据库版本升级 -->
         <activity
             android:name=".upgrade.TestUIUpgrade"
