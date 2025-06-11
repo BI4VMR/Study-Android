@@ -1,8 +1,6 @@
 package net.bi4vmr.study.updatelist;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,40 +16,37 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Name        : MyAdapter
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-04-04 15:38
- * <p>
- * Description : RecyclerView的适配器。
+ * RecyclerView的适配器。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    // 上下文环境
-    private final Context mContext;
-    // 数据源
+    /**
+     * 数据源。
+     */
     private final List<SimpleVO> dataSource;
 
-    public MyAdapter(Context context, List<SimpleVO> dataSource) {
-        this.mContext = context;
+    /**
+     * 构造方法。
+     *
+     * @param dataSource 初始数据源。
+     */
+    public MyAdapter(List<SimpleVO> dataSource) {
         this.dataSource = dataSource;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.i("myapp", "OnCreateViewHolder-ViewType:" + viewType);
-        View view = LayoutInflater.from(mContext)
-                .inflate(R.layout.list_item_simple, parent, false);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.list_item_simple, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Log.i("myapp", "OnBindViewHolder-Position:" + position);
         holder.bindData();
     }
 
@@ -61,42 +56,41 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     /**
-     * Name        : 更新指定的表项
+     * 更新指定的表项。
      * <p>
-     * Description : 更新指定的表项，不影响列表中的其它表项。
+     * 更新指定的表项，不影响列表中的其它表项。
      *
-     * @param position 待更新的位置
-     * @param item     新的表项
+     * @param position 待更新的位置。
+     * @param item     新的表项。
      */
     public void updateItem(int position, SimpleVO item) {
         // 更新数据源
-        dataSource.remove(position);
-        dataSource.add(position, item);
+        dataSource.set(position, item);
         // 通知RecyclerView指定表项被更改，刷新控件显示。
         notifyItemChanged(position);
     }
 
     /**
-     * Name        : 向指定位置插入表项
+     * 向指定位置插入表项。
      * <p>
-     * Description : 将新的表项插入到指定位置，若该位置已存在表项，则将其本身以及后继表项都后移一位。
+     * 将新的表项插入到指定位置，若该位置已存在表项，则将其本身以及后继表项都后移一位。
      *
-     * @param position 待插入的位置
-     * @param item     新的表项
+     * @param position 待插入的位置。
+     * @param data     新的表项。
      */
-    public void addItem(int position, SimpleVO item) {
+    public void addItem(int position, SimpleVO data) {
         // 更新数据源
-        dataSource.add(position, item);
+        dataSource.add(position, data);
         // 通知RecyclerView新的表项被插入，刷新控件显示。
         notifyItemInserted(position);
     }
 
     /**
-     * Name        : 移除指定的表项
+     * 移除指定的表项。
      * <p>
-     * Description : 移除指定的表项，若该位置之后存在表项，则将这些表项都前移一位。
+     * 移除指定的表项，若该位置之后存在表项，则将这些表项都前移一位。
      *
-     * @param position 待移除的位置
+     * @param position 待移除的位置。
      */
     public void removeItem(int position) {
         // 更新数据源
@@ -106,12 +100,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     /**
-     * Name        : 将指定的表项移动至新位置
-     * <p>
-     * Description : 将指定的表项移动到新位置。
+     * 将指定的表项移动至新位置。
      *
-     * @param srcPosition 源位置
-     * @param dstPosition 目标位置
+     * @param srcPosition 源位置。
+     * @param dstPosition 目标位置。
      */
     public void moveItem(int srcPosition, int dstPosition) {
         // 如果源位置与目标位置相同，直接退出当前方法。
@@ -126,14 +118,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     /**
-     * Name        : 重新加载列表
-     * <p>
-     * Description : 更新RecyclerView中的所有表项。
+     * 更新RecyclerView中的所有表项。
      *
-     * @param newDatas 新的数据源
+     * @param newDatas 新的数据源。
      */
     @SuppressLint("NotifyDataSetChanged")
-    public void reloadItem(List<SimpleVO> newDatas) {
+    public void reloadItems(List<SimpleVO> newDatas) {
         // 清空数据源
         dataSource.clear();
         // 重新填充数据源
@@ -142,9 +132,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         notifyDataSetChanged();
     }
 
-    /* 表项的ViewHolder类 */
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
+        // 保存控件的引用，以便后续绑定数据。
         TextView tvTitle;
         ImageView ivIcon;
 
@@ -155,16 +145,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
 
         public void bindData() {
-            // 获取当前项的数据
-            SimpleVO item = dataSource.get(getAdapterPosition());
-            // 将数据设置到当前项的控件中
-            tvTitle.setText(item.getTitle());
-
-            // 设置整个表项的监听器
-            itemView.setOnClickListener(v -> {
-                // 日志输出表项的位置
-                Log.i("myapp", "ClickEvent-Item " + (getAdapterPosition() + 1) + " Clicked.");
-            });
+            // 获取当前表项位置对应的数据项
+            SimpleVO vo = dataSource.get(getAdapterPosition());
+            // 将数据设置到视图中
+            if (tvTitle != null) {
+                tvTitle.setText(vo.getTitle());
+            }
         }
     }
 }

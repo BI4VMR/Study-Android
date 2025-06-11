@@ -12,9 +12,11 @@ import net.bi4vmr.study.clickevent.TestUIClickEventKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.diffutil.DemoDiffUtilUI;
 import net.bi4vmr.study.updateitem.DemoUpdateItemUI;
-import net.bi4vmr.study.updatelist.DemoUpdateListUI;
+import net.bi4vmr.study.updatelist.TestUIUpdateList;
+import net.bi4vmr.study.updatelist.TestUIUpdateListKT;
 import net.bi4vmr.study.viewcache.DemoViewCacheUI;
 import net.bi4vmr.study.viewtype.TestUIViewType;
+import net.bi4vmr.study.viewtype.TestUIViewTypeKT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 多种View类型
+        // 加载多种表项
         binding.btnViewType.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIViewType.class);
             startActivity(intent);
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 动态更新列表
         binding.btnUpdateList.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemoUpdateListUI.class);
+            Intent intent = new Intent(this, TestUIUpdateList.class);
             startActivity(intent);
         });
 
@@ -75,6 +77,18 @@ public class MainActivity extends AppCompatActivity {
         // 点击事件(KT)
         binding.btnClickEventKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIClickEventKT.class);
+            startActivity(intent);
+        });
+
+        // 加载多种表项(KT)
+        binding.btnViewTypeKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIViewTypeKT.class);
+            startActivity(intent);
+        });
+
+        // 动态更新列表(KT)
+        binding.btnUpdateListKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIUpdateListKT.class);
             startActivity(intent);
         });
     }

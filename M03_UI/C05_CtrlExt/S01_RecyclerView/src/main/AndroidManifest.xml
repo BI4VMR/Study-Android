@@ -29,14 +29,14 @@
             android:name=".clickevent.TestUIClickEvent"
             android:exported="false" />
 
-        <!-- 示例界面：多种View类型 -->
+        <!-- 示例界面：加载多种表项 -->
         <activity
             android:name=".viewtype.TestUIViewType"
             android:exported="false" />
 
-        <!-- 示例界面：动态更新列表 -->
+        <!-- 示例界面：动态更新表项 -->
         <activity
-            android:name=".updatelist.DemoUpdateListUI"
+            android:name=".updatelist.TestUIUpdateList"
             android:exported="false" />
 
         <!-- 示例界面：局部刷新 -->
@@ -62,6 +62,16 @@
         <!-- 示例界面：点击事件(KT) -->
         <activity
             android:name=".clickevent.TestUIClickEventKT"
+            android:exported="false" />
+
+        <!-- 示例界面：加载多种表项(KT) -->
+        <activity
+            android:name=".viewtype.TestUIViewTypeKT"
+            android:exported="false" />
+
+        <!-- 示例界面：动态更新表项(KT) -->
+        <activity
+            android:name=".updatelist.TestUIUpdateListKT"
             android:exported="false" />
     </application>
 </manifest>

@@ -10,6 +10,12 @@ import net.bi4vmr.study.databinding.TestuiViewtypeBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 测试界面：加载多种表项。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class TestUIViewType extends AppCompatActivity {
 
     private TestuiViewtypeBinding binding;
@@ -35,7 +41,7 @@ public class TestUIViewType extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         binding.rvContent.setLayoutManager(linearLayoutManager);
         // 设置适配器
-        MyAdapter adapter = new MyAdapter(getApplicationContext(), datas);
+        MyAdapter adapter = new MyAdapter(datas);
         binding.rvContent.setAdapter(adapter);
     }
 }

@@ -1,7 +1,6 @@
 package net.bi4vmr.study.updateitem;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,36 +16,39 @@ import net.bi4vmr.study.R;
 import java.util.List;
 
 /**
- * Name        : Adapter01
- * Author      : BI4VMR
- * Email       : bi4vmr@qq.com
- * Date        : 2022-06-10 00:03
- * Description : Demo01所使用的适配器。
+ * RecyclerView的适配器。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    // 上下文环境
-    private final Context mContext;
-    // 数据源
+    /**
+     * 数据源。
+     */
     private final List<SimpleVO> dataSource;
 
-    public MyAdapter(Context context, List<SimpleVO> dataSource) {
-        this.mContext = context;
+    /**
+     * 构造方法。
+     *
+     * @param dataSource 初始数据源。
+     */
+    public MyAdapter(List<SimpleVO> dataSource) {
         this.dataSource = dataSource;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.i("myapp", "OnCreateViewHolder-ViewType:" + viewType);
-        View view = LayoutInflater.from(mContext)
+        Log.i("TestApp", "OnCreateViewHolder. ViewType:[" + viewType + "]");
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_simple, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Log.i("myapp", "OnBindViewHolder-Position:" + position);
+        Log.i("TestApp", "OnBindViewHolder. Position:[" + position + "]");
         holder.bindData();
     }
 
@@ -108,14 +110,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     /**
-     * Name        : 重新加载列表
-     * <p>
-     * Description : 更新RecyclerView中的所有表项。
+     * 更新RecyclerView中的所有表项。
      *
-     * @param newDatas 新的数据源
+     * @param newDatas 新的数据源。
      */
     @SuppressLint("NotifyDataSetChanged")
-    public void reloadItem(List<SimpleVO> newDatas) {
+    public void reloadItems(List<SimpleVO> newDatas) {
         // 清空数据源
         dataSource.clear();
         // 重新填充数据源
@@ -125,7 +125,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     /* 表项的ViewHolder类 */
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle;
         ImageView ivIcon;

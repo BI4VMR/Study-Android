@@ -1,9 +1,9 @@
 package net.bi4vmr.study.viewtype;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -63,7 +63,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
             break;
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Unknown view type [" + viewType + "]!");
         }
 
         return vh;
@@ -80,22 +80,12 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
      */
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        // 获取该位置的Item类型
-        int viewType = getItemViewType(position);
-        // 根据Item类型绑定数据到视图上
-        switch (viewType) {
-            case 1: {
-                Type1VH vh = (Type1VH) holder;
-                vh.bindData();
-            }
-            break;
-            case 2: {
-                Type2VH vh = (Type2VH) holder;
-                vh.bindData();
-            }
-            break;
-            default:
-                throw new IllegalArgumentException();
+        if (holder instanceof Type1VH) {
+            ((Type1VH) holder).bindData();
+        } else if (holder instanceof Type2VH) {
+            ((Type2VH) holder).bindData();
+        } else {
+            Log.w("Test", "Unknown ViewHolder!");
         }
     }
 
@@ -127,13 +117,11 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         TextView tvTitle;
         TextView tvInfo;
-        ImageView ivIcon;
 
         public Type1VH(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvInfo = itemView.findViewById(R.id.tvInfo);
-            ivIcon = itemView.findViewById(R.id.ivIcon);
         }
 
         public void bindData() {

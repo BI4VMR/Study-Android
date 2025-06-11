@@ -3,15 +3,10 @@ package net.bi4vmr.study.updatelist;
 import androidx.annotation.NonNull;
 
 /**
- * Name        : SimpleVO
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-04-04 15:38
- * <p>
- * Description : 列表项的实体类。
+ * 列表项的实体类。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class SimpleVO {
 
