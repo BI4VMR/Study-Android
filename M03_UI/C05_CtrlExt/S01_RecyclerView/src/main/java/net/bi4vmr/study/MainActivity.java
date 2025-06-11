@@ -10,8 +10,8 @@ import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.clickevent.TestUIClickEvent;
 import net.bi4vmr.study.clickevent.TestUIClickEventKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
-import net.bi4vmr.study.diffutil.DemoDiffUtilUI;
-import net.bi4vmr.study.updateitem.DemoUpdateItemUI;
+import net.bi4vmr.study.diffutil.TestUIDiffUtil;
+import net.bi4vmr.study.updateitem.TestUIUpdateItem;
 import net.bi4vmr.study.updatelist.TestUIUpdateList;
 import net.bi4vmr.study.updatelist.TestUIUpdateListKT;
 import net.bi4vmr.study.viewcache.DemoViewCacheUI;
@@ -52,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
         // 局部刷新
         binding.btnUpdateItem.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemoUpdateItemUI.class);
+            Intent intent = new Intent(this, TestUIUpdateItem.class);
             startActivity(intent);
         });
 
         // DiffUtil
         binding.btnDiffUtil.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DemoDiffUtilUI.class);
+            Intent intent = new Intent(this, TestUIDiffUtil.class);
             startActivity(intent);
         });
 

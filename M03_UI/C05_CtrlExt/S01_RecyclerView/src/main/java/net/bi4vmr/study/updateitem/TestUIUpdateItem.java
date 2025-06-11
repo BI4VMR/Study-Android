@@ -13,7 +13,13 @@ import net.bi4vmr.study.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DemoUpdateItemUI extends AppCompatActivity {
+/**
+ * 测试界面：局部刷新。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
+public class TestUIUpdateItem extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

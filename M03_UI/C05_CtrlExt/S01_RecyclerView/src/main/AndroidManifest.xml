@@ -41,12 +41,12 @@
 
         <!-- 示例界面：局部刷新 -->
         <activity
-            android:name=".updateitem.DemoUpdateItemUI"
+            android:name=".updateitem.TestUIUpdateItem"
             android:exported="false" />
 
         <!-- 示例界面：DiffUtil -->
         <activity
-            android:name=".diffutil.DemoDiffUtilUI"
+            android:name=".diffutil.TestUIDiffUtil"
             android:exported="false" />
 
         <!-- 示例界面：缓存与复用 -->

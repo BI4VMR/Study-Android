@@ -12,7 +12,13 @@ import net.bi4vmr.study.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DemoDiffUtilUI extends AppCompatActivity {
+/**
+ * 测试界面：DiffUtil。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
+public class TestUIDiffUtil extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

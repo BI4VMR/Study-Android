@@ -1,4 +1,4 @@
-package net.bi4vmr.study.updateitem;
+package net.bi4vmr.study.diffutil;
 
 import androidx.annotation.NonNull;
 
