@@ -33,7 +33,7 @@ public class TestUIDiffUtil extends AppCompatActivity {
         // 添加分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         List<ItemVO> datas = getTestDatas();
-        MyAdapter adapter = new MyAdapter(getApplicationContext(), datas);
+        MyAdapter adapter = new MyAdapter(datas);
         recyclerView.setAdapter(adapter);
 
         // 刷新数据集按钮
@@ -45,7 +45,7 @@ public class TestUIDiffUtil extends AppCompatActivity {
             newDatas.get(4).setTitle("这是新的标题");
             newDatas.remove(1);
             newDatas.remove(5);
-            newDatas.add(8, new ItemVO(101, "新增表项"));
+            newDatas.add(8, new ItemVO("新增表项", "新增表项"));
             // 更新列表
             adapter.updateData(newDatas);
         });
@@ -55,18 +55,16 @@ public class TestUIDiffUtil extends AppCompatActivity {
     }
 
     /**
-     * Name        : 获取测试数据
-     * <p>
-     * Description : 获取测试数据。
+     * 获取测试数据。
      *
-     * @return 测试数据List
+     * @return 测试数据。
      */
     private List<ItemVO> getTestDatas() {
         // 制造测试数据
         List<ItemVO> datas = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             int num = i + 1;
-            datas.add(new ItemVO(num, "项目" + num));
+            datas.add(new ItemVO("项目" + num));
         }
 
         return datas;

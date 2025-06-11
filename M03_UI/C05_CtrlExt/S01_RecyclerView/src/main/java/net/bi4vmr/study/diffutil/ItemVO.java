@@ -2,44 +2,27 @@ package net.bi4vmr.study.diffutil;
 
 import androidx.annotation.NonNull;
 
+import java.util.Objects;
+
 /**
- * Name        : ItemBean
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-04-04 15:38
- * <p>
- * Description : 列表项的实体类。
+ * 列表项的实体类。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class ItemVO {
 
-    private int id;
     private String title;
     private String info;
 
-    public ItemVO() {
-    }
-
-    public ItemVO(int id, String title) {
-        this.id = id;
+    public ItemVO(String title) {
         this.title = title;
-        this.info = "-";
+        info = "-";
     }
 
-    public ItemVO(int id, String title, String info) {
-        this.id = id;
+    public ItemVO(String title, String info) {
         this.title = title;
         this.info = info;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -61,10 +44,21 @@ public class ItemVO {
     @NonNull
     @Override
     public String toString() {
-        return "ItemVO{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
+        return "SimpleVO{" +
+                "title='" + title + '\'' +
                 ", info='" + info + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ItemVO itemVO = (ItemVO) o;
+        return Objects.equals(title, itemVO.title) && Objects.equals(info, itemVO.info);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, info);
     }
 }
