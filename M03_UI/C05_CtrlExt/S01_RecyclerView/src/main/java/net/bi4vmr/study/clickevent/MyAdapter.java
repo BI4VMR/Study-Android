@@ -1,5 +1,6 @@
 package net.bi4vmr.study.clickevent;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.i("TestApp", "OnCreateViewHolder. ViewType:[" + viewType + "]");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         /*
@@ -76,6 +78,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
      */
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Log.i("TestApp", "OnBindViewHolder. Position:[" + position + "]");
         holder.bindData();
     }
 

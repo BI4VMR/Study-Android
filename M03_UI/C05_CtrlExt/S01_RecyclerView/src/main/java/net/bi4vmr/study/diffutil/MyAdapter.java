@@ -80,7 +80,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
 
         int flags = (Integer) data;
-        if ((flags & DiffFlags.FLAG_TITLE) != 0) {
+        if ((flags & UpdateFlags.FLAG_TITLE) != 0) {
 
         }
         // 此处放置具体的局部更新逻辑，可以根据ViewType、Payload类型等条件进行判断。
@@ -121,9 +121,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     /**
-     * Name        : 重新加载列表
-     * <p>
-     * Description : 更新RecyclerView中的所有表项。
+     * 使用DiffUtil更新列表。
+     *
+     * @param newDatas 数据源。
+     */
+    public void updateData(List<ItemVO> newDatas) {
+        // 对比新旧列表的差异
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MyDiffCallback(dataSource, newDatas));
+        // 更新数据源
+        dataSource.clear();
+        dataSource.addAll(newDatas);
+        // 更新视图
+        diffResult.dispatchUpdatesTo(this);
+    }
+
+    /**
+     * 重新加载列表。
      *
      * @param newDatas 新的数据源
      */
@@ -135,23 +148,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         dataSource.addAll(newDatas);
         // 通知RecyclerView数据源改变
         notifyDataSetChanged();
-    }
-
-    /**
-     * Name        : 更新列表
-     * <p>
-     * Description : 使用DiffUtil更新列表。
-     *
-     * @param newDatas 数据源
-     */
-    public void updateData(List<ItemVO> newDatas) {
-        // 对比新旧列表的差异
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MyDiffCallback(dataSource, newDatas));
-        // 更新数据源
-        dataSource.clear();
-        dataSource.addAll(newDatas);
-        // 切换至主线程，更新视图。
-        diffResult.dispatchUpdatesTo(this);
     }
 
     /* 表项的ViewHolder类 */
@@ -176,7 +172,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
 
         public void updateInfo(ItemVO vo) {
-            tvInfo.setText(vo.getTitle());
+            tvInfo.setText(vo.getInfo());
         }
     }
 }

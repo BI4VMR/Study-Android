@@ -1,13 +1,11 @@
 package net.bi4vmr.study.diffutil;
 
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.RecyclerView;
 
-import net.bi4vmr.study.R;
+import net.bi4vmr.study.databinding.TestuiDiffutilBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,24 +18,23 @@ import java.util.List;
  */
 public class TestUIDiffUtil extends AppCompatActivity {
 
+    private TestuiDiffutilBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_demo_diffutil);
-
-        RecyclerView recyclerView = findViewById(R.id.rvContent);
-        Button btRefresh = findViewById(R.id.btRefresh);
-        Button btReset = findViewById(R.id.btReset);
+        binding = TestuiDiffutilBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         /* 配置RecyclerView */
         // 添加分割线
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        binding.rvContent.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         List<ItemVO> datas = getTestDatas();
         MyAdapter adapter = new MyAdapter(datas);
-        recyclerView.setAdapter(adapter);
+        binding.rvContent.setAdapter(adapter);
 
         // 刷新数据集按钮
-        btRefresh.setOnClickListener(v -> {
+        binding.btRefresh.setOnClickListener(v -> {
             // 复制一份数据集
             List<ItemVO> newDatas = adapter.getCopyOfDataSource();
             // 模拟数据变更
@@ -51,7 +48,7 @@ public class TestUIDiffUtil extends AppCompatActivity {
         });
 
         // 重置按钮
-        btReset.setOnClickListener(v -> adapter.reloadItem(getTestDatas()));
+        binding.btReset.setOnClickListener(v -> adapter.reloadItem(getTestDatas()));
     }
 
     /**

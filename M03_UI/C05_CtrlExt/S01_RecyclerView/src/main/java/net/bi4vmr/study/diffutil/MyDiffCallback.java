@@ -94,10 +94,10 @@ public class MyDiffCallback extends DiffUtil.Callback {
 
         int flags = 0;
         if (!oldItem.getTitle().equals(newItem.getTitle())) {
-            flags |= DiffFlags.FLAG_TITLE;
+            flags |= UpdateFlags.FLAG_TITLE;
         }
         if (!oldItem.getInfo().equals(newItem.getInfo())) {
-            flags |= DiffFlags.FLAG_INFO;
+            flags |= UpdateFlags.FLAG_INFO;
         }
 
         return flags;

@@ -1,4 +1,4 @@
-package net.bi4vmr.study.diffutil;
+package net.bi4vmr.study.updateitem;
 
 /**
  * Diff类型。
@@ -6,7 +6,7 @@ package net.bi4vmr.study.diffutil;
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class DiffFlags {
+public class UpdateFlags {
     public static final int FLAG_TITLE = 0x01;
     public static final int FLAG_INFO = FLAG_TITLE << 1;
 }

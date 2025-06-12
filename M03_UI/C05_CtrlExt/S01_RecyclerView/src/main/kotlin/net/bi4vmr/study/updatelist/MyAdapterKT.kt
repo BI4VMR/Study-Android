@@ -1,6 +1,7 @@
 package net.bi4vmr.study.updatelist
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,12 +26,14 @@ class MyAdapterKT(
 ) : RecyclerView.Adapter<MyAdapterKT.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        Log.d("TestApp", "OnCreateViewHolder. ViewType:[$viewType]")
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
         val itemView: View = inflater.inflate(R.layout.list_item_simple, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        Log.d("TestApp", "OnBindViewHolder. Position:[$position]")
         holder.bindData()
     }
 
@@ -89,7 +92,7 @@ class MyAdapterKT(
      * @param[dstPosition] 目标位置。
      */
     fun moveItem(srcPosition: Int, dstPosition: Int) {
-        // 如果源位置与目标位置相同，直接退出当前方法。
+        // 如果源位置与目标位置相同，则无需移动。
         if (srcPosition == dstPosition) {
             return
         }

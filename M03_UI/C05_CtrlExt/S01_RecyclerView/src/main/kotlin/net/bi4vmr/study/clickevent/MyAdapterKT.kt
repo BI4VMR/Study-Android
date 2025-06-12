@@ -1,5 +1,6 @@
 package net.bi4vmr.study.clickevent
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,7 @@ class MyAdapterKT(
      * @return ViewHolder实例。
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        Log.d("TestApp", "OnCreateViewHolder. ViewType:[$viewType]")
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
 
         /*
@@ -60,6 +62,7 @@ class MyAdapterKT(
      * @param[position] 表项在列表中的位置索引。
      */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        Log.d("TestApp", "OnBindViewHolder. Position:[$position]")
         holder.bindData()
     }
 

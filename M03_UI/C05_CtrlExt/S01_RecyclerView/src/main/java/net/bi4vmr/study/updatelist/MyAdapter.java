@@ -1,6 +1,7 @@
 package net.bi4vmr.study.updatelist;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("TestApp", "OnCreateViewHolder. ViewType:[" + viewType + "]");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.list_item_simple, parent, false);
         return new MyViewHolder(view);
@@ -47,6 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Log.d("TestApp", "OnBindViewHolder. Position:[" + position + "]");
         holder.bindData();
     }
 
@@ -106,7 +109,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
      * @param dstPosition 目标位置。
      */
     public void moveItem(int srcPosition, int dstPosition) {
-        // 如果源位置与目标位置相同，直接退出当前方法。
+        // 如果源位置与目标位置相同，则无需移动。
         if (srcPosition == dstPosition) {
             return;
         }

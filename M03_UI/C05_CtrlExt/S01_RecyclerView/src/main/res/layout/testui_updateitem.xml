@@ -25,7 +25,7 @@
         android:id="@+id/btChange2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="改变第4项的图标"
+        android:text="改变第4项的描述"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btReload"
         app:layout_constraintStart_toEndOf="@id/btChange1" />

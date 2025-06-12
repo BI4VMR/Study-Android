@@ -51,7 +51,7 @@
 
         <!-- 示例界面：缓存与复用 -->
         <activity
-            android:name=".viewcache.DemoViewCacheUI"
+            android:name=".viewcache.TestUIViewCache"
             android:exported="false" />
 
         <!-- 示例界面：基本应用(KT) -->
@@ -72,6 +72,11 @@
         <!-- 示例界面：动态更新表项(KT) -->
         <activity
             android:name=".updatelist.TestUIUpdateListKT"
+            android:exported="false" />
+
+        <!-- 示例界面：局部刷新(KT) -->
+        <activity
+            android:name=".updateitem.TestUIUpdateItemKT"
             android:exported="false" />
     </application>
 </manifest>

@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,14 +25,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     /**
      * 数据源。
      */
-    private final List<SimpleVO> dataSource;
+    private final List<ItemVO> dataSource;
 
     /**
      * 构造方法。
      *
      * @param dataSource 初始数据源。
      */
-    public MyAdapter(List<SimpleVO> dataSource) {
+    public MyAdapter(List<ItemVO> dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -42,49 +41,52 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.i("TestApp", "OnCreateViewHolder. ViewType:[" + viewType + "]");
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_simple, parent, false);
+                .inflate(R.layout.list_item_type1, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Log.i("TestApp", "OnBindViewHolder. Position:[" + position + "]");
-        holder.bindData();
+        ItemVO vo = dataSource.get(position);
+        holder.bindData(vo);
     }
 
     /**
-     * Name        : onBindViewHolder()
+     * RecyclerView将数据与ViewHolder绑定的回调方法。
      * <p>
-     * Description : 将数据与ViewHolder绑定的回调方法。
-     * <p>
-     * 我们需要从数据源中根据位置索引找到对应的条目，然后将数据通过ViewHolder设置给各个控件，实现UI与数据的统一。
+     * 当Adapter的 `notifyItemChanged(int position, Object payload)` 方法被调用时，该方法将被触发，第三参数 `payloads` 对应调用
+     * 者传入的 `payload`。
      *
-     * @param holder   ViewHolder实例
-     * @param position Item在列表中的位置索引
-     * @param payloads 数据载荷列表，其中的类型可以根据需要自行定义。
+     * @param holder   ViewHolder实例。
+     * @param position 表项在列表中的位置索引。
+     * @param payloads Payload列表，其中的元素类型可以根据需要自行定义。
      */
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull List<Object> payloads) {
-        Log.i("myapp", "OnBindViewHolder-Position:" + position + " PayloadsNum:" + payloads.size());
-        // 如果载荷List内容为空，则执行普通的"onBindViewHolder()"方法。
+        Log.i("TestApp", "OnBindViewHolder. Position:[" + position + "] PayloadsNum:[" + payloads.size() + "]");
+        // 如果Payload列表内容为空，则执行普通的 `onBindViewHolder()` 方法。
         if (payloads.isEmpty()) {
             onBindViewHolder(holder, position);
-        } else {
-            // 短时间内多次更新同一表项时，"payloads"中可能有多个项，可以根据需要选择其中的一项。
-            Object data = payloads.get(0);
-            /*
-             * 此处放置具体的局部更新逻辑，可以根据ViewType、载荷实际类型等条件进行判断。
-             */
-            if (data instanceof SimpleVO) {
-                // 我们定义规则为：更新值不为空的属性。
-                SimpleVO item = (SimpleVO) data;
-                if (item.getTitle() != null) {
-                    holder.tvTitle.setText(item.getTitle());
-                }
-                if (item.getIconRes() != null) {
-                    holder.ivIcon.setImageResource(item.getIconRes());
-                }
-            }
+            return;
+        }
+
+        // 短时间内多次更新同一表项时，Payload列表中可能有多个项，可以根据需要选择其中的一项。
+        Object data = payloads.get(payloads.size() - 1);
+        // 如果Payload不能被解析为Flags，则忽略。
+        if (!(data instanceof Integer)) {
+            Log.d("TestApp", "Payload type is unknown.");
+            return;
+        }
+
+        int flags = (Integer) data;
+        Log.d("TestApp", "Payload flags:[" + flags + "]");
+        ItemVO vo = dataSource.get(holder.getAdapterPosition());
+        if ((flags & UpdateFlagsKT.FLAG_TITLE) != 0) {
+            holder.updateTitle(vo);
+        }
+        if ((flags & UpdateFlagsKT.FLAG_INFO) != 0) {
+            holder.updateInfo(vo);
         }
     }
 
@@ -93,20 +95,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return dataSource.size();
     }
 
+    // 获取数据源
+    public List<ItemVO> getDataSource() {
+        return dataSource;
+    }
+
     /**
-     * Name        : 更新指定的表项
+     * 更新指定的表项。
      * <p>
-     * Description : 更新指定的表项，不影响列表中的其它表项。
+     * ItemVO中非空的元素将被刷新到界面上。
      *
-     * @param position 待更新的位置
-     * @param item     新的表项
+     * @param position 待更新的位置。
+     * @param data     新的数据项。
+     * @param flags    需要更新的内容。
      */
-    public void updateItem(int position, SimpleVO item) {
+    public void updateItem(int position, ItemVO data, int flags) {
         // 更新数据源
-        dataSource.remove(position);
-        dataSource.add(position, item);
+        dataSource.set(position, data);
         // 通知RecyclerView指定表项被更改，刷新控件显示。
-        notifyItemChanged(position, item);
+        notifyItemChanged(position, flags);
     }
 
     /**
@@ -115,7 +122,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
      * @param newDatas 新的数据源。
      */
     @SuppressLint("NotifyDataSetChanged")
-    public void reloadItems(List<SimpleVO> newDatas) {
+    public void reloadItems(List<ItemVO> newDatas) {
         // 清空数据源
         dataSource.clear();
         // 重新填充数据源
@@ -125,28 +132,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     /* 表项的ViewHolder类 */
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle;
-        ImageView ivIcon;
+        TextView tvInfo;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
-            ivIcon = itemView.findViewById(R.id.ivIcon);
+            tvInfo = itemView.findViewById(R.id.tvInfo);
         }
 
-        public void bindData() {
-            // 获取当前项的数据
-            SimpleVO item = dataSource.get(getAdapterPosition());
-            // 将数据设置到当前项的控件中
-            tvTitle.setText(item.getTitle());
+        public void bindData(ItemVO vo) {
+            updateTitle(vo);
+            updateInfo(vo);
+        }
 
-            // 设置整个表项的监听器
-            itemView.setOnClickListener(v -> {
-                // 日志输出表项的位置
-                Log.i("myapp", "ClickEvent-Item " + (getAdapterPosition() + 1) + " Clicked.");
-            });
+        public void updateTitle(ItemVO vo) {
+            tvTitle.setText(vo.getTitle());
+        }
+
+        public void updateInfo(ItemVO vo) {
+            tvInfo.setText(vo.getInfo());
         }
     }
 }

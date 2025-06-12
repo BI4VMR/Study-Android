@@ -12,12 +12,12 @@ import net.bi4vmr.study.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DemoViewCacheUI extends AppCompatActivity {
+public class TestUIViewCache extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_demo_viewcache);
+        setContentView(R.layout.testui_viewcache);
 
         // 配置RecyclerView
         RecyclerView recyclerView = findViewById(R.id.rvContent);
