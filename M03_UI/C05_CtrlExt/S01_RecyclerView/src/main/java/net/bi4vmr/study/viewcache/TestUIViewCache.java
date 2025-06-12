@@ -27,7 +27,7 @@ public class TestUIViewCache extends AppCompatActivity {
         // 添加分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         // 数据源中第三、四项是类型II,其它项都是类型I。
-        MyAdapter adapter = new MyAdapter(getApplicationContext(), getTestDatas());
+        MyAdapter adapter = new MyAdapter(getTestDatas());
         recyclerView.setAdapter(adapter);
     }
 

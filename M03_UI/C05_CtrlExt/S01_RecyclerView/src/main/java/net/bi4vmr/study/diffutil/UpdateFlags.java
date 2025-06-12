@@ -1,7 +1,7 @@
 package net.bi4vmr.study.diffutil;
 
 /**
- * Diff类型。
+ * 局部更新标志位。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0

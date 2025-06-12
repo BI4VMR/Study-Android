@@ -78,5 +78,10 @@
         <activity
             android:name=".updateitem.TestUIUpdateItemKT"
             android:exported="false" />
+
+        <!-- 示例界面：DiffUtil(KT) -->
+        <activity
+            android:name=".diffutil.TestUIDiffUtilKT"
+            android:exported="false" />
     </application>
 </manifest>

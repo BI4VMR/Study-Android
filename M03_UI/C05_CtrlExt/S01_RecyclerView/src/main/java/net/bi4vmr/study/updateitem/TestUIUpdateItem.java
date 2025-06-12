@@ -48,7 +48,7 @@ public class TestUIUpdateItem extends AppCompatActivity {
             newData.setInfo(oldData.getInfo());
 
             // 调用局部更新方法，指明需要更新标题。
-            adapter.updateItem(1, newData, UpdateFlagsKT.FLAG_TITLE);
+            adapter.updateItem(1, newData, UpdateFlags.FLAG_TITLE);
         });
 
         // 改变第四项的按钮
@@ -58,7 +58,7 @@ public class TestUIUpdateItem extends AppCompatActivity {
             newData.setInfo("这是新的描述");
 
             // 调用局部更新方法，指明需要更新标题与描述。
-            adapter.updateItem(3, newData, UpdateFlagsKT.FLAG_TITLE | UpdateFlagsKT.FLAG_INFO);
+            adapter.updateItem(3, newData, UpdateFlags.FLAG_TITLE | UpdateFlags.FLAG_INFO);
         });
 
         // 重置按钮

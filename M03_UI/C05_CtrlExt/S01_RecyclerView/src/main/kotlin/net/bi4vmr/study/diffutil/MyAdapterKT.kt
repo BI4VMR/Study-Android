@@ -84,7 +84,7 @@ class MyAdapterKT(
      *
      * @return 内含ItemVO的列表，是当前数据源的副本。
      */
-    fun getCopyOfDataSource(): List<ItemVOKT> {
+    fun getCopyOfDataSource(): MutableList<ItemVOKT> {
         val newList: MutableList<ItemVOKT> = ArrayList()
         for (i in mDataSource.indices) {
             // 创建新的对象，并复制原对象的属性。
@@ -105,7 +105,7 @@ class MyAdapterKT(
      */
     fun updateData(newDatas: List<ItemVOKT>) {
         // 对比新旧列表的差异
-        val diffResult = DiffUtil.calculateDiff(MyDiffCallback(mDataSource, newDatas))
+        val diffResult = DiffUtil.calculateDiff(MyDiffCallbackKT(mDataSource, newDatas))
         // 更新数据源
         mDataSource.clear()
         mDataSource.addAll(newDatas)

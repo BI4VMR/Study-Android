@@ -73,26 +73,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         // 短时间内多次更新同一表项时，Payload列表中可能有多个项，可以根据需要选择其中的一项。
         Object data = payloads.get(payloads.size() - 1);
-        // 如果Payload不是整型，则忽略。
+        // 如果Payload不能被解析为Flags，则忽略。
         if (!(data instanceof Integer)) {
-            Log.d("TestApp", "Payload type Unknown.");
+            Log.d("TestApp", "Payload type is unknown.");
             return;
         }
 
         int flags = (Integer) data;
-        if ((flags & UpdateFlags.FLAG_TITLE) != 0) {
-
+        Log.d("TestApp", "Payload flags:[" + flags + "]");
+        ItemVO vo = dataSource.get(holder.getAdapterPosition());
+        if ((flags & UpdateFlagsKT.FLAG_TITLE) != 0) {
+            holder.updateTitle(vo);
         }
-        // 此处放置具体的局部更新逻辑，可以根据ViewType、Payload类型等条件进行判断。
-        if (data instanceof ItemVO) {
-            // 获取新数据的属性，并更新不为空的属性。
-            ItemVO item = (ItemVO) data;
-            if (item.getTitle() != null) {
-                holder.tvTitle.setText(item.getTitle());
-            }
-            if (item.getInfo() != null) {
-                holder.tvInfo.setText(item.getInfo());
-            }
+        if ((flags & UpdateFlagsKT.FLAG_INFO) != 0) {
+            holder.updateInfo(vo);
         }
     }
 

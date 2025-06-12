@@ -109,11 +109,5 @@
             android:layout_height="wrap_content"
             android:text="DiffUtil"
             android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnViewCacheKT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="缓存与复用" />
     </LinearLayout>
 </ScrollView>
