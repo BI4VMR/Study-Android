@@ -64,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // DiffUtil - 异步计算
+        binding.btnDiffUtilAsync.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIDiffUtilKT.class);
+            startActivity(intent);
+        });
+
         // 缓存与复用
         binding.btnViewCache.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIViewCache.class);
@@ -102,6 +108,12 @@ public class MainActivity extends AppCompatActivity {
 
         // DiffUtil(KT)
         binding.btnDiffUtilKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIDiffUtilKT.class);
+            startActivity(intent);
+        });
+
+        // DiffUtil - 异步计算(KT)
+        binding.btnDiffUtilAsyncKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIDiffUtilKT.class);
             startActivity(intent);
         });

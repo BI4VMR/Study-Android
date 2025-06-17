@@ -1,11 +1,11 @@
-package net.bi4vmr.study.diffutil
+package net.bi4vmr.study.diffutilasync
 
-import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import net.bi4vmr.study.R
@@ -21,8 +21,35 @@ class MyAdapterKT(
     /**
      * 数据源。
      */
-    private val mDataSource: MutableList<ItemVOKT>
+    dataSource: MutableList<ItemVOKT>
 ) : RecyclerView.Adapter<MyAdapterKT.MyViewHolder>() {
+
+    private val differ: AsyncListDiffer<ItemVOKT> = AsyncListDiffer(this, object : DiffUtil.ItemCallback<ItemVOKT>() {
+
+        override fun areItemsTheSame(oldItem: ItemVOKT, newItem: ItemVOKT): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: ItemVOKT, newItem: ItemVOKT): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun getChangePayload(oldItem: ItemVOKT, newItem: ItemVOKT): Any {
+            var flags = 0
+            if (oldItem.title != newItem.title) {
+                flags = flags or UpdateFlagsKT.FLAG_TITLE
+            }
+            if (oldItem.info != newItem.info) {
+                flags = flags or UpdateFlagsKT.FLAG_INFO
+            }
+
+            return flags
+        }
+    })
+
+    init {
+        differ.submitList(dataSource)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         Log.d("TestApp", "OnCreateViewHolder. ViewType:[$viewType]")
@@ -33,7 +60,7 @@ class MyAdapterKT(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         Log.d("TestApp", "OnBindViewHolder. Position:[$position]")
-        val vo: ItemVOKT = mDataSource[position]
+        val vo: ItemVOKT = differ.currentList[position]
         holder.bindData(vo)
     }
 
@@ -64,7 +91,7 @@ class MyAdapterKT(
         }
 
         Log.d("TestApp", "Payload flags:[$flags]")
-        val vo: ItemVOKT = mDataSource[holder.adapterPosition]
+        val vo: ItemVOKT = differ.currentList[holder.adapterPosition]
         if (flags and UpdateFlagsKT.FLAG_TITLE != 0) {
             holder.updateTitle(vo)
         }
@@ -74,7 +101,7 @@ class MyAdapterKT(
     }
 
     override fun getItemCount(): Int {
-        return mDataSource.size
+        return differ.currentList.size
     }
 
     /**
@@ -86,9 +113,9 @@ class MyAdapterKT(
      */
     fun getCopyOfDataSource(): MutableList<ItemVOKT> {
         val newList: MutableList<ItemVOKT> = ArrayList()
-        for (i in mDataSource.indices) {
+        for (i in differ.currentList.indices) {
             // 创建新的对象，并复制原对象的属性。
-            val item: ItemVOKT = mDataSource[i]
+            val item: ItemVOKT = differ.currentList[i]
             val title = item.title
             val comment = item.info
             newList.add(ItemVOKT(title, comment))
@@ -101,29 +128,8 @@ class MyAdapterKT(
      *
      * @param[newDatas] 数据源。
      */
-    fun updateData(newDatas: List<ItemVOKT>) {
-        // 对比新旧列表的差异
-        val diffResult = DiffUtil.calculateDiff(MyDiffCallbackKT(mDataSource, newDatas))
-        // 更新数据源
-        mDataSource.clear()
-        mDataSource.addAll(newDatas)
-        // 更新视图
-        diffResult.dispatchUpdatesTo(this)
-    }
-
-    /**
-     * 更新RecyclerView中的所有表项。
-     *
-     * @param[newDatas] 新的数据源。
-     */
-    @SuppressLint("NotifyDataSetChanged")
-    fun reloadItems(newDatas: List<ItemVOKT>) {
-        // 清空数据源
-        mDataSource.clear()
-        // 重新填充数据源
-        mDataSource.addAll(newDatas)
-        // 通知RecyclerView数据源改变
-        notifyDataSetChanged()
+    fun submitList(newDatas: List<ItemVOKT>) {
+        differ.submitList(newDatas)
     }
 
     /* 表项的ViewHolder类 */

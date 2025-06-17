@@ -49,6 +49,11 @@
             android:name=".diffutil.TestUIDiffUtil"
             android:exported="false" />
 
+        <!-- 示例界面：DiffUtil - 异步计算 -->
+        <activity
+            android:name=".diffutilasync.TestUIDiffUtilAsync"
+            android:exported="false" />
+
         <!-- 示例界面：缓存与复用 -->
         <activity
             android:name=".viewcache.TestUIViewCache"
@@ -82,6 +87,11 @@
         <!-- 示例界面：DiffUtil(KT) -->
         <activity
             android:name=".diffutil.TestUIDiffUtilKT"
+            android:exported="false" />
+
+        <!-- 示例界面：DiffUtil - 异步计算(KT) -->
+        <activity
+            android:name=".diffutilasync.TestUIDiffUtilAsyncKT"
             android:exported="false" />
     </application>
 </manifest>
