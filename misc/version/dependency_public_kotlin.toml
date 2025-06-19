@@ -49,10 +49,10 @@ mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 # ----- Kotlin -----
 # 基础・JVM平台支持
 core = { id = "org.jetbrains.kotlin.jvm", version.ref = "core" }
-# 扩展・Spring支持
-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "core" }
 # 扩展・序列化
 serial = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "core" }
+# 扩展・Spring支持
+spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "core" }
 # KSP（注解处理器）
 ksp = { id = "com.google.devtools.ksp", version.ref = "plugin_ksp" }
 # Dokka（文档生成工具）
