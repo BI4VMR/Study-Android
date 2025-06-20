@@ -11,7 +11,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 /**
- * TODO 添加简述。
+ * 示例一：构建环境。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0
@@ -26,7 +26,9 @@ class TestBase {
     @Before
     fun setUp() {
         /* 构建模拟环境 */
+        // 获取Robolectric提供的模拟Application实例
         mockApplication = RuntimeEnvironment.getApplication()
+        // 获取Context实例
         mockContext = mockApplication.applicationContext
     }
 
@@ -34,7 +36,8 @@ class TestBase {
     fun test_Env() {
         println("----- TestEnv start -----")
 
-        println("filesDir:[${mockContext.filesDir}]")
+        // 调用Android的API，验证模拟环境是否正常。
+        println("获取应用名称:[${mockContext.getString(R.string.app_name)}]")
 
         println("----- TestEnv end -----")
     }

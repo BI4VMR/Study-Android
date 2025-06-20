@@ -67,6 +67,7 @@ android {
 
     testOptions {
         unitTests {
+            // 为单元测试添加Android资源
             isIncludeAndroidResources = true
         }
 
@@ -93,8 +94,4 @@ dependencies {
 
     testImplementation(libJava.junit4)
     testImplementation("org.robolectric:robolectric:4.14.1")
-
-    // testImplementation("org.robolectric:android-all-instrumented:13-robolectric-9030017-i6")
-    // testImplementation("org.robolectric:android-all-instrumented:14-robolectric-10818077-i7")
-    // testImplementation("org.robolectric:android-all-instrumented:15-robolectric-12650502-i7")
 }
