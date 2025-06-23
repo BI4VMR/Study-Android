@@ -18,13 +18,13 @@ import org.robolectric.annotation.Config
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.TIRAMISU])
-class TestBase {
+class TestBaseKT {
 
     private lateinit var mockApplication: Application
     private lateinit var mockContext: Context
 
     @Before
-    fun setUp() {
+    fun setup() {
         /* 构建模拟环境 */
         // 获取Robolectric提供的模拟Application实例
         mockApplication = RuntimeEnvironment.getApplication()

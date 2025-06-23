@@ -74,15 +74,17 @@ android {
         unitTests.all {
             // Robolectric：启用日志输出
             it.systemProperty("robolectric.logging.enabled", true)
-            // Robolectric：依赖仓库
-            it.systemProperty("robolectric.dependency.repo.id", "Local")
-            it.systemProperty("robolectric.dependency.repo.url", "http://127.0.0.1:8081/repository/maven-union/")
 
-            // Username and password only needed when local repository
-            // needs account information.
+            // Robolectric：指定模拟API的JAR包下载仓库
+            it.systemProperty("robolectric.dependency.repo.id", "Mirror_Tencent")
+            it.systemProperty(
+                "robolectric.dependency.repo.url",
+                "https://mirrors.cloud.tencent.com/nexus/repository/maven-public/"
+            )
             // it.systemProperty("robolectric.dependency.repo.username", "username")
             // it.systemProperty("robolectric.dependency.repo.password", "password")
-            // // Since Robolectric 4.9.1, these are available
+
+            // Robolectric：指定代理服务器（需要Robolectric v4.9.1或更高版本。）
             // it.systemProperty("robolectric.dependency.proxy.host", System.getenv("ROBOLECTRIC_PROXY_HOST"))
             // it.systemProperty("robolectric.dependency.proxy.port", System.getenv("ROBOLECTRIC_PROXY_PORT"))
         }
@@ -93,5 +95,6 @@ dependencies {
     implementation(libAndroid.bundles.appBaseKT)
 
     testImplementation(libJava.junit4)
+    // 声明Robolectric依赖项
     testImplementation("org.robolectric:robolectric:4.14.1")
 }
