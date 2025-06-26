@@ -9,6 +9,7 @@ val versionModuleName: String = agp.versions.moduleName.get()
 plugins {
     alias(libAndroid.plugins.application)
     alias(libAndroid.plugins.kotlin)
+    id("jacoco")
 }
 
 android {
@@ -36,6 +37,8 @@ android {
     buildTypes {
         getByName("debug") {
             signingConfig = signingConfigs.getByName("AOSP")
+            // isTestCoverageEnabled = true
+            enableUnitTestCoverage = true
         }
         getByName("release") {
             signingConfig = signingConfigs.getByName("AOSP")
@@ -68,4 +71,77 @@ android {
 
 dependencies {
     implementation(libAndroid.bundles.appBaseKT)
+
+    testImplementation(libJava.junit4)
+}
+
+// Jacoco配置
+jacoco {
+    // 指定Jacoco版本
+    toolVersion = "0.8.13"
+}
+
+// 在Gradle Test任务执行后自动执行Jacoco任务
+tasks.withType<Test> {
+    // jacoco.includeNoLocationClasses = true
+    // jacoco.excludes = listOf("jdk.internal.*")
+    ignoreFailures = true
+
+    testLogging {
+        events("passed", "skipped", "failed")
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
+
+    finalizedBy(tasks.named("jacocoTestReport"))
+}
+
+val fileFilter = listOf(
+    "**/R.class",
+    "**/R$*.class",
+    "**/BuildConfig.*",
+    "**/Manifest*.*",
+    "android/**/*.*",
+    "**/databinding",
+)
+
+tasks.register<JacocoReport>("jacocoTestReport") {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+
+    reports {
+        xml.required = false
+        csv.required = false
+        html.required = true
+        html.outputLocation.set(file("${layout.buildDirectory.get()}/reports/jacoco/jacocoTestReport/html"))
+    }
+
+    val debugTree = fileTree("${layout.buildDirectory.get()}/intermediates/javac/debug/classes") {
+        exclude(fileFilter)
+    }
+    val kotlinDebugTree = fileTree("${layout.buildDirectory.get()}/tmp/kotlin-classes/debug") {
+        exclude(fileFilter)
+    }
+    debugTree.forEach {
+        println("Debug Tree: ${it.absolutePath}")
+    }
+    kotlinDebugTree.forEach {
+        println("KT Debug Tree: ${it.absolutePath}")
+    }
+
+    val sourceCodeMainJava = "$projectDir/src/main/java"
+    val sourceCodeMainKotlin = "$projectDir/src/main/kotlin"
+
+    // 注册源码目录
+    sourceDirectories.setFrom(files(sourceCodeMainJava, sourceCodeMainKotlin))
+    // 注册字节码目录
+    classDirectories.setFrom(files(debugTree, kotlinDebugTree))
+    // 添加EC文件
+    executionData.setFrom(
+        fileTree(layout.buildDirectory.get()) {
+            include(
+                "outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec",
+                "outputs/code_coverage/debugAndroidTest/connected/**/*.ec"
+            )
+        }
+    )
 }
