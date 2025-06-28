@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.types;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,15 +6,10 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 /**
- * Name        : 下载项Bean类
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-03-20 14:05
- * <p>
- * Description : 下载项Bean类。
+ * 下载项实体类。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class ItemBean implements Parcelable {
 
@@ -37,7 +32,8 @@ public class ItemBean implements Parcelable {
         }
     };
 
-    public ItemBean(){}
+    public ItemBean() {
+    }
 
     public ItemBean(String url) {
         this.url = url;
@@ -96,6 +92,7 @@ public class ItemBean implements Parcelable {
         dest.writeFloat(percent);
     }
 
+    // 如果该类在AIDL中被标记为 `out` 类型参数，则必须实现此方法。
     public void readFromParcel(Parcel in) {
         id = in.readInt();
         url = in.readString();

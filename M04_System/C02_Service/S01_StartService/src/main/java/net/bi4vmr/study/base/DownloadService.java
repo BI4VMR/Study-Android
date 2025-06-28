@@ -8,9 +8,10 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 /**
- * 启动服务示例：下载服务。
+ * 示例服务：下载管理服务。
  *
- * @author BI4VMR
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class DownloadService extends Service {
 

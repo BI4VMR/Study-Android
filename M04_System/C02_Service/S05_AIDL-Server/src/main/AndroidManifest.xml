@@ -20,13 +20,58 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例：绑定当前软件包中的服务 -->
+        <!-- 示例：基本应用 -->
         <activity
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例服务：下载服务 -->
         <service
             android:name=".base.DownloadService"
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD" />
+            </intent-filter>
+        </service>
+
+        <!-- 示例界面：文件传输 -->
+        <activity
+            android:name=".file.TestUIFile"
+            android:exported="false" />
+
+        <!-- 示例服务：文件传输 -->
+        <service
+            android:name=".file.FileService"
+            android:exported="true"
+            android:process=":file" />
+
+
+        <!-- 示例：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例服务：下载服务(KT) -->
+        <service
+            android:name=".base.DownloadServiceKT"
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD" />
+            </intent-filter>
+        </service>
+
+        <!-- 示例：基本应用(KT) -->
+        <activity
+            android:name=".types.TestUITypesKT"
+            android:exported="false" />
+
+        <!-- 示例服务：下载服务2(KT) -->
+        <service
+            android:name=".types.DownloadService2KT"
             android:exported="true"
             android:process=":service">
 

@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.callback;
 
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 
@@ -15,12 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.aidl.IDownloadService;
 import net.bi4vmr.aidl.callback.TaskCallback;
+import net.bi4vmr.study.types.ItemBean;
 import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
 @SuppressLint("SetTextI18n")
-public class TestUIBase extends AppCompatActivity {
+public class TestUICallback extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-Client-" + TestUIBase.class.getSimpleName();
+    private static final String TAG = "TestApp-Server-" + TestUICallback.class.getSimpleName();
 
     private TestuiBaseBinding binding;
 
@@ -35,11 +37,13 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
+        binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
+
         binding.btnBind.setOnClickListener(v -> testBind());
         binding.btnUnbind.setOnClickListener(v -> testUnbind());
         binding.btnGetPID.setOnClickListener(v -> testGetPID());
         binding.btnAddTask.setOnClickListener(v -> testAddTask());
-        binding.btnAddTaskAsync.setOnClickListener(v -> testAddTaskAsync());
+        // binding.btnAddTaskAsync.setOnClickListener(v -> testAddTaskAsync());
         binding.btnGetTasks.setOnClickListener(v -> testGetTasks());
     }
 
@@ -47,19 +51,8 @@ public class TestUIBase extends AppCompatActivity {
         binding.tvLog.append("\n--- 绑定服务 ---\n");
         Log.i(TAG, "--- 绑定服务 ---");
 
-        Intent intent = new Intent();
-        intent.setPackage("net.bi4vmr.study.system.service.aidlserver");
-        intent.setAction("net.bi4vmr.aidl.DOWNLOAD");
-
-        // 魅族手机需要使用ComponentName明确指定目标，不能使用action。
-        ComponentName cm = new ComponentName("net.bi4vmr.study.system.service.aidlserver", "net.bi4vmr.study.base.DownloadService");
-        intent.setComponent(cm);
-        // 魅族手机需要先startService再bind，否则会绑定失败。
-        startService(intent);
-
-        boolean result = bindService(intent, connection, Context.BIND_AUTO_CREATE);
-        binding.tvLog.append("result: " + result);
-        Log.i(TAG, "result: " + result);
+        Intent intent = new Intent(this, DownloadService.class);
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
 
     private void testUnbind() {
@@ -103,12 +96,12 @@ public class TestUIBase extends AppCompatActivity {
             return;
         }
 
-        try {
-            ItemBean task = new ItemBean("https://test.net/1.txt");
-            downloadService.addTask(task);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     ItemBean task = new ItemBean("https://test.net/1.txt");
+        //     // downloadService.addTask(task);
+        // } catch (RemoteException e) {
+        //     e.printStackTrace();
+        // }
     }
 
     private void testAddTaskAsync() {
@@ -121,18 +114,19 @@ public class TestUIBase extends AppCompatActivity {
             Log.i(TAG, "连接未就绪！");
             return;
         }
-
-        try {
-            ItemBean task = new ItemBean("https://test.net/1.txt");
-            downloadService.addTask(task);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        //
+        // try {
+        //     ItemBean task = new ItemBean("https://test.net/1.txt");
+        //     downloadService.addTask(task);
+        // } catch (RemoteException e) {
+        //     e.printStackTrace();
+        // }
     }
 
     private void testGetTasks() {
         binding.tvLog.append("\n--- 获取任务列表 ---\n");
         Log.i(TAG, "--- 获取任务列表 ---");
+        appendLog("--- 获取任务列表 ---");
 
         // 根据连接状态标志位确定是否能够访问接口
         if (!isServiceConnected) {
@@ -156,35 +150,44 @@ public class TestUIBase extends AppCompatActivity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             // 使用Stub抽象类的"asInterface()"方法将Binder对象转换为对应的Service对象。
             downloadService = IDownloadService.Stub.asInterface(service);
-            // 连接标记位置为"true"，此时可以进行远程调用。
+            // 将连接标记位置为"true"，此时可以进行远程调用。
             isServiceConnected = true;
             binding.tvLog.append("连接已就绪。\n");
             Log.i(TAG, "连接已就绪。");
 
             /* 以下为自定义的业务逻辑 */
             // 设置回调以监听服务端的事件
-            try {
-                downloadService.setTaskCallback(new TaskCallback.Stub() {
-                    @Override
-                    public void onStateChanged(ItemBean item) {
-                        Log.i(TAG, "OnStateChanged. Item:[" + item + "]");
-                        // 服务端回调不在主进程，因此需要切换至主线程更新UI。
-                        runOnUiThread(() -> binding.tvLog.setText(item.toString()));
-                    }
-                });
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+            // try {
+            //     downloadService.setTaskCallback(new TaskCallback.Stub() {
+            //         @Override
+            //         public void onStateChanged(ItemBean item) {
+            //             Log.i(TAG, "OnStateChanged. Item:[" + item + "]");
+            //             // 服务端回调不在主进程，因此需要切换至主线程更新UI。
+            //             runOnUiThread(() -> binding.tvLog.append("OnStateChanged. Item:[" + item + "]\n"));
+            //         }
+            //     });
+            // } catch (RemoteException e) {
+            //     e.printStackTrace();
+            // }
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            // 连接标记位置为"false"
+            // 将连接标记位置为"false"
             isServiceConnected = false;
-            // 将Service对象置空
+            // 将Service实例置空
             downloadService = null;
             binding.tvLog.append("连接已断开！\n");
             Log.i(TAG, "连接已断开！");
         }
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private void appendLog(CharSequence text) {
+        binding.tvLog.append(text);
+        binding.tvLog.post(() -> {
+            int scrollAmount = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+            binding.tvLog.scrollTo(0, Math.max(scrollAmount, 0));
+        });
     }
 }

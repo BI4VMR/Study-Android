@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.types;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -13,39 +13,39 @@ import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.aidl.IDownloadService;
-import net.bi4vmr.study.databinding.TestuiBaseBinding;
+import net.bi4vmr.aidl.IDownloadService2;
+import net.bi4vmr.study.base.DownloadService;
+import net.bi4vmr.study.databinding.TestuiTypesBinding;
 
 import java.util.List;
 
 /**
- * 测试界面：基本应用。
+ * 测试界面：自定义数据类型。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class TestUIBase extends AppCompatActivity {
+public class TestUITypes extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-Server-" + TestUIBase.class.getSimpleName();
+    private static final String TAG = "TestApp-Server-" + TestUITypes.class.getSimpleName();
 
-    private TestuiBaseBinding binding;
+    private TestuiTypesBinding binding;
 
     private final ServiceConnection connection = new DLServiceConnection();
-    private IDownloadService downloadService;
+    private IDownloadService2 downloadService;
 
     private boolean isServiceConnected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiBaseBinding.inflate(LayoutInflater.from(this));
+        binding = TestuiTypesBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         binding.btnBind.setOnClickListener(v -> testBind());
         binding.btnUnbind.setOnClickListener(v -> testUnbind());
-        binding.btnGetPID.setOnClickListener(v -> testGetPID());
         binding.btnAddTask.setOnClickListener(v -> testAddTask());
         binding.btnGetTasks.setOnClickListener(v -> testGetTasks());
     }
@@ -70,27 +70,6 @@ public class TestUIBase extends AppCompatActivity {
         Log.i(TAG, "连接已断开！");
     }
 
-    private void testGetPID() {
-        appendLog("\n--- 获取服务端进程ID ---\n");
-        Log.i(TAG, "--- 获取服务端进程ID ---");
-
-        // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
-        if (!isServiceConnected || !downloadService.asBinder().isBinderAlive()) {
-            appendLog("连接未就绪！\n");
-            Log.i(TAG, "连接未就绪！");
-            return;
-        }
-
-        try {
-            int pid = downloadService.getPID();
-            appendLog("Server PID:[" + pid + "]\n");
-            Log.i(TAG, "Server PID:[" + pid + "]");
-        } catch (RemoteException e) {
-            appendLog(e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
     private void testAddTask() {
         appendLog("\n--- 添加任务 ---\n");
         Log.i(TAG, "--- 添加任务 ---");
@@ -103,7 +82,7 @@ public class TestUIBase extends AppCompatActivity {
         }
 
         try {
-            String task = "https://test.net/1.txt";
+            DownloadItem task = new DownloadItem("https://test.net/1.txt");
             downloadService.addTask(task);
         } catch (RemoteException e) {
             appendLog(e.getMessage());
@@ -123,7 +102,7 @@ public class TestUIBase extends AppCompatActivity {
         }
 
         try {
-            List<String> tasks = downloadService.getTasks();
+            List<DownloadItem> tasks = downloadService.getTasks();
             appendLog(tasks.toString());
             Log.i(TAG, tasks.toString());
         } catch (RemoteException e) {
@@ -143,7 +122,7 @@ public class TestUIBase extends AppCompatActivity {
             Log.i(TAG, "连接已就绪。");
 
             // 使用Stub抽象类的 `asInterface()` 方法将Binder对象转换为对应的Service对象。
-            downloadService = IDownloadService.Stub.asInterface(service);
+            downloadService = IDownloadService2.Stub.asInterface(service);
             // 将连接标记位置为 `true` ，此时可以进行远程调用。
             isServiceConnected = true;
         }

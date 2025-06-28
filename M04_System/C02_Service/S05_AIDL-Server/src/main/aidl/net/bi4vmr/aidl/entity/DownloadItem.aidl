@@ -2,4 +2,4 @@
 package net.bi4vmr.study.types;
 
 // 声明其类型为Parcelable
-parcelable ItemBean;
+parcelable DownloadItem;

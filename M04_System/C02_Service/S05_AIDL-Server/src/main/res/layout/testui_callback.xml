@@ -53,13 +53,19 @@
                 android:id="@+id/btnGetPID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="获取服务端进程ID" />
+                android:text="获取服务进程ID" />
 
             <Button
                 android:id="@+id/btnAddTask"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="添加任务" />
+
+            <Button
+                android:id="@+id/btnAddTaskAsync"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="添加任务（异步方法）" />
 
             <Button
                 android:id="@+id/btnGetTasks"
