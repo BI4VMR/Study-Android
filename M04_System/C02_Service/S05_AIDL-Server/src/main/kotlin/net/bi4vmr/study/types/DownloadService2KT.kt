@@ -4,7 +4,7 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import android.util.Log
-import net.bi4vmr.aidl.IDownloadService2
+import net.bi4vmr.aidl.IDownloadService2KT
 
 /**
  * 示例服务：文件下载服务。
@@ -25,17 +25,17 @@ class DownloadService2KT : Service() {
     /**
      * AIDL接口的实现类。
      */
-    private inner class DownloadImpl : IDownloadService2.Stub() {
+    private inner class DownloadImpl : IDownloadService2KT.Stub() {
 
         // 任务集合
-        private val tasks: MutableList<DownloadItem> = mutableListOf()
+        private val tasks: MutableList<DownloadItemKT> = mutableListOf()
 
         /**
          * 添加下载任务。
          *
          * @param[item] 下载项实体类。
          */
-        override fun addTask(item: DownloadItem) {
+        override fun addTask(item: DownloadItemKT) {
             Log.d(TAG, "AddTask. Item:$item")
             // 在此处实现下载业务，此处省略。
             tasks.add(item)
@@ -46,7 +46,7 @@ class DownloadService2KT : Service() {
          *
          * @return 任务列表。
          */
-        override fun getTasks(): List<DownloadItem> {
+        override fun getTasks(): List<DownloadItemKT> {
             Log.d(TAG, "GetTasks.")
             return tasks
         }

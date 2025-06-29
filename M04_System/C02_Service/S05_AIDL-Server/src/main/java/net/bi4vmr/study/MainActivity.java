@@ -9,6 +9,8 @@ import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.file.TestUIFile;
+import net.bi4vmr.study.types.TestUITypes;
+import net.bi4vmr.study.types.TestUITypesKT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 自定义数据类型
+        binding.btnTypes.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUITypes.class);
+            startActivity(intent);
+        });
+
         // 文件传输
         binding.btnFile.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIFile.class);
@@ -33,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
+            startActivity(intent);
+        });
+
+        // 自定义数据类型(KT)
+        binding.btnTypesKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUITypesKT.class);
             startActivity(intent);
         });
 

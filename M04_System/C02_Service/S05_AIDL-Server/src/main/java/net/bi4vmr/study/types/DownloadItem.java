@@ -20,7 +20,7 @@ public class DownloadItem implements Parcelable {
     // 进度
     private float percent;
 
-    public static final Creator<DownloadItem> CREATOR = new Creator<DownloadItem>() {
+    public static final Creator<DownloadItem> CREATOR = new Creator<>() {
         @Override
         public DownloadItem createFromParcel(Parcel in) {
             return new DownloadItem(in);
@@ -41,6 +41,7 @@ public class DownloadItem implements Parcelable {
 
     // Parcel构造方法
     protected DownloadItem(Parcel in) {
+        // 按属性顺序从Parcel容器中读出属性值
         id = in.readInt();
         url = in.readString();
         percent = in.readFloat();
@@ -87,6 +88,7 @@ public class DownloadItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        // 按属性顺序向Parcel容器中写入属性值
         dest.writeInt(id);
         dest.writeString(url);
         dest.writeFloat(percent);

@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.aidl.IDownloadService2;
-import net.bi4vmr.study.base.DownloadService;
 import net.bi4vmr.study.databinding.TestuiTypesBinding;
 
 import java.util.List;
@@ -54,7 +53,7 @@ public class TestUITypes extends AppCompatActivity {
         appendLog("\n--- 绑定服务 ---\n");
         Log.i(TAG, "--- 绑定服务 ---");
 
-        Intent intent = new Intent(this, DownloadService.class);
+        Intent intent = new Intent(this, DownloadService2.class);
         boolean result = bindService(intent, connection, Context.BIND_AUTO_CREATE);
         appendLog("绑定结果：[" + result + "]\n");
         Log.i(TAG, "绑定结果：[" + result + "]");

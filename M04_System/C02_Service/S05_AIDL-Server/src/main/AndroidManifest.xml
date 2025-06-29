@@ -36,6 +36,22 @@
             </intent-filter>
         </service>
 
+        <!-- 示例：自定义数据类型 -->
+        <activity
+            android:name=".types.TestUITypes"
+            android:exported="false" />
+
+        <!-- 示例服务：下载服务2 -->
+        <service
+            android:name=".types.DownloadService2"
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD" />
+            </intent-filter>
+        </service>
+
         <!-- 示例界面：文件传输 -->
         <activity
             android:name=".file.TestUIFile"
@@ -64,7 +80,7 @@
             </intent-filter>
         </service>
 
-        <!-- 示例：基本应用(KT) -->
+        <!-- 示例：自定义数据类型(KT) -->
         <activity
             android:name=".types.TestUITypesKT"
             android:exported="false" />

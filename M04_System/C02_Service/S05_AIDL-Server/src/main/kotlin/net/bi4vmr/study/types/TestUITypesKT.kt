@@ -10,7 +10,7 @@ import android.os.RemoteException
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import net.bi4vmr.aidl.IDownloadService2
+import net.bi4vmr.aidl.IDownloadService2KT
 import net.bi4vmr.study.databinding.TestuiTypesBinding
 
 /**
@@ -30,7 +30,7 @@ class TestUITypesKT : AppCompatActivity() {
     }
 
     private val connection: DLServiceConnection = DLServiceConnection()
-    private var downloadService: IDownloadService2? = null
+    private var downloadService: IDownloadService2KT? = null
 
     private var isServiceConnected: Boolean = false
 
@@ -81,7 +81,7 @@ class TestUITypesKT : AppCompatActivity() {
         }
 
         try {
-            val task = DownloadItem("https://test.net/1.txt")
+            val task = DownloadItemKT(0, "https://test.net/1.txt", 0.0F)
             requireNotNull(downloadService).addTask(task)
         } catch (e: RemoteException) {
             appendLog(e.message ?: "未知错误。")
@@ -101,7 +101,7 @@ class TestUITypesKT : AppCompatActivity() {
         }
 
         try {
-            val tasks: List<DownloadItem> = requireNotNull(downloadService).tasks
+            val tasks: List<DownloadItemKT> = requireNotNull(downloadService).tasks
             appendLog(tasks.toString())
             Log.i(TAG, "$tasks")
         } catch (e: RemoteException) {
@@ -120,7 +120,7 @@ class TestUITypesKT : AppCompatActivity() {
             Log.i(TAG, "连接已就绪。")
 
             // 使用Stub抽象类的 `asInterface()` 方法将Binder对象转换为对应的Service对象。
-            downloadService = IDownloadService2.Stub.asInterface(service)
+            downloadService = IDownloadService2KT.Stub.asInterface(service)
             // 将连接标记位置为 `true` ，此时可以进行远程调用。
             isServiceConnected = true
         }

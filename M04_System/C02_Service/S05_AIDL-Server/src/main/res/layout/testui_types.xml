@@ -50,12 +50,6 @@
                 android:text="解绑服务" />
 
             <Button
-                android:id="@+id/btnGetPID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="获取服务端进程ID" />
-
-            <Button
                 android:id="@+id/btnAddTask"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
