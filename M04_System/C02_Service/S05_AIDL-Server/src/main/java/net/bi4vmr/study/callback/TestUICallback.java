@@ -1,6 +1,5 @@
 package net.bi4vmr.study.callback;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -15,11 +14,14 @@ import android.view.LayoutInflater;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.aidl.IDownloadService;
-import net.bi4vmr.aidl.callback.TaskCallback;
-import net.bi4vmr.study.types.ItemBean;
 import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
-@SuppressLint("SetTextI18n")
+/**
+ * 测试界面：回调接口。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class TestUICallback extends AppCompatActivity {
 
     private static final String TAG = "TestApp-Server-" + TestUICallback.class.getSimpleName();
@@ -51,7 +53,7 @@ public class TestUICallback extends AppCompatActivity {
         binding.tvLog.append("\n--- 绑定服务 ---\n");
         Log.i(TAG, "--- 绑定服务 ---");
 
-        Intent intent = new Intent(this, DownloadService.class);
+        Intent intent = new Intent(this, DownloadService3.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
 

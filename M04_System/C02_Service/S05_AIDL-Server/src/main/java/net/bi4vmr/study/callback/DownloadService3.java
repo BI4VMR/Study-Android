@@ -7,51 +7,35 @@ import android.os.Process;
 import android.os.RemoteException;
 import android.util.Log;
 
-import net.bi4vmr.aidl.IDownloadService33;
+import net.bi4vmr.aidl.IDownloadService3;
 import net.bi4vmr.aidl.callback.TaskCallback;
+import net.bi4vmr.study.types.DownloadItem;
 import net.bi4vmr.study.types.ItemBean;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Name        : 下载服务
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-03-20 14:05
- * <p>
- * Description : 下载服务。
+ * 示例服务：文件下载服务。
+ *
+ * @author bi4vmr@outlook.com
+ * @version 1.0.0
  */
-public class DownloadService extends Service {
+public class DownloadService3 extends Service {
 
-    private static final String TAG = "TestApp-Server-" + DownloadService.class.getSimpleName();
+    private static final String TAG = "TestApp-Server-" + DownloadService3.class.getSimpleName();
 
     @Override
     public IBinder onBind(Intent intent) {
-        return new DownloadStub();
+        return new ServiceImpl();
     }
 
-    private static class DownloadStub extends IDownloadService33.Stub {
+    private static class ServiceImpl extends IDownloadService3.Stub {
 
         // 保存所有任务
         private final List<ItemBean> tasks = new CopyOnWriteArrayList<>();
         // 回调接口的实现类，用于向客户端反馈结果。
         private TaskCallback callback;
-
-        /**
-         * Name        : 获取服务端进程ID
-         * <p>
-         * Description : 获取服务端进程ID。
-         *
-         * @return 服务端的进程ID
-         */
-        @Override
-        public int getPID() {
-            return Process.myPid();
-        }
 
         /**
          * Name        : 添加下载任务
@@ -89,6 +73,16 @@ public class DownloadService extends Service {
             }).start();
         }
 
+        @Override
+        public void addTaskAsync(DownloadItem task) throws RemoteException {
+
+        }
+
+        @Override
+        public void addTask(DownloadItem task) throws RemoteException {
+
+        }
+
         /**
          * Name        : 添加下载任务
          * <p>
@@ -120,11 +114,6 @@ public class DownloadService extends Service {
             } catch (RemoteException e) {
                 Log.e(TAG, "发生远程错误！");
             }
-        }
-
-        @Override
-        public List<ItemBean> getTasks() {
-            return tasks;
         }
 
         @Override
