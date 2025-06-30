@@ -9,6 +9,7 @@ import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.file.TestUIFile;
+import net.bi4vmr.study.paramsync.TestUIParamSync;
 import net.bi4vmr.study.types.TestUITypes;
 import net.bi4vmr.study.types.TestUITypesKT;
 
@@ -29,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
         // 自定义数据类型
         binding.btnTypes.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUITypes.class);
+            startActivity(intent);
+        });
+
+        // 数据方向标签
+        binding.btnParamSync.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIParamSync.class);
             startActivity(intent);
         });
 

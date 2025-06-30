@@ -7,9 +7,7 @@ import android.os.Process;
 import android.os.RemoteException;
 import android.util.Log;
 
-import net.bi4vmr.aidl.IDownloadService;
-import net.bi4vmr.aidl.IDownloadService2;
-import net.bi4vmr.aidl.IDownloadService3;
+import net.bi4vmr.aidl.IDownloadService33;
 import net.bi4vmr.aidl.callback.TaskCallback;
 import net.bi4vmr.study.types.ItemBean;
 
@@ -36,7 +34,7 @@ public class DownloadService extends Service {
         return new DownloadStub();
     }
 
-    private static class DownloadStub extends IDownloadService3.Stub {
+    private static class DownloadStub extends IDownloadService33.Stub {
 
         // 保存所有任务
         private final List<ItemBean> tasks = new CopyOnWriteArrayList<>();

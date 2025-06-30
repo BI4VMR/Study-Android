@@ -5,7 +5,7 @@ import net.bi4vmr.aidl.bean.ItemBean;
 // 该路径为对应AIDL文件所在的包
 import net.bi4vmr.aidl.callback.TaskCallback;
 
-interface IDownloadService3 {
+interface IDownloadService33 {
 
     // 获取服务端进程ID
     int getPID();

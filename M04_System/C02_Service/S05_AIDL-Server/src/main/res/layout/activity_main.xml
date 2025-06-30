@@ -35,6 +35,13 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/btnParamSync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="数据方向标签"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btnCallback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,6 +74,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="自定义数据类型"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnParamSyncKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="数据方向标签"
             android:textAllCaps="false" />
 
         <Button

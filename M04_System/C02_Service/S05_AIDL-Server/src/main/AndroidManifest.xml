@@ -48,9 +48,20 @@
             android:process=":service">
 
             <intent-filter>
-                <action android:name="net.bi4vmr.aidl.DOWNLOAD" />
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD2" />
             </intent-filter>
         </service>
+
+        <!-- 示例：数据方向标签 -->
+        <activity
+            android:name=".paramsync.TestUIParamSync"
+            android:exported="false" />
+
+        <!-- 示例服务：参数同步测试服务 -->
+        <service
+            android:name=".paramsync.ParamSyncService"
+            android:exported="true"
+            android:process=":service" />
 
         <!-- 示例界面：文件传输 -->
         <activity
@@ -92,7 +103,7 @@
             android:process=":service">
 
             <intent-filter>
-                <action android:name="net.bi4vmr.aidl.DOWNLOAD" />
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD2KT" />
             </intent-filter>
         </service>
     </application>
