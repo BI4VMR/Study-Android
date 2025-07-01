@@ -16,7 +16,7 @@ import net.bi4vmr.study.databinding.TestuiParamsyncBinding;
 import net.bi4vmr.study.types.DownloadItem;
 
 /**
- * 测试界面：自定义数据类型。
+ * 测试界面：数据方向标签。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0

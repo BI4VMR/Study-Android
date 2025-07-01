@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
-import net.bi4vmr.study.threads.TestUIThreads;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.exceptions.TestUIExceptions;
 import net.bi4vmr.study.file.TestUIFile;
 import net.bi4vmr.study.paramsync.TestUIParamSync;
+import net.bi4vmr.study.threads.TestUIThreads;
+import net.bi4vmr.study.threads.TestUIThreadsKT;
 import net.bi4vmr.study.types.TestUITypes;
 import net.bi4vmr.study.types.TestUITypesKT;
 
@@ -46,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 异常处理
+        binding.btnException.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIExceptions.class);
+            startActivity(intent);
+        });
+
         // 文件传输
         binding.btnFile.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIFile.class);
@@ -61,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
         // 自定义数据类型(KT)
         binding.btnTypesKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUITypesKT.class);
+            startActivity(intent);
+        });
+
+        // 线程调度(KT)
+        binding.btnThreadsKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIThreadsKT.class);
             startActivity(intent);
         });
 

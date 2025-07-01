@@ -1,4 +1,4 @@
-package net.bi4vmr.study.types
+package net.bi4vmr.study.threads
 
 import android.content.ComponentName
 import android.content.Context
@@ -6,12 +6,13 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
-import android.os.RemoteException
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import net.bi4vmr.aidl.IDownloadService2KT
-import net.bi4vmr.study.databinding.TestuiTypesBinding
+import net.bi4vmr.aidl.IDownloadService3KT
+import net.bi4vmr.aidl.callback.TaskCallbackKT
+import net.bi4vmr.study.databinding.TestuiThreadsBinding
+import net.bi4vmr.study.types.DownloadItemKT
 
 /**
  * 测试界面：自定义数据类型。
@@ -19,18 +20,19 @@ import net.bi4vmr.study.databinding.TestuiTypesBinding
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TestUITypesKT : AppCompatActivity() {
+class TestUIThreadsKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-Server-${TestUITypesKT::class.simpleName}"
+        private val TAG: String = "TestApp-Server-${TestUIThreadsKT::class.simpleName}"
     }
 
-    private val binding: TestuiTypesBinding by lazy {
-        TestuiTypesBinding.inflate(layoutInflater)
+    private val binding: TestuiThreadsBinding by lazy {
+        TestuiThreadsBinding.inflate(layoutInflater)
     }
 
     private val connection: DLServiceConnection = DLServiceConnection()
-    private var downloadService: IDownloadService2KT? = null
+
+    private var downloadService: IDownloadService3KT? = null
 
     private var isServiceConnected: Boolean = false
 
@@ -45,7 +47,7 @@ class TestUITypesKT : AppCompatActivity() {
             btnBind.setOnClickListener { testBind() }
             btnUnbind.setOnClickListener { testUnbind() }
             btnAddTask.setOnClickListener { testAddTask() }
-            btnGetTasks.setOnClickListener { testGetTasks() }
+            btnAddTaskOneway.setOnClickListener { testAddTaskOneway() }
         }
     }
 
@@ -53,7 +55,7 @@ class TestUITypesKT : AppCompatActivity() {
         appendLog("\n--- 绑定服务 ---\n")
         Log.i(TAG, "--- 绑定服务 ---")
 
-        val intent = Intent(this, DownloadService2KT::class.java)
+        val intent = Intent(this, DownloadService3KT::class.java)
         val result: Boolean = bindService(intent, connection, Context.BIND_AUTO_CREATE)
         appendLog("绑定结果：[$result]\n")
         Log.i(TAG, "绑定结果：[$result]")
@@ -81,18 +83,18 @@ class TestUITypesKT : AppCompatActivity() {
             return
         }
 
-        try {
-            val task = DownloadItemKT(0, "https://test.net/1.txt", 0.0F)
+        runCatching {
+            val task = DownloadItemKT(url = "https://test.net/1.txt")
             requireNotNull(downloadService).addTask(task)
-        } catch (e: RemoteException) {
+        }.onFailure { e ->
             appendLog(e.message ?: "未知错误。")
             e.printStackTrace()
         }
     }
 
-    private fun testGetTasks() {
-        appendLog("\n--- 查询任务 ---\n")
-        Log.i(TAG, "--- 查询任务 ---")
+    private fun testAddTaskOneway() {
+        appendLog("\n--- 添加任务（AIDL异步方法） ---\n")
+        Log.i(TAG, "--- 添加任务（AIDL异步方法） ---")
 
         // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
         if (!isServiceConnected || downloadService?.asBinder()?.isBinderAlive != true) {
@@ -101,11 +103,10 @@ class TestUITypesKT : AppCompatActivity() {
             return
         }
 
-        try {
-            val tasks: List<DownloadItemKT> = requireNotNull(downloadService).tasks
-            appendLog(tasks.toString())
-            Log.i(TAG, "$tasks")
-        } catch (e: RemoteException) {
+        runCatching {
+            val task = DownloadItemKT(url = "https://test.net/1.txt")
+            requireNotNull(downloadService).addTaskOneway(task)
+        }.onFailure { e ->
             appendLog(e.message ?: "未知错误。")
             e.printStackTrace()
         }
@@ -121,9 +122,21 @@ class TestUITypesKT : AppCompatActivity() {
             Log.i(TAG, "连接已就绪。")
 
             // 使用Stub抽象类的 `asInterface()` 方法将Binder对象转换为对应的Service对象。
-            downloadService = IDownloadService2KT.Stub.asInterface(service)
+            downloadService = IDownloadService3KT.Stub.asInterface(service)
             // 将连接标记位置为 `true` ，此时可以进行远程调用。
             isServiceConnected = true
+
+            /* 以下为自定义的业务逻辑 */
+            // 设置回调以监听服务端的事件
+            runCatching {
+                requireNotNull(downloadService).setTaskCallback(object : TaskCallbackKT.Stub() {
+                    override fun onStateChanged(item: DownloadItemKT) {
+                        Log.i(TAG, "OnStateChanged. Item:[$item]")
+                        // 服务端回调不在主进程，因此需要切换至主线程更新UI。
+                        runOnUiThread { appendLog("OnStateChanged. Item:[$item]\n") }
+                    }
+                })
+            }.onFailure { it.printStackTrace() }
         }
 
         override fun onServiceDisconnected(name: ComponentName) {

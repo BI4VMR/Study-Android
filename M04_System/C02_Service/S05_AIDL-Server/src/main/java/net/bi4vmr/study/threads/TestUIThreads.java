@@ -12,8 +12,10 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.aidl.IDownloadService;
+import net.bi4vmr.aidl.IDownloadService3;
+import net.bi4vmr.aidl.callback.TaskCallback;
 import net.bi4vmr.study.databinding.TestuiThreadsBinding;
+import net.bi4vmr.study.types.DownloadItem;
 
 /**
  * 测试界面：线程调度。
@@ -28,7 +30,8 @@ public class TestUIThreads extends AppCompatActivity {
     private TestuiThreadsBinding binding;
 
     private final ServiceConnection connection = new DLServiceConnection();
-    private IDownloadService downloadService;
+
+    private IDownloadService3 downloadService;
 
     private boolean isServiceConnected = false;
 
@@ -43,11 +46,11 @@ public class TestUIThreads extends AppCompatActivity {
         binding.btnBind.setOnClickListener(v -> testBind());
         binding.btnUnbind.setOnClickListener(v -> testUnbind());
         binding.btnAddTask.setOnClickListener(v -> testAddTask());
-        binding.btnAddTaskOneway.setOnClickListener(v -> testAddTask());
+        binding.btnAddTaskOneway.setOnClickListener(v -> testAddTaskOneway());
     }
 
     private void testBind() {
-        binding.tvLog.append("\n--- 绑定服务 ---\n");
+        appendLog("\n--- 绑定服务 ---\n");
         Log.i(TAG, "--- 绑定服务 ---");
 
         Intent intent = new Intent(this, DownloadService3.class);
@@ -55,89 +58,49 @@ public class TestUIThreads extends AppCompatActivity {
     }
 
     private void testUnbind() {
-        binding.tvLog.append("\n--- 解绑服务 ---\n");
+        appendLog("\n--- 解绑服务 ---\n");
         Log.i(TAG, "--- 解绑服务 ---");
 
         unbindService(connection);
         isServiceConnected = false;
         downloadService = null;
-        binding.tvLog.append("连接已断开！\n");
+        appendLog("连接已断开！\n");
         Log.i(TAG, "连接已断开！");
     }
 
-    private void testGetPID() {
-        binding.tvLog.append("\n--- 获取服务端进程ID ---\n");
-        Log.i(TAG, "--- 获取服务端进程ID ---");
+    private void testAddTask() {
+        appendLog("\n--- 添加任务 ---\n");
+        Log.i(TAG, "--- 添加任务 ---");
 
-        // 根据连接状态标志位确定是否能够访问接口
-        if (!isServiceConnected) {
-            binding.tvLog.append("连接未就绪！\n");
+        // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
+        if (!isServiceConnected || !downloadService.asBinder().isBinderAlive()) {
+            appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
             return;
         }
 
         try {
-            int pid = downloadService.getPID();
-            binding.tvLog.append("PID:[" + pid + "]\n");
-            Log.i(TAG, "PID:[" + pid + "]");
+            DownloadItem task = new DownloadItem("https://test.net/1.txt");
+            downloadService.addTask(task);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
-    private void testAddTask() {
-        binding.tvLog.append("\n--- 添加任务 ---\n");
-        Log.i(TAG, "--- 添加任务 ---");
-
-        // 根据连接状态标志位确定是否能够访问接口
-        if (!isServiceConnected) {
-            binding.tvLog.append("连接未就绪！\n");
-            Log.i(TAG, "连接未就绪！");
-            return;
-        }
-
-        // try {
-        //     ItemBean task = new ItemBean("https://test.net/1.txt");
-        //     // downloadService.addTask(task);
-        // } catch (RemoteException e) {
-        //     e.printStackTrace();
-        // }
-    }
-
-    private void testAddTaskAsync() {
-        binding.tvLog.append("\n--- 添加任务（AIDL异步方法） ---\n");
+    private void testAddTaskOneway() {
+        appendLog("\n--- 添加任务（AIDL异步方法） ---\n");
         Log.i(TAG, "--- 添加任务（AIDL异步方法） ---");
 
-        // 根据连接状态标志位确定是否能够访问接口
-        if (!isServiceConnected) {
-            binding.tvLog.append("连接未就绪！\n");
-            Log.i(TAG, "连接未就绪！");
-            return;
-        }
-        //
-        // try {
-        //     ItemBean task = new ItemBean("https://test.net/1.txt");
-        //     downloadService.addTask(task);
-        // } catch (RemoteException e) {
-        //     e.printStackTrace();
-        // }
-    }
-
-    private void testGetTasks() {
-        binding.tvLog.append("\n--- 获取任务列表 ---\n");
-        Log.i(TAG, "--- 获取任务列表 ---");
-        appendLog("--- 获取任务列表 ---");
-
-        // 根据连接状态标志位确定是否能够访问接口
-        if (!isServiceConnected) {
-            binding.tvLog.append("连接未就绪！\n");
+        // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
+        if (!isServiceConnected || !downloadService.asBinder().isBinderAlive()) {
+            appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
             return;
         }
 
         try {
-            binding.tvLog.append(downloadService.getTasks().toString() + "\n");
-            Log.i(TAG, downloadService.getTasks().toString());
+            DownloadItem task = new DownloadItem("https://test.net/1.txt");
+            downloadService.addTaskOneway(task);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -148,27 +111,27 @@ public class TestUIThreads extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            // 使用Stub抽象类的"asInterface()"方法将Binder对象转换为对应的Service对象。
-            downloadService = IDownloadService.Stub.asInterface(service);
+            // 使用Stub抽象类的 `asInterface()` 方法将Binder对象转换为对应的Service对象。
+            downloadService = IDownloadService3.Stub.asInterface(service);
             // 将连接标记位置为"true"，此时可以进行远程调用。
             isServiceConnected = true;
-            binding.tvLog.append("连接已就绪。\n");
+            appendLog("连接已就绪。\n");
             Log.i(TAG, "连接已就绪。");
 
             /* 以下为自定义的业务逻辑 */
             // 设置回调以监听服务端的事件
-            // try {
-            //     downloadService.setTaskCallback(new TaskCallback.Stub() {
-            //         @Override
-            //         public void onStateChanged(ItemBean item) {
-            //             Log.i(TAG, "OnStateChanged. Item:[" + item + "]");
-            //             // 服务端回调不在主进程，因此需要切换至主线程更新UI。
-            //             runOnUiThread(() -> binding.tvLog.append("OnStateChanged. Item:[" + item + "]\n"));
-            //         }
-            //     });
-            // } catch (RemoteException e) {
-            //     e.printStackTrace();
-            // }
+            try {
+                downloadService.setTaskCallback(new TaskCallback.Stub() {
+                    @Override
+                    public void onStateChanged(DownloadItem item) {
+                        Log.i(TAG, "OnStateChanged. Item:[" + item + "]");
+                        // 服务端回调不在主进程，因此需要切换至主线程更新UI。
+                        runOnUiThread(() -> appendLog("OnStateChanged. Item:[" + item + "]\n"));
+                    }
+                });
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
@@ -177,7 +140,7 @@ public class TestUIThreads extends AppCompatActivity {
             isServiceConnected = false;
             // 将Service实例置空
             downloadService = null;
-            binding.tvLog.append("连接已断开！\n");
+            appendLog("连接已断开！\n");
             Log.i(TAG, "连接已断开！");
         }
     }
@@ -186,8 +149,10 @@ public class TestUIThreads extends AppCompatActivity {
     private void appendLog(CharSequence text) {
         binding.tvLog.append(text);
         binding.tvLog.post(() -> {
-            int scrollAmount = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
-            binding.tvLog.scrollTo(0, Math.max(scrollAmount, 0));
+            int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+            if (offset > 0) {
+                binding.tvLog.scrollTo(0, offset);
+            }
         });
     }
 }

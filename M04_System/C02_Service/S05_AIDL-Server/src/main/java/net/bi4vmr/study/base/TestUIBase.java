@@ -66,6 +66,7 @@ public class TestUIBase extends AppCompatActivity {
 
         unbindService(connection);
         isServiceConnected = false;
+        downloadService = null;
         binding.tvLog.append("连接已断开！\n");
         Log.i(TAG, "连接已断开！");
     }

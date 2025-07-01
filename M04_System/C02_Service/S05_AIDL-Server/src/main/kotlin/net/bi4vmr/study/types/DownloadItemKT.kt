@@ -10,9 +10,9 @@ import android.os.Parcelable
  * @since 1.0.0
  */
 data class DownloadItemKT(
-    var id: Int,
+    var id: Int = 0,
     var url: String,
-    var percent: Float
+    var percent: Float = 0.0F
 ) : Parcelable {
 
     companion object CREATOR : Parcelable.Creator<DownloadItemKT> {

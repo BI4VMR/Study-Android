@@ -79,6 +79,17 @@
             </intent-filter>
         </service>
 
+        <!-- 示例界面：异常处理 -->
+        <activity
+            android:name=".exceptions.TestUIExceptions"
+            android:exported="false" />
+
+        <!-- 示例服务：异常处理 -->
+        <service
+            android:name=".exceptions.ExceptionTestService"
+            android:exported="true"
+            android:process=":service" />
+
         <!-- 示例界面：文件传输 -->
         <activity
             android:name=".file.TestUIFile"
@@ -90,7 +101,7 @@
             android:exported="true"
             android:process=":file" />
 
-        <!-- 示例：基本应用(KT) -->
+        <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
             android:exported="false" />
@@ -106,7 +117,7 @@
             </intent-filter>
         </service>
 
-        <!-- 示例：自定义数据类型(KT) -->
+        <!-- 示例界面：自定义数据类型(KT) -->
         <activity
             android:name=".types.TestUITypesKT"
             android:exported="false" />
@@ -121,5 +132,37 @@
                 <action android:name="net.bi4vmr.aidl.DOWNLOAD2KT" />
             </intent-filter>
         </service>
+
+        <!-- 示例界面：线程调度(KT) -->
+        <activity
+            android:name=".threads.TestUIThreadsKT"
+            android:exported="false" />
+
+        <!-- 示例服务：下载服务3(KT) -->
+        <service
+            android:name=".threads.DownloadService3KT"
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD3KT" />
+            </intent-filter>
+        </service>
+
+        <!-- &lt;!&ndash; 示例界面：异常处理(KT) &ndash;&gt; -->
+        <!-- <activity -->
+        <!--     android:name=".threads.TestUIThreadsKT" -->
+        <!--     android:exported="false" /> -->
+
+        <!-- &lt;!&ndash; 示例服务：异常处理(KT) &ndash;&gt; -->
+        <!-- <service -->
+        <!--     android:name=".threads.DownloadService3KT" -->
+        <!--     android:exported="true" -->
+        <!--     android:process=":service"> -->
+
+        <!--     <intent-filter> -->
+        <!--         <action android:name="net.bi4vmr.aidl.DOWNLOAD3KT" /> -->
+        <!--     </intent-filter> -->
+        <!-- </service> -->
     </application>
 </manifest>

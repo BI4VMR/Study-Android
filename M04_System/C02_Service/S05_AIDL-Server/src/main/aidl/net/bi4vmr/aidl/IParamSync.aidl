@@ -6,5 +6,5 @@ import net.bi4vmr.aidl.entity.DownloadItem;
 interface IParamSync {
 
     // 添加任务并开始下载
-    void modifyParams(in DownloadItem p1, out DownloadItem p2,inout DownloadItem p3);
+    void modifyParams(in DownloadItem p1, out DownloadItem p2, inout DownloadItem p3);
 }

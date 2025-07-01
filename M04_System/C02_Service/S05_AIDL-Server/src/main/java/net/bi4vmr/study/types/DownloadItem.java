@@ -74,7 +74,7 @@ public class DownloadItem implements Parcelable {
     @NonNull
     @Override
     public String toString() {
-        return "ItemBean{" +
+        return "DownloadItem{" +
                 "id=" + id +
                 ", url='" + url + '\'' +
                 ", percent=" + percent +
