@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="基本应用"
+        android:text="线程调度"
         android:textColor="@color/black"
         android:textSize="22sp" />
 
@@ -50,28 +50,17 @@
                 android:text="解绑服务" />
 
             <Button
-                android:id="@+id/btnGetPID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="获取服务进程ID" />
-
-            <Button
                 android:id="@+id/btnAddTask"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="添加任务" />
 
             <Button
-                android:id="@+id/btnAddTaskAsync"
+                android:id="@+id/btnAddTaskOneway"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="添加任务（异步方法）" />
-
-            <Button
-                android:id="@+id/btnGetTasks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="获取任务" />
+                android:text="添加任务（Oneway）"
+                android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

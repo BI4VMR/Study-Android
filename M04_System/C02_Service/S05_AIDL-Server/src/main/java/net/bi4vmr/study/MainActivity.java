@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
+import net.bi4vmr.study.threads.TestUIThreads;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.file.TestUIFile;
 import net.bi4vmr.study.paramsync.TestUIParamSync;
@@ -36,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
         // 数据方向标签
         binding.btnParamSync.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIParamSync.class);
+            startActivity(intent);
+        });
+
+        // 线程调度
+        binding.btnThreads.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIThreads.class);
             startActivity(intent);
         });
 

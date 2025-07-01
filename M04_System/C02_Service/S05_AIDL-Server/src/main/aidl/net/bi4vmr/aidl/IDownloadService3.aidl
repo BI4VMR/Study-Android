@@ -11,10 +11,7 @@ interface IDownloadService3 {
     void addTask(in DownloadItem task);
 
     // 添加任务并开始下载（AIDL异步方法）
-    oneway void addTaskAsync(in DownloadItem task);
-
-    // 获取任务列表
-    List<DownloadItem> getTasks();
+    oneway void addTaskOneway(in DownloadItem task);
 
     // 注册状态回调
     void setTaskCallback(in TaskCallback cb);

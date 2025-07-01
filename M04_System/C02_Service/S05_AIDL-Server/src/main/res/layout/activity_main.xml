@@ -42,10 +42,17 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnCallback"
+            android:id="@+id/btnThreads"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="回调接口"
+            android:text="线程调度"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnException"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="异常处理"
             android:textAllCaps="false" />
 
         <Button
@@ -84,10 +91,17 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnCallbackKT"
+            android:id="@+id/btnThreadsKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="回调接口"
+            android:text="线程调度"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnExceptionKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="异常处理"
             android:textAllCaps="false" />
 
         <Button

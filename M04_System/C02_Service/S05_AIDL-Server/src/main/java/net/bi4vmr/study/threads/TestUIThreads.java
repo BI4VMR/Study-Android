@@ -1,4 +1,4 @@
-package net.bi4vmr.study.callback;
+package net.bi4vmr.study.threads;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -9,24 +9,23 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.aidl.IDownloadService;
-import net.bi4vmr.study.databinding.TestuiBaseBinding;
+import net.bi4vmr.study.databinding.TestuiThreadsBinding;
 
 /**
- * 测试界面：回调接口。
+ * 测试界面：线程调度。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class TestUICallback extends AppCompatActivity {
+public class TestUIThreads extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-Server-" + TestUICallback.class.getSimpleName();
+    private static final String TAG = "TestApp-Server-" + TestUIThreads.class.getSimpleName();
 
-    private TestuiBaseBinding binding;
+    private TestuiThreadsBinding binding;
 
     private final ServiceConnection connection = new DLServiceConnection();
     private IDownloadService downloadService;
@@ -36,17 +35,15 @@ public class TestUICallback extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiBaseBinding.inflate(LayoutInflater.from(this));
+        binding = TestuiThreadsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         binding.btnBind.setOnClickListener(v -> testBind());
         binding.btnUnbind.setOnClickListener(v -> testUnbind());
-        binding.btnGetPID.setOnClickListener(v -> testGetPID());
         binding.btnAddTask.setOnClickListener(v -> testAddTask());
-        // binding.btnAddTaskAsync.setOnClickListener(v -> testAddTaskAsync());
-        binding.btnGetTasks.setOnClickListener(v -> testGetTasks());
+        binding.btnAddTaskOneway.setOnClickListener(v -> testAddTask());
     }
 
     private void testBind() {
@@ -63,6 +60,7 @@ public class TestUICallback extends AppCompatActivity {
 
         unbindService(connection);
         isServiceConnected = false;
+        downloadService = null;
         binding.tvLog.append("连接已断开！\n");
         Log.i(TAG, "连接已断开！");
     }

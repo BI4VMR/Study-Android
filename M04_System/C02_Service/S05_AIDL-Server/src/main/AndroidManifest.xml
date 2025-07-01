@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例：基本应用 -->
+        <!-- 示例界面：基本应用 -->
         <activity
             android:name=".base.TestUIBase"
             android:exported="false" />
@@ -36,7 +36,7 @@
             </intent-filter>
         </service>
 
-        <!-- 示例：自定义数据类型 -->
+        <!-- 示例界面：自定义数据类型 -->
         <activity
             android:name=".types.TestUITypes"
             android:exported="false" />
@@ -52,7 +52,7 @@
             </intent-filter>
         </service>
 
-        <!-- 示例：数据方向标签 -->
+        <!-- 示例界面：数据方向标签 -->
         <activity
             android:name=".paramsync.TestUIParamSync"
             android:exported="false" />
@@ -62,6 +62,22 @@
             android:name=".paramsync.ParamSyncService"
             android:exported="true"
             android:process=":service" />
+
+        <!-- 示例界面：线程调度 -->
+        <activity
+            android:name=".threads.TestUIThreads"
+            android:exported="false" />
+
+        <!-- 示例服务：下载服务3 -->
+        <service
+            android:name=".threads.DownloadService3"
+            android:exported="true"
+            android:process=":service">
+
+            <intent-filter>
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD3" />
+            </intent-filter>
+        </service>
 
         <!-- 示例界面：文件传输 -->
         <activity
@@ -73,7 +89,6 @@
             android:name=".file.FileService"
             android:exported="true"
             android:process=":file" />
-
 
         <!-- 示例：基本应用(KT) -->
         <activity
