@@ -6,10 +6,8 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,14 +27,15 @@ public class TestUIExceptions extends AppCompatActivity {
     private TestuiExceptionsBinding binding;
 
     private final ServiceConnection connection = new DLServiceConnection();
-    private IExceptions service;
+
+    private IExceptions testService;
 
     private boolean isServiceConnected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiExceptionsBinding.inflate(LayoutInflater.from(this));
+        binding = TestuiExceptionsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
@@ -44,6 +43,7 @@ public class TestUIExceptions extends AppCompatActivity {
         binding.btnBind.setOnClickListener(v -> testBind());
         binding.btnUnbind.setOnClickListener(v -> testUnbind());
         binding.btnDivide.setOnClickListener(v -> testDivide());
+        binding.btnDivide2.setOnClickListener(v -> testDivide2());
     }
 
     private void testBind() {
@@ -52,7 +52,7 @@ public class TestUIExceptions extends AppCompatActivity {
 
         ComponentName cn = new ComponentName(
                 "net.bi4vmr.study.system.service.aidlserver",
-                "net.bi4vmr.study.base.DownloadService"
+                "net.bi4vmr.study.exceptions.ExceptionTestService"
         );
         Intent intent = new Intent();
         intent.setComponent(cn);
@@ -67,7 +67,7 @@ public class TestUIExceptions extends AppCompatActivity {
 
         unbindService(connection);
         isServiceConnected = false;
-        service = null;
+        testService = null;
         binding.tvLog.append("连接已断开！\n");
         Log.i(TAG, "连接已断开！");
     }
@@ -77,17 +77,38 @@ public class TestUIExceptions extends AppCompatActivity {
         Log.i(TAG, "--- 计算除法 ---");
 
         // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
-        if (!isServiceConnected || !service.asBinder().isBinderAlive()) {
+        if (!isServiceConnected || !testService.asBinder().isBinderAlive()) {
             appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
             return;
         }
 
         try {
-            int result = service.divide(100, 0);
+            int result = testService.divide(100, 0);
             appendLog("计算结果：" + result);
             Log.i(TAG, "计算结果：" + result);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
+            appendLog(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void testDivide2() {
+        appendLog("\n--- 计算除法2 ---\n");
+        Log.i(TAG, "--- 计算除法2 ---");
+
+        // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
+        if (!isServiceConnected || !testService.asBinder().isBinderAlive()) {
+            appendLog("连接未就绪！\n");
+            Log.i(TAG, "连接未就绪！");
+            return;
+        }
+
+        try {
+            int result = testService.divide2(100, 0);
+            appendLog("计算结果：" + result);
+            Log.i(TAG, "计算结果：" + result);
+        } catch (Exception e) {
             appendLog(e.getMessage());
             e.printStackTrace();
         }
@@ -104,7 +125,7 @@ public class TestUIExceptions extends AppCompatActivity {
             Log.i(TAG, "连接已就绪。");
 
             // 使用Stub抽象类的 `asInterface()` 方法将Binder对象转换为对应的Service对象。
-            TestUIExceptions.this.service = IExceptions.Stub.asInterface(service);
+            TestUIExceptions.this.testService = IExceptions.Stub.asInterface(service);
             // 将连接标记位置为 `true` ，此时可以进行远程调用。
             isServiceConnected = true;
         }
@@ -117,7 +138,7 @@ public class TestUIExceptions extends AppCompatActivity {
             // 将连接标记位置为 `false`
             isServiceConnected = false;
             // 将Service实例置空
-            service = null;
+            testService = null;
         }
     }
 

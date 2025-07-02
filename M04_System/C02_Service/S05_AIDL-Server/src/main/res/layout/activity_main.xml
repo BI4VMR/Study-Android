@@ -84,13 +84,6 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnParamSyncKT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="数据方向标签"
-            android:textAllCaps="false" />
-
-        <Button
             android:id="@+id/btnThreadsKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +28,8 @@ public class TestUIExceptions extends AppCompatActivity {
     private TestuiExceptionsBinding binding;
 
     private final ServiceConnection connection = new DLServiceConnection();
-    private IExceptions service;
+
+    private IExceptions testService;
 
     private boolean isServiceConnected = false;
 
@@ -63,7 +63,7 @@ public class TestUIExceptions extends AppCompatActivity {
 
         unbindService(connection);
         isServiceConnected = false;
-        service = null;
+        testService = null;
         binding.tvLog.append("连接已断开！\n");
         Log.i(TAG, "连接已断开！");
     }
@@ -73,17 +73,17 @@ public class TestUIExceptions extends AppCompatActivity {
         Log.i(TAG, "--- 计算除法 ---");
 
         // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
-        if (!isServiceConnected || !service.asBinder().isBinderAlive()) {
+        if (!isServiceConnected || !testService.asBinder().isBinderAlive()) {
             appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
             return;
         }
 
         try {
-            int result = service.divide(100, 0);
+            int result = testService.divide(100, 0);
             appendLog("计算结果：" + result);
             Log.i(TAG, "计算结果：" + result);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             appendLog(e.getMessage());
             e.printStackTrace();
         }
@@ -94,17 +94,17 @@ public class TestUIExceptions extends AppCompatActivity {
         Log.i(TAG, "--- 计算除法2 ---");
 
         // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
-        if (!isServiceConnected || !service.asBinder().isBinderAlive()) {
+        if (!isServiceConnected || !testService.asBinder().isBinderAlive()) {
             appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
             return;
         }
 
         try {
-            int result = service.divide2(100, 0);
+            int result = testService.divide2(100, 0);
             appendLog("计算结果：" + result);
             Log.i(TAG, "计算结果：" + result);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             appendLog(e.getMessage());
             e.printStackTrace();
         }
@@ -121,7 +121,7 @@ public class TestUIExceptions extends AppCompatActivity {
             Log.i(TAG, "连接已就绪。");
 
             // 使用Stub抽象类的 `asInterface()` 方法将Binder对象转换为对应的Service对象。
-            TestUIExceptions.this.service = IExceptions.Stub.asInterface(service);
+            testService = IExceptions.Stub.asInterface(service);
             // 将连接标记位置为 `true` ，此时可以进行远程调用。
             isServiceConnected = true;
         }
@@ -134,7 +134,7 @@ public class TestUIExceptions extends AppCompatActivity {
             // 将连接标记位置为 `false`
             isServiceConnected = false;
             // 将Service实例置空
-            service = null;
+            testService = null;
         }
     }
 

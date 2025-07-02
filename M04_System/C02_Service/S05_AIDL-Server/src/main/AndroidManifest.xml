@@ -99,7 +99,7 @@
         <service
             android:name=".file.FileService"
             android:exported="true"
-            android:process=":file" />
+            android:process=":service" />
 
         <!-- 示例界面：基本应用(KT) -->
         <activity
@@ -149,20 +149,26 @@
             </intent-filter>
         </service>
 
-        <!-- &lt;!&ndash; 示例界面：异常处理(KT) &ndash;&gt; -->
-        <!-- <activity -->
-        <!--     android:name=".threads.TestUIThreadsKT" -->
-        <!--     android:exported="false" /> -->
+        <!-- 示例界面：异常处理(KT) -->
+        <activity
+            android:name=".exceptions.TestUIExceptionsKT"
+            android:exported="false" />
 
-        <!-- &lt;!&ndash; 示例服务：异常处理(KT) &ndash;&gt; -->
-        <!-- <service -->
-        <!--     android:name=".threads.DownloadService3KT" -->
-        <!--     android:exported="true" -->
-        <!--     android:process=":service"> -->
+        <!-- 示例服务：异常处理(KT) -->
+        <service
+            android:name=".exceptions.ExceptionTestServiceKT"
+            android:exported="true"
+            android:process=":service" />
 
-        <!--     <intent-filter> -->
-        <!--         <action android:name="net.bi4vmr.aidl.DOWNLOAD3KT" /> -->
-        <!--     </intent-filter> -->
-        <!-- </service> -->
+        <!-- 示例界面：文件传输(KT) -->
+        <activity
+            android:name=".file.TestUIFileKT"
+            android:exported="false" />
+
+        <!-- 示例服务：文件传输(KT) -->
+        <service
+            android:name=".file.FileServiceKT"
+            android:exported="true"
+            android:process=":service" />
     </application>
 </manifest>

@@ -54,6 +54,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="计算'100 / 0'" />
+
+            <Button
+                android:id="@+id/btnDivide2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="异常类型转换测试" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

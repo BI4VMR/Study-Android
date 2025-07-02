@@ -9,7 +9,9 @@ import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.exceptions.TestUIExceptions;
+import net.bi4vmr.study.exceptions.TestUIExceptionsKT;
 import net.bi4vmr.study.file.TestUIFile;
+import net.bi4vmr.study.file.TestUIFileKT;
 import net.bi4vmr.study.paramsync.TestUIParamSync;
 import net.bi4vmr.study.threads.TestUIThreads;
 import net.bi4vmr.study.threads.TestUIThreadsKT;
@@ -78,9 +80,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 文件传输
-        binding.btnFile.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIFile.class);
+        // 线程调度(KT)
+        binding.btnExceptionKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIExceptionsKT.class);
+            startActivity(intent);
+        });
+
+        // 文件传输(KT)
+        binding.btnFileKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIFileKT.class);
             startActivity(intent);
         });
     }
