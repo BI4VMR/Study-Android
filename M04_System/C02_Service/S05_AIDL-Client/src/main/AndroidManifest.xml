@@ -23,9 +23,49 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：绑定其他软件包中的服务 -->
+        <!-- 示例界面：基本应用 -->
         <activity
             android:name=".base.TestUIBase"
+            android:exported="false" />
+
+        <!-- 示例界面：自定义数据类型 -->
+        <activity
+            android:name=".types.TestUITypes"
+            android:exported="false" />
+
+        <!-- 示例界面：数据方向标签 -->
+        <activity
+            android:name=".paramsync.TestUIParamSync"
+            android:exported="false" />
+
+        <!-- 示例界面：线程调度 -->
+        <activity
+            android:name=".threads.TestUIThreads"
+            android:exported="false" />
+
+        <!-- 示例界面：异常处理 -->
+        <activity
+            android:name=".exceptions.TestUIExceptions"
+            android:exported="false" />
+
+        <!-- 示例界面：文件传输 -->
+        <activity
+            android:name=".file.TestUIFile"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：自定义数据类型(KT) -->
+        <activity
+            android:name=".types.TestUITypesKT"
+            android:exported="false" />
+
+        <!-- 示例界面：线程调度(KT) -->
+        <activity
+            android:name=".threads.TestUIThreadsKT"
             android:exported="false" />
     </application>
 </manifest>

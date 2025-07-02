@@ -14,7 +14,7 @@ import net.bi4vmr.aidl.IExceptions;
  */
 public class ExceptionTestService extends Service {
 
-    private static final String TAG = "TestApp-Server-" + ExceptionTestService.class.getSimpleName();
+    private static final String TAG = "TestApp-Client-" + ExceptionTestService.class.getSimpleName();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -26,21 +26,9 @@ public class ExceptionTestService extends Service {
      */
     private static class ServiceImpl extends IExceptions.Stub {
 
-        // 计算除法
         @Override
         public int divide(int a, int b) {
             return a / b;
-        }
-
-        // 计算除法（已传递原始异常）
-        @Override
-        public int divide2(int a, int b) {
-            try {
-                return a / b;
-            } catch (ArithmeticException e) {
-                // 捕获AIDL不支持的异常，并重新抛出IllegalArgumentException。
-                throw new IllegalArgumentException("除数不能为零！", e);
-            }
         }
     }
 }

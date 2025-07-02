@@ -24,7 +24,7 @@ import net.bi4vmr.study.databinding.TestuiExceptionsBinding;
  */
 public class TestUIExceptions extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-Server-" + TestUIExceptions.class.getSimpleName();
+    private static final String TAG = "TestApp-Client-" + TestUIExceptions.class.getSimpleName();
 
     private TestuiExceptionsBinding binding;
 
@@ -44,14 +44,18 @@ public class TestUIExceptions extends AppCompatActivity {
         binding.btnBind.setOnClickListener(v -> testBind());
         binding.btnUnbind.setOnClickListener(v -> testUnbind());
         binding.btnDivide.setOnClickListener(v -> testDivide());
-        binding.btnDivide2.setOnClickListener(v -> testDivide2());
     }
 
     private void testBind() {
         appendLog("\n--- 绑定服务 ---\n");
         Log.i(TAG, "--- 绑定服务 ---");
 
-        Intent intent = new Intent(this, ExceptionTestService.class);
+        ComponentName cn = new ComponentName(
+                "net.bi4vmr.study.system.service.aidlserver",
+                "net.bi4vmr.study.base.DownloadService"
+        );
+        Intent intent = new Intent();
+        intent.setComponent(cn);
         boolean result = bindService(intent, connection, Context.BIND_AUTO_CREATE);
         appendLog("绑定结果：[" + result + "]\n");
         Log.i(TAG, "绑定结果：[" + result + "]");
@@ -81,27 +85,6 @@ public class TestUIExceptions extends AppCompatActivity {
 
         try {
             int result = service.divide(100, 0);
-            appendLog("计算结果：" + result);
-            Log.i(TAG, "计算结果：" + result);
-        } catch (RemoteException e) {
-            appendLog(e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    private void testDivide2() {
-        appendLog("\n--- 计算除法2 ---\n");
-        Log.i(TAG, "--- 计算除法2 ---");
-
-        // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
-        if (!isServiceConnected || !service.asBinder().isBinderAlive()) {
-            appendLog("连接未就绪！\n");
-            Log.i(TAG, "连接未就绪！");
-            return;
-        }
-
-        try {
-            int result = service.divide2(100, 0);
             appendLog("计算结果：" + result);
             Log.i(TAG, "计算结果：" + result);
         } catch (RemoteException e) {

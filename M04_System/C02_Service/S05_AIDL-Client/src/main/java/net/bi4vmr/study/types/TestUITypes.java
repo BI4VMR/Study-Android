@@ -1,4 +1,4 @@
-package net.bi4vmr.study.exceptions;
+package net.bi4vmr.study.types;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -13,45 +13,49 @@ import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.aidl.IExceptions;
-import net.bi4vmr.study.databinding.TestuiExceptionsBinding;
+import net.bi4vmr.aidl.IDownloadService2;
+import net.bi4vmr.study.databinding.TestuiTypesBinding;
+
+import java.util.List;
 
 /**
- * 测试界面：异常处理。
+ * 测试界面：自定义数据类型。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class TestUIExceptions extends AppCompatActivity {
+public class TestUITypes extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-Server-" + TestUIExceptions.class.getSimpleName();
+    private static final String TAG = "TestApp-Client-" + TestUITypes.class.getSimpleName();
 
-    private TestuiExceptionsBinding binding;
+    private TestuiTypesBinding binding;
 
     private final ServiceConnection connection = new DLServiceConnection();
-    private IExceptions service;
+    private IDownloadService2 downloadService;
 
     private boolean isServiceConnected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiExceptionsBinding.inflate(LayoutInflater.from(this));
+        binding = TestuiTypesBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         binding.btnBind.setOnClickListener(v -> testBind());
         binding.btnUnbind.setOnClickListener(v -> testUnbind());
-        binding.btnDivide.setOnClickListener(v -> testDivide());
-        binding.btnDivide2.setOnClickListener(v -> testDivide2());
+        binding.btnAddTask.setOnClickListener(v -> testAddTask());
+        binding.btnGetTasks.setOnClickListener(v -> testGetTasks());
     }
 
     private void testBind() {
         appendLog("\n--- 绑定服务 ---\n");
         Log.i(TAG, "--- 绑定服务 ---");
 
-        Intent intent = new Intent(this, ExceptionTestService.class);
+        Intent intent = new Intent();
+        intent.setPackage("net.bi4vmr.study.system.service.aidlserver");
+        intent.setAction("net.bi4vmr.aidl.DOWNLOAD2");
         boolean result = bindService(intent, connection, Context.BIND_AUTO_CREATE);
         appendLog("绑定结果：[" + result + "]\n");
         Log.i(TAG, "绑定结果：[" + result + "]");
@@ -63,47 +67,46 @@ public class TestUIExceptions extends AppCompatActivity {
 
         unbindService(connection);
         isServiceConnected = false;
-        service = null;
+        downloadService = null;
         binding.tvLog.append("连接已断开！\n");
         Log.i(TAG, "连接已断开！");
     }
 
-    private void testDivide() {
-        appendLog("\n--- 计算除法 ---\n");
-        Log.i(TAG, "--- 计算除法 ---");
+    private void testAddTask() {
+        appendLog("\n--- 添加任务 ---\n");
+        Log.i(TAG, "--- 添加任务 ---");
 
         // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
-        if (!isServiceConnected || !service.asBinder().isBinderAlive()) {
+        if (!isServiceConnected || !downloadService.asBinder().isBinderAlive()) {
             appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
             return;
         }
 
         try {
-            int result = service.divide(100, 0);
-            appendLog("计算结果：" + result);
-            Log.i(TAG, "计算结果：" + result);
+            DownloadItem task = new DownloadItem("https://test.net/1.txt");
+            downloadService.addTask(task);
         } catch (RemoteException e) {
             appendLog(e.getMessage());
             e.printStackTrace();
         }
     }
 
-    private void testDivide2() {
-        appendLog("\n--- 计算除法2 ---\n");
-        Log.i(TAG, "--- 计算除法2 ---");
+    private void testGetTasks() {
+        appendLog("\n--- 查询任务 ---\n");
+        Log.i(TAG, "--- 查询任务 ---");
 
         // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
-        if (!isServiceConnected || !service.asBinder().isBinderAlive()) {
+        if (!isServiceConnected || !downloadService.asBinder().isBinderAlive()) {
             appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
             return;
         }
 
         try {
-            int result = service.divide2(100, 0);
-            appendLog("计算结果：" + result);
-            Log.i(TAG, "计算结果：" + result);
+            List<DownloadItem> tasks = downloadService.getTasks();
+            appendLog(tasks.toString());
+            Log.i(TAG, tasks.toString());
         } catch (RemoteException e) {
             appendLog(e.getMessage());
             e.printStackTrace();
@@ -121,7 +124,7 @@ public class TestUIExceptions extends AppCompatActivity {
             Log.i(TAG, "连接已就绪。");
 
             // 使用Stub抽象类的 `asInterface()` 方法将Binder对象转换为对应的Service对象。
-            TestUIExceptions.this.service = IExceptions.Stub.asInterface(service);
+            downloadService = IDownloadService2.Stub.asInterface(service);
             // 将连接标记位置为 `true` ，此时可以进行远程调用。
             isServiceConnected = true;
         }
@@ -134,7 +137,7 @@ public class TestUIExceptions extends AppCompatActivity {
             // 将连接标记位置为 `false`
             isServiceConnected = false;
             // 将Service实例置空
-            service = null;
+            downloadService = null;
         }
     }
 

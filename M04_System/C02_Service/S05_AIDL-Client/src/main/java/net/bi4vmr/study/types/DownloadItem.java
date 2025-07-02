@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.types;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,17 +6,12 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 /**
- * Name        : 下载项Bean类
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@bi4vmr.net
- * <p>
- * Date        : 2023-03-20 14:05
- * <p>
- * Description : 下载项Bean类。
+ * 下载项实体类。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
-public class ItemBean implements Parcelable {
+public class DownloadItem implements Parcelable {
 
     // 任务ID
     private int id;
@@ -25,26 +20,28 @@ public class ItemBean implements Parcelable {
     // 进度
     private float percent;
 
-    public static final Creator<ItemBean> CREATOR = new Creator<ItemBean>() {
+    public static final Creator<DownloadItem> CREATOR = new Creator<>() {
         @Override
-        public ItemBean createFromParcel(Parcel in) {
-            return new ItemBean(in);
+        public DownloadItem createFromParcel(Parcel in) {
+            return new DownloadItem(in);
         }
 
         @Override
-        public ItemBean[] newArray(int size) {
-            return new ItemBean[size];
+        public DownloadItem[] newArray(int size) {
+            return new DownloadItem[size];
         }
     };
 
-    public ItemBean(){}
+    public DownloadItem() {
+    }
 
-    public ItemBean(String url) {
+    public DownloadItem(String url) {
         this.url = url;
     }
 
     // Parcel构造方法
-    protected ItemBean(Parcel in) {
+    protected DownloadItem(Parcel in) {
+        // 按属性顺序从Parcel容器中读出属性值
         id = in.readInt();
         url = in.readString();
         percent = in.readFloat();
@@ -77,7 +74,7 @@ public class ItemBean implements Parcelable {
     @NonNull
     @Override
     public String toString() {
-        return "ItemBean{" +
+        return "DownloadItem{" +
                 "id=" + id +
                 ", url='" + url + '\'' +
                 ", percent=" + percent +
@@ -91,11 +88,13 @@ public class ItemBean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        // 按属性顺序向Parcel容器中写入属性值
         dest.writeInt(id);
         dest.writeString(url);
         dest.writeFloat(percent);
     }
 
+    // 如果该类在AIDL中被标记为 `out` 类型参数，则必须实现此方法。
     public void readFromParcel(Parcel in) {
         id = in.readInt();
         url = in.readString();

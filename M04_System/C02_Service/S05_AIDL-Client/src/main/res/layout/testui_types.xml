@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="异常处理"
+        android:text="自定义数据类型"
         android:textColor="@color/black"
         android:textSize="22sp" />
 
@@ -50,16 +50,16 @@
                 android:text="解绑服务" />
 
             <Button
-                android:id="@+id/btnDivide"
+                android:id="@+id/btnAddTask"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="计算'100 / 0'" />
+                android:text="添加任务" />
 
             <Button
-                android:id="@+id/btnDivide2"
+                android:id="@+id/btnGetTasks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="异常类型转换测试" />
+                android:text="获取任务" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

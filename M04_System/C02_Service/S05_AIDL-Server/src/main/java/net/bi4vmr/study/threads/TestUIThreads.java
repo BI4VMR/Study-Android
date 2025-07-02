@@ -54,7 +54,9 @@ public class TestUIThreads extends AppCompatActivity {
         Log.i(TAG, "--- 绑定服务 ---");
 
         Intent intent = new Intent(this, DownloadService3.class);
-        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        boolean result = bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        appendLog("绑定结果：[" + result + "]\n");
+        Log.i(TAG, "绑定结果：[" + result + "]");
     }
 
     private void testUnbind() {

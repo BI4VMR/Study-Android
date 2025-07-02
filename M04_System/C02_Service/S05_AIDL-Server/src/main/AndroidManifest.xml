@@ -113,7 +113,7 @@
             android:process=":service">
 
             <intent-filter>
-                <action android:name="net.bi4vmr.aidl.DOWNLOAD" />
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD_KT" />
             </intent-filter>
         </service>
 
@@ -129,7 +129,7 @@
             android:process=":service">
 
             <intent-filter>
-                <action android:name="net.bi4vmr.aidl.DOWNLOAD2KT" />
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD2_KT" />
             </intent-filter>
         </service>
 
@@ -145,7 +145,7 @@
             android:process=":service">
 
             <intent-filter>
-                <action android:name="net.bi4vmr.aidl.DOWNLOAD3KT" />
+                <action android:name="net.bi4vmr.aidl.DOWNLOAD3_KT" />
             </intent-filter>
         </service>
 
