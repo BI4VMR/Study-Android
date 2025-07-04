@@ -27,5 +27,15 @@
         <service
             android:name=".base.DownloadService"
             android:exported="false" />
+
+        <!-- 示例界面：基本应用 -->
+        <activity
+            android:name=".foreground.TestUIForeground"
+            android:exported="false" />
+
+        <!-- 前台服务 -->
+        <service
+            android:name=".foreground.ForegroundService"
+            android:exported="false" />
     </application>
 </manifest>

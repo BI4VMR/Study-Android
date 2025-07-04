@@ -1,6 +1,7 @@
 package net.bi4vmr.study.base
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiBaseBinding
@@ -28,6 +29,8 @@ class TestUIBaseKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
+            tvLog.movementMethod = ScrollingMovementMethod.getInstance()
+
             btn01.setOnClickListener { test() }
         }
     }
@@ -35,8 +38,21 @@ class TestUIBaseKT : AppCompatActivity() {
     // 功能模块
     private fun test() {
         Log.i(TAG, "--- 功能模块 ---")
-        binding.tvLog.append("\n--- 功能模块 ---\n")
+        appendLog("\n--- 功能模块 ---\n")
 
         // ...
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private fun appendLog(text: CharSequence) {
+        binding.tvLog.apply {
+            append(text)
+            post {
+                val offset = layout.getLineTop(lineCount) - height
+                if (offset > 0) {
+                    scrollTo(0, offset)
+                }
+            }
+        }
     }
 }

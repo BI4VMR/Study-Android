@@ -1,6 +1,7 @@
 package net.bi4vmr.study.base;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,14 +28,27 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
+
         binding.btn01.setOnClickListener(v -> test());
     }
 
     // 功能模块
     private void test() {
         Log.i(TAG, "--- 功能模块 ---");
-        binding.tvLog.append("\n--- 功能模块 ---\n");
+        appendLog("\n--- 功能模块 ---\n");
 
         // ...
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private void appendLog(CharSequence text) {
+        binding.tvLog.append(text);
+        binding.tvLog.post(() -> {
+            int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+            if (offset > 0) {
+                binding.tvLog.scrollTo(0, offset);
+            }
+        });
     }
 }
