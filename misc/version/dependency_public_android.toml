@@ -44,7 +44,7 @@ okdownload_core = "1.0.7"
 
 
 # ----- 工程架构 -----
-hilt = "2.56.2"
+hilt = "2.52"
 
 
 # ----- Gradle插件 -----
@@ -160,7 +160,7 @@ okdownload_core = { group = "com.liulishuo.okdownload", name = "okdownload", ver
 
 # ----- 工程架构 -----
 # <Dagger>
-# Dagger・Hilt
+# Dagger・Hilt・Android
 hilt_android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 # Dagger・Hilt・注解处理器
 hilt_compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }

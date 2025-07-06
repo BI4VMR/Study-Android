@@ -46,6 +46,20 @@ public class TestUIBase extends AppCompatActivity {
         ComponentName serviceInfo = startService(intent);
         Log.i(TAG, "服务名称：" + serviceInfo);
         appendLog("服务名称：" + serviceInfo);
+
+
+        // 指明目标服务（通过ComponentName）
+        // ComponentName cn = new ComponentName(
+        //         "net.bi4vmr.study.system.service.startservice",
+        //         "net.bi4vmr.study.base.DownloadService");
+        // Intent intent2 = new Intent();
+        // intent2.setComponent(cn);
+
+        // 指明目标服务（通过Action与Category等）
+        // Intent intent3 = new Intent();
+        // intent3.setPackage("net.bi4vmr.study.system.service.startservice");
+        // intent3.setAction("net.bi4vmr.action.DOWNLOAD");
+        // intent3.addCategory("net.bi4vmr.category.DOWNLOAD");
     }
 
     // 停止服务

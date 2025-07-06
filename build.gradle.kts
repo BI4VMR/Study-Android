@@ -1,5 +1,6 @@
 // Gradle插件声明
 plugins {
+    alias(libKotlin.plugins.ksp).apply(false)
     alias(libAndroid.plugins.application).apply(false)
     alias(libAndroid.plugins.library).apply(false)
     alias(libAndroid.plugins.kotlin).apply(false)

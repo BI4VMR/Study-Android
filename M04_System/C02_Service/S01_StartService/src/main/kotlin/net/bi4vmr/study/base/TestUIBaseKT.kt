@@ -48,6 +48,22 @@ class TestUIBaseKT : AppCompatActivity() {
         val serviceInfo: ComponentName? = startService(intent)
         Log.i(TAG, "服务名称：$serviceInfo")
         appendLog("服务名称：$serviceInfo")
+
+
+        // 指明目标服务（通过ComponentName）
+        // val cn = ComponentName(
+        //     "net.bi4vmr.study.system.service.startservice",
+        //     "net.bi4vmr.study.base.DownloadService"
+        // )
+        // val intent2 = Intent()
+        // intent2.setComponent(cn)
+
+        // 指明目标服务（通过Action与Category等）
+        // val intent3 = Intent().apply {
+        //     setPackage("net.bi4vmr.study.system.service.startservice")
+        //     setAction("net.bi4vmr.action.DOWNLOAD")
+        //     addCategory("net.bi4vmr.category.DOWNLOAD")
+        // }
     }
 
     private fun testStop() {

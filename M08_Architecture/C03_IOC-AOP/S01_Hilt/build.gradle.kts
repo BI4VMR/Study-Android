@@ -71,8 +71,9 @@ android {
 dependencies {
     implementation(libAndroid.bundles.appBaseKT)
 
-    // 声明
+    // 声明Hilt核心
     implementation(libAndroid.hilt.android)
 
+    // 声明注解处理器
     ksp(libAndroid.hilt.compiler)
 }

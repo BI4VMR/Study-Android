@@ -8,19 +8,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
 /**
- * 测试界面：TODO 添加简述。
+ * 测试界面：基本应用。
  * <p>
- * TODO 添加详情。
+ * `@HiltAndroidApp` 可以被Hilt识别到，其中的 `@Inject` 变量生效。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
+@AndroidEntryPoint
 public class TestUIBase extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();
 
     private TestuiBaseBinding binding;
+
+    @Inject
+    HTTPManager httpManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,7 @@ public class TestUIBase extends AppCompatActivity {
         appendLog("\n--- 功能模块 ---\n");
 
         // ...
+        httpManager.login();
     }
 
     // 向文本框中追加日志内容并滚动到最底端

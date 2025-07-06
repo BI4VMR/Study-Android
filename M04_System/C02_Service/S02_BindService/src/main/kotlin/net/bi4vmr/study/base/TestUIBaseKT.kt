@@ -133,6 +133,7 @@ class TestUIBaseKT : AppCompatActivity() {
                         scrollTo(0, offset)
                     }
                 }.onFailure { e ->
+                    Log.w(TAG, "TextView scroll failed!");
                     e.printStackTrace()
                 }
             }
