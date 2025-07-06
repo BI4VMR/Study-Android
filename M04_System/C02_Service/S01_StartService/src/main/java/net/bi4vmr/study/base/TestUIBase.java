@@ -1,5 +1,6 @@
 package net.bi4vmr.study.base;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -42,7 +43,9 @@ public class TestUIBase extends AppCompatActivity {
         // 添加初始化数据
         intent.putExtra("LINK", "https://dl.test.com/file");
         // 启动服务
-        startService(intent);
+        ComponentName serviceInfo = startService(intent);
+        Log.i(TAG, "服务名称：" + serviceInfo);
+        appendLog("服务名称：" + serviceInfo);
     }
 
     // 停止服务
@@ -65,9 +68,14 @@ public class TestUIBase extends AppCompatActivity {
     private void appendLog(CharSequence text) {
         binding.tvLog.append(text);
         binding.tvLog.post(() -> {
-            int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
-            if (offset > 0) {
-                binding.tvLog.scrollTo(0, offset);
+            try {
+                int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+                if (offset > 0) {
+                    binding.tvLog.scrollTo(0, offset);
+                }
+            } catch (Exception e) {
+                Log.w(TAG, "TextView scroll failed!");
+                e.printStackTrace();
             }
         });
     }

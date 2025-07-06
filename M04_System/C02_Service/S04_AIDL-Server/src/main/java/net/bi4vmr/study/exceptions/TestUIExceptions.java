@@ -48,41 +48,41 @@ public class TestUIExceptions extends AppCompatActivity {
     }
 
     private void testBind() {
-        appendLog("\n--- 绑定服务 ---\n");
         Log.i(TAG, "--- 绑定服务 ---");
+        appendLog("\n--- 绑定服务 ---\n");
 
         Intent intent = new Intent(this, ExceptionTestService.class);
         boolean result = bindService(intent, connection, Context.BIND_AUTO_CREATE);
-        appendLog("绑定结果：[" + result + "]\n");
         Log.i(TAG, "绑定结果：[" + result + "]");
+        appendLog("绑定结果：[" + result + "]\n");
     }
 
     private void testUnbind() {
-        appendLog("\n--- 解绑服务 ---\n");
         Log.i(TAG, "--- 解绑服务 ---");
+        appendLog("\n--- 解绑服务 ---\n");
 
         unbindService(connection);
         isServiceConnected = false;
         testService = null;
-        binding.tvLog.append("连接已断开！\n");
         Log.i(TAG, "连接已断开！");
+        appendLog("连接已断开！\n");
     }
 
     private void testDivide() {
-        appendLog("\n--- 计算除法 ---\n");
         Log.i(TAG, "--- 计算除法 ---");
+        appendLog("\n--- 计算除法 ---\n");
 
         // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
         if (!isServiceConnected || !testService.asBinder().isBinderAlive()) {
-            appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
+            appendLog("连接未就绪！\n");
             return;
         }
 
         try {
             int result = testService.divide(100, 0);
-            appendLog("计算结果：" + result);
             Log.i(TAG, "计算结果：" + result);
+            appendLog("计算结果：" + result);
         } catch (Exception e) {
             appendLog(e.getMessage());
             e.printStackTrace();
@@ -90,20 +90,20 @@ public class TestUIExceptions extends AppCompatActivity {
     }
 
     private void testDivide2() {
-        appendLog("\n--- 计算除法2 ---\n");
         Log.i(TAG, "--- 计算除法2 ---");
+        appendLog("\n--- 计算除法2 ---\n");
 
         // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
         if (!isServiceConnected || !testService.asBinder().isBinderAlive()) {
-            appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
+            appendLog("连接未就绪！\n");
             return;
         }
 
         try {
             int result = testService.divide2(100, 0);
-            appendLog("计算结果：" + result);
             Log.i(TAG, "计算结果：" + result);
+            appendLog("计算结果：" + result);
         } catch (Exception e) {
             appendLog(e.getMessage());
             e.printStackTrace();
@@ -117,8 +117,8 @@ public class TestUIExceptions extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            appendLog("连接已就绪。\n");
             Log.i(TAG, "连接已就绪。");
+            appendLog("连接已就绪。\n");
 
             // 使用Stub抽象类的 `asInterface()` 方法将Binder对象转换为对应的Service对象。
             testService = IExceptions.Stub.asInterface(service);
@@ -128,8 +128,8 @@ public class TestUIExceptions extends AppCompatActivity {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            appendLog("连接已断开！\n");
             Log.i(TAG, "连接已断开！");
+            appendLog("连接已断开！\n");
 
             // 将连接标记位置为 `false`
             isServiceConnected = false;

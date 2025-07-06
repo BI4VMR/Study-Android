@@ -16,15 +16,10 @@ import net.bi4vmr.study.R;
 import net.bi4vmr.study.base.TestUIBase;
 
 /**
- * Name        : ForegroundService
- * <p>
- * Author      : BI4VMR
- * <p>
- * Email       : bi4vmr@outlook.com
- * <p>
- * Date        : 2023-03-15 15:42
- * <p>
- * Description : 前台服务。
+ * 示例服务：前台服务。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
  */
 public class ForegroundService extends Service {
 
@@ -38,14 +33,12 @@ public class ForegroundService extends Service {
         Notification notification = createNotification();
 
         /*
-         * Name        : "startForeground()"
-         *
-         * Description : 开启前台服务。
+         * 后台服务转为前台模式，并绑定通知。
          *
          * @param id 通知的唯一标识。
          * @param notification 通知实例。
          */
-        // startForeground(100, notification);
+        startForeground(101, notification);
     }
 
     @Override
@@ -66,9 +59,7 @@ public class ForegroundService extends Service {
         Log.i(TAG, "OnDestroy.");
 
         /*
-         * Name        : "stopForeground()"
-         *
-         * Description : 终止前台服务。
+         * 终止前台服务。
          *
          * 该方法只会使服务从前台状态转为后台状态，并不会终止整个服务，因此我们可以在其他业务逻辑中按需调用它。
          *

@@ -1,11 +1,9 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.base
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
+import android.app.Service
+import android.content.Intent
+import android.os.IBinder
+import android.util.Log
 
 /**
  * 示例服务：下载管理服务。
@@ -13,21 +11,22 @@ import androidx.annotation.Nullable;
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class DownloadService extends Service {
+class DownloadServiceKT : Service() {
 
-    private static final String TAG = "TestApp-" + DownloadService.class.getSimpleName();
+    companion object {
+        private val TAG: String = "TestApp-${DownloadServiceKT::class.simpleName}"
+    }
 
-    // 下载线程
-    private Thread downloadThread;
+    private var downloadThread: Thread? = null
 
     /**
      * 生命周期回调方法，服务首次被创建时该方法将被触发，用于进行初始化操作。
      * <p>
      * 只要服务实例没有被销毁，后续服务被启动或绑定时不会再触发此回调方法。
      */
-    @Override
-    public void onCreate() {
-        Log.i(TAG, "OnCreate.");
+    override fun onCreate() {
+        super.onCreate()
+        Log.i(TAG, "OnCreate.")
     }
 
     /**
@@ -41,52 +40,45 @@ public class DownloadService extends Service {
      *                终止服务。
      * @return 表示服务因内存不足而被系统强制关闭后的处理方式，取值为Service类中的 `START` 系列常量。
      */
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, "OnStartCommand.");
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        Log.i(TAG, "OnStartCommand.")
 
         // 获取外部组件传入的初始化数据
-        String link = "";
-        if (intent != null) {
-            link = intent.getStringExtra("LINK");
-        }
-        Log.i(TAG, "下载地址：" + link);
+        val link = intent?.getStringExtra("LINK")
+        Log.i(TAG, "下载地址：$link")
 
         // 创建子线程执行耗时操作
-        downloadThread = new Thread(() -> {
-            Log.i(TAG, "下载开始");
+        downloadThread = Thread {
+            Log.i(TAG, "下载开始")
             try {
                 // 休眠5秒，模拟耗时操作。
-                Thread.sleep(5000);
-                Log.i(TAG, "下载完成");
-            } catch (InterruptedException e) {
-                Log.i(TAG, "任务终止");
+                Thread.sleep(5000)
+                Log.i(TAG, "下载完成")
+            } catch (e: InterruptedException) {
+                Log.i(TAG, "任务终止")
             } finally {
                 // 标记当前任务结束
-                stopSelf(startId);
+                stopSelf(startId)
             }
-        });
+        }
+
         // 启动异步任务
-        downloadThread.start();
-        return super.onStartCommand(intent, flags, startId);
+        requireNotNull(downloadThread).start()
+        return super.onStartCommand(intent, flags, startId)
     }
 
     /**
      * 生命周期回调方法，服务内部自行调用 `stopSelf()` 方法或被外部组件调用 `stopService()` 方法关闭时，该方法将被触发，用于释放资源。
      */
-    @Override
-    public void onDestroy() {
-        Log.i(TAG, "OnDestroy.");
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i(TAG, "OnDestroy.")
         // 如果服务被销毁，发送终止信号，停止异步任务。
-        if (downloadThread != null) {
-            downloadThread.interrupt();
-        }
+        downloadThread?.interrupt()
     }
 
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
+    override fun onBind(intent: Intent): IBinder? {
         // 此服务不需要与调用者通信，因此将返回值设为"null"。
-        return null;
+        return null
     }
 }

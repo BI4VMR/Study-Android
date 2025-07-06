@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.bi4vmr.study">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -24,20 +23,9 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 示例服务：下载管理服务 -->
-        <service
-            android:name=".base.DownloadService"
-            android:exported="false" />
-
-
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
-            android:exported="false" />
-
-        <!-- 示例服务：下载管理服务(KT) -->
-        <service
-            android:name=".base.DownloadServiceKT"
             android:exported="false" />
     </application>
 </manifest>

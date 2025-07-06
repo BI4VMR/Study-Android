@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.foreground
 
 import android.content.ComponentName
 import android.content.Intent
@@ -9,15 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiBaseBinding
 
 /**
- * 测试界面：基本应用。
+ * 测试界面：前台服务。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TestUIBaseKT : AppCompatActivity() {
+class TestUIForegroundKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-${TestUIBaseKT::class.simpleName}"
+        private val TAG: String = "TestApp-${TestUIForegroundKT::class.simpleName}"
     }
 
     private val binding: TestuiBaseBinding by lazy {
@@ -40,11 +40,7 @@ class TestUIBaseKT : AppCompatActivity() {
         Log.i(TAG, "--- 启动服务 ---")
         appendLog("\n--- 启动服务 ---\n")
 
-        // 指明目标服务
-        val intent = Intent(this, DownloadServiceKT::class.java)
-        // 添加初始化数据
-        intent.putExtra("LINK", "https://dl.test.com/file")
-        // 启动服务
+        val intent = Intent(this, ForegroundServiceKT::class.java)
         val serviceInfo: ComponentName? = startService(intent)
         Log.i(TAG, "服务名称：$serviceInfo")
         appendLog("服务名称：$serviceInfo")
@@ -54,7 +50,7 @@ class TestUIBaseKT : AppCompatActivity() {
         Log.i(TAG, "--- 停止服务 ---")
         appendLog("\n--- 停止服务 ---\n")
 
-        val intent = Intent(this, DownloadServiceKT::class.java)
+        val intent = Intent(this, ForegroundServiceKT::class.java)
         val isSuccess = stopService(intent)
         if (isSuccess) {
             Log.i(TAG, "服务已被停止。")

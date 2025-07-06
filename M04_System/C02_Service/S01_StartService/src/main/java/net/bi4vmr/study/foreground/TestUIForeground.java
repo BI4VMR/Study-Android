@@ -1,5 +1,6 @@
 package net.bi4vmr.study.foreground;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -7,7 +8,6 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.base.DownloadService;
 import net.bi4vmr.study.databinding.TestuiForegroundBinding;
 
 /**
@@ -38,12 +38,10 @@ public class TestUIForeground extends AppCompatActivity {
         Log.i(TAG, "--- 启动服务 ---");
         appendLog("\n--- 启动服务 ---\n");
 
-        // 指明目标服务
-        Intent intent = new Intent(this, DownloadService.class);
-        // 添加初始化数据
-        intent.putExtra("LINK", "https://dl.test.com/file");
-        // 启动服务
-        startService(intent);
+        Intent intent = new Intent(this, ForegroundService.class);
+        ComponentName serviceInfo = startService(intent);
+        Log.i(TAG, "服务名称：" + serviceInfo);
+        appendLog("服务名称：" + serviceInfo);
     }
 
     // 停止服务
@@ -51,7 +49,7 @@ public class TestUIForeground extends AppCompatActivity {
         Log.i(TAG, "--- 停止服务 ---");
         appendLog("\n--- 停止服务 ---\n");
 
-        Intent intent = new Intent(this, DownloadService.class);
+        Intent intent = new Intent(this, ForegroundService.class);
         boolean isSuccess = stopService(intent);
         if (isSuccess) {
             Log.i(TAG, "服务已被停止。");
@@ -66,9 +64,14 @@ public class TestUIForeground extends AppCompatActivity {
     private void appendLog(CharSequence text) {
         binding.tvLog.append(text);
         binding.tvLog.post(() -> {
-            int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
-            if (offset > 0) {
-                binding.tvLog.scrollTo(0, offset);
+            try {
+                int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+                if (offset > 0) {
+                    binding.tvLog.scrollTo(0, offset);
+                }
+            } catch (Exception e) {
+                Log.w(TAG, "TextView scroll failed!");
+                e.printStackTrace();
             }
         });
     }

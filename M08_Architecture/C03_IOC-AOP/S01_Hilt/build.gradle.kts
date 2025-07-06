@@ -7,8 +7,10 @@ val versionModuleCode: Int = agp.versions.moduleCode.get().toInt()
 val versionModuleName: String = agp.versions.moduleName.get()
 
 plugins {
+    alias(libKotlin.plugins.ksp)
     alias(libAndroid.plugins.application)
     alias(libAndroid.plugins.kotlin)
+    alias(libAndroid.plugins.hilt)
 }
 
 android {
@@ -16,7 +18,7 @@ android {
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.system.service.lifecycle"
+        applicationId = "net.bi4vmr.study.architecture.iocaop.hilt"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
@@ -68,4 +70,9 @@ android {
 
 dependencies {
     implementation(libAndroid.bundles.appBaseKT)
+
+    // 声明
+    implementation(libAndroid.hilt.android)
+
+    ksp(libAndroid.hilt.compiler)
 }

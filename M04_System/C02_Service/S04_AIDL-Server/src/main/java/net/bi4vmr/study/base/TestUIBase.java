@@ -50,34 +50,34 @@ public class TestUIBase extends AppCompatActivity {
     }
 
     private void testBind() {
-        appendLog("\n--- 绑定服务 ---\n");
         Log.i(TAG, "--- 绑定服务 ---");
+        appendLog("\n--- 绑定服务 ---\n");
 
         Intent intent = new Intent(this, DownloadService.class);
         boolean result = bindService(intent, connection, Context.BIND_AUTO_CREATE);
-        appendLog("绑定结果：[" + result + "]\n");
         Log.i(TAG, "绑定结果：[" + result + "]");
+        appendLog("绑定结果：[" + result + "]\n");
     }
 
     private void testUnbind() {
-        appendLog("\n--- 解绑服务 ---\n");
         Log.i(TAG, "--- 解绑服务 ---");
+        appendLog("\n--- 解绑服务 ---\n");
 
         unbindService(connection);
         isServiceConnected = false;
         downloadService = null;
-        binding.tvLog.append("连接已断开！\n");
         Log.i(TAG, "连接已断开！");
+        appendLog("连接已断开！\n");
     }
 
     private void testGetPID() {
-        appendLog("\n--- 获取服务端进程ID ---\n");
         Log.i(TAG, "--- 获取服务端进程ID ---");
+        appendLog("\n--- 获取服务端进程ID ---\n");
 
         // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
         if (!isServiceConnected || !downloadService.asBinder().isBinderAlive()) {
-            appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
+            appendLog("连接未就绪！\n");
             return;
         }
 
@@ -92,13 +92,13 @@ public class TestUIBase extends AppCompatActivity {
     }
 
     private void testAddTask() {
-        appendLog("\n--- 添加任务 ---\n");
         Log.i(TAG, "--- 添加任务 ---");
+        appendLog("\n--- 添加任务 ---\n");
 
         // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
         if (!isServiceConnected || !downloadService.asBinder().isBinderAlive()) {
-            appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
+            appendLog("连接未就绪！\n");
             return;
         }
 
@@ -112,20 +112,20 @@ public class TestUIBase extends AppCompatActivity {
     }
 
     private void testGetTasks() {
-        appendLog("\n--- 查询任务 ---\n");
         Log.i(TAG, "--- 查询任务 ---");
+        appendLog("\n--- 查询任务 ---\n");
 
         // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
         if (!isServiceConnected || !downloadService.asBinder().isBinderAlive()) {
-            appendLog("连接未就绪！\n");
             Log.i(TAG, "连接未就绪！");
+            appendLog("连接未就绪！\n");
             return;
         }
 
         try {
             List<String> tasks = downloadService.getTasks();
-            appendLog(tasks.toString());
             Log.i(TAG, tasks.toString());
+            appendLog(tasks.toString());
         } catch (RemoteException e) {
             appendLog(e.getMessage());
             e.printStackTrace();
@@ -139,8 +139,8 @@ public class TestUIBase extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            appendLog("连接已就绪。\n");
             Log.i(TAG, "连接已就绪。");
+            appendLog("连接已就绪。\n");
 
             // 使用Stub抽象类的 `asInterface()` 方法将Binder对象转换为对应的Service对象。
             downloadService = IDownloadService.Stub.asInterface(service);
@@ -150,8 +150,8 @@ public class TestUIBase extends AppCompatActivity {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            appendLog("连接已断开！\n");
             Log.i(TAG, "连接已断开！");
+            appendLog("连接已断开！\n");
 
             // 将连接标记位置为 `false`
             isServiceConnected = false;
@@ -164,9 +164,13 @@ public class TestUIBase extends AppCompatActivity {
     private void appendLog(CharSequence text) {
         binding.tvLog.append(text);
         binding.tvLog.post(() -> {
-            int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
-            if (offset > 0) {
-                binding.tvLog.scrollTo(0, offset);
+            try {
+                int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+                if (offset > 0) {
+                    binding.tvLog.scrollTo(0, offset);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }

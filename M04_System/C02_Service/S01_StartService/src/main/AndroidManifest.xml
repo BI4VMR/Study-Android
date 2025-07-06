@@ -23,19 +23,39 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 注册自定义Service -->
+        <!-- 示例服务：下载管理服务 -->
         <service
             android:name=".base.DownloadService"
             android:exported="false" />
 
-        <!-- 示例界面：基本应用 -->
+        <!-- 示例界面：前台服务 -->
         <activity
             android:name=".foreground.TestUIForeground"
             android:exported="false" />
 
-        <!-- 前台服务 -->
+        <!-- 示例服务：前台服务 -->
         <service
             android:name=".foreground.ForegroundService"
+            android:exported="false" />
+
+        <!-- 示例界面：基本应用(KT) -->
+        <activity
+            android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例服务：下载管理服务(KT) -->
+        <service
+            android:name=".base.DownloadServiceKT"
+            android:exported="false" />
+
+        <!-- 示例界面：前台服务(KT) -->
+        <activity
+            android:name=".foreground.TestUIForegroundKT"
+            android:exported="false" />
+
+        <!-- 示例服务：前台服务(KT) -->
+        <service
+            android:name=".foreground.ForegroundServiceKT"
             android:exported="false" />
     </application>
 </manifest>
