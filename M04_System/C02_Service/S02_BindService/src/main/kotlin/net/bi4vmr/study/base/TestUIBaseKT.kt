@@ -27,7 +27,7 @@ class TestUIBaseKT : AppCompatActivity() {
     }
 
     /**
-     * 服务连接回调实现类
+     * 服务连接回调实现。
      *
      * 用于接收服务连接成功、连接断开事件，并获取Binder实例。
      */
@@ -56,17 +56,20 @@ class TestUIBaseKT : AppCompatActivity() {
 
         val intent = Intent(this, DownloadServiceKT::class.java)
         val result = bindService(intent, connection, BIND_AUTO_CREATE)
-        Log.i(TAG, "绑定结果：$result")
-        appendLog("绑定结果：$result\n")
+        Log.i(TAG, "服务存在？：$result")
+        appendLog("服务存在？：$result\n")
     }
 
     private fun testUnbind() {
         Log.i(TAG, "--- 解绑服务 ---")
         appendLog("\n--- 解绑服务 ---\n")
 
-        unbindService(connection)
-        // 连接已断开，将全局变量置空。
-        binder = null
+        // 仅当Binder实例不为空时才进行解绑操作
+        if (binder != null) {
+            unbindService(connection)
+            // 连接已断开，将全局变量置空。
+            binder = null
+        }
     }
 
     private fun testSetListener() {
@@ -109,7 +112,7 @@ class TestUIBaseKT : AppCompatActivity() {
             Log.i(TAG, "OnServiceConnected.")
             appendLog("OnServiceConnected.\n")
 
-            // 获取服务中的Binder对象，并保存至全局变量。
+            // 获取Binder实例，将其转为Service中的业务类类型，并保存至全局变量。
             binder = service as DownloadServiceKT.DownloadImpl
         }
 
@@ -133,7 +136,7 @@ class TestUIBaseKT : AppCompatActivity() {
                         scrollTo(0, offset)
                     }
                 }.onFailure { e ->
-                    Log.w(TAG, "TextView scroll failed!");
+                    Log.w(TAG, "TextView scroll failed!")
                     e.printStackTrace()
                 }
             }

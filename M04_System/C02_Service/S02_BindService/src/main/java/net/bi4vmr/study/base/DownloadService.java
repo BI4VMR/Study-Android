@@ -63,7 +63,7 @@ public class DownloadService extends Service {
     /**
      * Binder的实现类。
      */
-    class DownloadImpl extends Binder {
+    static class DownloadImpl extends Binder {
 
         // 下载线程
         private Thread downloadThread;
@@ -86,7 +86,9 @@ public class DownloadService extends Service {
                 try {
                     while (length < TOTAL) {
                         length += 10;
-                        callback.onDataChanged((length / TOTAL) * 100);
+                        if (callback != null) {
+                            callback.onDataChanged((length / TOTAL) * 100);
+                        }
                         // 休眠1秒，模拟耗时操作。
                         Thread.sleep(1000);
                     }

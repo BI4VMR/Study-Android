@@ -51,7 +51,6 @@ class DownloadServiceKT : Service() {
         downloadImpl?.stopTask()
     }
 
-
     // 回调接口
     fun interface CallBack {
         fun onDataChanged(percent: Double)
@@ -60,14 +59,14 @@ class DownloadServiceKT : Service() {
     /**
      * Binder的实现类。
      */
-    class DownloadImpl : Binder() {
+    inner class DownloadImpl : Binder() {
 
         // 下载线程
         private var downloadThread: Thread? = null
         // 回调接口的实现类，用于向客户端反馈结果。
         private var callback: CallBack? = null
 
-        private val TOTAL: Float = 100.0F
+        private val total: Float = 100.0F
         private var length: Float = 0.0F
 
         // 设置回调
@@ -81,9 +80,9 @@ class DownloadServiceKT : Service() {
             downloadThread = Thread {
                 Log.i(TAG, "下载开始：[$url]")
                 try {
-                    while (length < TOTAL) {
+                    while (length < total) {
                         length += 10
-                        callback?.onDataChanged(((length / TOTAL) * 100).toDouble())
+                        callback?.onDataChanged(((length / total) * 100).toDouble())
                         // 休眠1秒，模拟耗时操作。
                         Thread.sleep(1000)
                     }
