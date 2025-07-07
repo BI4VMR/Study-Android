@@ -19,12 +19,12 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：Service的生命周期 -->
+        <!-- 示例界面：生命周期 -->
         <activity
             android:name=".lifecycle.TestUILifeCycle"
             android:exported="false" />
 
-        <!-- 生命周期测试服务 -->
+        <!-- 示例服务：生命周期测试服务 -->
         <service
             android:name=".lifecycle.TestService"
             android:exported="false" />

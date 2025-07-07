@@ -35,15 +35,14 @@ public class TestService extends Service {
     }
 
     /**
-     * Name        : "onBind()"
+     * 生命周期回调方法，当外部组件调用 `bindService()` 方法绑定本服务时，该方法将被触发。
      * <p>
-     * Description : 当外部组件通过"bindService()"方法请求与特定的Service进行绑定时，该方法触发。
-     * 服务运行过程中，如果同一个组件多次请求绑定，"onBind()"方法只会在初次绑定时执行，后续系统直接向调用者返回之前
+     * 服务运行过程中，如果同一个组件多次请求绑定， `onBind()` 方法只会在初次绑定时执行，后续系统直接向调用者返回之前
      * 创建的Binder实例。
      * <p>
      * 系统判断绑定服务的请求是否来自“同一个组件”的依据是：Intent属性是否相同，包括Action和Type，但不包括Extra。
      * 即使是不同APK中的组件，若使用具有相同属性的Intent绑定某个Service，系统也会返回同一个Binder实例。
-     * 如果我们需要获取不同的Binder实例，可以使用"setAction()"和"setType()"方法为请求Intent设置不同的属性。
+     * 如果我们需要获取不同的Binder实例，可以使用 `setAction()` 和 `setType()` 方法为请求Intent设置不同的属性。
      *
      * @param intent 绑定服务的外部组件创建的Intent。
      * @return 自定义Binder类的实例。
@@ -56,12 +55,10 @@ public class TestService extends Service {
     }
 
     /**
-     * Name        : "onUnbind()"
-     * <p>
-     * Description : 当所有与Service绑定的外部组件都解除绑定关系后，该方法触发。
+     * 当所有与Service绑定的外部组件都解除绑定关系后，该方法被触发。
      *
      * @param intent 绑定服务的外部组件创建的Intent。
-     * @return 默认值为"false"，参考"onRebind()"方法的注释。
+     * @return 默认值为 `false` ，参考 `onRebind()` 方法的注释。
      */
     @Override
     public boolean onUnbind(Intent intent) {
@@ -70,10 +67,9 @@ public class TestService extends Service {
     }
 
     /**
-     * Name        : "onRebind()"
+     * 如果 `onUnbind()` 方法返回 `true` ，且Service已经被所有外部组件解绑；当Service再次被外部组件绑定时将会触发此方法。
      * <p>
-     * Description : 如果"onUnbind()"方法返回"true"，且Service已经被所有外部组件解绑；当Service再次被外部组件绑定时将会触发此方法。
-     * 如果"onUnbind()"返回"false"，且Service已经被所有外部组件解绑；当Service再次被外部组件绑定时则不会触发此方法。
+     * 如果 `onUnbind()` 返回 `false` ，且Service已经被所有外部组件解绑；当Service再次被外部组件绑定时则不会触发此方法。
      *
      * @param intent 绑定服务的外部组件创建的Intent。
      */

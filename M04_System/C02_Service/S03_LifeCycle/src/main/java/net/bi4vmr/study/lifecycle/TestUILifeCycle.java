@@ -1,6 +1,5 @@
 package net.bi4vmr.study.lifecycle;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -13,7 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.databinding.TestuiLifecycleBinding;
 
-@SuppressLint("SetTextI18n")
+/**
+ * 测试界面：生命周期。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class TestUILifeCycle extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUILifeCycle.class.getSimpleName();
@@ -38,44 +42,44 @@ public class TestUILifeCycle extends AppCompatActivity {
     }
 
     private void testStartService() {
-        binding.tvLog.append("\n--- 启动服务 ---\n");
         Log.i(TAG, "--- 启动服务 ---");
+        appendLog("\n--- 启动服务 ---\n");
 
-        Intent i = new Intent(this, TestService.class);
-        startService(i);
+        Intent intent = new Intent(this, TestService.class);
+        startService(intent);
     }
 
     private void testStopService() {
-        binding.tvLog.append("\n--- 停止服务 ---\n");
         Log.i(TAG, "--- 停止服务 ---");
+        appendLog("\n--- 停止服务 ---\n");
 
-        Intent i = new Intent(this, TestService.class);
-        stopService(i);
+        Intent intent = new Intent(this, TestService.class);
+        stopService(intent);
     }
 
     private void testBindServiceA() {
-        binding.tvLog.append("\n--- 绑定服务（请求A） ---\n");
         Log.i(TAG, "--- 绑定服务（请求A） ---");
+        appendLog("\n--- 绑定服务（请求A） ---\n");
 
-        Intent i = new Intent(this, TestService.class);
-        i.setType("A");
-        bindService(i, connectionA, BIND_AUTO_CREATE);
+        Intent intent = new Intent(this, TestService.class);
+        intent.setType("请求A");
+        bindService(intent, connectionA, BIND_AUTO_CREATE);
     }
 
     private void testUnbindServiceA() {
-        binding.tvLog.append("\n--- 解绑服务（请求A） ---\n");
         Log.i(TAG, "--- 解绑服务（请求A） ---");
+        appendLog("\n--- 解绑服务（请求A） ---\n");
 
         unbindService(connectionA);
     }
 
     private void testBindServiceB() {
-        binding.tvLog.append("\n--- 绑定服务（请求B） ---\n");
         Log.i(TAG, "--- 绑定服务（请求B） ---");
+        appendLog("\n--- 绑定服务（请求B） ---\n");
 
-        Intent i = new Intent(this, TestService.class);
-        i.setType("B");
-        bindService(i, connectionB, BIND_AUTO_CREATE);
+        Intent intent = new Intent(this, TestService.class);
+        intent.setType("请求B");
+        bindService(intent, connectionB, BIND_AUTO_CREATE);
     }
 
     private void testUnbindServiceB() {
@@ -85,7 +89,9 @@ public class TestUILifeCycle extends AppCompatActivity {
         unbindService(connectionB);
     }
 
-    // 连接回调实现类
+    /**
+     * 连接回调实现类。
+     */
     private class MyConnectionCallback implements ServiceConnection {
 
         private final String cbName;
@@ -96,14 +102,30 @@ public class TestUILifeCycle extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            binding.tvLog.append("OnServiceConnected. Name:[" + cbName + "], Binder:[" + service.hashCode() + "]\n");
-            Log.i(TAG, "OnServiceConnected. Name:[" + cbName + "], Binder:[" + service.hashCode() + "]");
+            Log.i(TAG, "OnServiceConnected. Name:[" + cbName + "] Binder:[" + service.hashCode() + "]");
+            appendLog("OnServiceConnected. Name:[" + cbName + "] Binder:[" + service.hashCode() + "]\n");
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            binding.tvLog.append("OnServiceDisconnected. Name:[" + cbName + "]\n");
             Log.i(TAG, "OnServiceDisconnected. Name:[" + cbName + "]");
+            appendLog("OnServiceDisconnected. Name:[" + cbName + "]\n");
         }
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private void appendLog(CharSequence text) {
+        binding.tvLog.append(text);
+        binding.tvLog.post(() -> {
+            try {
+                int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+                if (offset > 0) {
+                    binding.tvLog.scrollTo(0, offset);
+                }
+            } catch (Exception e) {
+                Log.w(TAG, "TextView scroll failed!");
+                e.printStackTrace();
+            }
+        });
     }
 }
