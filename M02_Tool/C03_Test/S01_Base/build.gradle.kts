@@ -10,6 +10,7 @@ plugins {
     alias(libAndroid.plugins.application)
     alias(libAndroid.plugins.kotlin)
     id("jacoco")
+    id("org.jetbrains.kotlinx.kover")
 }
 
 android {
@@ -102,6 +103,11 @@ val fileFilter = listOf(
     "**/Manifest*.*",
     "android/**/*.*",
     "**/databinding",
+    "**/*Activity.class",
+)
+
+val fileFilter2 = files(
+    "${layout.buildDirectory.get()}/intermediates/javac/debug/classes/net/bi4vmr/study/MainActivity.class"
 )
 
 tasks.register<JacocoReport>("jacocoTestReport") {
@@ -117,7 +123,8 @@ tasks.register<JacocoReport>("jacocoTestReport") {
 
     val debugTree = fileTree("${layout.buildDirectory.get()}/intermediates/javac/debug/classes") {
         exclude(fileFilter)
-    }
+    } + fileFilter2
+
     val kotlinDebugTree = fileTree("${layout.buildDirectory.get()}/tmp/kotlin-classes/debug") {
         exclude(fileFilter)
     }
