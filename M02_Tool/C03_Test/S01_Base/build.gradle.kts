@@ -76,6 +76,15 @@ dependencies {
     implementation(libAndroid.bundles.appBaseKT)
 
     testImplementation(libJava.junit4)
+
+    androidTestImplementation(libJava.junit4)
+    // Android测试核心库（提供Context等核心功能）
+    androidTestImplementation("androidx.test:core:1.6.1")
+    androidTestImplementation("androidx.test:runner:1.6.1")
+    androidTestImplementation("androidx.test:rules:1.6.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    // Android JUnit扩展
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
 }
 
 // Jacoco配置

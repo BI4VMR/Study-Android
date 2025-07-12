@@ -24,7 +24,7 @@ public class HTTPManager {
     /**
      * 构造方法。
      * <p>
-     * `@Inject` 注解，表示该构造方法被依赖注入。
+     * `@Inject` 注解表示该类可以Hilt管理。
      * @param context
      */
     @Inject
