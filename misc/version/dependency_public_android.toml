@@ -47,6 +47,11 @@ okdownload_core = "1.0.7"
 hilt = "2.52"
 
 
+# ----- 测试工具 -----
+androidx-test = "1.2.1"
+androidx-test_espresso = "3.6.1"
+
+
 # ----- Gradle插件 -----
 plugin_agp = "7.4.2"
 plugin_kotlin = "1.9.21"
@@ -164,6 +169,14 @@ okdownload_core = { group = "com.liulishuo.okdownload", name = "okdownload", ver
 hilt_android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 # Dagger・Hilt・注解处理器
 hilt_compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+
+
+# ----- 测试工具 -----
+# <AndroidX Test>
+# AndroidX Test JUnit扩展（提供AndroidJUnit4，方便与JUnit集成。）
+androidx-test_junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test" }
+# AndroidX Test Espresso运行环境
+androidx-test_espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-test_espresso" }
 
 
 # 编组

@@ -25,6 +25,9 @@ android {
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
         versionName = versionModuleName
+
+        // 指定仪器化测试运行环境
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
@@ -48,14 +51,6 @@ android {
         }
     }
 
-    sourceSets {
-        getByName("main") {
-            java {
-                java.srcDir("src/main/kotlin")
-            }
-        }
-    }
-
     compileOptions {
         // 指定Java源码编译目标版本
         sourceCompatibility = JavaVersion.VERSION_11
@@ -75,16 +70,17 @@ android {
 dependencies {
     implementation(libAndroid.bundles.appBaseKT)
 
+    /* 本地测试依赖项 */
+    // JUnit4
     testImplementation(libJava.junit4)
 
+    /* 仪器化测试依赖项 */
+    // JUnit4
     androidTestImplementation(libJava.junit4)
-    // Android测试核心库（提供Context等核心功能）
-    androidTestImplementation("androidx.test:core:1.6.1")
-    androidTestImplementation("androidx.test:runner:1.6.1")
-    androidTestImplementation("androidx.test:rules:1.6.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    // Android JUnit扩展
+    // AndroidX Test JUnit扩展
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    // AndroidX Test Espresso运行环境
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
 
 // Jacoco配置

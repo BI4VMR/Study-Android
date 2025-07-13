@@ -1,11 +1,10 @@
 package net.bi4vmr.study
 
-import org.junit.Before
+import org.junit.Assert
 import org.junit.Test
-import org.junit.runner.RunWith
 
 /**
- * 示例一：构建环境。
+ * 本地测试示例。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0
@@ -13,9 +12,11 @@ import org.junit.runner.RunWith
 class TestBaseKT {
 
     @Test
-    fun test_Env() {
-        println("----- TestEnv start -----")
+    fun test_Environment() {
+        println("----- Test Environment start -----")
 
-        println("----- TestEnv end -----")
+        Assert.assertEquals(4, 2 + 2)
+
+        println("----- Test Environment end -----")
     }
 }
