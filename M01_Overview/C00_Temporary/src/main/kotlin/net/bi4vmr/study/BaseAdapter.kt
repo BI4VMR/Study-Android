@@ -16,6 +16,8 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>(
     protected val dataSource: MutableList<T> = mutableListOf()
 ) : RecyclerView.Adapter<VH>() {
 
+    private var generation: Int = 0
+
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item: T = dataSource[position]
         holder.bindData(item)
@@ -33,5 +35,6 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>(
     fun submit(newData: List<T>) {
         dataSource.clear()
         dataSource.addAll(newData)
+        notifyDataSetChanged()
     }
 }
