@@ -74,6 +74,7 @@ include(":M02_Tool:C02_Build:S01_Base")
 include(":M02_Tool:C02_Build:S02_Advance")
 include(":M02_Tool:C03_Test:S01_Base")
 include(":M02_Tool:C03_Test:S02_Robolectric")
+include(":M02_Tool:C03_Test:S03_JaCoCo")
 
 /* ----- 用户界面 ----- */
 include(":M03_UI:C01_Common:S01_View")
