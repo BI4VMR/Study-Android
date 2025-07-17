@@ -1,5 +1,6 @@
 package net.bi4vmr.study
 
+import MathUtil
 import org.junit.Test
 
 /**
@@ -10,10 +11,10 @@ import org.junit.Test
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class Test {
+class MathUtilTest {
 
     @Test
     fun test() {
-
+        MathUtil.devide(0, 1)
     }
 }
