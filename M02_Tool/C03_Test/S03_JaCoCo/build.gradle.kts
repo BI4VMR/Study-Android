@@ -1,5 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+
 val versionMinSDK: Int = agp.versions.minSdk.get().toInt()
 val versionCompileSDK: Int = agp.versions.compileSdk.get().toInt()
 val versionTargetSDK: Int = agp.versions.targetSdk.get().toInt()
@@ -79,14 +81,14 @@ jacoco {
 
 // 测试任务配置
 tasks.withType<Test> {
-    // // 允许测试失败后继续运行
-    // ignoreFailures = true
-    //
-    // // 配置测试日志
-    // testLogging {
-    //     events("passed", "skipped", "failed")
-    //     exceptionFormat = TestExceptionFormat.FULL
-    // }
+    // 允许测试失败后继续运行
+    ignoreFailures = true
+
+    // 配置测试日志
+    testLogging {
+        events("passed", "skipped", "failed")
+        exceptionFormat = TestExceptionFormat.FULL
+    }
 
     // 在Test任务执行后自动执行Jacoco报告生成任务
     finalizedBy(tasks.named("jacocoTestReport"))
@@ -101,13 +103,31 @@ val javaClassDir: String = "$buildDir/intermediates/javac/debug/classes/"
 val kotlinClassDir: String = "$buildDir/tmp/kotlin-classes/debug/"
 // 匹配需要排除的文件
 val excludeFilter: List<String> = listOf(
+    // Kotlin协程
+    "**/*$1*.class",
+    "**/*$2*.class",
+    "**/*$3*.class",
+    "**/*$4*.class",
+    "**/*$5*.class",
+    "**/*$6*.class",
+    "**/*$7*.class",
+    "**/*$8*.class",
+    "**/*$9*.class",
+
+    // Android
     "**/R.class",
     "**/R$*.class",
     "**/BuildConfig.*",
     "**/Manifest*.*",
-    "android/**/*.*",
+    "android/**",
+    "androidx/**",
     "**/databinding",
-    "**/*Activity.class",
+    "**/BR.class",
+
+    // UI
+    "**/*Activity.*",
+    "**/*Fragment.*",
+    "**/*View.*"
 )
 // 匹配在排除目录中但需要包含的文件
 val includeFilter: List<String> = listOf(
