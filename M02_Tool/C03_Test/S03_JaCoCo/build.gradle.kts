@@ -41,7 +41,7 @@ android {
         getByName("debug") {
             signingConfig = signingConfigs.getByName("AOSP")
             // 开启单元测试覆盖率检测
-            isTestCoverageEnabled = true
+            // isTestCoverageEnabled = true
             // 开启单元测试覆盖率检测（新版API）
             enableUnitTestCoverage = true
             enableAndroidTestCoverage = true

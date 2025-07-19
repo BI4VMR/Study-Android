@@ -37,7 +37,7 @@ class StudentDBHelper2KT(
             (
             student_id INTEGER PRIMARY KEY,
             student_name TEXT,
-            age INTEGER
+            book_count INTEGER
             );
         """.trimIndent()
         db.execSQL(createTableSQL)

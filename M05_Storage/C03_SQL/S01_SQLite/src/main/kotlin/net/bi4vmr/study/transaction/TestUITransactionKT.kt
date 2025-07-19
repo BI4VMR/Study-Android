@@ -1,5 +1,6 @@
 package net.bi4vmr.study.transaction
 
+import android.content.ContentValues
 import android.database.Cursor
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -37,12 +38,72 @@ class TestUITransactionKT : AppCompatActivity() {
     private fun testFailed() {
         Log.i(TAG, "--- 事务执行失败 ---")
         appendLog("\n--- 事务执行失败 ---\n")
+
+        // 开启事务
+        dbHelper.getDB().beginTransaction()
+
+        try {
+            // 将1号学生的书本数量加1
+            val values1 = ContentValues()
+            values1.put("book_count", 11)
+            dbHelper.getDB().update("student_info", values1, "student_id = 1", null)
+
+            // 模拟异常，触发事务回滚。
+            raiseException()
+
+            // 将2号学生的书本数量减1
+            val values2 = ContentValues()
+            values2.put("book_count", 9)
+            dbHelper.getDB().update("student_info", values2, "student_id = 2", null)
+
+            // 标记事务已完成
+            dbHelper.getDB().setTransactionSuccessful()
+            Log.i(TAG, "操作成功！")
+            appendLog("\n操作成功！")
+        } catch (e: Exception) {
+            Log.e(TAG, "操作失败，事务回滚！")
+            appendLog("\n操作失败，事务回滚！")
+            e.printStackTrace()
+        } finally {
+            // 终止事务
+            dbHelper.getDB().endTransaction();
+        }
+    }
+
+    private fun raiseException() {
+        throw Exception("模拟异常")
     }
 
     private fun testSuccess() {
         Log.i(TAG, "--- 事务执行成功 ---")
         appendLog("\n--- 事务执行成功 ---\n")
 
+        // 开启事务
+        dbHelper.getDB().beginTransaction()
+
+        try {
+            // 将1号学生的书本数量加1
+            val values1 = ContentValues()
+            values1.put("book_count", 11)
+            dbHelper.getDB().update("student_info", values1, "student_id = 1", null)
+
+            // 将2号学生的书本数量减1
+            val values2 = ContentValues()
+            values2.put("book_count", 9)
+            dbHelper.getDB().update("student_info", values2, "student_id = 2", null)
+
+            // 标记事务已完成
+            dbHelper.getDB().setTransactionSuccessful()
+            Log.i(TAG, "操作成功！")
+            appendLog("\n操作成功！")
+        } catch (e: Exception) {
+            Log.e(TAG, "操作失败，事务回滚！")
+            appendLog("\n操作失败，事务回滚！")
+            e.printStackTrace()
+        } finally {
+            // 终止事务
+            dbHelper.getDB().endTransaction();
+        }
     }
 
     // 查询所有记录

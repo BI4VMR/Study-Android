@@ -48,6 +48,7 @@ public class TestUITransaction extends AppCompatActivity {
         dbHelper.getDB().beginTransaction();
 
         try {
+            // 将1号学生的书本数量加1
             ContentValues values1 = new ContentValues();
             values1.put("book_count", 11);
             dbHelper.getDB().update("student_info", values1, "student_id = 1", null);
@@ -55,6 +56,7 @@ public class TestUITransaction extends AppCompatActivity {
             // 模拟异常，触发事务回滚。
             raiseException();
 
+            // 将2号学生的书本数量减1
             ContentValues values2 = new ContentValues();
             values1.put("book_count", 9);
             dbHelper.getDB().update("student_info", values2, "student_id = 2", null);
