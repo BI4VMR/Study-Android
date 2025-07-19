@@ -10,9 +10,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="基本应用"
+        android:text="事务支持"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/tvLog"
@@ -26,6 +26,16 @@
         android:textColor="?android:textColorPrimary"
         android:textSize="14sp" />
 
+    <EditText
+        android:id="@+id/etID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="输入需要 新增/修改/删除 的记录ID"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -38,11 +48,22 @@
             android:paddingEnd="20dp">
 
             <Button
-                android:id="@+id/btn01"
+                android:id="@+id/btnFailed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="功能按钮"
-                android:textAllCaps="false" />
+                android:text="事务执行失败" />
+
+            <Button
+                android:id="@+id/btnSuccess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="事务执行成功" />
+
+            <Button
+                android:id="@+id/btnQueryAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="查询所有记录" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

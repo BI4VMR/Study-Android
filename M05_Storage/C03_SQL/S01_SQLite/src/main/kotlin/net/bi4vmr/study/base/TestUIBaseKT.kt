@@ -3,6 +3,7 @@ package net.bi4vmr.study.base
 import android.content.ContentValues
 import android.database.Cursor
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiBaseBinding
@@ -26,6 +27,8 @@ class TestUIBaseKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
+            tvLog.movementMethod = ScrollingMovementMethod.getInstance()
+
             btnInsert.setOnClickListener { testInsert() }
             btnUpdate.setOnClickListener { testUpdate() }
             btnDelete.setOnClickListener { testDelete() }
@@ -36,9 +39,9 @@ class TestUIBaseKT : AppCompatActivity() {
     // 插入记录
     private fun testInsert() {
         Log.i(TAG, "--- 插入记录 ---")
-        binding.tvLog.append("\n--- 插入记录 ---\n")
+        appendLog("\n--- 插入记录 ---\n")
 
-        kotlin.runCatching {
+        runCatching {
             // 获取待操作的数据项ID
             val id: Long = binding.etID.text.toString().toLong()
             val name = "田所浩二$id"
@@ -50,10 +53,13 @@ class TestUIBaseKT : AppCompatActivity() {
             values.put("age", 24)
 
             // 执行插入操作
-            dbHelper.getDB().insert("student_info", null, values)
+            val rawID: Long = dbHelper.getDB().insert("student_info", null, values)
+            // 显示新表项的RowID
+            Log.i(TAG, "插入成功。 RawID:[$rawID]")
+            appendLog("\n插入成功。 RawID:[$rawID]")
         }.onFailure {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。")
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
+            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
             it.printStackTrace()
         }
     }
@@ -61,9 +67,9 @@ class TestUIBaseKT : AppCompatActivity() {
     // 更新记录
     private fun testUpdate() {
         Log.i(TAG, "--- 更新记录 ---")
-        binding.tvLog.append("\n--- 更新记录 ---\n")
+        appendLog("\n--- 更新记录 ---\n")
 
-        kotlin.runCatching {
+        runCatching {
             // 获取待操作的数据项ID
             val id: Long = binding.etID.text.toString().toLong()
 
@@ -73,10 +79,13 @@ class TestUIBaseKT : AppCompatActivity() {
             values.put("age", 25)
 
             // 执行更新操作
-            dbHelper.getDB().update("student_info", values, "student_id = ?", arrayOf("$id"))
+            val lines: Int = dbHelper.getDB().update("student_info", values, "student_id = ?", arrayOf("$id"))
+            // 显示受影响的行数
+            Log.i(TAG, "更新成功。 Lines:[$lines]")
+            appendLog("\n更新成功。 Lines:[$lines]")
         }.onFailure {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。")
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
+            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
             it.printStackTrace()
         }
     }
@@ -84,17 +93,20 @@ class TestUIBaseKT : AppCompatActivity() {
     // 删除记录
     private fun testDelete() {
         Log.i(TAG, "--- 删除记录 ---")
-        binding.tvLog.append("\n--- 删除记录 ---\n")
+        appendLog("\n--- 删除记录 ---\n")
 
-        kotlin.runCatching {
+        runCatching {
             // 获取待操作的数据项ID
             val id: Long = binding.etID.text.toString().toLong()
 
             // 执行删除操作
-            dbHelper.getDB().delete("student_info", "student_id = ?", arrayOf("$id"))
+            val lines: Int = dbHelper.getDB().delete("student_info", "student_id = ?", arrayOf("$id"))
+            // 显示受影响的行数
+            Log.i(TAG, "删除成功。 Lines:[$lines]")
+            appendLog("\n删除成功。 Lines:[$lines]")
         }.onFailure {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。")
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
+            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
             it.printStackTrace()
         }
     }
@@ -102,7 +114,7 @@ class TestUIBaseKT : AppCompatActivity() {
     // 查询所有记录
     private fun testQuery() {
         Log.i(TAG, "--- 查询所有记录 ---")
-        binding.tvLog.append("\n--- 查询所有记录 ---\n")
+        appendLog("\n--- 查询所有记录 ---\n")
 
         /*
          * Cursor实例包含查询结果，是一个二维表结构，“游标”指向表中的“行”，我们可以切换游标位置读取各行
@@ -130,15 +142,33 @@ class TestUIBaseKT : AppCompatActivity() {
                     val name: String = it.getString(1)
                     val age: Int = it.getInt(2)
 
-                    // 生成Kotlin对象。
+                    // 生成Kotlin对象
                     val studentKT = StudentKT(id, name, age)
-                    // 显示对象信息。
-                    binding.tvLog.append("\n$studentKT")
+                    // 显示对象信息
                     Log.i(TAG, studentKT.toString())
+                    appendLog("\n$studentKT")
                 } while (it.moveToNext())
             } else {
-                binding.tvLog.append("\n查询结果为空！")
                 Log.e(TAG, "查询结果为空！")
+                appendLog("\n查询结果为空！")
+            }
+        }
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private fun appendLog(text: CharSequence) {
+        binding.tvLog.apply {
+            append(text)
+            post {
+                runCatching {
+                    val offset = layout.getLineTop(lineCount) - height
+                    if (offset > 0) {
+                        scrollTo(0, offset)
+                    }
+                }.onFailure { e ->
+                    Log.w(TAG, "TextView scroll failed!")
+                    e.printStackTrace()
+                }
             }
         }
     }

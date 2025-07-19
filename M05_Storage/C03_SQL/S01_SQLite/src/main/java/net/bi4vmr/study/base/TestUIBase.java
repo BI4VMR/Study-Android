@@ -3,6 +3,7 @@ package net.bi4vmr.study.base;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,8 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
+
         // 创建学生信息数据库工具类的实例。
         dbHelper = new StudentDBHelper(getApplicationContext());
 
@@ -41,7 +44,7 @@ public class TestUIBase extends AppCompatActivity {
     // 插入记录
     private void testInsert() {
         Log.i(TAG, "--- 插入记录 ---");
-        binding.tvLog.append("\n--- 插入记录 ---\n");
+        appendLog("\n--- 插入记录 ---\n");
 
         try {
             // 获取待操作的数据项ID
@@ -55,10 +58,13 @@ public class TestUIBase extends AppCompatActivity {
             values.put("age", 24);
 
             // 执行插入操作
-            dbHelper.getDB().insert("student_info", null, values);
+            long rawID = dbHelper.getDB().insert("student_info", null, values);
+            // 显示新表项的RowID
+            Log.i(TAG, "插入成功。 RawID:[" + rawID + "]");
+            appendLog("\n插入成功。 RawID:[" + rawID + "]");
         } catch (Exception e) {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。");
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
             e.printStackTrace();
         }
     }
@@ -66,7 +72,7 @@ public class TestUIBase extends AppCompatActivity {
     // 更新记录
     private void testUpdate() {
         Log.i(TAG, "--- 更新记录 ---");
-        binding.tvLog.append("\n--- 更新记录 ---\n");
+        appendLog("\n--- 更新记录 ---\n");
 
         try {
             // 获取待操作的数据项ID
@@ -78,10 +84,13 @@ public class TestUIBase extends AppCompatActivity {
             values.put("age", 25);
 
             // 执行更新操作
-            dbHelper.getDB().update("student_info", values, "student_id = ?", new String[]{id + ""});
+            int lines = dbHelper.getDB().update("student_info", values, "student_id = ?", new String[]{id + ""});
+            // 显示受影响的行数
+            Log.i(TAG, "更新成功。 Lines:[" + lines + "]");
+            appendLog("\n更新成功。 Lines:[" + lines + "]");
         } catch (Exception e) {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。");
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
             e.printStackTrace();
         }
     }
@@ -89,17 +98,20 @@ public class TestUIBase extends AppCompatActivity {
     // 删除记录
     private void testDelete() {
         Log.i(TAG, "--- 删除记录 ---");
-        binding.tvLog.append("\n--- 删除记录 ---\n");
+        appendLog("\n--- 删除记录 ---\n");
 
         try {
             // 获取待操作的数据项ID
             long id = Long.parseLong(binding.etID.getText().toString());
 
             // 执行删除操作
-            dbHelper.getDB().delete("student_info", "student_id = ?", new String[]{id + ""});
+            int lines = dbHelper.getDB().delete("student_info", "student_id = ?", new String[]{id + ""});
+            // 显示受影响的行数
+            Log.i(TAG, "删除成功。 Lines:[" + lines + "]");
+            appendLog("\n删除成功。 Lines:[" + lines + "]");
         } catch (Exception e) {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。");
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
             e.printStackTrace();
         }
     }
@@ -107,7 +119,7 @@ public class TestUIBase extends AppCompatActivity {
     // 查询所有记录
     private void testQuery() {
         Log.i(TAG, "--- 查询所有记录 ---");
-        binding.tvLog.append("\n--- 查询所有记录 ---\n");
+        appendLog("\n--- 查询所有记录 ---\n");
 
         /*
          * Cursor实例包含查询结果，是一个二维表结构，“游标”指向表中的“行”，我们可以切换游标位置读取各行
@@ -135,19 +147,35 @@ public class TestUIBase extends AppCompatActivity {
                     String name = cursor.getString(1);
                     int age = cursor.getInt(2);
 
-                    // 生成Java对象。
+                    // 生成Java对象
                     Student student = new Student(id, name, age);
-                    // 显示对象信息。
-                    binding.tvLog.append("\n" + student);
+                    // 显示对象信息
                     Log.i(TAG, student.toString());
+                    appendLog("\n" + student);
                 } while (cursor.moveToNext());
             } else {
-                binding.tvLog.append("\n查询结果为空！");
                 Log.e(TAG, "查询结果为空！");
+                appendLog("\n查询结果为空！");
             }
         } catch (Exception e) {
             Log.e(TAG, "查询失败！");
+            appendLog("\n查询失败！");
             e.printStackTrace();
         }
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private void appendLog(CharSequence text) {
+        binding.tvLog.append(text);
+        binding.tvLog.post(() -> {
+            try {
+                int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+                if (offset > 0) {
+                    binding.tvLog.scrollTo(0, offset);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

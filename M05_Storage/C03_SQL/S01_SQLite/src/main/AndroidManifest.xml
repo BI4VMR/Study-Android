@@ -23,7 +23,7 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 示例界面：事务 -->
+        <!-- 示例界面：事务支持 -->
         <activity
             android:name=".transaction.TestUITransaction"
             android:exported="false" />
@@ -36,6 +36,11 @@
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：事务支持(KT) -->
+        <activity
+            android:name=".transaction.TestUITransactionKT"
             android:exported="false" />
 
         <!-- 示例界面：数据库版本升级(KT) -->

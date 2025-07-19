@@ -9,6 +9,7 @@ import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.transaction.TestUITransaction;
+import net.bi4vmr.study.transaction.TestUITransactionKT;
 import net.bi4vmr.study.upgrade.TestUIUpgrade;
 import net.bi4vmr.study.upgrade.TestUIUpgradeKT;
 
@@ -41,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
+            startActivity(intent);
+        });
+
+        // 事务支持(KT)
+        binding.btnTransactionKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUITransactionKT.class);
             startActivity(intent);
         });
 

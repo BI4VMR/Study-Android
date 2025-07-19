@@ -49,14 +49,6 @@ android {
         }
     }
 
-    sourceSets {
-        getByName("main") {
-            java {
-                java.srcDir("src/main/kotlin")
-            }
-        }
-    }
-
     compileOptions {
         // 指定Java源码编译目标版本
         sourceCompatibility = JavaVersion.VERSION_11
@@ -68,8 +60,8 @@ android {
         jvmTarget = "11"
     }
 
-    viewBinding {
-        enable = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 

@@ -56,6 +56,13 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/btnTransactionKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="事务支持"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btnUpgradeKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

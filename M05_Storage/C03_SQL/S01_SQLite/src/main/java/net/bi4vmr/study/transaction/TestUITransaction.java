@@ -3,15 +3,12 @@ package net.bi4vmr.study.transaction;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.base.Student;
-import net.bi4vmr.study.base.StudentDBHelper;
-import net.bi4vmr.study.databinding.TestuiBaseBinding;
-
-import java.util.Random;
+import net.bi4vmr.study.databinding.TestuiTransactionBinding;
 
 /**
  * 测试界面：事务支持。
@@ -23,154 +20,136 @@ public class TestUITransaction extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUITransaction.class.getSimpleName();
 
-    private TestuiBaseBinding binding;
+    private TestuiTransactionBinding binding;
 
-    private StudentDBHelper dbHelper;
+    private StudentDBHelper2 dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiBaseBinding.inflate(getLayoutInflater());
+        binding = TestuiTransactionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
+
         // 创建学生信息数据库工具类的实例。
-        dbHelper = new StudentDBHelper(getApplicationContext());
-        // dbHelper
-        binding.btnInsert.setOnClickListener(v -> testInsert());
-        binding.btnUpdate.setOnClickListener(v -> testUpdate());
-        binding.btnDelete.setOnClickListener(v -> testDelete());
+        dbHelper = new StudentDBHelper2(getApplicationContext());
+
+        binding.btnFailed.setOnClickListener(v -> testFailed());
+        binding.btnSuccess.setOnClickListener(v -> testSuccess());
         binding.btnQueryAll.setOnClickListener(v -> testQuery());
     }
 
-    // 插入记录
-    private void testInsert() {
-        Log.i(TAG, "--- 插入记录 ---");
-        binding.tvLog.append("\n--- 插入记录 ---\n");
+    private void testFailed() {
+        Log.i(TAG, "--- 事务执行失败 ---");
+        appendLog("\n--- 事务执行失败 ---\n");
+
+        // 开启事务
         dbHelper.getDB().beginTransaction();
+
         try {
-            // 获取待操作的数据项ID
-            long id = new Random().nextLong();
-            String name = "田所浩二" + id;
+            ContentValues values1 = new ContentValues();
+            values1.put("book_count", 11);
+            dbHelper.getDB().update("student_info", values1, "student_id = 1", null);
 
-            // 创建ContentValues实例，组织一条记录的各个字段与值。
-            ContentValues values = new ContentValues();
-            values.put("student_id", id);
-            values.put("student_name", name);
-            values.put("age", 24);
+            // 模拟异常，触发事务回滚。
+            raiseException();
 
-            // 执行插入操作
-            dbHelper.getDB().insert("student_info", null, values);
+            ContentValues values2 = new ContentValues();
+            values1.put("book_count", 9);
+            dbHelper.getDB().update("student_info", values2, "student_id = 2", null);
+
+            // 标记事务已完成
             dbHelper.getDB().setTransactionSuccessful();
+            Log.i(TAG, "操作成功！");
+            appendLog("\n操作成功！");
         } catch (Exception e) {
+            Log.e(TAG, "操作失败，事务回滚！");
+            appendLog("\n操作失败，事务回滚！");
             e.printStackTrace();
         } finally {
+            // 终止事务
             dbHelper.getDB().endTransaction();
         }
-        // try {
-        //     // 获取待操作的数据项ID
-        //     long id = Long.parseLong(binding.etID.getText().toString());
-        //     String name = "田所浩二" + id;
-        //
-        //     // 创建ContentValues实例，组织一条记录的各个字段与值。
-        //     ContentValues values = new ContentValues();
-        //     values.put("student_id", id);
-        //     values.put("student_name", name);
-        //     values.put("age", 24);
-        //
-        //     // 执行插入操作
-        //     dbHelper.getDB().insert("student_info", null, values);
-        // } catch (Exception e) {
-        //     binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。");
-        //     Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
-        //     e.printStackTrace();
-        // }
     }
 
-    // 更新记录
-    private void testUpdate() {
-        Log.i(TAG, "--- 更新记录 ---");
-        binding.tvLog.append("\n--- 更新记录 ---\n");
-
-        try {
-            // 获取待操作的数据项ID
-            long id = Long.parseLong(binding.etID.getText().toString());
-
-            // 创建ContentValues实例，组织一条记录的各个字段与值。
-            ContentValues values = new ContentValues();
-            values.put("student_name", "德川");
-            values.put("age", 25);
-
-            // 执行更新操作
-            dbHelper.getDB().update("student_info", values, "student_id = ?", new String[]{id + ""});
-        } catch (Exception e) {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。");
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
-            e.printStackTrace();
-        }
+    private void raiseException() throws Exception {
+        throw new Exception("模拟异常");
     }
 
-    // 删除记录
-    private void testDelete() {
-        Log.i(TAG, "--- 删除记录 ---");
-        binding.tvLog.append("\n--- 删除记录 ---\n");
+    private void testSuccess() {
+        Log.i(TAG, "--- 事务执行成功 ---");
+        appendLog("\n--- 事务执行成功 ---\n");
 
+        // 开启事务
+        dbHelper.getDB().beginTransaction();
         try {
-            // 获取待操作的数据项ID
-            long id = Long.parseLong(binding.etID.getText().toString());
+            ContentValues values1 = new ContentValues();
+            values1.put("book_count", 11);
+            dbHelper.getDB().update("student_info", values1, "student_id = 1", null);
 
-            // 执行删除操作
-            dbHelper.getDB().delete("student_info", "student_id = ?", new String[]{id + ""});
+            ContentValues values2 = new ContentValues();
+            values2.put("book_count", 9);
+            dbHelper.getDB().update("student_info", values2, "student_id = 2", null);
+
+            // 标记事务已完成
+            dbHelper.getDB().setTransactionSuccessful();
+            Log.i(TAG, "操作成功！");
+            appendLog("\n操作成功！");
         } catch (Exception e) {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。");
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            Log.e(TAG, "操作失败，事务回滚！");
+            appendLog("\n操作失败，事务回滚！");
             e.printStackTrace();
+        } finally {
+            // 终止事务
+            dbHelper.getDB().endTransaction();
         }
     }
 
     // 查询所有记录
     private void testQuery() {
         Log.i(TAG, "--- 查询所有记录 ---");
-        binding.tvLog.append("\n--- 查询所有记录 ---\n");
+        appendLog("\n--- 查询所有记录 ---\n");
 
-        /*
-         * Cursor实例包含查询结果，是一个二维表结构，“游标”指向表中的“行”，我们可以切换游标位置读取各行
-         * 的数据。
-         */
         Cursor cursor = dbHelper.getDB()
                 .query("student_info", null, null, null, null, null, null);
         try (cursor) {
-            /*
-             * 判断游标实例中是否存在数据项。
-             *
-             * "moveToFirst()"方法会将游标移动至第一行。如果该行不存在，返回"false"；如果该行存在，则返回
-             * "true"。
-             */
             if (cursor.moveToFirst()) {
-                /*
-                 * 遍历游标实例，读取所有数据项。
-                 *
-                 * "moveToNext()"方法会将游标移动至当前位置的后一行。如果该行不存在，返回"false"；如果该行存
-                 * 在，则返回"true"。
-                 */
                 do {
                     // 根据列索引与类型，读取当前行的属性。
                     long id = cursor.getLong(0);
                     String name = cursor.getString(1);
-                    int age = cursor.getInt(2);
+                    int bookCount = cursor.getInt(2);
 
-                    // 生成Java对象。
-                    Student student = new Student(id, name, age);
-                    // 显示对象信息。
-                    binding.tvLog.append("\n" + student);
+                    // 生成Java对象
+                    Student2 student = new Student2(id, name, bookCount);
+                    // 显示对象信息
                     Log.i(TAG, student.toString());
+                    appendLog("\n" + student);
                 } while (cursor.moveToNext());
             } else {
-                binding.tvLog.append("\n查询结果为空！");
                 Log.e(TAG, "查询结果为空！");
+                appendLog("\n查询结果为空！");
             }
         } catch (Exception e) {
             Log.e(TAG, "查询失败！");
+            appendLog("\n查询失败！");
             e.printStackTrace();
         }
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private void appendLog(CharSequence text) {
+        binding.tvLog.append(text);
+        binding.tvLog.post(() -> {
+            try {
+                int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+                if (offset > 0) {
+                    binding.tvLog.scrollTo(0, offset);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
