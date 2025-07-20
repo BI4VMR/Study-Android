@@ -35,10 +35,9 @@ class TestUIBaseKT : AppCompatActivity() {
         }
     }
 
-    // 功能模块
     private fun test() {
-        Log.i(TAG, "--- 功能模块 ---")
-        appendLog("\n--- 功能模块 ---\n")
+        Log.i(TAG, "----- 功能模块 -----")
+        appendLog("\n\n----- 功能模块 -----\n")
 
         // ...
     }

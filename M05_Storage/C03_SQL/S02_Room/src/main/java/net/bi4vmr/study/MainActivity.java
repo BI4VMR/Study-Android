@@ -10,6 +10,8 @@ import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.skills.TestUISkills;
 import net.bi4vmr.study.skills.TestUISkillsKT;
+import net.bi4vmr.study.transaction.TestUITransaction;
+import net.bi4vmr.study.transaction.TestUITransactionKT;
 import net.bi4vmr.study.upgrade.TestUIUpgrade;
 import net.bi4vmr.study.upgrade.TestUIUpgradeKT;
 
@@ -33,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 事务支持
+        binding.btnTransaction.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUITransaction.class);
+            startActivity(intent);
+        });
+
         // 数据库版本升级
         binding.btnUpgrade.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIUpgrade.class);
@@ -48,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
         // 进阶技巧(KT)
         binding.btnSkillsKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUISkillsKT.class);
+            startActivity(intent);
+        });
+
+        // 事务支持(KT)
+        binding.btnTransactionKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUITransactionKT.class);
             startActivity(intent);
         });
 

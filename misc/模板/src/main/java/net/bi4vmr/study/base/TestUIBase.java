@@ -33,10 +33,9 @@ public class TestUIBase extends AppCompatActivity {
         binding.btn01.setOnClickListener(v -> test());
     }
 
-    // 功能模块
     private void test() {
-        Log.i(TAG, "--- 功能模块 ---");
-        appendLog("\n--- 功能模块 ---\n");
+        Log.i(TAG, "----- 功能模块 -----");
+        appendLog("\n\n----- 功能模块 -----\n");
 
         // ...
     }

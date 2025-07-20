@@ -38,13 +38,12 @@ public class TestUISkills extends AppCompatActivity {
         binding.btnInsertItems.setOnClickListener(v -> testInsertItems());
         binding.btnUpdate.setOnClickListener(v -> testUpdate());
         binding.btnDelete.setOnClickListener(v -> testDelete());
-        binding.btnSelectAll.setOnClickListener(v -> testSelectAll());
+        binding.btnQueryAll.setOnClickListener(v -> testQueryAll());
     }
 
-    // 插入单条记录
     private void testInsertItem() {
-        binding.tvLog.append("\n--- 插入单条记录 ---\n");
         Log.i(TAG, "--- 插入单条记录 ---");
+        appendLog("\n--- 插入单条记录 ---\n");
 
         try {
             // 获取待操作的数据项ID
@@ -57,19 +56,18 @@ public class TestUISkills extends AppCompatActivity {
             Student student = new Student(id, name, 24);
             long rowID = dao.insertStudent(student);
 
-            binding.tvLog.append("\n插入成功，RowID:[" + rowID + "]");
             Log.i(TAG, "插入成功，RowID:[" + rowID + "]");
+            appendLog("\n插入成功，RowID:[" + rowID + "]");
         } catch (Exception e) {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。");
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
             e.printStackTrace();
         }
     }
 
-    // 插入多条记录
     private void testInsertItems() {
-        binding.tvLog.append("\n--- 插入多条记录 ---\n");
         Log.i(TAG, "--- 插入多条记录 ---");
+        appendLog("\n--- 插入多条记录 ---\n");
 
         try {
             List<Student> datas = new ArrayList<>();
@@ -86,19 +84,18 @@ public class TestUISkills extends AppCompatActivity {
             // 插入记录
             List<Long> rowIDs = dao.insertStudents(datas);
 
-            binding.tvLog.append("\n插入成功，RowIDs:" + rowIDs);
             Log.i(TAG, "插入成功，RowIDs:" + rowIDs);
+            appendLog("\n插入成功，RowIDs:" + rowIDs);
         } catch (Exception e) {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。");
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
             e.printStackTrace();
         }
     }
 
-    // 更新记录
     private void testUpdate() {
-        binding.tvLog.append("\n--- 更新记录 ---\n");
         Log.i(TAG, "--- 更新记录 ---");
+        appendLog("\n--- 更新记录 ---\n");
 
         try {
             // 获取待操作的数据项ID
@@ -107,19 +104,18 @@ public class TestUISkills extends AppCompatActivity {
             Student s = new Student(id, "远野", 25);
             dao.updateStudent(s);
 
-            binding.tvLog.append("\n更新成功。");
             Log.i(TAG, "更新成功。");
+            appendLog("\n更新成功。");
         } catch (Exception e) {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。");
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
             e.printStackTrace();
         }
     }
 
-    // 删除记录
     private void testDelete() {
-        binding.tvLog.append("\n--- 删除记录 ---\n");
         Log.i(TAG, "--- 删除记录 ---");
+        appendLog("\n--- 删除记录 ---\n");
 
         try {
             // 获取待操作的数据项ID
@@ -128,22 +124,37 @@ public class TestUISkills extends AppCompatActivity {
             Student student = new Student(id);
             dao.delStudent(student);
 
-            binding.tvLog.append("\n删除成功。");
             Log.i(TAG, "删除成功。");
+            appendLog("\n删除成功。");
         } catch (Exception e) {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。");
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
             e.printStackTrace();
         }
     }
 
-    // 查询所有记录
-    private void testSelectAll() {
-        binding.tvLog.append("\n--- 查询所有记录 ---\n");
+    private void testQueryAll() {
+        appendLog("\n--- 查询所有记录 ---\n");
         Log.i(TAG, "--- 查询所有记录 ---");
 
         List<Student> result = dao.getStudent();
-        binding.tvLog.append(result.toString());
         Log.i(TAG, result.toString());
+        appendLog(result.toString());
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private void appendLog(CharSequence text) {
+        binding.tvLog.append(text);
+        binding.tvLog.post(() -> {
+            try {
+                int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+                if (offset > 0) {
+                    binding.tvLog.scrollTo(0, offset);
+                }
+            } catch (Exception e) {
+                Log.w(TAG, "TextView scroll failed!");
+                e.printStackTrace();
+            }
+        });
     }
 }

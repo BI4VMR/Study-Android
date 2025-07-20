@@ -31,11 +31,11 @@ class TestUISkillsKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
-            btnInsertItem.setOnClickListener { testInsertItem() }
-            btnInsertItems.setOnClickListener { testInsertItems() }
+            // btnInsertItem.setOnClickListener { testInsertItem() }
+            // btnInsertItems.setOnClickListener { testInsertItems() }
             btnUpdate.setOnClickListener { testUpdate() }
             btnDelete.setOnClickListener { testDelete() }
-            btnSelectAll.setOnClickListener { testSelectAll() }
+            btnQueryAll.setOnClickListener { testSelectAll() }
         }
     }
 

@@ -34,7 +34,7 @@ class TestUIBaseKT : AppCompatActivity() {
             btnInsert.setOnClickListener { testInsert() }
             btnUpdate.setOnClickListener { testUpdate() }
             btnDelete.setOnClickListener { testDelete() }
-            btnSelectAll.setOnClickListener { testSelectAll() }
+            btnQueryAll.setOnClickListener { testSelectAll() }
         }
     }
 
@@ -111,7 +111,9 @@ class TestUIBaseKT : AppCompatActivity() {
         Log.i(TAG, "--- 查询所有记录 ---")
 
         val result: List<StudentKT> = studentDB.getStudentDAO().getStudent()
-        binding.tvLog.append(result.toString())
-        Log.i(TAG, result.toString())
+        result.forEach {
+            binding.tvLog.append(it.toString())
+            Log.i(TAG, it.toString())
+        }
     }
 }

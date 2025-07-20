@@ -174,6 +174,7 @@ public class TestUIBase extends AppCompatActivity {
                     binding.tvLog.scrollTo(0, offset);
                 }
             } catch (Exception e) {
+                Log.w(TAG, "TextView scroll failed!");
                 e.printStackTrace();
             }
         });

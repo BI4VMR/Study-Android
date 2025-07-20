@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Java实现："
-            android:textColor="@color/black"
+            android:textColor="?android:textColorPrimary"
             android:textSize="18sp" />
 
         <Button
@@ -35,6 +35,13 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/btnTransaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="事务支持"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btnUpgrade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kotlin实现："
-            android:textColor="@color/black"
+            android:textColor="?android:textColorPrimary"
             android:textSize="18sp" />
 
         <Button
@@ -60,6 +67,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="进阶技巧"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnTransactionKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="事务支持"
             android:textAllCaps="false" />
 
         <Button
