@@ -18,8 +18,8 @@ class TestUITransactionKT : AppCompatActivity() {
         TestuiTransactionBinding.inflate(layoutInflater)
     }
 
-    private val dbHelper: StudentDBHelper2KT by lazy {
-        StudentDBHelper2KT(applicationContext)
+    private val dbHelper: StudentDBHelperKT by lazy {
+        StudentDBHelperKT(applicationContext)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -122,7 +122,7 @@ class TestUITransactionKT : AppCompatActivity() {
                     val bookCount: Int = it.getInt(2)
 
                     // 生成Kotlin对象
-                    val student = Student2KT(id, name, bookCount)
+                    val student = StudentKT(id, name, bookCount)
                     // 显示对象信息
                     Log.i(TAG, student.toString())
                     appendLog("\n$student")

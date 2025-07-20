@@ -11,12 +11,12 @@ import android.util.Log
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class StudentDBHelper2KT(
+class StudentDBHelperKT(
     context: Context
 ) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
     companion object {
-        private val TAG: String = "TestApp-${StudentDBHelper2KT::class.java.simpleName}"
+        private val TAG: String = "TestApp-${StudentDBHelperKT::class.java.simpleName}"
 
         private const val DB_NAME: String = "student2.db"
         private const val DB_VERSION: Int = 1

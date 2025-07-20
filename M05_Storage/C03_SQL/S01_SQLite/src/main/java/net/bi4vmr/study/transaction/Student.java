@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class Student2 {
+public class Student {
 
     // ID
     private long id;
@@ -18,12 +18,12 @@ public class Student2 {
     private int bookCount;
 
     // 具有1个参数的构造方法
-    public Student2(long id) {
+    public Student(long id) {
         this.id = id;
     }
 
     // 具有3个参数的构造方法
-    public Student2(long id, String name, int bookCount) {
+    public Student(long id, String name, int bookCount) {
         this.id = id;
         this.name = name;
         this.bookCount = bookCount;

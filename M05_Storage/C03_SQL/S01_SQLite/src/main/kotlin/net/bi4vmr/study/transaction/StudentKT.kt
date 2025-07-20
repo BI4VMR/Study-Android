@@ -3,7 +3,7 @@ package net.bi4vmr.study.transaction
 /**
  * 实体类：学生。
  */
-data class Student2KT(
+data class StudentKT(
     // ID
     var id: Long,
     // 姓名

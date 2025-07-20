@@ -22,7 +22,7 @@ public class TestUITransaction extends AppCompatActivity {
 
     private TestuiTransactionBinding binding;
 
-    private StudentDBHelper2 dbHelper;
+    private StudentDBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class TestUITransaction extends AppCompatActivity {
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         // 创建学生信息数据库工具类的实例。
-        dbHelper = new StudentDBHelper2(getApplicationContext());
+        dbHelper = new StudentDBHelper(getApplicationContext());
 
         binding.btnFailed.setOnClickListener(v -> testFailed());
         binding.btnSuccess.setOnClickListener(v -> testSuccess());
@@ -124,7 +124,7 @@ public class TestUITransaction extends AppCompatActivity {
                     int bookCount = cursor.getInt(2);
 
                     // 生成Java对象
-                    Student2 student = new Student2(id, name, bookCount);
+                    Student student = new Student(id, name, bookCount);
                     // 显示对象信息
                     Log.i(TAG, student.toString());
                     appendLog("\n" + student);

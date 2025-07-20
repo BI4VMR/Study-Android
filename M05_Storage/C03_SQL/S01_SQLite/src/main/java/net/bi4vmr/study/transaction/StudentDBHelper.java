@@ -13,15 +13,15 @@ import androidx.annotation.Nullable;
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class StudentDBHelper2 extends SQLiteOpenHelper {
+public class StudentDBHelper extends SQLiteOpenHelper {
 
-    private static final String TAG = "TestApp-" + StudentDBHelper2.class.getSimpleName();
+    private static final String TAG = "TestApp-" + StudentDBHelper.class.getSimpleName();
 
     private static final String DB_NAME = "student2.db";
     private static final int DB_VERSION = 1;
 
     // 构造方法
-    public StudentDBHelper2(@Nullable Context context) {
+    public StudentDBHelper(@Nullable Context context) {
         /*
          * SQLiteOpenHelper类的构造方法。
          *
