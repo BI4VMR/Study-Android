@@ -35,14 +35,14 @@ public class TestUIBase extends AppCompatActivity {
 
     private void test() {
         Log.i(TAG, "----- 功能模块 -----");
-        appendLog("\n\n----- 功能模块 -----\n");
+        appendLog("\n----- 功能模块 -----");
 
-        // ...
+        // 示例代码...
     }
 
     // 向文本框中追加日志内容并滚动到最底端
-    private void appendLog(CharSequence text) {
-        binding.tvLog.append(text);
+    private void appendLog(Object text) {
+        binding.tvLog.append("\n" + text.toString());
         binding.tvLog.post(() -> {
             try {
                 int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();

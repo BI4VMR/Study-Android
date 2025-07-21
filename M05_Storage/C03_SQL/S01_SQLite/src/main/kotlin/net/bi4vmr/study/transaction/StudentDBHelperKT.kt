@@ -47,7 +47,7 @@ class StudentDBHelperKT(
                 "(1, '田所浩二', 10)"
         db.execSQL(initData1SQL)
         val initData2SQL = "INSERT INTO student_info VALUES" +
-                "(2, '德川', 10)"
+                "(2, '德川裕太', 10)"
         db.execSQL(initData2SQL)
     }
 
@@ -62,17 +62,11 @@ class StudentDBHelperKT(
      */
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         Log.i(TAG, "OnUpgrade.")
-        // 暂不使用。
+        // 暂不使用
     }
 
-    // 获取数据库实例。
+    // 获取数据库实例
     fun getDB(): SQLiteDatabase {
-        /*
-         * SQLiteOpenHelper的"getWritableDatabase()"方法将会尝试以“读写”模式打开数据库，如果数据文件所在分
-         * 区已满，将会导致"SQLiteException"异常。
-         * SQLiteOpenHelper的"getReadableDatabase()"方法将会尝试以“读写”模式打开数据库，如果数据文件所在分
-         * 区已满，将会以“只读”模式打开数据库，不会因此导致异常。
-         */
         return writableDatabase
     }
 }

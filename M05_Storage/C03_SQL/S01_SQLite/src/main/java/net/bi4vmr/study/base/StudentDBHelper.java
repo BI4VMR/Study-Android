@@ -69,7 +69,7 @@ public class StudentDBHelper extends SQLiteOpenHelper {
         // 暂不使用。
     }
 
-    // 获取数据库实例。
+    // 获取数据库实例
     public SQLiteDatabase getDB() {
         /*
          * SQLiteOpenHelper的"getWritableDatabase()"方法将会尝试以“读写”模式打开数据库，如果数据文件所在分

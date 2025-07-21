@@ -38,8 +38,8 @@ class TestUIBaseKT : AppCompatActivity() {
 
     // 插入记录
     private fun testInsert() {
-        Log.i(TAG, "--- 插入记录 ---")
-        appendLog("\n--- 插入记录 ---\n")
+        Log.i(TAG, "----- 插入记录 -----")
+        appendLog("\n----- 插入记录 -----")
 
         runCatching {
             // 获取待操作的数据项ID
@@ -56,18 +56,18 @@ class TestUIBaseKT : AppCompatActivity() {
             val rawID: Long = dbHelper.getDB().insert("student_info", null, values)
             // 显示新表项的RowID
             Log.i(TAG, "插入成功。 RawID:[$rawID]")
-            appendLog("\n插入成功。 RawID:[$rawID]")
+            appendLog("插入成功。 RawID:[$rawID]")
         }.onFailure {
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。")
             it.printStackTrace()
         }
     }
 
     // 更新记录
     private fun testUpdate() {
-        Log.i(TAG, "--- 更新记录 ---")
-        appendLog("\n--- 更新记录 ---\n")
+        Log.i(TAG, "----- 更新记录 -----")
+        appendLog("\n----- 更新记录 -----")
 
         runCatching {
             // 获取待操作的数据项ID
@@ -82,18 +82,18 @@ class TestUIBaseKT : AppCompatActivity() {
             val lines: Int = dbHelper.getDB().update("student_info", values, "student_id = ?", arrayOf("$id"))
             // 显示受影响的行数
             Log.i(TAG, "更新成功。 Lines:[$lines]")
-            appendLog("\n更新成功。 Lines:[$lines]")
+            appendLog("更新成功。 Lines:[$lines]")
         }.onFailure {
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。")
             it.printStackTrace()
         }
     }
 
     // 删除记录
     private fun testDelete() {
-        Log.i(TAG, "--- 删除记录 ---")
-        appendLog("\n--- 删除记录 ---\n")
+        Log.i(TAG, "----- 删除记录 -----")
+        appendLog("\n----- 删除记录 -----")
 
         runCatching {
             // 获取待操作的数据项ID
@@ -103,18 +103,18 @@ class TestUIBaseKT : AppCompatActivity() {
             val lines: Int = dbHelper.getDB().delete("student_info", "student_id = ?", arrayOf("$id"))
             // 显示受影响的行数
             Log.i(TAG, "删除成功。 Lines:[$lines]")
-            appendLog("\n删除成功。 Lines:[$lines]")
+            appendLog("删除成功。 Lines:[$lines]")
         }.onFailure {
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。")
             it.printStackTrace()
         }
     }
 
     // 查询所有记录
     private fun testQuery() {
-        Log.i(TAG, "--- 查询所有记录 ---")
-        appendLog("\n--- 查询所有记录 ---\n")
+        Log.i(TAG, "----- 查询所有记录 -----")
+        appendLog("\n----- 查询所有记录 -----")
 
         /*
          * Cursor实例包含查询结果，是一个二维表结构，“游标”指向表中的“行”，我们可以切换游标位置读取各行
@@ -146,19 +146,19 @@ class TestUIBaseKT : AppCompatActivity() {
                     val studentKT = StudentKT(id, name, age)
                     // 显示对象信息
                     Log.i(TAG, studentKT.toString())
-                    appendLog("\n$studentKT")
+                    appendLog(studentKT)
                 } while (it.moveToNext())
             } else {
                 Log.e(TAG, "查询结果为空！")
-                appendLog("\n查询结果为空！")
+                appendLog("查询结果为空！")
             }
         }
     }
 
     // 向文本框中追加日志内容并滚动到最底端
-    private fun appendLog(text: CharSequence) {
+    private fun appendLog(text: Any) {
         binding.tvLog.apply {
-            append(text)
+            append("\n$text")
             post {
                 runCatching {
                     val offset = layout.getLineTop(lineCount) - height

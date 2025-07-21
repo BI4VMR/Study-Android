@@ -58,10 +58,10 @@ class StudentDBHelperKT(
      */
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         Log.i(TAG, "OnUpgrade.")
-        // 暂不使用。
+        // 暂不使用
     }
 
-    // 获取数据库实例。
+    // 获取数据库实例
     fun getDB(): SQLiteDatabase {
         /*
          * SQLiteOpenHelper的"getWritableDatabase()"方法将会尝试以“读写”模式打开数据库，如果数据文件所在分

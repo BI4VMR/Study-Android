@@ -58,7 +58,7 @@ public class StudentDBHelper extends SQLiteOpenHelper {
                 "(1, '田所浩二', 10)";
         db.execSQL(initData1SQL);
         final String initData2SQL = "INSERT INTO student_info VALUES" +
-                "(2, '德川', 10)";
+                "(2, '德川裕太', 10)";
         db.execSQL(initData2SQL);
     }
 
@@ -74,10 +74,10 @@ public class StudentDBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.i(TAG, "OnUpgrade.");
-        // 暂不使用。
+        // 暂不使用
     }
 
-    // 获取数据库实例。
+    // 获取数据库实例
     public SQLiteDatabase getDB() {
         return getWritableDatabase();
     }

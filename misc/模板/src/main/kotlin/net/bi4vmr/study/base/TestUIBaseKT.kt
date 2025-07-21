@@ -37,15 +37,15 @@ class TestUIBaseKT : AppCompatActivity() {
 
     private fun test() {
         Log.i(TAG, "----- 功能模块 -----")
-        appendLog("\n\n----- 功能模块 -----\n")
+        appendLog("\n----- 功能模块 -----")
 
-        // ...
+        // 示例代码...
     }
 
     // 向文本框中追加日志内容并滚动到最底端
-    private fun appendLog(text: CharSequence) {
+    private fun appendLog(text: Any) {
         binding.tvLog.apply {
-            append(text)
+            append("\n$text")
             post {
                 runCatching {
                     val offset = layout.getLineTop(lineCount) - height

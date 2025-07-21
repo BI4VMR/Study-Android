@@ -41,10 +41,9 @@ public class TestUIBase extends AppCompatActivity {
         binding.btnQueryAll.setOnClickListener(v -> testQuery());
     }
 
-    // 插入记录
     private void testInsert() {
-        Log.i(TAG, "--- 插入记录 ---");
-        appendLog("\n--- 插入记录 ---\n");
+        Log.i(TAG, "----- 插入记录 -----");
+        appendLog("\n----- 插入记录 -----");
 
         try {
             // 获取待操作的数据项ID
@@ -61,18 +60,17 @@ public class TestUIBase extends AppCompatActivity {
             long rawID = dbHelper.getDB().insert("student_info", null, values);
             // 显示新表项的RowID
             Log.i(TAG, "插入成功。 RawID:[" + rawID + "]");
-            appendLog("\n插入成功。 RawID:[" + rawID + "]");
+            appendLog("插入成功。 RawID:[" + rawID + "]");
         } catch (Exception e) {
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。");
             e.printStackTrace();
         }
     }
 
-    // 更新记录
     private void testUpdate() {
-        Log.i(TAG, "--- 更新记录 ---");
-        appendLog("\n--- 更新记录 ---\n");
+        Log.i(TAG, "----- 更新记录 -----");
+        appendLog("\n----- 更新记录 -----");
 
         try {
             // 获取待操作的数据项ID
@@ -87,18 +85,17 @@ public class TestUIBase extends AppCompatActivity {
             int lines = dbHelper.getDB().update("student_info", values, "student_id = ?", new String[]{id + ""});
             // 显示受影响的行数
             Log.i(TAG, "更新成功。 Lines:[" + lines + "]");
-            appendLog("\n更新成功。 Lines:[" + lines + "]");
+            appendLog("更新成功。 Lines:[" + lines + "]");
         } catch (Exception e) {
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。");
             e.printStackTrace();
         }
     }
 
-    // 删除记录
     private void testDelete() {
-        Log.i(TAG, "--- 删除记录 ---");
-        appendLog("\n--- 删除记录 ---\n");
+        Log.i(TAG, "----- 删除记录 -----");
+        appendLog("\n----- 删除记录 -----");
 
         try {
             // 获取待操作的数据项ID
@@ -108,18 +105,17 @@ public class TestUIBase extends AppCompatActivity {
             int lines = dbHelper.getDB().delete("student_info", "student_id = ?", new String[]{id + ""});
             // 显示受影响的行数
             Log.i(TAG, "删除成功。 Lines:[" + lines + "]");
-            appendLog("\n删除成功。 Lines:[" + lines + "]");
+            appendLog("删除成功。 Lines:[" + lines + "]");
         } catch (Exception e) {
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。");
             e.printStackTrace();
         }
     }
 
-    // 查询所有记录
     private void testQuery() {
-        Log.i(TAG, "--- 查询所有记录 ---");
-        appendLog("\n--- 查询所有记录 ---\n");
+        Log.i(TAG, "----- 查询所有记录 -----");
+        appendLog("\n----- 查询所有记录 -----");
 
         /*
          * Cursor实例包含查询结果，是一个二维表结构，“游标”指向表中的“行”，我们可以切换游标位置读取各行
@@ -151,22 +147,22 @@ public class TestUIBase extends AppCompatActivity {
                     Student student = new Student(id, name, age);
                     // 显示对象信息
                     Log.i(TAG, student.toString());
-                    appendLog("\n" + student);
+                    appendLog(student);
                 } while (cursor.moveToNext());
             } else {
                 Log.e(TAG, "查询结果为空！");
-                appendLog("\n查询结果为空！");
+                appendLog("查询结果为空！");
             }
         } catch (Exception e) {
             Log.e(TAG, "查询失败！");
-            appendLog("\n查询失败！");
+            appendLog("查询失败！");
             e.printStackTrace();
         }
     }
 
     // 向文本框中追加日志内容并滚动到最底端
-    private void appendLog(CharSequence text) {
-        binding.tvLog.append(text);
+    private void appendLog(Object text) {
+        binding.tvLog.append("\n" + text.toString());
         binding.tvLog.post(() -> {
             try {
                 int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();

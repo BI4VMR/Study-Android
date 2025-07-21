@@ -41,8 +41,8 @@ public class TestUITransaction extends AppCompatActivity {
     }
 
     private void testFailed() {
-        Log.i(TAG, "--- 事务执行失败 ---");
-        appendLog("\n--- 事务执行失败 ---\n");
+        Log.i(TAG, "----- 事务执行失败 -----");
+        appendLog("\n----- 事务执行失败 -----");
 
         // 开启事务
         dbHelper.getDB().beginTransaction();
@@ -53,8 +53,8 @@ public class TestUITransaction extends AppCompatActivity {
             values1.put("book_count", 11);
             dbHelper.getDB().update("student_info", values1, "student_id = 1", null);
 
-            // 模拟异常，触发事务回滚。
-            raiseException();
+            // 模拟业务异常，触发事务回滚。
+            int i = 1 / 0;
 
             // 将2号学生的书本数量减1
             ContentValues values2 = new ContentValues();
@@ -64,10 +64,10 @@ public class TestUITransaction extends AppCompatActivity {
             // 标记事务已完成
             dbHelper.getDB().setTransactionSuccessful();
             Log.i(TAG, "操作成功！");
-            appendLog("\n操作成功！");
+            appendLog("操作成功！");
         } catch (Exception e) {
             Log.e(TAG, "操作失败，事务回滚！");
-            appendLog("\n操作失败，事务回滚！");
+            appendLog("操作失败，事务回滚！");
             e.printStackTrace();
         } finally {
             // 终止事务
@@ -75,13 +75,9 @@ public class TestUITransaction extends AppCompatActivity {
         }
     }
 
-    private void raiseException() throws Exception {
-        throw new Exception("模拟异常");
-    }
-
     private void testSuccess() {
-        Log.i(TAG, "--- 事务执行成功 ---");
-        appendLog("\n--- 事务执行成功 ---\n");
+        Log.i(TAG, "----- 事务执行成功 -----");
+        appendLog("\n----- 事务执行成功 -----");
 
         // 开启事务
         dbHelper.getDB().beginTransaction();
@@ -97,10 +93,10 @@ public class TestUITransaction extends AppCompatActivity {
             // 标记事务已完成
             dbHelper.getDB().setTransactionSuccessful();
             Log.i(TAG, "操作成功！");
-            appendLog("\n操作成功！");
+            appendLog("操作成功！");
         } catch (Exception e) {
             Log.e(TAG, "操作失败，事务回滚！");
-            appendLog("\n操作失败，事务回滚！");
+            appendLog("操作失败，事务回滚！");
             e.printStackTrace();
         } finally {
             // 终止事务
@@ -108,17 +104,15 @@ public class TestUITransaction extends AppCompatActivity {
         }
     }
 
-    // 查询所有记录
     private void testQuery() {
-        Log.i(TAG, "--- 查询所有记录 ---");
-        appendLog("\n--- 查询所有记录 ---\n");
+        Log.i(TAG, "----- 查询所有记录 -----");
+        appendLog("\n----- 查询所有记录 -----");
 
         Cursor cursor = dbHelper.getDB()
                 .query("student_info", null, null, null, null, null, null);
         try (cursor) {
             if (cursor.moveToFirst()) {
                 do {
-                    // 根据列索引与类型，读取当前行的属性。
                     long id = cursor.getLong(0);
                     String name = cursor.getString(1);
                     int bookCount = cursor.getInt(2);
@@ -127,22 +121,22 @@ public class TestUITransaction extends AppCompatActivity {
                     Student student = new Student(id, name, bookCount);
                     // 显示对象信息
                     Log.i(TAG, student.toString());
-                    appendLog("\n" + student);
+                    appendLog(student);
                 } while (cursor.moveToNext());
             } else {
                 Log.e(TAG, "查询结果为空！");
-                appendLog("\n查询结果为空！");
+                appendLog("查询结果为空！");
             }
         } catch (Exception e) {
             Log.e(TAG, "查询失败！");
-            appendLog("\n查询失败！");
+            appendLog("查询失败！");
             e.printStackTrace();
         }
     }
 
     // 向文本框中追加日志内容并滚动到最底端
-    private void appendLog(CharSequence text) {
-        binding.tvLog.append(text);
+    private void appendLog(Object text) {
+        binding.tvLog.append("\n" + text.toString());
         binding.tvLog.post(() -> {
             try {
                 int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
