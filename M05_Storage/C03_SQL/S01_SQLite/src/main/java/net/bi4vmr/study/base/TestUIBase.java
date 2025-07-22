@@ -62,9 +62,8 @@ public class TestUIBase extends AppCompatActivity {
             Log.i(TAG, "插入成功。 RawID:[" + rawID + "]");
             appendLog("插入成功。 RawID:[" + rawID + "]");
         } catch (Exception e) {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e);
             appendLog("操作失败！请检查是否已输入ID或ID冲突。");
-            e.printStackTrace();
         }
     }
 
@@ -87,9 +86,8 @@ public class TestUIBase extends AppCompatActivity {
             Log.i(TAG, "更新成功。 Lines:[" + lines + "]");
             appendLog("更新成功。 Lines:[" + lines + "]");
         } catch (Exception e) {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e);
             appendLog("操作失败！请检查是否已输入ID或ID冲突。");
-            e.printStackTrace();
         }
     }
 
@@ -107,9 +105,8 @@ public class TestUIBase extends AppCompatActivity {
             Log.i(TAG, "删除成功。 Lines:[" + lines + "]");
             appendLog("删除成功。 Lines:[" + lines + "]");
         } catch (Exception e) {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e);
             appendLog("操作失败！请检查是否已输入ID或ID冲突。");
-            e.printStackTrace();
         }
     }
 
@@ -154,9 +151,8 @@ public class TestUIBase extends AppCompatActivity {
                 appendLog("查询结果为空！");
             }
         } catch (Exception e) {
-            Log.e(TAG, "查询失败！");
+            Log.e(TAG, "查询失败！", e);
             appendLog("查询失败！");
-            e.printStackTrace();
         }
     }
 
@@ -170,8 +166,7 @@ public class TestUIBase extends AppCompatActivity {
                     binding.tvLog.scrollTo(0, offset);
                 }
             } catch (Exception e) {
-                Log.w(TAG, "TextView scroll failed!");
-                e.printStackTrace();
+                Log.w(TAG, "TextView scroll failed!", e);
             }
         });
     }

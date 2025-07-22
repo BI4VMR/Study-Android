@@ -37,8 +37,8 @@ public class TestUIUpgrade extends AppCompatActivity {
 
     // 插入记录
     private void testInsert() {
-        Log.i(TAG, "--- 插入记录 ---");
-        appendLog("\n--- 插入记录 ---\n");
+        Log.i(TAG, "----- 插入记录 -----");
+        appendLog("\n----- 插入记录 -----");
 
         try {
             // 获取待操作的数据项ID。
@@ -55,16 +55,15 @@ public class TestUIUpgrade extends AppCompatActivity {
             // 执行插入操作
             dbHelper.getDB().insert("student_info", null, values);
         } catch (Exception e) {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e);
             appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
-            e.printStackTrace();
         }
     }
 
     // 更新记录
     private void testUpdate() {
-        Log.i(TAG, "--- 更新记录 ---");
-        appendLog("\n--- 更新记录 ---\n");
+        Log.i(TAG, "----- 更新记录 -----");
+        appendLog("\n----- 更新记录 -----");
 
         try {
             // 获取待操作的数据项ID
@@ -78,16 +77,15 @@ public class TestUIUpgrade extends AppCompatActivity {
             // 执行更新操作
             dbHelper.getDB().update("student_info", values, "student_id = ?", new String[]{id + ""});
         } catch (Exception e) {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e);
             appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
-            e.printStackTrace();
         }
     }
 
     // 删除记录
     private void testDelete() {
-        Log.i(TAG, "--- 删除记录 ---");
-        appendLog("\n--- 删除记录 ---\n");
+        Log.i(TAG, "----- 删除记录 -----");
+        appendLog("\n----- 删除记录 -----");
 
         try {
             // 获取待操作的数据项ID
@@ -96,16 +94,15 @@ public class TestUIUpgrade extends AppCompatActivity {
             // 执行删除操作
             dbHelper.getDB().delete("student_info", "student_id = ?", new String[]{id + ""});
         } catch (Exception e) {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e);
             appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
-            e.printStackTrace();
         }
     }
 
     // 查询所有记录
     private void testQuery() {
-        Log.i(TAG, "--- 查询所有记录 ---");
-        appendLog("\n--- 查询所有记录 ---\n");
+        Log.i(TAG, "----- 查询所有记录 -----");
+        appendLog("\n----- 查询所有记录 -----");
 
         Cursor cursor = dbHelper.getDB()
                 .query("student_info", null, null, null, null, null, null);
@@ -117,9 +114,9 @@ public class TestUIUpgrade extends AppCompatActivity {
                     String name = cursor.getString(1);
                     String birthday = cursor.getString(2);
 
-                    // 生成Java对象。
+                    // 生成Java对象
                     StudentV2 student = new StudentV2(id, name, birthday);
-                    // 显示对象信息。
+                    // 显示对象信息
                     appendLog("\n" + student);
                     Log.i(TAG, student.toString());
                 } while (cursor.moveToNext());
@@ -128,7 +125,8 @@ public class TestUIUpgrade extends AppCompatActivity {
                 appendLog("\n查询结果为空！");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "查询失败！", e);
+            appendLog("查询失败！");
         }
     }
 
@@ -142,8 +140,7 @@ public class TestUIUpgrade extends AppCompatActivity {
                     binding.tvLog.scrollTo(0, offset);
                 }
             } catch (Exception e) {
-                Log.w(TAG, "TextView scroll failed!");
-                e.printStackTrace();
+                Log.w(TAG, "TextView scroll failed!", e);
             }
         });
     }

@@ -36,8 +36,8 @@ class TestUITransactionKT : AppCompatActivity() {
     }
 
     private fun testFailed() {
-        Log.i(TAG, "--- 事务执行失败 ---")
-        appendLog("\n--- 事务执行失败 ---\n")
+        Log.i(TAG, "----- 事务执行失败 -----")
+        appendLog("\n----- 事务执行失败 -----\n")
 
         // 开启事务
         dbHelper.getDB().beginTransaction()
@@ -48,8 +48,8 @@ class TestUITransactionKT : AppCompatActivity() {
             values1.put("book_count", 11)
             dbHelper.getDB().update("student_info", values1, "student_id = 1", null)
 
-            // 模拟异常，触发事务回滚。
-            raiseException()
+            // 模拟业务异常，触发事务回滚。
+            1 / 0
 
             // 将2号学生的书本数量减1
             val values2 = ContentValues()
@@ -61,22 +61,17 @@ class TestUITransactionKT : AppCompatActivity() {
             Log.i(TAG, "操作成功！")
             appendLog("\n操作成功！")
         } catch (e: Exception) {
-            Log.e(TAG, "操作失败，事务回滚！")
+            Log.e(TAG, "操作失败，事务回滚！", e)
             appendLog("\n操作失败，事务回滚！")
-            e.printStackTrace()
         } finally {
             // 终止事务
-            dbHelper.getDB().endTransaction();
+            dbHelper.getDB().endTransaction()
         }
     }
 
-    private fun raiseException() {
-        throw Exception("模拟异常")
-    }
-
     private fun testSuccess() {
-        Log.i(TAG, "--- 事务执行成功 ---")
-        appendLog("\n--- 事务执行成功 ---\n")
+        Log.i(TAG, "----- 事务执行成功 -----")
+        appendLog("\n----- 事务执行成功 -----\n")
 
         // 开启事务
         dbHelper.getDB().beginTransaction()
@@ -97,19 +92,18 @@ class TestUITransactionKT : AppCompatActivity() {
             Log.i(TAG, "操作成功！")
             appendLog("\n操作成功！")
         } catch (e: Exception) {
-            Log.e(TAG, "操作失败，事务回滚！")
+            Log.e(TAG, "操作失败，事务回滚！", e)
             appendLog("\n操作失败，事务回滚！")
-            e.printStackTrace()
         } finally {
             // 终止事务
-            dbHelper.getDB().endTransaction();
+            dbHelper.getDB().endTransaction()
         }
     }
 
     // 查询所有记录
     private fun testQuery() {
-        Log.i(TAG, "--- 查询所有记录 ---")
-        appendLog("\n--- 查询所有记录 ---\n")
+        Log.i(TAG, "----- 查询所有记录 -----")
+        appendLog("\n----- 查询所有记录 -----\n")
 
         val cursor: Cursor = dbHelper.getDB()
             .query("student_info", null, null, null, null, null, null)
@@ -145,8 +139,7 @@ class TestUITransactionKT : AppCompatActivity() {
                         scrollTo(0, offset)
                     }
                 }.onFailure { e ->
-                    Log.w(TAG, "TextView scroll failed!")
-                    e.printStackTrace()
+                    Log.w(TAG, "TextView scroll failed!", e)
                 }
             }
         }

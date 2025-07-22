@@ -62,6 +62,13 @@ public class StudentDBHelper extends SQLiteOpenHelper {
         db.execSQL(initData2SQL);
     }
 
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        Log.i(TAG, "OnOpen.");
+        // 启用WAL日志
+        db.enableWriteAheadLogging();
+    }
+
     /**
      * 回调方法：升级。
      * <p>

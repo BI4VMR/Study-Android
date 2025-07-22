@@ -58,9 +58,8 @@ class TestUIBaseKT : AppCompatActivity() {
             Log.i(TAG, "插入成功。 RawID:[$rawID]")
             appendLog("插入成功。 RawID:[$rawID]")
         }.onFailure {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", it)
             appendLog("操作失败！请检查是否已输入ID或ID冲突。")
-            it.printStackTrace()
         }
     }
 
@@ -84,9 +83,8 @@ class TestUIBaseKT : AppCompatActivity() {
             Log.i(TAG, "更新成功。 Lines:[$lines]")
             appendLog("更新成功。 Lines:[$lines]")
         }.onFailure {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", it)
             appendLog("操作失败！请检查是否已输入ID或ID冲突。")
-            it.printStackTrace()
         }
     }
 
@@ -105,9 +103,8 @@ class TestUIBaseKT : AppCompatActivity() {
             Log.i(TAG, "删除成功。 Lines:[$lines]")
             appendLog("删除成功。 Lines:[$lines]")
         }.onFailure {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", it)
             appendLog("操作失败！请检查是否已输入ID或ID冲突。")
-            it.printStackTrace()
         }
     }
 
@@ -166,8 +163,7 @@ class TestUIBaseKT : AppCompatActivity() {
                         scrollTo(0, offset)
                     }
                 }.onFailure { e ->
-                    Log.w(TAG, "TextView scroll failed!")
-                    e.printStackTrace()
+                    Log.w(TAG, "TextView scroll failed!", e)
                 }
             }
         }

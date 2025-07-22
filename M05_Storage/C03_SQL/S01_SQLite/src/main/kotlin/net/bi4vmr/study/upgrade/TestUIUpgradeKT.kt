@@ -35,8 +35,8 @@ class TestUIUpgradeKT : AppCompatActivity() {
 
     // 插入记录
     private fun testInsert() {
-        Log.i(TAG, "--- 插入记录 ---")
-        appendLog("\n--- 插入记录 ---\n")
+        Log.i(TAG, "----- 插入记录 -----")
+        appendLog("\n----- 插入记录 -----")
 
         runCatching {
             // 获取待操作的数据项ID。
@@ -54,17 +54,16 @@ class TestUIUpgradeKT : AppCompatActivity() {
 
             // 执行插入操作。
             dbHelper.getDB().insert("student_info", null, values)
-        }.onFailure {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
+        }.onFailure { e ->
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e)
             appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
-            it.printStackTrace()
         }
     }
 
     // 更新记录
     private fun testUpdate() {
-        Log.i(TAG, "--- 更新记录 ---")
-        appendLog("\n--- 更新记录 ---\n")
+        Log.i(TAG, "----- 更新记录 -----")
+        appendLog("\n----- 更新记录 -----")
 
         runCatching {
             // 获取待操作的数据项ID。
@@ -77,17 +76,16 @@ class TestUIUpgradeKT : AppCompatActivity() {
 
             // 执行更新操作
             dbHelper.getDB().update("student_info", values, "student_id = ?", arrayOf("$id"))
-        }.onFailure {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
+        }.onFailure { e ->
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e)
             appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
-            it.printStackTrace()
         }
     }
 
     // 删除记录
     private fun testDelete() {
-        Log.i(TAG, "--- 删除记录 ---")
-        appendLog("\n--- 删除记录 ---\n")
+        Log.i(TAG, "----- 删除记录 -----")
+        appendLog("\n----- 删除记录 -----")
 
         runCatching {
             // 获取待操作的数据项ID。
@@ -95,17 +93,16 @@ class TestUIUpgradeKT : AppCompatActivity() {
 
             // 执行删除操作。
             dbHelper.getDB().delete("student_info", "student_id = ?", arrayOf("$id"))
-        }.onFailure {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
+        }.onFailure { e ->
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e)
             appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
-            it.printStackTrace()
         }
     }
 
     // 查询所有记录
     private fun testQuery() {
-        Log.i(TAG, "--- 查询所有记录 ---")
-        appendLog("\n--- 查询所有记录 ---\n")
+        Log.i(TAG, "----- 查询所有记录 -----")
+        appendLog("\n----- 查询所有记录 -----")
 
         val cursor: Cursor = dbHelper.getDB()
             .query("student_info", null, null, null, null, null, null)
@@ -117,9 +114,9 @@ class TestUIUpgradeKT : AppCompatActivity() {
                     val name: String = it.getString(1)
                     val birthday: String = it.getString(2)
 
-                    // 生成Kotlin对象。
+                    // 生成Kotlin对象
                     val student = StudentV2KT(id, name, birthday)
-                    // 显示对象信息。
+                    // 显示对象信息
                     appendLog("\n$student")
                     Log.i(TAG, student.toString())
                 } while (it.moveToNext())
@@ -141,8 +138,7 @@ class TestUIUpgradeKT : AppCompatActivity() {
                         scrollTo(0, offset)
                     }
                 }.onFailure { e ->
-                    Log.w(TAG, "TextView scroll failed!")
-                    e.printStackTrace()
+                    Log.w(TAG, "TextView scroll failed!", e)
                 }
             }
         }
