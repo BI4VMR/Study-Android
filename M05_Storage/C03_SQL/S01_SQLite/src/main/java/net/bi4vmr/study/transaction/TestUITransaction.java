@@ -37,6 +37,7 @@ public class TestUITransaction extends AppCompatActivity {
 
         binding.btnFailed.setOnClickListener(v -> testFailed());
         binding.btnSuccess.setOnClickListener(v -> testSuccess());
+        binding.btnCoroutine.setOnClickListener(v -> testCoroutine());
         binding.btnQueryAll.setOnClickListener(v -> testQuery());
     }
 
@@ -100,6 +101,14 @@ public class TestUITransaction extends AppCompatActivity {
             // 终止事务
             dbHelper.getDB().endTransaction();
         }
+    }
+
+    private void testCoroutine() {
+        Log.i(TAG, "----- 事务与协程 -----");
+        appendLog("\n----- 事务与协程 -----");
+
+        Log.w(TAG, "Java不支持此方式，请到Kotlin实现中查看。");
+        appendLog("Java不支持此方式，请到Kotlin实现中查看。\n");
     }
 
     private void testQuery() {

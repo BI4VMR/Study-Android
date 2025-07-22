@@ -6,8 +6,22 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import net.bi4vmr.study.databinding.TestuiTransactionBinding
 
+/**
+ * 测试界面：事务支持。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
+@OptIn(ExperimentalCoroutinesApi::class)
 class TestUITransactionKT : AppCompatActivity() {
 
     companion object {
@@ -22,6 +36,9 @@ class TestUITransactionKT : AppCompatActivity() {
         StudentDBHelperKT(applicationContext)
     }
 
+    private val mutex = Mutex()
+    private val singleDispatcher = Dispatchers.IO.limitedParallelism(1)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -31,6 +48,7 @@ class TestUITransactionKT : AppCompatActivity() {
 
             btnFailed.setOnClickListener { testFailed() }
             btnSuccess.setOnClickListener { testSuccess() }
+            btnCoroutine.setOnClickListener { testCoroutine() }
             btnQueryAll.setOnClickListener { testQuery() }
         }
     }
@@ -100,7 +118,33 @@ class TestUITransactionKT : AppCompatActivity() {
         }
     }
 
-    // 查询所有记录
+    private fun testCoroutine() {
+        Log.i(TAG, "----- 事务与协程 -----")
+        appendLog("\n----- 事务与协程 -----\n")
+
+        query(1)
+        query(2)
+        query(3)
+    }
+
+    private fun query(num: Int) {
+        // 使用单线程调度器
+        CoroutineScope(singleDispatcher).launch {
+            // 添加互斥锁，确保线程安全。
+            mutex.withLock {
+                Log.i(TAG, "$num 号事务开始，工作线程：${Thread.currentThread().name}。")
+
+                dbHelper.getDB().beginTransaction()
+                // 模拟耗时操作
+                delay(3000L)
+                dbHelper.getDB().setTransactionSuccessful()
+                dbHelper.getDB().endTransaction()
+
+                Log.i(TAG, "$num 号事务结束，工作线程：${Thread.currentThread().name}。")
+            }
+        }
+    }
+
     private fun testQuery() {
         Log.i(TAG, "----- 查询所有记录 -----")
         appendLog("\n----- 查询所有记录 -----\n")

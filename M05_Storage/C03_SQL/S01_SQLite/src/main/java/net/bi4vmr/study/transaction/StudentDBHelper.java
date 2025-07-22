@@ -62,6 +62,13 @@ public class StudentDBHelper extends SQLiteOpenHelper {
         db.execSQL(initData2SQL);
     }
 
+    /**
+     * 回调方法：数据库就绪。
+     * <p>
+     * 当数据库创建/升级/降级完毕后，处于可用状态时，该方法将会被触发。
+     *
+     * @param db 数据库实例。
+     */
     @Override
     public void onOpen(SQLiteDatabase db) {
         Log.i(TAG, "OnOpen.");

@@ -65,6 +65,19 @@ class StudentDBHelperKT(
         // 暂不使用
     }
 
+    /**
+     * 回调方法：数据库就绪。
+     *
+     * 当数据库创建/升级/降级完毕后，处于可用状态时，该方法将会被触发。
+     *
+     * @param[db] 数据库实例。
+     */
+    override fun onOpen(db: SQLiteDatabase) {
+        Log.i(TAG, "OnOpen.")
+        // 启用WAL日志
+        db.enableWriteAheadLogging()
+    }
+
     // 获取数据库实例
     fun getDB(): SQLiteDatabase {
         return writableDatabase

@@ -60,6 +60,12 @@
                 android:text="事务执行成功" />
 
             <Button
+                android:id="@+id/btnCoroutine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="事务与协程" />
+
+            <Button
                 android:id="@+id/btnQueryAll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
