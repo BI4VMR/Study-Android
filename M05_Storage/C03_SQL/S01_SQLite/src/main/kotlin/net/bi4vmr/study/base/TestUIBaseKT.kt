@@ -155,7 +155,7 @@ class TestUIBaseKT : AppCompatActivity() {
     // 向文本框中追加日志内容并滚动到最底端
     private fun appendLog(text: Any) {
         binding.tvLog.apply {
-            append("\n$text")
+            post { append("\n$text") }
             post {
                 runCatching {
                     val offset = layout.getLineTop(lineCount) - height

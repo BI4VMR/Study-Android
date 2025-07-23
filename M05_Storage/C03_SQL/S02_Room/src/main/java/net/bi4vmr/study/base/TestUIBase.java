@@ -43,8 +43,8 @@ public class TestUIBase extends AppCompatActivity {
     }
 
     private void testInsert() {
-        Log.i(TAG, "--- 插入记录 ---");
-        appendLog("\n--- 插入记录 ---\n");
+        Log.i(TAG, "----- 插入记录 -----");
+        appendLog("\n----- 插入记录 -----");
 
         try {
             // 获取待操作的数据项ID
@@ -56,17 +56,16 @@ public class TestUIBase extends AppCompatActivity {
             dao.addStudent(student);
 
             Log.i(TAG, "插入成功。");
-            appendLog("\n插入成功。");
+            appendLog("插入成功。");
         } catch (Exception e) {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
-            e.printStackTrace();
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e);
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。");
         }
     }
 
     private void testUpdate() {
-        Log.i(TAG, "--- 更新记录 ---");
-        appendLog("\n--- 更新记录 ---\n");
+        Log.i(TAG, "----- 更新记录 -----");
+        appendLog("\n----- 更新记录 -----");
 
         try {
             // 获取待操作的数据项ID
@@ -77,17 +76,16 @@ public class TestUIBase extends AppCompatActivity {
             dao.updateStudent(s);
 
             Log.i(TAG, "更新成功。");
-            appendLog("\n更新成功。");
+            appendLog("更新成功。");
         } catch (Exception e) {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
-            e.printStackTrace();
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e);
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。");
         }
     }
 
     private void testDelete() {
-        Log.i(TAG, "--- 删除记录 ---");
-        appendLog("\n--- 删除记录 ---\n");
+        Log.i(TAG, "----- 删除记录 -----");
+        appendLog("\n----- 删除记录 -----");
 
         try {
             // 获取待操作的数据项ID
@@ -98,28 +96,27 @@ public class TestUIBase extends AppCompatActivity {
             dao.delStudent(student);
 
             Log.i(TAG, "删除成功。");
-            appendLog("\n删除成功。");
+            appendLog("删除成功。");
         } catch (Exception e) {
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。");
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。");
-            e.printStackTrace();
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e);
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。");
         }
     }
 
     private void testQueryAll() {
         Log.i(TAG, "----- 查询所有记录 -----");
-        appendLog("\n\n----- 查询所有记录 -----\n");
+        appendLog("\n----- 查询所有记录 -----");
 
         List<Student> result = dao.getStudent();
         for (Student student : result) {
             Log.i(TAG, student.toString());
-            appendLog(student.toString());
+            appendLog(student);
         }
     }
 
     // 向文本框中追加日志内容并滚动到最底端
-    private void appendLog(CharSequence text) {
-        binding.tvLog.append(text);
+    private void appendLog(Object text) {
+        binding.tvLog.post(() -> binding.tvLog.append("\n" + text.toString()));
         binding.tvLog.post(() -> {
             try {
                 int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
@@ -127,8 +124,7 @@ public class TestUIBase extends AppCompatActivity {
                     binding.tvLog.scrollTo(0, offset);
                 }
             } catch (Exception e) {
-                Log.w(TAG, "TextView scroll failed!");
-                e.printStackTrace();
+                Log.w(TAG, "TextView scroll failed!", e);
             }
         });
     }

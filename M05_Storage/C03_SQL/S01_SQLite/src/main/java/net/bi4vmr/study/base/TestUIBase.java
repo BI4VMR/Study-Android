@@ -158,7 +158,7 @@ public class TestUIBase extends AppCompatActivity {
 
     // 向文本框中追加日志内容并滚动到最底端
     private void appendLog(Object text) {
-        binding.tvLog.append("\n" + text.toString());
+        binding.tvLog.post(() -> binding.tvLog.append("\n" + text.toString()));
         binding.tvLog.post(() -> {
             try {
                 int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();

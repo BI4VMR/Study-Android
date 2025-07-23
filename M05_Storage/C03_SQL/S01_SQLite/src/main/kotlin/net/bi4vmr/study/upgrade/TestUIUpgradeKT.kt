@@ -56,7 +56,7 @@ class TestUIUpgradeKT : AppCompatActivity() {
             dbHelper.getDB().insert("student_info", null, values)
         }.onFailure { e ->
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e)
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。")
         }
     }
 
@@ -78,7 +78,7 @@ class TestUIUpgradeKT : AppCompatActivity() {
             dbHelper.getDB().update("student_info", values, "student_id = ?", arrayOf("$id"))
         }.onFailure { e ->
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e)
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。")
         }
     }
 
@@ -95,7 +95,7 @@ class TestUIUpgradeKT : AppCompatActivity() {
             dbHelper.getDB().delete("student_info", "student_id = ?", arrayOf("$id"))
         }.onFailure { e ->
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e)
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。")
         }
     }
 
@@ -117,20 +117,20 @@ class TestUIUpgradeKT : AppCompatActivity() {
                     // 生成Kotlin对象
                     val student = StudentV2KT(id, name, birthday)
                     // 显示对象信息
-                    appendLog("\n$student")
                     Log.i(TAG, student.toString())
+                    appendLog(student)
                 } while (it.moveToNext())
             } else {
                 Log.e(TAG, "查询结果为空！")
-                appendLog("\n查询结果为空！")
+                appendLog("查询结果为空！")
             }
         }
     }
 
     // 向文本框中追加日志内容并滚动到最底端
-    private fun appendLog(text: CharSequence) {
+    private fun appendLog(text: Any) {
         binding.tvLog.apply {
-            append(text)
+            post { append("\n$text") }
             post {
                 runCatching {
                     val offset = layout.getLineTop(lineCount) - height

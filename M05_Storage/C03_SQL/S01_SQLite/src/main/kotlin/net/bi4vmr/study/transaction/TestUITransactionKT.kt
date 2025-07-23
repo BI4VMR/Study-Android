@@ -136,13 +136,16 @@ class TestUITransactionKT : AppCompatActivity() {
                 appendLog("$num 号事务开始，工作线程：${Thread.currentThread().name}。")
 
                 dbHelper.getDB().beginTransaction()
-                // 模拟耗时操作
-                delay(3000L)
-                dbHelper.getDB().setTransactionSuccessful()
-                dbHelper.getDB().endTransaction()
+                try {
+                    // 模拟耗时操作
+                    delay(3000L)
+                    dbHelper.getDB().setTransactionSuccessful()
+                } finally {
+                    dbHelper.getDB().endTransaction()
+                }
 
                 Log.i(TAG, "$num 号事务结束，工作线程：${Thread.currentThread().name}。")
-                appendLog("$num 号事务开始，工作线程：${Thread.currentThread().name}。")
+                appendLog("$num 号事务结束，工作线程：${Thread.currentThread().name}。")
             }
         }
     }
@@ -165,7 +168,7 @@ class TestUITransactionKT : AppCompatActivity() {
                     val student = StudentKT(id, name, bookCount)
                     // 显示对象信息
                     Log.i(TAG, student.toString())
-                    appendLog("$student")
+                    appendLog(student)
                 } while (it.moveToNext())
             } else {
                 Log.e(TAG, "查询结果为空！")
@@ -175,7 +178,7 @@ class TestUITransactionKT : AppCompatActivity() {
     }
 
     // 向文本框中追加日志内容并滚动到最底端
-    private fun appendLog(text: CharSequence) {
+    private fun appendLog(text: Any) {
         binding.tvLog.apply {
             post { append("\n$text") }
             post {

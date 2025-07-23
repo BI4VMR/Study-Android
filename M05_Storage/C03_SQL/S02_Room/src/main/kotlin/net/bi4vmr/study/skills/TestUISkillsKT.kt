@@ -31,11 +31,11 @@ class TestUISkillsKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
-            // btnInsertItem.setOnClickListener { testInsertItem() }
-            // btnInsertItems.setOnClickListener { testInsertItems() }
+            btnInsertItem.setOnClickListener { testInsertItem() }
+            btnInsertItems.setOnClickListener { testInsertItems() }
             btnUpdate.setOnClickListener { testUpdate() }
             btnDelete.setOnClickListener { testDelete() }
-            btnQueryAll.setOnClickListener { testSelectAll() }
+            btnQueryAll.setOnClickListener { testQueryAll() }
         }
     }
 
@@ -94,8 +94,8 @@ class TestUISkillsKT : AppCompatActivity() {
 
     // 更新记录
     private fun testUpdate() {
-        binding.tvLog.append("\n--- 更新记录 ---\n")
-        Log.i(TAG, "--- 更新记录 ---")
+        Log.i(TAG, "----- 更新记录 -----")
+        appendLog("\n----- 更新记录 -----")
 
         runCatching {
             // 获取待操作的数据项ID
@@ -104,19 +104,18 @@ class TestUISkillsKT : AppCompatActivity() {
             val student = StudentKT(id, "远野", 25)
             studentDB.getStudentDAO().updateStudent(student)
 
-            binding.tvLog.append("\n更新成功。")
             Log.i(TAG, "更新成功。")
-        }.onFailure {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。")
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
-            it.printStackTrace()
+            appendLog("更新成功。")
+        }.onFailure { e ->
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e)
+            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
         }
     }
 
     // 删除记录
     private fun testDelete() {
-        binding.tvLog.append("\n--- 删除记录 ---\n")
-        Log.i(TAG, "--- 删除记录 ---")
+        Log.i(TAG, "----- 删除记录 -----")
+        appendLog("\n----- 删除记录 -----")
 
         runCatching {
             // 获取待操作的数据项ID
@@ -125,22 +124,40 @@ class TestUISkillsKT : AppCompatActivity() {
             val student = StudentKT(id)
             studentDB.getStudentDAO().delStudent(student)
 
-            binding.tvLog.append("\n删除成功。")
             Log.i(TAG, "删除成功。")
-        }.onFailure {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。")
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
-            it.printStackTrace()
+            appendLog("删除成功。")
+        }.onFailure { e ->
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e)
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。")
         }
     }
 
     // 查询所有记录
-    private fun testSelectAll() {
-        binding.tvLog.append("\n--- 查询所有记录 ---\n")
-        Log.i(TAG, "--- 查询所有记录 ---")
+    private fun testQueryAll() {
+        Log.i(TAG, "----- 查询所有记录 -----")
+        appendLog("\n----- 查询所有记录 -----")
 
         val result: List<StudentKT> = studentDB.getStudentDAO().getStudent()
-        binding.tvLog.append(result.toString())
-        Log.i(TAG, result.toString())
+        result.forEach {
+            Log.i(TAG, it.toString())
+            appendLog(it)
+        }
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private fun appendLog(text: Any) {
+        binding.tvLog.apply {
+            post { append("\n$text") }
+            post {
+                runCatching {
+                    val offset = layout.getLineTop(lineCount) - height
+                    if (offset > 0) {
+                        scrollTo(0, offset)
+                    }
+                }.onFailure { e ->
+                    Log.w(TAG, "TextView scroll failed!", e)
+                }
+            }
+        }
     }
 }

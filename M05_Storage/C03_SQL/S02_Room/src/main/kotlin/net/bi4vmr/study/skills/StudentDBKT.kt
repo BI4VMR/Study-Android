@@ -46,7 +46,31 @@ abstract class StudentDBKT : RoomDatabase() {
                             // 设置SQL语句回调，便于调试。
                             .setQueryCallback(object : QueryCallback {
                                 override fun onQuery(sqlQuery: String, bindArgs: List<Any?>) {
-                                    Log.d("StudentDBKT", "SQL:[$sqlQuery] | $bindArgs")
+                                    // Log.d("StudentDBKT", "SQL:[$sqlQuery] | $bindArgs")
+
+                                    var remainingSql = sqlQuery
+                                    var paramIndex = 0
+
+                                    while (remainingSql.contains("?")) {
+                                        if (paramIndex >= bindArgs.size) {
+                                            Log.w("StudentDBKT", "param more than ?")
+                                        }
+
+                                        val paramValue = when (val param = bindArgs[paramIndex]) {
+                                            is String -> "'${param.replace("'", "''")}'" // 转义单引号
+                                            else -> param.toString()
+                                        }
+
+                                        // 替换第一个出现的 ?
+                                        remainingSql = remainingSql.replaceFirst("?", paramValue)
+                                        paramIndex++
+                                    }
+
+                                    if (paramIndex != bindArgs.size) {
+                                        Log.w("StudentDBKT", "param more than ?")
+                                    }
+
+                                    Log.d("StudentDBKT", "SQL:[$remainingSql]")
                                 }
                             }, Executors.newSingleThreadExecutor())
                             // Room默认不允许在主线程执行操作，此配置允许在主线程操作，仅适用于调试。

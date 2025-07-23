@@ -59,7 +59,7 @@ public class TestUITransaction extends AppCompatActivity {
 
             // 将2号学生的书本数量减1
             ContentValues values2 = new ContentValues();
-            values1.put("book_count", 9);
+            values2.put("book_count", 9);
             dbHelper.getDB().update("student_info", values2, "student_id = 2", null);
 
             // 标记事务已完成

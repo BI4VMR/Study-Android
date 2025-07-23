@@ -143,8 +143,8 @@ public class TestUISkills extends AppCompatActivity {
     }
 
     // 向文本框中追加日志内容并滚动到最底端
-    private void appendLog(CharSequence text) {
-        binding.tvLog.append(text);
+    private void appendLog(Object text) {
+        binding.tvLog.post(() -> binding.tvLog.append("\n" + text.toString()));
         binding.tvLog.post(() -> {
             try {
                 int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
@@ -152,8 +152,7 @@ public class TestUISkills extends AppCompatActivity {
                     binding.tvLog.scrollTo(0, offset);
                 }
             } catch (Exception e) {
-                Log.w(TAG, "TextView scroll failed!");
-                e.printStackTrace();
+                Log.w(TAG, "TextView scroll failed!", e);
             }
         });
     }
