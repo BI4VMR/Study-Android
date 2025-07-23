@@ -55,7 +55,7 @@ class TestUITransactionKT : AppCompatActivity() {
 
     private fun testFailed() {
         Log.i(TAG, "----- 事务执行失败 -----")
-        appendLog("\n----- 事务执行失败 -----\n")
+        appendLog("\n----- 事务执行失败 -----")
 
         // 开启事务
         dbHelper.getDB().beginTransaction()
@@ -77,10 +77,10 @@ class TestUITransactionKT : AppCompatActivity() {
             // 标记事务已完成
             dbHelper.getDB().setTransactionSuccessful()
             Log.i(TAG, "操作成功！")
-            appendLog("\n操作成功！")
+            appendLog("操作成功！")
         } catch (e: Exception) {
             Log.e(TAG, "操作失败，事务回滚！", e)
-            appendLog("\n操作失败，事务回滚！")
+            appendLog("操作失败，事务回滚！")
         } finally {
             // 终止事务
             dbHelper.getDB().endTransaction()
@@ -89,7 +89,7 @@ class TestUITransactionKT : AppCompatActivity() {
 
     private fun testSuccess() {
         Log.i(TAG, "----- 事务执行成功 -----")
-        appendLog("\n----- 事务执行成功 -----\n")
+        appendLog("\n----- 事务执行成功 -----")
 
         // 开启事务
         dbHelper.getDB().beginTransaction()
@@ -108,10 +108,10 @@ class TestUITransactionKT : AppCompatActivity() {
             // 标记事务已完成
             dbHelper.getDB().setTransactionSuccessful()
             Log.i(TAG, "操作成功！")
-            appendLog("\n操作成功！")
+            appendLog("操作成功！")
         } catch (e: Exception) {
             Log.e(TAG, "操作失败，事务回滚！", e)
-            appendLog("\n操作失败，事务回滚！")
+            appendLog("操作失败，事务回滚！")
         } finally {
             // 终止事务
             dbHelper.getDB().endTransaction()
@@ -120,19 +120,20 @@ class TestUITransactionKT : AppCompatActivity() {
 
     private fun testCoroutine() {
         Log.i(TAG, "----- 事务与协程 -----")
-        appendLog("\n----- 事务与协程 -----\n")
+        appendLog("\n----- 事务与协程 -----")
 
-        query(1)
-        query(2)
-        query(3)
+        transaction(1)
+        transaction(2)
+        transaction(3)
     }
 
-    private fun query(num: Int) {
+    private fun transaction(num: Int) {
         // 使用单线程调度器
         CoroutineScope(singleDispatcher).launch {
             // 添加互斥锁，确保线程安全。
             mutex.withLock {
                 Log.i(TAG, "$num 号事务开始，工作线程：${Thread.currentThread().name}。")
+                appendLog("$num 号事务开始，工作线程：${Thread.currentThread().name}。")
 
                 dbHelper.getDB().beginTransaction()
                 // 模拟耗时操作
@@ -141,13 +142,14 @@ class TestUITransactionKT : AppCompatActivity() {
                 dbHelper.getDB().endTransaction()
 
                 Log.i(TAG, "$num 号事务结束，工作线程：${Thread.currentThread().name}。")
+                appendLog("$num 号事务开始，工作线程：${Thread.currentThread().name}。")
             }
         }
     }
 
     private fun testQuery() {
         Log.i(TAG, "----- 查询所有记录 -----")
-        appendLog("\n----- 查询所有记录 -----\n")
+        appendLog("\n----- 查询所有记录 -----")
 
         val cursor: Cursor = dbHelper.getDB()
             .query("student_info", null, null, null, null, null, null)
@@ -163,11 +165,11 @@ class TestUITransactionKT : AppCompatActivity() {
                     val student = StudentKT(id, name, bookCount)
                     // 显示对象信息
                     Log.i(TAG, student.toString())
-                    appendLog("\n$student")
+                    appendLog("$student")
                 } while (it.moveToNext())
             } else {
                 Log.e(TAG, "查询结果为空！")
-                appendLog("\n查询结果为空！")
+                appendLog("查询结果为空！")
             }
         }
     }
@@ -175,7 +177,7 @@ class TestUITransactionKT : AppCompatActivity() {
     // 向文本框中追加日志内容并滚动到最底端
     private fun appendLog(text: CharSequence) {
         binding.tvLog.apply {
-            append(text)
+            post { append("\n$text") }
             post {
                 runCatching {
                     val offset = layout.getLineTop(lineCount) - height
