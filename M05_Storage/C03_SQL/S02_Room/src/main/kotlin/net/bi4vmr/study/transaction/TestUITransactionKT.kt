@@ -8,7 +8,7 @@ import kotlinx.coroutines.runBlocking
 import net.bi4vmr.study.databinding.TestuiTransactionBinding
 
 /**
- * 测试界面：进阶技巧。
+ * 测试界面：事务支持。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
@@ -42,14 +42,14 @@ class TestUITransactionKT : AppCompatActivity() {
 
     private fun testAnnotation() {
         Log.i(TAG, "----- 使用注解编写事务 -----")
-        appendLog("\n\n----- 使用注解编写事务 -----\n")
+        appendLog("\n----- 使用注解编写事务 -----")
 
         studentDB.getStudentDAO().borrowBook()
     }
 
     private fun testFunction() {
         Log.i(TAG, "----- 使用快捷方法编写事务 -----")
-        appendLog("\n\n----- 使用快捷方法编写事务 -----\n")
+        appendLog("\n----- 使用快捷方法编写事务 -----")
 
         /*
          * `runInTransaction()` 方法等价于 `beginTransaction()` 等方法的组合调用，但遇到异常回滚时会忽略异常。
@@ -72,7 +72,7 @@ class TestUITransactionKT : AppCompatActivity() {
 
     private fun testCoroutine() {
         Log.i(TAG, "----- 在协程中编写事务 -----")
-        appendLog("\n\n----- 在协程中编写事务 -----\n")
+        appendLog("\n----- 在协程中编写事务 -----")
 
         suspend fun transactionInCoroutine() {
             /*
@@ -103,19 +103,19 @@ class TestUITransactionKT : AppCompatActivity() {
 
     private fun testQueryAll() {
         Log.i(TAG, "----- 查所有记录 -----")
-        appendLog("\n\n----- 查询所有记录 -----\n")
+        appendLog("\n----- 查询所有记录 -----")
 
         val result: List<StudentKT> = studentDB.getStudentDAO().getStudents()
         result.forEach {
             Log.i(TAG, it.toString())
-            appendLog("\n$it")
+            appendLog(it)
         }
     }
 
     // 向文本框中追加日志内容并滚动到最底端
-    private fun appendLog(text: CharSequence) {
+    private fun appendLog(text: Any) {
         binding.tvLog.apply {
-            append(text)
+            post { append("\n$text") }
             post {
                 runCatching {
                     val offset = layout.getLineTop(lineCount) - height
@@ -123,8 +123,7 @@ class TestUITransactionKT : AppCompatActivity() {
                         scrollTo(0, offset)
                     }
                 }.onFailure { e ->
-                    Log.w(TAG, "TextView scroll failed!")
-                    e.printStackTrace()
+                    Log.w(TAG, "TextView scroll failed!", e)
                 }
             }
         }

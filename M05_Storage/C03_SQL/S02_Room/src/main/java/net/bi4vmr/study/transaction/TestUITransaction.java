@@ -39,41 +39,41 @@ public class TestUITransaction extends AppCompatActivity {
 
     private void testAnnotation() {
         Log.i(TAG, "----- 使用注解编写事务 -----");
-        appendLog("\n\n----- 使用注解编写事务 -----\n");
+        appendLog("\n----- 使用注解编写事务 -----");
 
         studentDAO.borrowBook();
     }
 
     private void testFunction() {
         Log.i(TAG, "----- 使用快捷方法编写事务 -----");
-        appendLog("\n\n----- 使用快捷方法编写事务 -----\n");
+        appendLog("\n----- 使用快捷方法编写事务 -----");
 
         Log.i(TAG, "Java不支持此方式，请到Kotlin实现中查看。");
-        appendLog("Java不支持此方式，请到Kotlin实现中查看。\n");
+        appendLog("Java不支持此方式，请到Kotlin实现中查看。");
     }
 
     private void testCoroutine() {
         Log.i(TAG, "----- 在协程中编写事务 -----");
-        appendLog("\n\n----- 在协程中编写事务 -----\n");
+        appendLog("\n----- 在协程中编写事务 -----");
 
         Log.i(TAG, "Java不支持此方式，请到Kotlin实现中查看。");
-        appendLog("Java不支持此方式，请到Kotlin实现中查看。\n");
+        appendLog("Java不支持此方式，请到Kotlin实现中查看。");
     }
 
     private void testQueryAll() {
         Log.i(TAG, "----- 查询所有记录 -----");
-        appendLog("\n\n----- 查询所有记录 -----\n");
+        appendLog("\n----- 查询所有记录 -----");
 
         List<Student> result = studentDAO.getStudents();
         for (Student student : result) {
             Log.i(TAG, student.toString());
-            appendLog("\n" + student);
+            appendLog(student);
         }
     }
 
     // 向文本框中追加日志内容并滚动到最底端
-    private void appendLog(CharSequence text) {
-        binding.tvLog.append(text);
+    private void appendLog(Object text) {
+        binding.tvLog.post(() -> binding.tvLog.append("\n" + text.toString()));
         binding.tvLog.post(() -> {
             try {
                 int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
@@ -81,8 +81,7 @@ public class TestUITransaction extends AppCompatActivity {
                     binding.tvLog.scrollTo(0, offset);
                 }
             } catch (Exception e) {
-                Log.w(TAG, "TextView scroll failed!");
-                e.printStackTrace();
+                Log.w(TAG, "TextView scroll failed!", e);
             }
         });
     }

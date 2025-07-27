@@ -72,14 +72,14 @@ public abstract class StudentDAO {
         // 将1号学生的书本数量加1
         Student studentA = getStudent(1);
         if (studentA != null) {
-            studentA.setBookCount(11);
+            studentA.setBookCount(studentA.getBookCount() + 1);
             updateStudent(studentA);
         }
 
         // 将2号学生的书本数量减1
         Student studentB = getStudent(2);
         if (studentB != null) {
-            studentB.setBookCount(9);
+            studentB.setBookCount(studentB.getBookCount() - 1);
             updateStudent(studentB);
         }
     }

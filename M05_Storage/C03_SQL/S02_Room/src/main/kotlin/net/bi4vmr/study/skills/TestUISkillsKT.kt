@@ -39,10 +39,9 @@ class TestUISkillsKT : AppCompatActivity() {
         }
     }
 
-    // 插入单条记录
     private fun testInsertItem() {
-        binding.tvLog.append("\n--- 插入单条记录 ---\n")
-        Log.i(TAG, "--- 插入单条记录 ---")
+        Log.i(TAG, "----- 插入单条记录 -----")
+        appendLog("\n----- 插入单条记录 -----")
 
         runCatching {
             // 获取待操作的数据项ID。
@@ -54,19 +53,17 @@ class TestUISkillsKT : AppCompatActivity() {
             val student = StudentKT(id, name, 24)
             studentDB.getStudentDAO().insertStudent(student)
 
-            binding.tvLog.append("\n插入成功。")
             Log.i(TAG, "插入成功。")
-        }.onFailure {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。")
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
-            it.printStackTrace()
+            appendLog("插入成功。")
+        }.onFailure { e ->
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e)
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。")
         }
     }
 
-    // 插入多条记录
     private fun testInsertItems() {
-        binding.tvLog.append("\n--- 插入多条记录 ---\n")
-        Log.i(TAG, "--- 插入多条记录 ---")
+        Log.i(TAG, "----- 插入多条记录 -----")
+        appendLog("\n----- 插入多条记录 -----")
 
         runCatching {
             val datas: MutableList<StudentKT> = mutableListOf()
@@ -83,16 +80,14 @@ class TestUISkillsKT : AppCompatActivity() {
             // 插入记录
             studentDB.getStudentDAO().insertStudents(datas)
 
-            binding.tvLog.append("\n插入成功。")
             Log.i(TAG, "插入成功。")
-        }.onFailure {
-            binding.tvLog.append("\n操作失败！请检查是否已输入ID或ID冲突。")
-            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。")
-            it.printStackTrace()
+            appendLog("插入成功。")
+        }.onFailure { e ->
+            Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e)
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。")
         }
     }
 
-    // 更新记录
     private fun testUpdate() {
         Log.i(TAG, "----- 更新记录 -----")
         appendLog("\n----- 更新记录 -----")
@@ -108,11 +103,10 @@ class TestUISkillsKT : AppCompatActivity() {
             appendLog("更新成功。")
         }.onFailure { e ->
             Log.e(TAG, "操作失败！请检查是否已输入ID或ID冲突。", e)
-            appendLog("\n操作失败！请检查是否已输入ID或ID冲突。")
+            appendLog("操作失败！请检查是否已输入ID或ID冲突。")
         }
     }
 
-    // 删除记录
     private fun testDelete() {
         Log.i(TAG, "----- 删除记录 -----")
         appendLog("\n----- 删除记录 -----")
@@ -132,7 +126,6 @@ class TestUISkillsKT : AppCompatActivity() {
         }
     }
 
-    // 查询所有记录
     private fun testQueryAll() {
         Log.i(TAG, "----- 查询所有记录 -----")
         appendLog("\n----- 查询所有记录 -----")
