@@ -67,7 +67,8 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>(
         return item.getViewType()
     }
 
-    fun submit(newData: List<T>, actionAfterUpdate: () -> Unit) {
+    @JvmOverloads
+    fun submit(newData: List<T>, actionAfterUpdate: (() -> Unit)? = null) {
         val taskSequence = ++mUpdateTaskSequence
 
         dataSource.clear()
@@ -77,7 +78,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>(
             if (taskSequence == mUpdateTaskSequence) {
                 notifyDataSetChanged()
                 mRecyclerView?.post {
-                    actionAfterUpdate.invoke()
+                    actionAfterUpdate?.invoke()
                 }
             }
         }
