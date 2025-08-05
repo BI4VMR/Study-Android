@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import net.bi4vmr.study.databinding.TestuiBaseBinding
 
 /**
@@ -22,6 +25,17 @@ class TestUIBaseKT : AppCompatActivity() {
 
     private val binding: TestuiBaseBinding by lazy {
         TestuiBaseBinding.inflate(layoutInflater)
+    }
+    val flow: MutableStateFlow<String> = MutableStateFlow("aaa")
+
+    init {
+        lifecycleScope.launch {
+            flow.collect {
+                Log.d(TAG, "flow -> $it")
+            }
+        }
+
+        flow.value = "bbb"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
