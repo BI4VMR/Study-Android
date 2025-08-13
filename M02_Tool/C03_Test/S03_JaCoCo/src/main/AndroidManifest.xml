@@ -11,6 +11,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+            <meta-data
+                android:name="card_color"
+                android:resource="@color/design_default_color_primary" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,11 +24,27 @@
         <!-- 示例界面：基本应用 -->
         <activity
             android:name=".base.TestUIBase"
-            android:exported="false" />
+            android:exported="true">
+            <meta-data
+                android:name="card_color"
+                android:resource="@color/teal_700" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
-            android:exported="false" />
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

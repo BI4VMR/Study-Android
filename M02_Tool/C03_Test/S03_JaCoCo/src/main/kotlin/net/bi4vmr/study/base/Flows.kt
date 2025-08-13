@@ -7,13 +7,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 object Flows{
+    lateinit var s :String
     val flow = MutableStateFlow(1)
 
     fun main1() {
-        CoroutineScope(Dispatchers.Default).launch {
-            flow.collect {
-                println("$it")
-            }
-        }
+        s = "aa"
+        // CoroutineScope(Dispatchers.Default).launch {
+        //     flow.collect {
+        //         println("$it")
+        //     }
+        // }
+        println(s.length.toFloat())
     }
 }
