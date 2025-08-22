@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
+import net.bi4vmr.study.R
 import kotlin.math.min
 
 /**
