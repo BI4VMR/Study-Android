@@ -1,4 +1,4 @@
-package net.bi4vmr.tool.android.ui.pieprogressbar
+package net.bi4vmr.tool.android.ui.fluidboderlayout
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -277,6 +277,7 @@ class FluidBoderLayout @JvmOverloads constructor(
             isAntiAlias = true
             style = Paint.Style.STROKE
             strokeCap = Paint.Cap.ROUND
+            strokeJoin = Paint.Join.ROUND
             strokeWidth = 8F
             setShader(shader)
         }
@@ -310,7 +311,7 @@ class FluidBoderLayout @JvmOverloads constructor(
 
         // 绘制圆形边框而不是矩形
         gradientPaint?.let { paint ->
-            canvas.drawRect(pieRect, paint)
+            canvas.drawRoundRect(pieRect, 32.0F, 32.0F, paint)
         }
     }
 

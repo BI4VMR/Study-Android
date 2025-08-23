@@ -12,9 +12,7 @@
         android:orientation="vertical"
         android:paddingStart="20dp"
         android:paddingEnd="20dp">
-        <com.example.animation.RotatingLineView
-            android:layout_width="300dp"
-            android:layout_height="200dp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
