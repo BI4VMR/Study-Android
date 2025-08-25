@@ -11,52 +11,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="AnalogClock"
+        android:text="PieProgressBar"
         android:textColor="@color/white"
         android:textSize="22sp" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:text="秒针是否需要显示："
-                android:textColor="@color/white" />
-
-            <ToggleButton
-                android:id="@+id/tbtnShowSecPoint"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:checked="true" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:text="秒针是否平滑移动："
-                android:textColor="@color/white" />
-
-            <ToggleButton
-                android:id="@+id/tbtnSecSmoothMove"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:checked="false" />
-        </LinearLayout>
-    </ScrollView>
+    <net.bi4vmr.tool.android.ui.pieprogressbar.PieProgressBar
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 </LinearLayout>

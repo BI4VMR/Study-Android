@@ -1,36 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 饼状进度条 -->
-    <declare-styleable name="PieProgressBar">
+    <!-- 流动边框布局 -->
+    <declare-styleable name="FluidBorderLayout">
 
-        <!-- 初始进度 -->
-        <attr name="progress" format="float" />
+        <!-- 圆角半径 -->
+        <attr name="cornerRadius" format="dimension" />
 
-        <!-- 最小进度 -->
-        <attr name="minProgress" format="float" />
+        <!-- 边框宽度 -->
+        <attr name="borderWidth" format="dimension" />
 
-        <!-- 最大进度 -->
-        <attr name="maxProgress" format="float" />
+        <!-- 边框底色 -->
+        <attr name="borderBackgroundColor" format="color" />
 
-        <!-- 圆的半径 -->
-        <attr name="radius" format="dimension" />
-
-        <!-- 起始绘制角度 -->
-        <attr name="startDegree" format="integer" />
-
-        <!-- 是否逆时针绘制 -->
-        <attr name="reverseDraw" format="boolean" />
-
-        <!-- 饼图颜色 -->
-        <attr name="pieColor" format="color" />
-
-        <!-- 圆环颜色 -->
-        <attr name="ringColor" format="color" />
-
-        <!-- 圆环宽度 -->
-        <attr name="ringWidth" format="dimension" />
-
-        <!-- 是否显示圆环 -->
-        <attr name="ringDisplay" format="boolean" />
+        <!-- 边框预设样式
+             与 BorderSchemas 枚举常量对应；如果设置了自定义样式则该属性无效。
+         -->
+        <attr name="borderSchema" format="enum" />
     </declare-styleable>
 </resources>

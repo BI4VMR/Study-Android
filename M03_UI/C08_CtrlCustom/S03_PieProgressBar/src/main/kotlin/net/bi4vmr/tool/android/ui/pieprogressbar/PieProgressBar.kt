@@ -219,7 +219,7 @@ class PieProgressBar @JvmOverloads constructor(
 
     init {
         if (attrs != null) {
-            parseXMLAttrs(attrs)
+            parseXMLAttrs(attrs, defStyleAttr, defStyleRes)
         }
     }
 
@@ -240,7 +240,7 @@ class PieProgressBar @JvmOverloads constructor(
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        // Log.d("PieProgressBar", "OnSizeChanged. Width:[$w] Height:[$h]")
+        // Log.d(TAG, "OnSizeChanged. Width:[$w] Height:[$h]")
         // 控件不是正方形时，以短边为最大直径绘制圆形。
         mMaxRadius = min(w, h) / 2
 
@@ -258,7 +258,7 @@ class PieProgressBar @JvmOverloads constructor(
     }
 
     override fun onDraw(canvas: Canvas) {
-        // Log.d("PieProgressBar", "OnDraw. Width:[$width] Height:[$height]")
+        // Log.d(TAG, "OnDraw. Width:[$width] Height:[$height]")
 
         drawPie(canvas)
         drawRing(canvas)
