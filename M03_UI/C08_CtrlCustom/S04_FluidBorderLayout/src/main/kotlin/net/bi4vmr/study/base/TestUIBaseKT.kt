@@ -30,6 +30,12 @@ class TestUIBaseKT : AppCompatActivity() {
 
     private fun initView() {
         with(binding) {
+            btnAnimPlay.setOnClickListener {
+                fluidBorderLayout.resumeAnim()
+            }
+            btnAnimPause.setOnClickListener {
+                fluidBorderLayout.pauseAnim()
+            }
             btnAnimSpeedUp.setOnClickListener {
                 fluidBorderLayout.mDuration -= 1000L
             }
