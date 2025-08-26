@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiBaseBinding
+import net.bi4vmr.tool.android.ui.fluidboderlayout.BorderSchema
 
 /**
  * 测试界面：基本应用。
@@ -29,17 +30,25 @@ class TestUIBaseKT : AppCompatActivity() {
 
     private fun initView() {
         with(binding) {
-            // tbtnShowSecPoint.setOnCheckedChangeListener { buttonView, isChecked ->
-            //     if (buttonView.isPressed) {
-            //         analogClock.setSecondPointerShowState(isChecked)
-            //     }
-            // }
-            //
-            // tbtnSecSmoothMove.setOnCheckedChangeListener { buttonView, isChecked ->
-            //     if (buttonView.isPressed) {
-            //         analogClock.setSecondPointerSmoothMove(isChecked)
-            //     }
-            // }
+            btnAnimSpeedUp.setOnClickListener {
+                fluidBorderLayout.mDuration -= 1000L
+            }
+            btnAnimSpeedDown.setOnClickListener {
+                fluidBorderLayout.mDuration += 1000L
+            }
+            tbtnBorderVisible.setOnCheckedChangeListener { _, isChecked ->
+                fluidBorderLayout.mBorderVisible = isChecked
+            }
+
+            rgType.setOnCheckedChangeListener { _, checkedId ->
+                when (checkedId) {
+                    rbtnType1.id -> fluidBorderLayout.usePresetSchema(BorderSchema.parseByOrder(0))
+                    rbtnType2.id -> fluidBorderLayout.usePresetSchema(BorderSchema.parseByOrder(1))
+                    rbtnType3.id -> fluidBorderLayout.usePresetSchema(BorderSchema.parseByOrder(2))
+                    rbtnType4.id -> fluidBorderLayout.usePresetSchema(BorderSchema.parseByOrder(3))
+                    // rbtnCustom.id -> fluidBorderLayout.usePresetSchema(BorderSchema.parseByOrder(4))
+                }
+            }
         }
     }
 }

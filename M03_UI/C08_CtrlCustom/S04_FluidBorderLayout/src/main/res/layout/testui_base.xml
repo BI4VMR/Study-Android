@@ -10,17 +10,87 @@
     tools:ignore="HardcodedText">
 
     <net.bi4vmr.tool.android.ui.fluidboderlayout.FluidBorderLayout
+        android:id="@+id/fluidBorderLayout"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:background="#22FF00FF"
+        app:animDuration="4000"
         app:borderBackgroundColor="#88888888"
-        app:borderWidth="10dp">
+        app:borderWidth="8dp">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:importantForAccessibility="no"
             android:src="@color/purple_700"
-            android:visibility="invisible" />
+            android:visibility="visible" />
     </net.bi4vmr.tool.android.ui.fluidboderlayout.FluidBorderLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAnimSpeedUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="动画加速" />
+
+        <Button
+            android:id="@+id/btnAnimSpeedDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="动画减速" />
+
+        <ToggleButton
+            android:id="@+id/tbtnBorderVisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:textOff="隐藏边框"
+            android:textOn="显示边框" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/rgType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rbtnType1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="彩色圆环"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rbtnType2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="彩色半圆"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rbtnType3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="彩色对角"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rbtnType4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="白色半圆"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rbtnCustom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义"
+            android:textColor="@color/white" />
+    </RadioGroup>
 </LinearLayout>
