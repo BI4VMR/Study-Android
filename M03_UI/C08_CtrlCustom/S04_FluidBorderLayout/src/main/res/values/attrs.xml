@@ -6,8 +6,8 @@
         <!-- 圆角半径 -->
         <attr name="cornerRadius" format="dimension" />
 
-        <!-- 子View是否从边框内部开始排列
-             `true` : 子View从边框内部开始排列，边框不遮挡子View。
+        <!-- 子View是否从边框内侧开始排列
+             `true` : 子View从边框内侧开始排列，边框不遮挡子View。
              `false` : 子View从控件边缘开始排列，边框会遮挡子View。
              默认值为 `false` 。
          -->

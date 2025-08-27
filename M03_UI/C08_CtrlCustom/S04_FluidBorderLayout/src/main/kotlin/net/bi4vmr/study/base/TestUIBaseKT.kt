@@ -45,6 +45,9 @@ class TestUIBaseKT : AppCompatActivity() {
             tbtnBorderVisible.setOnCheckedChangeListener { _, isChecked ->
                 fluidBorderLayout.mBorderVisible = isChecked
             }
+            tbtnChildInsideBorder.setOnCheckedChangeListener { _, isChecked ->
+                fluidBorderLayout.mChildInsideBorder = isChecked
+            }
 
             rgType.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {

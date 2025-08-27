@@ -2,6 +2,7 @@ package net.bi4vmr.tool.android.ui.fluidboderlayout
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -12,10 +13,13 @@ import android.graphics.RectF
 import android.graphics.SweepGradient
 import android.util.AttributeSet
 import android.util.Log
+import android.view.Gravity
 import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
+import androidx.core.view.children
+import androidx.core.view.isGone
 import net.bi4vmr.study.R
 
 /**
@@ -93,6 +97,12 @@ class FluidBorderLayout @JvmOverloads constructor(
             invalidate()
         }
 
+    /**
+     * 子View是否从边框内侧开始排列。
+     *
+     * - `true` : 子View从边框内侧开始排列，边框不遮挡子View。
+     * - `false` : 子View从控件边缘开始排列，边框会遮挡子View。
+     */
     @get:JvmName("isChildInsideBorder")
     @set:JvmName("setChildInsideBorder")
     var mChildInsideBorder: Boolean = CHILD_INSIDE_BORDER_DEFAULT
@@ -211,6 +221,8 @@ class FluidBorderLayout @JvmOverloads constructor(
     private fun parseXMLAttrs(attrs: AttributeSet, defStyleAttr: Int = 0, defStyleRes: Int = 0) {
         mContext.obtainStyledAttributes(attrs, R.styleable.FluidBorderLayout, defStyleAttr, defStyleRes).use {
             mCornerRadius = it.getDimension(R.styleable.FluidBorderLayout_cornerRadius, CORNER_RADIUS_DEFAULT)
+            mChildInsideBorder =
+                it.getBoolean(R.styleable.FluidBorderLayout_childInsideBorder, CHILD_INSIDE_BORDER_DEFAULT)
             mBorderVisible = it.getBoolean(R.styleable.FluidBorderLayout_borderVisible, BORDER_VISIBLE_DEFAULT)
             mBorderWidth = it.getDimension(R.styleable.FluidBorderLayout_borderWidth, BORDER_WIDTH_DEFAULT)
             mBorderBackgroundColor =
@@ -223,6 +235,40 @@ class FluidBorderLayout @JvmOverloads constructor(
             val schema: BorderSchema = BorderSchema.parseByOrder(schemaCode)
             mGradientColors = schema.colors
             mGradientPositions = schema.positions
+        }
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        if (mChildInsideBorder) {
+            val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+            val heightMode = MeasureSpec.getMode(heightMeasureSpec)
+            val widthSize = MeasureSpec.getSize(widthMeasureSpec)
+            val heightSize = MeasureSpec.getSize(heightMeasureSpec)
+
+            // 计算边框内的可用区域
+            val availableWidth = (widthSize - 2 * mBorderWidth).toInt()
+            val availableHeight = (heightSize - 2 * mBorderWidth).toInt()
+
+            // 遍历子 View，调整测量规格
+            for (child in children) {
+                if (child.isGone) continue
+
+                val lp = child.layoutParams as LayoutParams
+                val childWidthSpec = getChildMeasureSpec(
+                    MeasureSpec.makeMeasureSpec(availableWidth, widthMode),
+                    paddingLeft + paddingRight, lp.width
+                )
+                val childHeightSpec = getChildMeasureSpec(
+                    MeasureSpec.makeMeasureSpec(availableHeight, heightMode),
+                    paddingTop + paddingBottom, lp.height
+                )
+                child.measure(childWidthSpec, childHeightSpec)
+            }
+
+            // 设置自身的测量尺寸
+            setMeasuredDimension(widthSize, heightSize)
+        } else {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         }
     }
 
@@ -241,21 +287,98 @@ class FluidBorderLayout @JvmOverloads constructor(
         borderPaint.shader = mShader
 
         // 裁切边框周围的区域
-        clipRect.set(0.0F, 0.0F, w.toFloat(), h.toFloat())
+        if (mChildInsideBorder) {
+            clipRect.set(0.0F, 0.0F, w.toFloat(), h.toFloat())
+        } else {
+            clipRect.set(0.0F, 0.0F, w.toFloat(), h.toFloat())
+        }
         updateClipPath()
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        Log.d(TAG, "OnLayout. Changed:[$changed] L:[$left] R:[$right] T:[$top] B:[$bottom]")
+        Log.d(TAG, "OnLayout. ChildInsideBorder:[$mChildInsideBorder] Changed:[$changed]")
+        Log.d(TAG, "OnLayout. L:[$left] R:[$right] T:[$top] B:[$bottom] W:[${right - left}] H:[${bottom - top}]")
         // 如果要求子View从边框内侧开始绘制，则调整子View的布局区域。
         if (mChildInsideBorder) {
             val leftInner: Float = 0 + mBorderWidth
             val topInner: Float = 0 + mBorderWidth
             val rightInner: Float = (right - left) - mBorderWidth
             val bottomInner: Float = (bottom - top) - mBorderWidth
-            super.onLayout(changed, leftInner.toInt(), topInner.toInt(), rightInner.toInt(), bottomInner.toInt())
+            layoutChildInsideBorder(leftInner.toInt(), topInner.toInt(), rightInner.toInt(), bottomInner.toInt())
         } else {
             super.onLayout(changed, left, top, right, bottom)
+        }
+    }
+
+    /**
+     * 从边框内侧摆放子控件。
+     *
+     * 修改自FrameLayout的 `layoutChildren()` 方法，四边点位由控件边缘改为边框内侧。
+     *
+     * 此处已经判断了LayoutDirection属性，因此可以忽略RTL相关的警告。
+     *
+     * @param[parentLeft] 父控件减去边框后的左侧点位。
+     * @param[parentTop] 父控件减去边框后的顶部点位。
+     * @param[parentRight] 父控件减去边框后的右侧点位。
+     * @param[parentBottom] 父控件减去边框后的底部点位。
+     */
+    @SuppressLint("RtlHardcoded")
+    private fun layoutChildInsideBorder(parentLeft: Int, parentTop: Int, parentRight: Int, parentBottom: Int) {
+        children.forEach { child ->
+            // 跳过不需要布局的View
+            if (child.isGone) {
+                return@forEach
+            }
+
+            val parentWidth: Int = parentRight - parentLeft
+            val parentHeight: Int = parentBottom - parentTop
+            val lp = child.layoutParams as LayoutParams
+            val width: Int = child.measuredWidth
+            val height: Int = child.measuredHeight
+
+            var gravity: Int = lp.gravity
+            // 默认对齐到左上角
+            if (gravity == -1) {
+                gravity = Gravity.TOP or Gravity.START
+            }
+
+            val horizontalGravity: Int =
+                Gravity.getAbsoluteGravity(gravity, layoutDirection) and Gravity.HORIZONTAL_GRAVITY_MASK
+            val childLeft: Int = when (horizontalGravity) {
+                Gravity.CENTER_HORIZONTAL -> {
+                    // 父布局边界 + (父布局宽度 - 子控件宽度) / 2 + Margin偏移量
+                    parentLeft + (parentWidth - width) / 2 +
+                            lp.leftMargin - lp.rightMargin
+                }
+                Gravity.LEFT -> {
+                    parentLeft + lp.leftMargin
+                }
+                Gravity.RIGHT -> {
+                    parentRight - width - lp.rightMargin
+                }
+                else -> {
+                    parentLeft + lp.leftMargin
+                }
+            }
+
+            val verticalGravity: Int = gravity and Gravity.VERTICAL_GRAVITY_MASK
+            val childTop: Int = when (verticalGravity) {
+                Gravity.CENTER_VERTICAL -> {
+                    parentTop + (parentHeight - height) / 2 +
+                            lp.topMargin - lp.bottomMargin
+                }
+                Gravity.TOP -> {
+                    parentTop + lp.topMargin
+                }
+                Gravity.BOTTOM -> {
+                    parentBottom - height - lp.bottomMargin
+                }
+                else -> {
+                    parentTop + lp.topMargin
+                }
+            }
+
+            child.layout(childLeft, childTop, childLeft + width, childTop + height)
         }
     }
 

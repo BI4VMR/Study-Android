@@ -14,15 +14,50 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         app:animDuration="4000"
-        app:borderBackgroundColor="#88888888"
+        app:borderBackgroundColor="#00888888"
         app:borderWidth="8dp">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:importantForAccessibility="no"
-            android:src="@color/purple_700"
+            android:src="@drawable/ic_funny_256"
             android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#8800FF00"
+            android:text="Aaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="#88FF00FF"
+            android:text="Bb"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#88FFFF00"
+            android:text="Cc"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:background="#88FF0000"
+            android:text="Dd"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
     </net.bi4vmr.tool.android.ui.fluidboderlayout.FluidBorderLayout>
 
     <LinearLayout
@@ -61,6 +96,13 @@
             android:checked="true"
             android:textOff="隐藏边框"
             android:textOn="显示边框" />
+
+        <ToggleButton
+            android:id="@+id/tbtnChildInsideBorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="边框覆盖子控件"
+            android:textOn="边框内嵌子控件" />
     </LinearLayout>
 
     <RadioGroup
