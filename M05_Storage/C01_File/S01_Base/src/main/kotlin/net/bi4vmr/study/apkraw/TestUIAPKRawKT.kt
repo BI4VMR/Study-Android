@@ -4,6 +4,7 @@ import android.content.ContentResolver
 import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.R
@@ -26,15 +27,16 @@ class TestUIAPKRawKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
+            tvLog.movementMethod = ScrollingMovementMethod.getInstance()
+
             btnReadStream.setOnClickListener { testReadStream() }
             btnReadURI.setOnClickListener { testReadURI() }
         }
     }
 
-    // 读取文件（字节流）
     private fun testReadStream() {
         Log.i(TAG, "--- 读取文件（字节流） ---")
-        binding.tvLog.append("\n--- 读取文件（字节流） ---\n")
+        appendLog("\n--- 读取文件（字节流） ---\n")
 
         // 读取"raw/test.txt"
         val resources: Resources = applicationContext.resources
@@ -46,14 +48,13 @@ class TestUIAPKRawKT : AppCompatActivity() {
             binding.tvLog.append("test.txt文件的内容为：\n$content")
             Log.i(TAG, "test.txt文件的内容为：$content")
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e(TAG, "读取文件失败！", e)
         }
     }
 
-    // 读取文件（URI）
     private fun testReadURI() {
         Log.i(TAG, "--- 读取文件（URI） ---")
-        binding.tvLog.append("\n--- 读取文件（URI） ---\n")
+        appendLog("\n--- 读取文件（URI） ---\n")
 
         // 拼接"raw"目录中图片文件的URI
         val uri = "${ContentResolver.SCHEME_ANDROID_RESOURCE}://${packageName}/raw/pic"
@@ -64,5 +65,22 @@ class TestUIAPKRawKT : AppCompatActivity() {
         binding.ivTest.setImageURI(Uri.parse(uri))
         binding.tvLog.append("\n图片已加载至ImageView。")
         Log.i(TAG, "图片已加载至ImageView。")
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private fun appendLog(text: CharSequence) {
+        binding.tvLog.apply {
+            append(text)
+            post {
+                runCatching {
+                    val offset = layout.getLineTop(lineCount) - height
+                    if (offset > 0) {
+                        scrollTo(0, offset)
+                    }
+                }.onFailure { e ->
+                    Log.w(TAG, "TextView scroll failed!", e)
+                }
+            }
+        }
     }
 }
