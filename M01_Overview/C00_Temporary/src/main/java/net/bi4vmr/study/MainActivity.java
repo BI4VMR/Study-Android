@@ -131,16 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
         // player.prepare();
         // player.play();
-
-        List<VO> list = new ArrayList<>();
-        list.add(new VO("表项A", R.drawable.ic_funny_256));
-        list.add(new VO("表项B", R.drawable.ic_status_wlan_level1));
-        list.add(new VO("表项C", R.drawable.ic_status_wlan_level3));
-        MyAdapter adapter = new MyAdapter();
-        adapter.submit(list);
-
-        binding.rv.setLayoutManager(new LinearLayoutManager(this));
-        binding.rv.setAdapter(adapter);
     }
 
     @Override
