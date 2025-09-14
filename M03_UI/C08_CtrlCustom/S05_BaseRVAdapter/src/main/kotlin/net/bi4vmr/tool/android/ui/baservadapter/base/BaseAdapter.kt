@@ -44,6 +44,8 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
 
     open val tag: String = BaseAdapter::class.simpleName ?: "BaseAdapter"
 
+    // val aa :Map<Int,Pair<Int,Class>>
+
     /**
      * 当前Adapter所绑定的RecyclerView。
      */
@@ -78,6 +80,15 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
         holder.bindData(item)
     }
 
+    /**
+     * 默认的数据绑定实现（局部刷新）。
+     *
+     * 使用本工具内置的Payload机制刷新表项，如果子类希望使用自定义Payload机制，可以覆写该方法。
+     *
+     * 本工具使用多个数值组合而成的标志位作为Payload。
+     *
+     * @param[holder] 待绑定的ViewHolder实例。
+     */
     override fun onBindViewHolder(holder: VH, position: Int, payloads: MutableList<Any>) {
         if (payloads.isEmpty()) {
             onBindViewHolder(holder, position)
@@ -85,7 +96,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
             // 默认选择最新的Payload，忽略旧的Payload。
             val payload = payloads.last()
             if (payload !is Int) {
-                // TODO
+                Log.w(tag, "Payload type is not a number with flags, ignored!")
                 return
             }
 
