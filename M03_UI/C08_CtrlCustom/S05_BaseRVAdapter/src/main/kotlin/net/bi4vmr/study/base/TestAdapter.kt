@@ -20,7 +20,7 @@ class TestAdapter
     /**
      * 初始数据源。
      */
-    dataSource: List<ListItem> = listOf()
+    dataSource: MutableList<ListItem> = mutableListOf()
 ) : BindingAdapter<ListItem>(dataSource) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<*, ListItem> {

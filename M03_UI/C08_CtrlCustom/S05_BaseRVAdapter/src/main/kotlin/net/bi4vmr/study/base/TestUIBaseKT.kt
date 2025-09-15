@@ -32,6 +32,25 @@ class TestUIBaseKT : AppCompatActivity() {
 
     private fun initView() {
         with(binding) {
+            // val dataSource: MutableList<ListItem> = ArrayList<ListItem>()
+            //     .apply {
+            //         add(TitleVO("标题一"))
+            //         add(ContentVO("表项A", "表项A", R.drawable.ic_funny_256))
+            //         add(ContentVO("表项B", "表项B", R.drawable.ic_funny_256))
+            //         add(ContentVO("表项C", "表项C", R.drawable.ic_funny_256))
+            //         add(TitleVO("标题二"))
+            //         add(ContentVO("表项D", "表项D", R.drawable.ic_funny_256))
+            //         add(ContentVO("表项E", "表项E", R.drawable.ic_funny_256))
+            //     }
+            // val adapter = TestAdapter(dataSource)
+            //
+            // recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIBaseKT))
+            // recyclerview.setAdapter(adapter)
+
+            // binding.btn.setOnClickListener {
+            //     adapter.submit(dataSource)
+            // }
+
             val dataSource: MutableList<ListItem> = ArrayList<ListItem>()
                 .apply {
                     add(TitleVO("标题一"))
@@ -42,7 +61,7 @@ class TestUIBaseKT : AppCompatActivity() {
                     add(ContentVO("表项D", "表项D", R.drawable.ic_funny_256))
                     add(ContentVO("表项E", "表项E", R.drawable.ic_funny_256))
                 }
-            val adapter = TestAdapter(dataSource)
+            val adapter = TestMultiTypeAdapter(dataSource)
 
             recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIBaseKT))
             recyclerview.setAdapter(adapter)

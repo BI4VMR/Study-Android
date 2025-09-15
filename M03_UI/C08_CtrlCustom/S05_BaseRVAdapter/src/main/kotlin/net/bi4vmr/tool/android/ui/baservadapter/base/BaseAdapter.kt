@@ -2,7 +2,11 @@ package net.bi4vmr.tool.android.ui.baservadapter.base
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +14,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Collections
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.CopyOnWriteArrayList
 
 /**
  * RecyclerView适配器的通用封装。
@@ -25,7 +31,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
     /**
      * 内部数据源。
      */
-    private val mDataSource: MutableList<T> = mutableListOf(),
+    private val mDataSource: MutableList<T> = CopyOnWriteArrayList(),
 
     /**
      * 后台任务的协程环境。
@@ -44,9 +50,37 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
     private val uiScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
 ) : RecyclerView.Adapter<VH>() {
 
-    protected val tag: String = BaseAdapter::class.java.simpleName
+    /**
+     * 日志Tag。
+     */
+    protected val tag: String = javaClass.simpleName
 
-    // private val config: MutableMap<Int, Pair<Int, Class>> =
+    /**
+     * ViewType映射表。
+     *
+     * 配置ViewType、Layout资源ID与ViewHolder的映射关系，以便 [onCreateViewHolder] 方法自动创建ViewHolder实例。
+     *
+     * 如果调用者不希望使用本工具内置的映射方案，也可以自行重写 [onCreateViewHolder] 方法。
+     */
+    protected val viewTypeMapper: MutableMap<Int, Pair<Int, Class<*>>> = ConcurrentHashMap()
+
+    fun setViewTypeMappers(mappers: Map<Int, Pair<Int, Class<*>>>) {
+        synchronized(viewTypeMapper) {
+            viewTypeMapper.clear()
+            viewTypeMapper.putAll(mappers)
+        }
+    }
+
+    fun clearViewTypeMappers() {
+        viewTypeMapper.clear()
+    }
+
+    fun addViewTypeMapper(viewType: Int, @LayoutRes layoutID: Int, viewHolderClass: Class<*>) {
+        synchronized(viewTypeMapper) {
+            viewTypeMapper.clear()
+            viewTypeMapper[viewType] = layoutID to viewHolderClass
+        }
+    }
 
     /**
      * 当前Adapter所绑定的RecyclerView。
@@ -75,6 +109,23 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
     @CallSuper
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         mRecyclerView = null
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
+        val value = viewTypeMapper[viewType]
+            ?: throw IllegalArgumentException("ViewType [$viewType] is unknown! Did you forget to register it?")
+
+        val (layoutID, vhClass) = value
+
+        val itemView = LayoutInflater.from(parent.context).inflate(layoutID, parent, false)
+        Log.d(tag, "itemView: $itemView")
+
+        val constructor = vhClass.getConstructor(View::class.java)
+        vhClass.declaredConstructors.forEach {
+            Log.d(tag, "constructor: $it")
+        }
+        return constructor.newInstance(itemView) as VH
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
@@ -275,6 +326,14 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
         }
     }
 
+    fun setDiffCallback(callback: DiffUtil.ItemCallback<T>) {
+        mDiffCallback = callback
+    }
+
+    fun resetDiffCallback() {
+        mDiffCallback = DefaultDiffCallback()
+    }
+
     /**
      * 默认的DiffUtil比较回调实现。
      */
@@ -289,6 +348,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
             return oldItem == newItem
         }
 
+        @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
             return oldItem == newItem
         }

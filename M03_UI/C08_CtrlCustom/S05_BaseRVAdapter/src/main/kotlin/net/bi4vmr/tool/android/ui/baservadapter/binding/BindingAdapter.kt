@@ -17,7 +17,7 @@ abstract class BindingAdapter<T : ListItem>
     /**
      * 内部数据源。
      */
-    dataSource: List<T> = listOf(),
+    dataSource: MutableList<T> = mutableListOf(),
 
     /**
      * 后台任务的协程环境。
