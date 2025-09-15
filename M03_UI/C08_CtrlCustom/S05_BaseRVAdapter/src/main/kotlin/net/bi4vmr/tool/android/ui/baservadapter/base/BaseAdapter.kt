@@ -1,5 +1,6 @@
 package net.bi4vmr.tool.android.ui.baservadapter.base
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Collections
 
 /**
  * RecyclerView适配器的通用封装。
@@ -23,7 +25,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
     /**
      * 内部数据源。
      */
-    private var mDataSource: List<T> = listOf(),
+    private val mDataSource: MutableList<T> = mutableListOf(),
 
     /**
      * 后台任务的协程环境。
@@ -42,9 +44,9 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
     private val uiScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
 ) : RecyclerView.Adapter<VH>() {
 
-    open val tag: String = BaseAdapter::class.simpleName ?: "BaseAdapter"
+    protected val tag: String = BaseAdapter::class.java.simpleName
 
-    // val aa :Map<Int,Pair<Int,Class>>
+    // private val config: MutableMap<Int, Pair<Int, Class>> =
 
     /**
      * 当前Adapter所绑定的RecyclerView。
@@ -114,12 +116,113 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
         return item.getViewType()
     }
 
+    fun getDataSource(): List<T> = mDataSource
+
+    /**
+     * 获取数据源的一份副本。
+     *
+     * 因为数据源的更改会影响表项，有些操作不能直接在数据源上进行，可以在其副本上进行操作。
+     *
+     * @return 内含ItemVO的列表，是当前数据源的副本。
+     */
+    // fun getCopyOfDataSource(): List<T> {
+    //     // return mDataSource.map { it. }
+    // }
+
+    /**
+     * 更新指定的表项。
+     *
+     * 更新指定的表项，不影响列表中的其它表项。
+     *
+     * @param[position] 待更新的位置。
+     * @param[data]     新的表项。
+     */
+    fun updateItem(position: Int, data: T) {
+        // 更新数据源
+        mDataSource[position] = data
+        // 通知RecyclerView新的表项被插入，刷新控件显示。
+        notifyItemChanged(position)
+    }
+
+    /**
+     * 向指定位置插入表项。
+     *
+     * 将新的表项插入到指定位置，若该位置已存在表项，则将其本身以及后继表项都后移一位。
+     *
+     * @param[position] 待插入的位置。
+     * @param[data]     新的表项。
+     */
+    fun addItem(position: Int, data: T) {
+        // 更新数据源
+        mDataSource.add(position, data)
+        // 通知RecyclerView新的表项被插入，刷新控件显示。
+        notifyItemInserted(position)
+    }
+
+    /**
+     * 移除指定的表项。
+     *
+     * 移除指定的表项，若该位置之后存在表项，则将这些表项都前移一位。
+     *
+     * @param[position] 待移除的位置。
+     */
+    fun removeItem(position: Int) {
+        // 更新数据源
+        mDataSource.removeAt(position)
+        // 通知RecyclerView指定的表项被移除，刷新控件显示。
+        notifyItemRemoved(position)
+    }
+
+    /**
+     * 将指定的表项移动至新位置。
+     *
+     * @param[srcPosition] 源位置。
+     * @param[dstPosition] 目标位置。
+     */
+    fun moveItem(srcPosition: Int, dstPosition: Int) {
+        // 如果源位置与目标位置相同，则无需移动。
+        if (srcPosition == dstPosition) {
+            return
+        }
+
+        // 更新数据源
+        Collections.swap(mDataSource, srcPosition, dstPosition)
+        // 通知RecyclerView表项被移动，刷新控件显示。
+        notifyItemMoved(srcPosition, dstPosition)
+    }
+
+    /**
+     * 更新所有表项。
+     *
+     * @param[newDatas] 新的数据源。
+     */
+    @SuppressLint("NotifyDataSetChanged")
+    fun reloadItems(newDatas: List<T>) {
+        mUpdateTaskSequence++
+
+        mDataSource.clear()
+        mDataSource.addAll(newDatas)
+        notifyDataSetChanged()
+    }
+
+    /**
+     * 使用DiffUtil异步更新表项。
+     *
+     * @param[newData] 新的列表。
+     * @param[detectMoves] 表项移动检测功能开关，默认为开启。DiffUtil的算法检测表项是否被移动需要额外消耗性能，如果新旧表项排序规则一致，只是增删表
+     * 项，可以关闭此功能以提升性能。
+     * @param[actionAfterUpdate] 更新完毕后需要执行的动作。
+     */
     @JvmOverloads
-    fun submit(newData: List<T>, actionAfterUpdate: (() -> Unit)? = null) {
+    fun submit(
+        newData: List<T>,
+        detectMoves: Boolean = true,
+        actionAfterUpdate: (() -> Unit)? = null
+    ) {
         val taskSequence = ++mUpdateTaskSequence
 
         if (newData == mDataSource) {
-            Log.i(tag, "New list is same as old.")
+            Log.i(tag, "Submit. New list is same as old, nothing to do.")
             mRecyclerView?.post {
                 actionAfterUpdate?.invoke()
             }
@@ -156,11 +259,12 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
                     val newItem = newData[newItemPosition]
                     return diffCallback.getChangePayload(oldItem, newItem)
                 }
-            })
+            }, detectMoves)
 
             if (taskSequence == mUpdateTaskSequence) {
                 uiScope.launch {
-                    mDataSource = newData
+                    mDataSource.clear()
+                    mDataSource.addAll(newData)
                     diffResult.dispatchUpdatesTo(this@BaseAdapter)
                     // 更新完毕后执行其他任务
                     mRecyclerView?.post {

@@ -142,6 +142,8 @@ class TestUIBaseKT : AppCompatActivity() {
     private inner class DLServiceConnection : ServiceConnection {
 
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
+            appendLog("OnServiceConnected.\n")
+            Log.i(TAG, "OnServiceConnected.")
             appendLog("连接已就绪。\n")
             Log.i(TAG, "连接已就绪。")
 
@@ -152,6 +154,8 @@ class TestUIBaseKT : AppCompatActivity() {
         }
 
         override fun onServiceDisconnected(name: ComponentName) {
+            appendLog("OnServiceDisconnected.\n")
+            Log.i(TAG, "OnServiceDisconnected.")
             appendLog("连接已断开！\n")
             Log.i(TAG, "连接已断开！")
 
