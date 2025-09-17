@@ -20,7 +20,7 @@ import java.util.concurrent.CopyOnWriteArrayList
 /**
  * RecyclerView适配器的通用封装。
  *
- * 参考 [AsyncListDiffer] 实现了异步更新功能，并且也支持同步更新指定的表现。
+ * 参考 [AsyncListDiffer] 实现了异步更新功能，并且也支持同步更新指定的表项。
  *
  * @since 1.0.0
  * @author bi4vmr@outlook.com
@@ -53,7 +53,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
     /**
      * 日志Tag。
      */
-    protected val tag: String = javaClass.simpleName
+    protected open val tag: String = javaClass.simpleName
 
     /**
      * ViewType映射表。
@@ -62,7 +62,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
      *
      * 如果调用者不希望使用本工具内置的映射方案，也可以自行重写 [onCreateViewHolder] 方法。
      */
-    protected val viewTypeMapper: MutableMap<Int, Pair<Int, Class<*>>> = ConcurrentHashMap()
+    private val viewTypeMapper: MutableMap<Int, Pair<Int, Class<*>>> = ConcurrentHashMap()
 
     fun setViewTypeMappers(mappers: Map<Int, Pair<Int, Class<*>>>) {
         synchronized(viewTypeMapper) {
@@ -99,7 +99,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
     /**
      * DiffUtil比较回调。
      */
-    private var mDiffCallback: DiffUtil.ItemCallback<T> = DefaultDiffCallback()
+    private var mDiffCallback: BaseDiffer<T> = DefaultDiffer()
 
     @CallSuper
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
@@ -326,31 +326,11 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
         }
     }
 
-    fun setDiffCallback(callback: DiffUtil.ItemCallback<T>) {
+    fun setDiffCallback(callback: BaseDiffer<T>) {
         mDiffCallback = callback
     }
 
     fun resetDiffCallback() {
-        mDiffCallback = DefaultDiffCallback()
-    }
-
-    /**
-     * 默认的DiffUtil比较回调实现。
-     */
-    private inner class DefaultDiffCallback : DiffUtil.ItemCallback<T>() {
-
-        override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
-            // 首先比较ViewType，如果ViewType不同，则两个表项一定是不同的。
-            val viewTypeSame = oldItem.getViewType() == newItem.getViewType()
-            if (!viewTypeSame) return false
-
-            // 如果ViewType相同，则调用两个表项的 `equals()` 方法进行比较。
-            return oldItem == newItem
-        }
-
-        @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
-            return oldItem == newItem
-        }
+        mDiffCallback = DefaultDiffer()
     }
 }
