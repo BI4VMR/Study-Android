@@ -55,10 +55,12 @@ abstract class BindingAdapter<I : ListItem>
 
     @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<*, I> {
-        val value = bindingMappers[viewType]
-            ?: throw IllegalArgumentException("ViewType [$viewType] is unknown! Did you forget to register it?")
+        if (debugMode) {
+            Log.v(tag, "OnCreateViewHolder. ViewType:[$viewType]")
+        }
 
-        val (vbClass, vhClass) = value
+        val (vbClass, vhClass) = bindingMappers[viewType]
+            ?: throw IllegalArgumentException("ViewType [$viewType] is unknown! Did you forget to register it?")
 
         // 反射调用 [ViewBinding.inflate] 方法创建ViewBinding实例
         val inflateMethod: Method = vbClass.getMethod(
@@ -70,13 +72,10 @@ abstract class BindingAdapter<I : ListItem>
         val binding = inflateMethod.invoke(null, LayoutInflater.from(parent.context), parent, false)
             ?: throw IllegalStateException("Invoke ViewBinding.inflate() failed!")
 
+        // 反射调用 [ViewHolder] 的构造方法创建实例
         val constructor = vhClass.getConstructor(ViewBinding::class.java)
-        vhClass.declaredConstructors.forEach {
-            Log.d(tag, "constructor: $it")
-        }
         return constructor.newInstance(binding) as BindingViewHolder<*, I>
     }
-
 
     /**
      * 注册ViewType、ViewBinding和ViewHolder的映射关系。

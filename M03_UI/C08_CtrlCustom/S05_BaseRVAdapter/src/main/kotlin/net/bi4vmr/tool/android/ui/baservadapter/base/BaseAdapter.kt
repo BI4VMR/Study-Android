@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
+import androidx.annotation.MainThread
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.Collections
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 
@@ -62,7 +62,7 @@ abstract class BaseAdapter<I : ListItem>
      *
      * 用于控制是否输出详细日志。
      */
-    private var debugMode: Boolean = false
+    var debugMode: Boolean = false
 
     /**
      * ViewType映射表。
@@ -111,6 +111,10 @@ abstract class BaseAdapter<I : ListItem>
      */
     @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<I> {
+        if (debugMode) {
+            Log.v(tag, "OnCreateViewHolder. ViewType:[$viewType]")
+        }
+
         val (layoutID, vhClass) = viewTypeMappers[viewType]
             ?: throw IllegalArgumentException("ViewType [$viewType] is unknown! Did you forget to register it?")
         // 通过布局文件创建View实例
@@ -127,6 +131,10 @@ abstract class BaseAdapter<I : ListItem>
      * @param[position] 表项索引序号。
      */
     override fun onBindViewHolder(holder: BaseViewHolder<I>, position: Int) {
+        if (debugMode) {
+            Log.v(tag, "OnBindViewHolder. Position:[$position]")
+        }
+
         val item: I = mDataSource[position]
         holder.bindData(item)
     }
@@ -144,6 +152,10 @@ abstract class BaseAdapter<I : ListItem>
      * @see BaseDiffer
      */
     override fun onBindViewHolder(holder: BaseViewHolder<I>, position: Int, payloads: MutableList<Any>) {
+        if (debugMode && payloads.isEmpty()) {
+            Log.v(tag, "OnBindViewHolder. Position:[$position] NoPayload.")
+        }
+
         if (payloads.isEmpty()) {
             onBindViewHolder(holder, position)
         } else {
@@ -152,6 +164,10 @@ abstract class BaseAdapter<I : ListItem>
             if (payload !is Int) {
                 Log.w(tag, "Payload type is not a number with flags, ignored!")
                 return
+            }
+
+            if (debugMode) {
+                Log.v(tag, "OnBindViewHolder. Position:[$position] Payload:[0x${payload.toString(16)}]")
             }
 
             val item: I = mDataSource[position]
@@ -166,15 +182,6 @@ abstract class BaseAdapter<I : ListItem>
     override fun getItemViewType(position: Int): Int {
         val item: I = mDataSource[position]
         return item.getViewType()
-    }
-
-    /**
-     * 设置是否启用调试模式。
-     *
-     * @param[enabled] `true`表示启用调试模式，`false`表示关闭调试模式。
-     */
-    fun setDebugMode(enabled: Boolean) {
-        debugMode = enabled
     }
 
     /**
@@ -206,6 +213,15 @@ abstract class BaseAdapter<I : ListItem>
         return viewTypeMappers.toMap()
     }
 
+    /**
+     * 获取数据源。
+     *
+     * 该方法返回的数据源即内置数据源，因此不可修改表项的属性，防止影响到列表显示。
+     *
+     * 如果希望修改表项而不影响列表显示，请使用 [getCopyOfDataSource] 方法获取数据源副本。
+     *
+     * @return 当前数据源。
+     */
     fun getDataSource(): List<I> = mDataSource
 
     /**
@@ -223,33 +239,86 @@ abstract class BaseAdapter<I : ListItem>
     }
 
     /**
-     * 更新指定的表项。
+     * 向指定位置插入表项。
      *
-     * 更新指定的表项，不影响列表中的其它表项。
+     * 将新的表项插入到指定位置，若该位置已存在表项，则将该表项以及后继表项都后移一位。
      *
-     * @param[position] 待更新的位置。
      * @param[data]     新的表项。
+     * @param[position] 待插入的位置，如果为负数表示在列表末尾追加内容。
      */
-    fun updateItem(position: Int, data: I) {
-        // 更新数据源
-        mDataSource[position] = data
-        // 通知RecyclerView新的表项被插入，刷新控件显示。
-        notifyItemChanged(position)
+    @MainThread
+    @JvmOverloads
+    fun addItem(data: I, position: Int = -1) {
+        if (debugMode) {
+            Log.v(tag, "AddItem. Position:[$position] Data:$data")
+        }
+
+        mUpdateTaskSequence++
+
+        if (position < 0) {
+            mDataSource.add(data)
+            notifyItemInserted(mDataSource.size)
+        } else {
+            if (position < mDataSource.size) {
+                mDataSource.add(position, data)
+                notifyItemInserted(position)
+            } else {
+                Log.w(tag, "Position [$position] is out of bounds, ignored!")
+            }
+        }
     }
 
     /**
      * 向指定位置插入表项。
      *
-     * 将新的表项插入到指定位置，若该位置已存在表项，则将其本身以及后继表项都后移一位。
+     * 将新的表项插入到指定位置，若该位置已存在表项，则将该表项以及后继表项都后移一位。
      *
-     * @param[position] 待插入的位置。
      * @param[data]     新的表项。
+     * @param[position] 待插入的位置，如果为负数表示在列表末尾追加内容。
      */
-    fun addItem(position: Int, data: I) {
-        // 更新数据源
-        mDataSource.add(position, data)
-        // 通知RecyclerView新的表项被插入，刷新控件显示。
-        notifyItemInserted(position)
+    @MainThread
+    @JvmOverloads
+    fun addItems(data: List<I>, position: Int = -1) {
+        if (debugMode) {
+            Log.v(tag, "AddItems. Position:[$position] Size:[${data.size}]")
+        }
+
+        mUpdateTaskSequence++
+
+        if (position < 0) {
+            val oldSize = mDataSource.size
+            mDataSource.addAll(data)
+            notifyItemRangeInserted(oldSize, mDataSource.size)
+        } else {
+            if (position < mDataSource.size) {
+                mDataSource.addAll(position, data)
+                notifyItemRangeInserted(position, mDataSource.size)
+            } else {
+                Log.w(tag, "Position [$position] is out of bounds, ignored!")
+            }
+        }
+    }
+
+    /**
+     * 更新指定的表项。
+     *
+     * @param[data]     新的表项。
+     * @param[position] 待更新的位置。
+     */
+    @MainThread
+    fun updateItem(data: I, position: Int) {
+        if (debugMode) {
+            Log.v(tag, "UpdateItem. Position:[$position] Data:$data")
+        }
+
+        if (position < 0 || position >= mDataSource.size) {
+            Log.w(tag, "Position [$position] is out of bounds, ignored!")
+            return
+        }
+
+        mUpdateTaskSequence++
+        mDataSource[position] = data
+        notifyItemChanged(position)
     }
 
     /**
@@ -259,42 +328,38 @@ abstract class BaseAdapter<I : ListItem>
      *
      * @param[position] 待移除的位置。
      */
+    @MainThread
     fun removeItem(position: Int) {
-        // 更新数据源
-        mDataSource.removeAt(position)
-        // 通知RecyclerView指定的表项被移除，刷新控件显示。
-        notifyItemRemoved(position)
-    }
+        if (debugMode) {
+            Log.v(tag, "RemoveItem. Position:[$position]")
+        }
 
-    /**
-     * 将指定的表项移动至新位置。
-     *
-     * @param[srcPosition] 源位置。
-     * @param[dstPosition] 目标位置。
-     */
-    fun moveItem(srcPosition: Int, dstPosition: Int) {
-        // 如果源位置与目标位置相同，则无需移动。
-        if (srcPosition == dstPosition) {
+        if (position < 0 || position >= mDataSource.size) {
+            Log.w(tag, "Position [$position] is out of bounds, ignored!")
             return
         }
 
-        // 更新数据源
-        Collections.swap(mDataSource, srcPosition, dstPosition)
-        // 通知RecyclerView表项被移动，刷新控件显示。
-        notifyItemMoved(srcPosition, dstPosition)
+        mUpdateTaskSequence++
+        mDataSource.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     /**
      * 更新所有表项。
      *
-     * @param[newDatas] 新的数据源。
+     * @param[data] 新的数据源。
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun reloadItems(newDatas: List<I>) {
+    @MainThread
+    fun reloadItems(data: List<I>) {
+        if (debugMode) {
+            Log.v(tag, "ReloadItems. Size:[${data.size}]")
+        }
+
         mUpdateTaskSequence++
 
         mDataSource.clear()
-        mDataSource.addAll(newDatas)
+        mDataSource.addAll(data)
         notifyDataSetChanged()
     }
 
@@ -410,10 +475,18 @@ abstract class BaseAdapter<I : ListItem>
         }
     }
 
+    /**
+     * 设置DiffUtil比较回调。
+     *
+     * @param[callback] 回调实现。
+     */
     fun setDiffCallback(callback: BaseDiffer<I>) {
         mDiffCallback = callback
     }
 
+    /**
+     * 清除DiffUtil比较回调。
+     */
     fun resetDiffCallback() {
         mDiffCallback = DefaultDiffer()
     }
