@@ -1,7 +1,5 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.binding
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import net.bi4vmr.study.databinding.ListItemContentBinding
 import net.bi4vmr.study.databinding.ListItemTitleBinding
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
@@ -14,7 +12,7 @@ import net.bi4vmr.tool.android.ui.baservadapter.binding.BindingViewHolder
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TestAdapter
+class TestMultiTypeAdapter
 @JvmOverloads constructor(
 
     /**
@@ -23,29 +21,15 @@ class TestAdapter
     dataSource: MutableList<ListItem> = mutableListOf()
 ) : BindingAdapter<ListItem>(dataSource) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<*, ListItem> {
-        val vh = when (viewType) {
-            1 -> {
-                val binding = ListItemTitleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                TitleVH(binding) as BindingViewHolder<*, ListItem>
-            }
-
-            2 -> {
-                val binding = ListItemContentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                ContentVH(binding) as BindingViewHolder<*, ListItem>
-            }
-
-            else -> throw IllegalArgumentException()
-        }
-        return vh
+    init {
+        addBindingMapper(ViewType.TITLE.code, ListItemTitleBinding::class.java, TitleVH::class.java)
+        addBindingMapper(ViewType.CONTENT.code, ListItemContentBinding::class.java, ContentVH::class.java)
     }
 
     class TitleVH(binding: ListItemTitleBinding) : BindingViewHolder<ListItemTitleBinding, TitleVO>(binding) {
 
         override fun bindData(item: TitleVO) {
-            with(binding) {
-                tvTitle.text = item.title
-            }
+            binding.tvTitle.text = item.title
         }
     }
 

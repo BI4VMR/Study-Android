@@ -4,18 +4,44 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * RecyclerView ViewHolder的通用封装。
+ * ViewHolder的通用封装。
+ *
+ * 泛型 [I] 表示与ViewHolder绑定的表项数据类型，必须是 [ListItem] 的子类。
  *
  * @since 1.0.0
  * @author bi4vmr@outlook.com
  */
-abstract class BaseViewHolder<T : ListItem>(itemView: View) : RecyclerView.ViewHolder(itemView) {
+abstract class BaseViewHolder<I : ListItem>(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    // 将表项的所有View与ViewObject绑定
-    abstract fun bindData(item: T)
+    companion object {
 
-    // 根据Payload指明的内容局部刷新View
-    open fun bindData(item: T, payloads: Int) {
-        // 默认为空实现，如果不需要使用局部刷新功能，子类不必覆写本方法。
+        /**
+         * 判断Payload中指定Flag是否被置位。
+         *
+         * @param[payload] Payload。
+         * @param[flag] 感兴趣的Flag。
+         * @return `true` 表示Payload中包含指定Flag，`false` 表示不包含。
+         */
+        fun hasFlag(payload: Int, flag: Int): Boolean {
+            return (payload and flag) != 0
+        }
+    }
+
+    /**
+     * 根据ViewObject刷新所有控件。
+     *
+     * @param[item] 新的表项数据。
+     */
+    abstract fun bindData(item: I)
+
+    /**
+     * 根据Payload刷新部分控件。
+     *
+     * @param[item] 新的表项数据。
+     * @param[payload] Payload。
+     */
+    open fun bindData(item: I, payload: Int) {
+        // 默认不支持局部刷新，子类应当自行实现相关逻辑。
+        bindData(item)
     }
 }

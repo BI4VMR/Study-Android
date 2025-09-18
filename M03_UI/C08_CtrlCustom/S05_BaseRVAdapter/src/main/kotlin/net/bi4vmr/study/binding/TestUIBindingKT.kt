@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.binding
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,15 +9,15 @@ import net.bi4vmr.study.databinding.TestuiBaseBinding
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
 
 /**
- * 测试界面：基本应用。
+ * 测试界面：ViewBinding。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TestUIBaseKT : AppCompatActivity() {
+class TestUIBindingKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-${TestUIBaseKT::class.java.simpleName}"
+        private val TAG: String = "TestApp-${TestUIBindingKT::class.java.simpleName}"
     }
 
     private val binding: TestuiBaseBinding by lazy {
@@ -44,7 +44,7 @@ class TestUIBaseKT : AppCompatActivity() {
                 }
             val adapter = TestMultiTypeAdapter(dataSource)
 
-            recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIBaseKT))
+            recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIBindingKT))
             recyclerview.setAdapter(adapter)
         }
     }

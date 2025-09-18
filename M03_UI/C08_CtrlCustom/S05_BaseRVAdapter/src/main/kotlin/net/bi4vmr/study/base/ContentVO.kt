@@ -15,7 +15,6 @@ class ContentVO(
 ) : ListItem {
 
     override fun getViewType(): Int {
-        return 2
+        return ViewType.CONTENT.code
     }
 }
-

@@ -21,13 +21,12 @@ class TestMultiTypeAdapter
      * 初始数据源。
      */
     dataSource: MutableList<ListItem> = mutableListOf()
-) : BaseAdapter<ListItem, BaseViewHolder<ListItem>>(dataSource) {
+) : BaseAdapter<ListItem>(dataSource) {
 
     init {
-        val m: MutableMap<Int, Pair<Int, Class<*>>> = mutableMapOf()
-        m[1] = Pair(R.layout.list_item_title, TitleVH::class.java)
-        m[2] = Pair(R.layout.list_item_content, ContentVH::class.java)
-        setViewTypeMappers(m)
+        // 配置ViewType映射关系
+        addViewTypeMapper(1, R.layout.list_item_title, TitleVH::class.java)
+        addViewTypeMapper(2, R.layout.list_item_content, ContentVH::class.java)
     }
 
     class TitleVH(view: View) : BaseViewHolder<TitleVO>(view) {

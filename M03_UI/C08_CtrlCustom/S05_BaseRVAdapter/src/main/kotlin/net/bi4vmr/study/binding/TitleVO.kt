@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.binding
 
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
 

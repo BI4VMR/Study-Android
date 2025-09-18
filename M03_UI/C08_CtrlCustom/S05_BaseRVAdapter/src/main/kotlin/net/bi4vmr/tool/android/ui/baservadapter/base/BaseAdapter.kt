@@ -22,16 +22,18 @@ import java.util.concurrent.CopyOnWriteArrayList
  *
  * 参考 [AsyncListDiffer] 实现了异步更新功能，并且也支持同步更新指定的表项。
  *
+ * 泛型 [I] 表示与ViewHolder绑定的表项数据类型，必须是 [ListItem] 的子类。
+ *
  * @since 1.0.0
  * @author bi4vmr@outlook.com
  */
-abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
+abstract class BaseAdapter<I : ListItem>
 @JvmOverloads constructor(
 
     /**
      * 内部数据源。
      */
-    private val mDataSource: MutableList<T> = CopyOnWriteArrayList(),
+    private val mDataSource: MutableList<I> = CopyOnWriteArrayList(),
 
     /**
      * 后台任务的协程环境。
@@ -48,12 +50,19 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
      * 此参数仅供单元测试场景使用，其他场景下调用者无需自行传入协程环境。
      */
     private val uiScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
-) : RecyclerView.Adapter<VH>() {
+) : RecyclerView.Adapter<BaseViewHolder<I>>() {
 
     /**
      * 日志Tag。
      */
     protected open val tag: String = javaClass.simpleName
+
+    /**
+     * 调试模式开关。
+     *
+     * 用于控制是否输出详细日志。
+     */
+    private var debugMode: Boolean = false
 
     /**
      * ViewType映射表。
@@ -62,25 +71,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
      *
      * 如果调用者不希望使用本工具内置的映射方案，也可以自行重写 [onCreateViewHolder] 方法。
      */
-    private val viewTypeMapper: MutableMap<Int, Pair<Int, Class<*>>> = ConcurrentHashMap()
-
-    fun setViewTypeMappers(mappers: Map<Int, Pair<Int, Class<*>>>) {
-        synchronized(viewTypeMapper) {
-            viewTypeMapper.clear()
-            viewTypeMapper.putAll(mappers)
-        }
-    }
-
-    fun clearViewTypeMappers() {
-        viewTypeMapper.clear()
-    }
-
-    fun addViewTypeMapper(viewType: Int, @LayoutRes layoutID: Int, viewHolderClass: Class<*>) {
-        synchronized(viewTypeMapper) {
-            viewTypeMapper.clear()
-            viewTypeMapper[viewType] = layoutID to viewHolderClass
-        }
-    }
+    private val viewTypeMappers: MutableMap<Int, Pair<Int, Class<out BaseViewHolder<*>>>> = ConcurrentHashMap()
 
     /**
      * 当前Adapter所绑定的RecyclerView。
@@ -99,7 +90,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
     /**
      * DiffUtil比较回调。
      */
-    private var mDiffCallback: BaseDiffer<T> = DefaultDiffer()
+    private var mDiffCallback: BaseDiffer<I> = DefaultDiffer()
 
     @CallSuper
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
@@ -111,38 +102,48 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
         mRecyclerView = null
     }
 
+    /**
+     * 默认的ViewHolder创建实现。
+     *
+     * @param[parent] 父容器。
+     * @param[viewType] 表项类型代码。
+     * @return ViewHolder实例。
+     */
     @Suppress("UNCHECKED_CAST")
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val value = viewTypeMapper[viewType]
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<I> {
+        val (layoutID, vhClass) = viewTypeMappers[viewType]
             ?: throw IllegalArgumentException("ViewType [$viewType] is unknown! Did you forget to register it?")
-
-        val (layoutID, vhClass) = value
-
+        // 通过布局文件创建View实例
         val itemView = LayoutInflater.from(parent.context).inflate(layoutID, parent, false)
-        Log.d(tag, "itemView: $itemView")
-
+        // 通过反射调用ViewHolder的构造方法创建实例
         val constructor = vhClass.getConstructor(View::class.java)
-        vhClass.declaredConstructors.forEach {
-            Log.d(tag, "constructor: $it")
-        }
-        return constructor.newInstance(itemView) as VH
+        return constructor.newInstance(itemView) as BaseViewHolder<I>
     }
 
-    override fun onBindViewHolder(holder: VH, position: Int) {
-        val item: T = mDataSource[position]
+    /**
+     * 默认的数据绑定实现。
+     *
+     * @param[holder] 待绑定的ViewHolder实例。
+     * @param[position] 表项索引序号。
+     */
+    override fun onBindViewHolder(holder: BaseViewHolder<I>, position: Int) {
+        val item: I = mDataSource[position]
         holder.bindData(item)
     }
 
     /**
      * 默认的数据绑定实现（局部刷新）。
      *
-     * 使用本工具内置的Payload机制刷新表项，如果子类希望使用自定义Payload机制，可以覆写该方法。
+     * 使用本工具内置的Payload机制刷新表项，详见 [BaseDiffer] 类的注释。
      *
-     * 本工具使用多个数值组合而成的标志位作为Payload。
+     * 如果子类希望使用自定义Payload机制，可以重写该方法。
      *
      * @param[holder] 待绑定的ViewHolder实例。
+     * @param[position] 表项索引序号。
+     * @param[payloads] Payloads。
+     * @see BaseDiffer
      */
-    override fun onBindViewHolder(holder: VH, position: Int, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(holder: BaseViewHolder<I>, position: Int, payloads: MutableList<Any>) {
         if (payloads.isEmpty()) {
             onBindViewHolder(holder, position)
         } else {
@@ -153,7 +154,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
                 return
             }
 
-            val item: T = mDataSource[position]
+            val item: I = mDataSource[position]
             holder.bindData(item, payload)
         }
     }
@@ -163,22 +164,63 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
     }
 
     override fun getItemViewType(position: Int): Int {
-        val item: T = mDataSource[position]
+        val item: I = mDataSource[position]
         return item.getViewType()
     }
 
-    fun getDataSource(): List<T> = mDataSource
+    /**
+     * 设置是否启用调试模式。
+     *
+     * @param[enabled] `true`表示启用调试模式，`false`表示关闭调试模式。
+     */
+    fun setDebugMode(enabled: Boolean) {
+        debugMode = enabled
+    }
 
     /**
-     * 获取数据源的一份副本。
+     * 注册ViewType、布局和ViewHolder的映射关系。
      *
-     * 因为数据源的更改会影响表项，有些操作不能直接在数据源上进行，可以在其副本上进行操作。
-     *
-     * @return 内含ItemVO的列表，是当前数据源的副本。
+     * @param[viewType] ViewType。
+     * @param[layoutID] 布局XML的ID。
+     * @param[viewHolderClass] ViewHolder的Class。
      */
-    // fun getCopyOfDataSource(): List<T> {
-    //     // return mDataSource.map { it. }
-    // }
+    fun addViewTypeMapper(viewType: Int, @LayoutRes layoutID: Int, viewHolderClass: Class<out BaseViewHolder<*>>) {
+        viewTypeMappers[viewType] = layoutID to viewHolderClass
+    }
+
+    /**
+     * 注销ViewType、布局和ViewHolder的映射关系。
+     *
+     * @param[viewType] ViewType。
+     */
+    fun removeViewTypeMapper(viewType: Int) {
+        viewTypeMappers.remove(viewType)
+    }
+
+    /**
+     * 获取所有ViewType、布局和ViewHolder的映射关系。
+     *
+     * @return 映射关系集合。
+     */
+    fun getViewTypeMappers(): Map<Int, Pair<Int, Class<out BaseViewHolder<*>>>> {
+        return viewTypeMappers.toMap()
+    }
+
+    fun getDataSource(): List<I> = mDataSource
+
+    /**
+     * 获取数据源的副本。
+     *
+     * 有时我们需要对数据源进行一些修改，例如过滤与统计等操作，但我们又不希望影响到列表显示，此时可以使用本方法获取列表。
+     *
+     * 该方法依赖列表项的 [ListItem.copy] 方法实现深拷贝，如果列表项并未正确实现此方法，修改数据源仍会影响列表显示。
+     *
+     * @return 当前数据源的副本。
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun getCopyOfDataSource(): List<I> {
+        return mDataSource.map { it.copy() as I }
+    }
 
     /**
      * 更新指定的表项。
@@ -188,7 +230,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
      * @param[position] 待更新的位置。
      * @param[data]     新的表项。
      */
-    fun updateItem(position: Int, data: T) {
+    fun updateItem(position: Int, data: I) {
         // 更新数据源
         mDataSource[position] = data
         // 通知RecyclerView新的表项被插入，刷新控件显示。
@@ -203,7 +245,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
      * @param[position] 待插入的位置。
      * @param[data]     新的表项。
      */
-    fun addItem(position: Int, data: T) {
+    fun addItem(position: Int, data: I) {
         // 更新数据源
         mDataSource.add(position, data)
         // 通知RecyclerView新的表项被插入，刷新控件显示。
@@ -248,7 +290,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
      * @param[newDatas] 新的数据源。
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun reloadItems(newDatas: List<T>) {
+    fun reloadItems(newDatas: List<I>) {
         mUpdateTaskSequence++
 
         mDataSource.clear()
@@ -262,17 +304,40 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
      * @param[newData] 新的列表。
      * @param[detectMoves] 表项移动检测功能开关，默认为开启。DiffUtil的算法检测表项是否被移动需要额外消耗性能，如果新旧表项排序规则一致，只是增删表
      * 项，可以关闭此功能以提升性能。
-     * @param[actionAfterUpdate] 更新完毕后需要执行的动作。
+     * @param[actionAfterUpdate] 更新成功后需要执行的动作。
      */
     @JvmOverloads
     fun submit(
-        newData: List<T>,
+        newData: List<I>,
         detectMoves: Boolean = true,
         actionAfterUpdate: (() -> Unit)? = null
     ) {
         val taskSequence = ++mUpdateTaskSequence
+        val oldData = mDataSource
 
-        if (newData == mDataSource) {
+        if (debugMode) {
+            Log.d(tag, "Submit. Async task Start. TaskID:[$taskSequence]")
+            if (newData.isEmpty()) {
+                Log.d(tag, "Submit. New data is empty.")
+            } else {
+                Log.v(tag, "Submit. New data size is [${newData.size}], detail info start:")
+                newData.forEachIndexed { i, item ->
+                    Log.v(tag, "[$i] -> $item")
+                }
+                Log.v(tag, "Submit. New data detail info end.")
+            }
+            if (oldData.isEmpty()) {
+                Log.d(tag, "Submit. Old data is empty.")
+            } else {
+                Log.v(tag, "Submit. Old data size is [${oldData.size}], detail info start:")
+                newData.forEachIndexed { i, item ->
+                    Log.v(tag, "[$i] -> $item")
+                }
+                Log.v(tag, "Submit. Old data detail info end.")
+            }
+        }
+
+        if (newData == oldData) {
             Log.i(tag, "Submit. New list is same as old, nothing to do.")
             mRecyclerView?.post {
                 actionAfterUpdate?.invoke()
@@ -280,12 +345,30 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
             return
         }
 
-        // 快速处理单个表项为空的情况，无需对比差异。
-        // todo
+        // 快速处理某个列表为空的情况，无需执行差异对比。
+        if (newData.isEmpty()) {
+            val oldSize = oldData.size
+            mDataSource.clear()
+            notifyItemRangeRemoved(0, oldSize)
+
+            mRecyclerView?.post {
+                actionAfterUpdate?.invoke()
+            }
+            return
+        }
+
+        if (oldData.isEmpty()) {
+            mDataSource.addAll(newData)
+            notifyItemRangeInserted(0, newData.size)
+
+            mRecyclerView?.post {
+                actionAfterUpdate?.invoke()
+            }
+            return
+        }
 
         // 开始计算差异
         bgScope.launch {
-            val oldData = mDataSource
             val diffCallback = mDiffCallback
             val diffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
 
@@ -305,7 +388,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
                     return diffCallback.areContentsTheSame(oldItem, newItem)
                 }
 
-                override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
+                override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any {
                     val oldItem = oldData[oldItemPosition]
                     val newItem = newData[newItemPosition]
                     return diffCallback.getChangePayload(oldItem, newItem)
@@ -317,6 +400,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
                     mDataSource.clear()
                     mDataSource.addAll(newData)
                     diffResult.dispatchUpdatesTo(this@BaseAdapter)
+
                     // 更新完毕后执行其他任务
                     mRecyclerView?.post {
                         actionAfterUpdate?.invoke()
@@ -326,7 +410,7 @@ abstract class BaseAdapter<T : ListItem, VH : BaseViewHolder<T>>
         }
     }
 
-    fun setDiffCallback(callback: BaseDiffer<T>) {
+    fun setDiffCallback(callback: BaseDiffer<I>) {
         mDiffCallback = callback
     }
 

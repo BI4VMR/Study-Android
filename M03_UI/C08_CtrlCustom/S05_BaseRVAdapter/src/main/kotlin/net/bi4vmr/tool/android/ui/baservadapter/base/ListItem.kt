@@ -20,4 +20,17 @@ interface ListItem {
     fun getViewType(): Int {
         return 0
     }
+
+    /**
+     * 复制当前实例。
+     *
+     * 子类应当在此处复制属性并返回新实例，实现深拷贝。
+     *
+     * 该方法默认返回当前实例，此时适配器中的部分方法不受支持。
+     *
+     * @return 新的实例。
+     */
+    fun copy(): ListItem {
+        return this
+    }
 }
