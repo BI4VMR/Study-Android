@@ -2,6 +2,7 @@ package net.bi4vmr.tool.android.ui.fluidboderlayout
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.core.graphics.toColorInt
 
 /**
  * 预设边框渐变效果。
@@ -152,6 +153,27 @@ enum class BorderSchema(
             0.6666667F,
             0.8333333F,
             1.0F
+        )
+    ),
+
+    CUSTOME(
+        intArrayOf(
+            "#858585".toColorInt(),
+            "#9F9F9F".toColorInt(),
+            "#A6A6A6".toColorInt(),
+            "#9E9E9E".toColorInt(),
+            "#878787".toColorInt(),
+            "#3D3D3D".toColorInt(),
+            "#262626".toColorInt()
+        ),
+        floatArrayOf(
+            0.0F,
+            0.14F,
+            0.23F,
+            0.34F,
+            0.46F,
+            0.73F,
+            0.87F,
         )
     );
 

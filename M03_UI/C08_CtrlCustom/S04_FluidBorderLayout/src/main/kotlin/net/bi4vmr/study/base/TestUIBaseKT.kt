@@ -55,7 +55,7 @@ class TestUIBaseKT : AppCompatActivity() {
                     rbtnType2.id -> fluidBorderLayout.usePresetSchema(BorderSchema.parseByOrder(1))
                     rbtnType3.id -> fluidBorderLayout.usePresetSchema(BorderSchema.parseByOrder(2))
                     rbtnType4.id -> fluidBorderLayout.usePresetSchema(BorderSchema.parseByOrder(3))
-                    // rbtnCustom.id -> fluidBorderLayout.usePresetSchema(BorderSchema.parseByOrder(4))
+                    rbtnCustom.id -> fluidBorderLayout.usePresetSchema(BorderSchema.parseByOrder(4))
                 }
             }
         }

@@ -21,6 +21,7 @@ import androidx.annotation.Px
 import androidx.core.view.children
 import androidx.core.view.isGone
 import net.bi4vmr.study.R
+import kotlin.math.roundToInt
 
 /**
  * 流动边框布局。
@@ -246,10 +247,10 @@ class FluidBorderLayout @JvmOverloads constructor(
             val heightSize = MeasureSpec.getSize(heightMeasureSpec)
 
             // 计算边框内的可用区域
-            val availableWidth = (widthSize - 2 * mBorderWidth).toInt()
-            val availableHeight = (heightSize - 2 * mBorderWidth).toInt()
+            val availableWidth = (widthSize - 2 * mBorderWidth.roundToInt())
+            val availableHeight = (heightSize - 2 * mBorderWidth.roundToInt())
 
-            // 遍历子 View，调整测量规格
+            // 遍历子View，调整测量规格。
             for (child in children) {
                 if (child.isGone) continue
 
@@ -265,7 +266,7 @@ class FluidBorderLayout @JvmOverloads constructor(
                 child.measure(childWidthSpec, childHeightSpec)
             }
 
-            // 设置自身的测量尺寸
+            // 设置自身的尺寸
             setMeasuredDimension(widthSize, heightSize)
         } else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -297,14 +298,19 @@ class FluidBorderLayout @JvmOverloads constructor(
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         Log.d(TAG, "OnLayout. ChildInsideBorder:[$mChildInsideBorder] Changed:[$changed]")
-        Log.d(TAG, "OnLayout. L:[$left] R:[$right] T:[$top] B:[$bottom] W:[${right - left}] H:[${bottom - top}]")
+        Log.d(TAG, "OnLayout. L:[$left] T:[$top] R:[$right] B:[$bottom] W:[${right - left}] H:[${bottom - top}]")
         // 如果要求子View从边框内侧开始绘制，则调整子View的布局区域。
         if (mChildInsideBorder) {
             val leftInner: Float = 0 + mBorderWidth
             val topInner: Float = 0 + mBorderWidth
             val rightInner: Float = (right - left) - mBorderWidth
             val bottomInner: Float = (bottom - top) - mBorderWidth
-            layoutChildInsideBorder(leftInner.toInt(), topInner.toInt(), rightInner.toInt(), bottomInner.toInt())
+            layoutChildInsideBorder(
+                leftInner.roundToInt(),
+                topInner.roundToInt(),
+                rightInner.toInt(),
+                bottomInner.toInt()
+            )
         } else {
             super.onLayout(changed, left, top, right, bottom)
         }
@@ -324,6 +330,8 @@ class FluidBorderLayout @JvmOverloads constructor(
      */
     @SuppressLint("RtlHardcoded")
     private fun layoutChildInsideBorder(parentLeft: Int, parentTop: Int, parentRight: Int, parentBottom: Int) {
+        // Log.d(TAG, "LayoutInsideBorder. L:[$parentLeft] T:[$parentTop] R:[$parentRight] B:[$parentBottom]")
+        // Log.d(TAG, "LayoutInsideBorder. W:[${parentRight - parentLeft}] H:[${parentBottom - parentTop}]")
         children.forEach { child ->
             // 跳过不需要布局的View
             if (child.isGone) {
