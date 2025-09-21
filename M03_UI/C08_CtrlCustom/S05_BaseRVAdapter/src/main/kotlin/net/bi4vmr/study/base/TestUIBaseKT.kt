@@ -2,10 +2,12 @@ package net.bi4vmr.study.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import net.bi4vmr.study.R
 import net.bi4vmr.study.databinding.TestuiBaseBinding
+import net.bi4vmr.tool.android.ui.baservadapter.base.BaseAdapter
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
 
 /**
@@ -43,6 +45,24 @@ class TestUIBaseKT : AppCompatActivity() {
                     add(ContentVO("表项E", "表项E", R.drawable.ic_funny_256))
                 }
             val adapter = TestMultiTypeAdapter(dataSource)
+            adapter.setUIEventListener(object : BaseAdapter.UIEventListener {
+                override fun onItemClick(position: Int, item: ListItem) {
+                    Toast.makeText(
+                        this@TestUIBaseKT,
+                        "点击了第${position}个表项，内容：${item}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onItemLongClick(position: Int, item: ListItem): Boolean {
+                    Toast.makeText(
+                        this@TestUIBaseKT,
+                        "长按了第${position}个表项，内容：${item}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return super.onItemLongClick(position, item)
+                }
+            })
 
             recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIBaseKT))
             recyclerview.setAdapter(adapter)

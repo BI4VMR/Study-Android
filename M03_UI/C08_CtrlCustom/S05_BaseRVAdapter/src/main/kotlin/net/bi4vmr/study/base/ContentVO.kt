@@ -15,6 +15,14 @@ class ContentVO(
 ) : ListItem {
 
     override fun getViewType(): Int {
-        return ViewType.CONTENT.code
+        return ViewType.CONTENT.typeCode
+    }
+
+    override fun copy(): ListItem {
+        return ContentVO(
+            title,
+            info,
+            iconRes
+        )
     }
 }

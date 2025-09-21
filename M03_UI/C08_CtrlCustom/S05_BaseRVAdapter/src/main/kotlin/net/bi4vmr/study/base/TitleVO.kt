@@ -8,11 +8,15 @@ import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TitleVO(
+data class TitleVO(
     val title: String
 ) : ListItem {
 
     override fun getViewType(): Int {
-        return ViewType.TITLE.code
+        return ViewType.TITLE.typeCode
+    }
+
+    override fun copy(): ListItem {
+        return TitleVO(title)
     }
 }

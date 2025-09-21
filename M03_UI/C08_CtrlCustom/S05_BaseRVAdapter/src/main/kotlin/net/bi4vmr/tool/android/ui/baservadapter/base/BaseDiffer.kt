@@ -15,16 +15,45 @@ abstract class BaseDiffer<T : ListItem> {
 
     companion object {
 
+        /**
+         * 内置标志位：设置表项点击事件监听器。
+         */
+        const val FLAG_PRIVATE_CLICK_LISTENER_SET: Int = 0x1 shl 30
+
+        /**
+         * 内置标志位：撤销表项点击事件监听器。
+         */
+        const val FLAG_PRIVATE_CLICK_LISTENER_UNSET: Int = 0x1 shl 30
+
+        /**
+         * 预设标志位：名称。
+         */
         const val FLAG_NAME: Int = 0x1
+
+        /**
+         * 预设标志位：标题。
+         */
         const val FLAG_TITLE: Int = FLAG_NAME shl 1
+
+        /**
+         * 预设标志位：内容。
+         */
         const val FLAG_CONTENT: Int = FLAG_NAME shl 2
+
+        /**
+         * 预设标志位：描述。
+         */
         const val FLAG_DESCRIPTION: Int = FLAG_NAME shl 3
+
+        /**
+         * 预设标志位：图标。
+         */
         const val FLAG_ICON: Int = FLAG_NAME shl 4
 
         /**
          * 自定义标志位的起始值。
          *
-         * 自定义标志位从该数值左移1位开始，依次递增。
+         * 自定义标志位从最大的预设标志位数值左移 `1` 位开始，依次递增。
          */
         const val FLAG_CUSTOM: Int = FLAG_ICON
 
