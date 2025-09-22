@@ -52,7 +52,6 @@ abstract class SimpleBindingAdapter<I : ListItem>
     uiScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
 ) : BaseAdapter<I>(dataSource, bgScope, uiScope) {
 
-    @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<*, I> {
         if (debugMode) {
             Log.v(tag, "OnCreateViewHolder. ViewType:[$viewType]")

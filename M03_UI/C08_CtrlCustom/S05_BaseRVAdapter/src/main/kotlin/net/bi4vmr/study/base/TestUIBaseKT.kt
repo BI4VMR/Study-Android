@@ -45,27 +45,53 @@ class TestUIBaseKT : AppCompatActivity() {
                     add(ContentVO("表项E", "表项E", R.drawable.ic_funny_256))
                 }
             val adapter = TestMultiTypeAdapter(dataSource)
-            adapter.setUIEventListener(object : BaseAdapter.UIEventListener {
-                override fun onItemClick(position: Int, item: ListItem) {
-                    Toast.makeText(
-                        this@TestUIBaseKT,
-                        "点击了第${position}个表项，内容：${item}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                override fun onItemLongClick(position: Int, item: ListItem): Boolean {
-                    Toast.makeText(
-                        this@TestUIBaseKT,
-                        "长按了第${position}个表项，内容：${item}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    return super.onItemLongClick(position, item)
-                }
-            })
+            adapter.debugMode = true
+            // adapter.setUIEventListener(object : BaseAdapter.UIEventListener {
+            //     override fun onItemClick(position: Int, item: ListItem) {
+            //         Toast.makeText(
+            //             this@TestUIBaseKT,
+            //             "点击了第${position}个表项，内容：${item}",
+            //             Toast.LENGTH_SHORT
+            //         ).show()
+            //     }
+            //
+            //     override fun onItemLongClick(position: Int, item: ListItem): Boolean {
+            //         Toast.makeText(
+            //             this@TestUIBaseKT,
+            //             "长按了第${position}个表项，内容：${item}",
+            //             Toast.LENGTH_SHORT
+            //         ).show()
+            //         return super.onItemLongClick(position, item)
+            //     }
+            // })
 
             recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIBaseKT))
             recyclerview.setAdapter(adapter)
+
+            btn.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    adapter.setUIEventListener(object : BaseAdapter.UIEventListener {
+                        override fun onItemClick(position: Int, item: ListItem) {
+                            Toast.makeText(
+                                this@TestUIBaseKT,
+                                "点击了第${position}个表项，内容：${item}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        override fun onItemLongClick(position: Int, item: ListItem): Boolean {
+                            Toast.makeText(
+                                this@TestUIBaseKT,
+                                "长按了第${position}个表项，内容：${item}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            return super.onItemLongClick(position, item)
+                        }
+                    })
+                } else {
+                    adapter.setUIEventListener(null)
+                }
+            }
         }
     }
 }

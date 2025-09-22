@@ -154,10 +154,12 @@ abstract class BaseAdapter<I : ListItem>
         // 注册表项点击监听器
         if (mUIEventListener != null) {
             holder.itemView.setOnClickListener {
-                mUIEventListener?.onItemClick(holder.adapterPosition, item)
+                // 主线程限定，不需要考虑同步问题。
+                requireNotNull(mUIEventListener).onItemClick(holder.adapterPosition, item)
             }
             holder.itemView.setOnLongClickListener {
-                mUIEventListener?.onItemLongClick(holder.adapterPosition, item) ?: true
+                // 主线程限定，不需要考虑同步问题。
+                requireNotNull(mUIEventListener).onItemLongClick(holder.adapterPosition, item)
             }
         }
         // 执行数据绑定逻辑
@@ -196,14 +198,43 @@ abstract class BaseAdapter<I : ListItem>
             }
 
             val item: I = mDataSource[position]
+
+            // 如果是内置Flag，则执行相应的逻辑。
+            if (BaseViewHolder.hasFlag(payload, BaseDiffer.FLAG_PRIVATE_CLICK_LISTENER_SET)) {
+                holder.itemView.setOnClickListener {
+                    mUIEventListener?.onItemClick(holder.adapterPosition, item)
+                }
+                holder.itemView.setOnLongClickListener {
+                    mUIEventListener?.onItemLongClick(holder.adapterPosition, item) ?: true
+                }
+                return
+            }
+            if (BaseViewHolder.hasFlag(payload, BaseDiffer.FLAG_PRIVATE_CLICK_LISTENER_UNSET)) {
+                holder.itemView.setOnClickListener(null)
+                holder.itemView.setOnLongClickListener(null)
+                return
+            }
+
+            // 非内置Flag，则执行自定义逻辑。
             holder.bindData(item, payload)
         }
     }
 
+    /**
+     * 获取表项数量。
+     *
+     * @return 表项数量。
+     */
     override fun getItemCount(): Int {
         return mDataSource.size
     }
 
+    /**
+     * 获取表项类型。
+     *
+     * @param[position] 表项索引。
+     * @return 表项类型代码。
+     */
     override fun getItemViewType(position: Int): Int {
         val item: I = mDataSource[position]
         return item.getViewType()
@@ -542,16 +573,24 @@ abstract class BaseAdapter<I : ListItem>
         }
     }
 
-    protected fun notifyItemClick(position: Int, item: ListItem) {
+    private fun notifyItemClick(position: Int, item: ListItem) {
         mUIEventListener?.onItemClick(position, item)
     }
 
+    /**
+     * 设置表项事件监听器。
+     *
+     * @param[listener] 监听器实现。
+     */
     fun setUIEventListener(listener: UIEventListener?) {
-        mUIEventListener = listener
-
-        // 参数为空，表示撤销监听器。
         if (listener == null) {
-            notifyItemRangeChanged(0, itemCount, 0xFFFF)
+            /* 参数为空，表示撤销监听器。 */
+            notifyItemRangeChanged(0, itemCount, BaseDiffer.FLAG_PRIVATE_CLICK_LISTENER_UNSET)
+        } else if (mUIEventListener == null) {
+            /* 如果当前监听器为空，则需要设置监听器。 */
+            notifyItemRangeChanged(0, itemCount, BaseDiffer.FLAG_PRIVATE_CLICK_LISTENER_SET)
         }
+
+        mUIEventListener = listener
     }
 }
