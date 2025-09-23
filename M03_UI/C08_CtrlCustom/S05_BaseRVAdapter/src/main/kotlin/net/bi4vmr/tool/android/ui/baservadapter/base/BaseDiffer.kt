@@ -23,44 +23,49 @@ abstract class BaseDiffer<T : ListItem> {
         /**
          * 内置标志位：设置表项点击事件监听器。
          */
-        const val FLAG_PRIVATE_CLICK_LISTENER_SET: Int = FLAG_START shl 1
+        const val FLAG_PRIVATE_CLICK_LISTENER_SET: Int = FLAG_START
 
         /**
          * 内置标志位：撤销表项点击事件监听器。
          */
-        const val FLAG_PRIVATE_CLICK_LISTENER_UNSET: Int = FLAG_START shl 2
+        const val FLAG_PRIVATE_CLICK_LISTENER_UNSET: Int = FLAG_START shl 1
 
         /**
          * 预设标志位：名称。
          */
-        const val FLAG_NAME: Int = FLAG_START shl 3
+        const val FLAG_NAME: Int = FLAG_START shl 2
 
         /**
          * 预设标志位：标题。
          */
-        const val FLAG_TITLE: Int = FLAG_START shl 4
+        const val FLAG_TITLE: Int = FLAG_START shl 3
 
         /**
          * 预设标志位：内容。
          */
-        const val FLAG_CONTENT: Int = FLAG_START shl 5
+        const val FLAG_CONTENT: Int = FLAG_START shl 4
 
         /**
          * 预设标志位：描述。
          */
-        const val FLAG_DESCRIPTION: Int = FLAG_START shl 6
+        const val FLAG_DESCRIPTION: Int = FLAG_START shl 5
 
         /**
          * 预设标志位：图标。
          */
-        const val FLAG_ICON: Int = FLAG_START shl 7
+        const val FLAG_ICON: Int = FLAG_START shl 6
+
+        /**
+         * 预设标志位：状态。
+         */
+        const val FLAG_STATE: Int = FLAG_START shl 7
 
         /**
          * 自定义标志位的起始值。
          *
          * 自定义标志位从最大的预设标志位数值左移 `1` 位开始，依次递增。
          */
-        const val FLAG_CUSTOM: Int = FLAG_ICON
+        const val FLAG_CUSTOM: Int = FLAG_STATE
 
         /**
          * 向Payload中添加标志位。

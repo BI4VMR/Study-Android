@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.differ
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,10 +14,10 @@ import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TestUIBaseKT : AppCompatActivity() {
+class TestUIDifferKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-${TestUIBaseKT::class.java.simpleName}"
+        private val TAG: String = "TestApp-${TestUIDifferKT::class.java.simpleName}"
     }
 
     private val binding: TestuiBaseBinding by lazy {
@@ -37,7 +37,7 @@ class TestUIBaseKT : AppCompatActivity() {
             // 创建Adapter
             val adapter = TestMultiTypeAdapter(dataSource)
             // 配置RecyclerView
-            recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIBaseKT))
+            recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIDifferKT))
             recyclerview.setAdapter(adapter)
         }
     }

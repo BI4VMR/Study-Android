@@ -1,10 +1,11 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.differ
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import net.bi4vmr.study.R
 import net.bi4vmr.tool.android.ui.baservadapter.base.BaseAdapter
+import net.bi4vmr.tool.android.ui.baservadapter.base.BaseDiffer
 import net.bi4vmr.tool.android.ui.baservadapter.base.BaseViewHolder
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
 
@@ -30,6 +31,9 @@ class TestMultiTypeAdapter
         // 配置ViewType映射关系
         addViewTypeMapper(ViewType.TITLE.typeCode, R.layout.list_item_title, TitleVH::class.java)
         addViewTypeMapper(ViewType.CONTENT.typeCode, R.layout.list_item_content, ContentVH::class.java)
+
+        // 配置自定义Diff比较规则
+        setDiffCallback(MyDiffer())
     }
 
     /**
@@ -42,6 +46,14 @@ class TestMultiTypeAdapter
         // 全量数据绑定
         override fun bindData(item: TitleVO) {
             tvTitle.text = item.title
+        }
+
+        // 局部数据绑定
+        override fun bindData(item: TitleVO, payload: Int) {
+            // 根据各标志位是否置位确定需要更新的控件
+            if (hasFlag(payload, BaseDiffer.FLAG_TITLE)) {
+                tvTitle.text = item.title
+            }
         }
     }
 
@@ -59,6 +71,20 @@ class TestMultiTypeAdapter
             tvTitle.text = item.title
             tvInfo.text = item.info
             ivIcon.setImageResource(item.iconRes)
+        }
+
+        // 局部数据绑定
+        override fun bindData(item: ContentVO, payload: Int) {
+            // 根据各标志位是否置位确定需要更新的控件
+            if (hasFlag(payload, BaseDiffer.FLAG_TITLE)) {
+                tvTitle.text = item.title
+            }
+            if (hasFlag(payload, MyDiffer.FLAG_INFO)) {
+                tvInfo.text = item.info
+            }
+            if (hasFlag(payload, BaseDiffer.FLAG_ICON)) {
+                ivIcon.setImageResource(item.iconRes)
+            }
         }
     }
 }

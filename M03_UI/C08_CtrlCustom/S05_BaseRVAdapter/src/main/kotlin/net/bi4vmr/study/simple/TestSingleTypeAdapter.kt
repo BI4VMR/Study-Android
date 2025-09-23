@@ -1,9 +1,10 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.simple
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import net.bi4vmr.study.R
+import net.bi4vmr.study.base.ContentVO
 import net.bi4vmr.tool.android.ui.baservadapter.base.BaseViewHolder
 import net.bi4vmr.tool.android.ui.baservadapter.base.SimpleAdapter
 

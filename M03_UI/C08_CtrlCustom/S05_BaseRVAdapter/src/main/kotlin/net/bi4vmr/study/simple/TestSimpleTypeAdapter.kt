@@ -1,5 +1,6 @@
-package net.bi4vmr.study.binding
+package net.bi4vmr.study.simple
 
+import net.bi4vmr.study.binding.ContentVO
 import net.bi4vmr.study.databinding.ListItemContentBinding
 import net.bi4vmr.tool.android.ui.baservadapter.binding.BindingViewHolder
 import net.bi4vmr.tool.android.ui.baservadapter.binding.SimpleBindingAdapter
