@@ -1,6 +1,7 @@
-package net.bi4vmr.study.differ
+package net.bi4vmr.study.diffutil
 
 import android.annotation.SuppressLint
+import android.util.Log
 import net.bi4vmr.tool.android.ui.baservadapter.base.BaseDiffer
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
 
@@ -29,6 +30,8 @@ class MyDiffer : BaseDiffer<ListItem>() {
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
+        Log.d("MyDiffer", "OldItem: $oldItem")
+        Log.d("MyDiffer", "NewItem: $newItem")
         return oldItem == newItem
     }
 

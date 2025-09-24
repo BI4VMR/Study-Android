@@ -1,14 +1,12 @@
 package net.bi4vmr.study.binding
 
 /**
- * TODO 添加简述。
- *
- * TODO 添加详情。
+ * 表项类型枚举。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-enum class ViewType(val code: Int) {
+enum class ViewType(val typeCode: Int) {
     TITLE(1),
     CONTENT(2);
 }

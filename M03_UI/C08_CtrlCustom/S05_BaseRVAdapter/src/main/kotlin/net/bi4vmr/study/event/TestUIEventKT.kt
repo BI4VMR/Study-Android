@@ -54,8 +54,18 @@ class TestUIEventKT : AppCompatActivity() {
         }
     }
 
+    /**
+     * 点击监听器实现类
+     */
     private inner class ItemClickListener : BaseAdapter.ItemClickListener {
 
+        /**
+         * 回调方法：表项点击事件。
+         *
+         * @param[position] 表项位置索引。
+         * @param[item] 表项数据。
+         * @param[view] 表项视图。
+         */
         override fun onItemClick(position: Int, item: ListItem, view: View) {
             Toast.makeText(
                 this@TestUIEventKT,
@@ -64,6 +74,13 @@ class TestUIEventKT : AppCompatActivity() {
             ).show()
         }
 
+        /**
+         * 回调方法：表项长按事件。
+         *
+         * @param[position] 表项位置索引。
+         * @param[item] 表项数据。
+         * @param[view] 表项视图。
+         */
         override fun onItemLongClick(position: Int, item: ListItem, view: View): Boolean {
             Toast.makeText(
                 this@TestUIEventKT,

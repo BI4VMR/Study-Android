@@ -7,7 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
+import net.bi4vmr.study.binding.TestUIBindingKT;
+import net.bi4vmr.study.binding_simple.TestUISimpleBindingKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.diffutil.TestUIDiffUtilKT;
+import net.bi4vmr.study.simple.TestUISimpleKT;
 
 /**
  * 主页。
@@ -32,6 +36,30 @@ public class MainActivity extends AppCompatActivity {
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
+            startActivity(intent);
+        });
+
+        // 基本应用（单一表项类型）(KT)
+        binding.btnSimpleKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUISimpleKT.class);
+            startActivity(intent);
+        });
+
+        // DiffUtil(KT)
+        binding.btnDiffUtilKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIDiffUtilKT.class);
+            startActivity(intent);
+        });
+
+        // ViewBinding支持(KT)
+        binding.btnBindingKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIBindingKT.class);
+            startActivity(intent);
+        });
+
+        // ViewBinding支持（单一表项类型）(KT)
+        binding.btnSimpleBindingKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUISimpleBindingKT.class);
             startActivity(intent);
         });
     }

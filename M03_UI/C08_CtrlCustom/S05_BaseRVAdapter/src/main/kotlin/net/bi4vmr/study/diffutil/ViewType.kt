@@ -1,4 +1,4 @@
-package net.bi4vmr.study.differ
+package net.bi4vmr.study.diffutil
 
 /**
  * 表项类型枚举。

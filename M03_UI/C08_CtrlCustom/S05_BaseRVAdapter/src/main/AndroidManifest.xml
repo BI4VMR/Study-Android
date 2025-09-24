@@ -27,5 +27,20 @@
         <activity
             android:name=".base.TestUIBaseKT"
             android:exported="false" />
+
+        <!-- 示例界面：DiffUtil(KT) -->
+        <activity
+            android:name=".diffutil.TestUIDiffUtilKT"
+            android:exported="false" />
+
+        <!-- 示例界面：ViewBinding支持(KT) -->
+        <activity
+            android:name=".binding.TestUIBindingKT"
+            android:exported="false" />
+
+        <!-- 示例界面：ViewBinding支持（单一表项类型）(KT) -->
+        <activity
+            android:name=".binding_simple.TestUISimpleBindingKT"
+            android:exported="false" />
     </application>
 </manifest>

@@ -462,7 +462,7 @@ abstract class BaseAdapter<I : ListItem>
                 Log.d(tag, "Submit. Old data is empty.")
             } else {
                 Log.d(tag, "Submit. Old data size is [${oldData.size}], detail info start:")
-                newData.forEachIndexed { i, item ->
+                oldData.forEachIndexed { i, item ->
                     Log.d(tag, "[$i] -> $item")
                 }
                 Log.d(tag, "Submit. Old data detail info end.")

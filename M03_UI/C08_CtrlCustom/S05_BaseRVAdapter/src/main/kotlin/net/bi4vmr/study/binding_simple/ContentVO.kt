@@ -1,4 +1,4 @@
-package net.bi4vmr.study.binding
+package net.bi4vmr.study.binding_simple
 
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
 
@@ -13,10 +13,6 @@ data class ContentVO(
     var info: String,
     var iconRes: Int
 ) : ListItem {
-
-    override fun getViewType(): Int {
-        return ViewType.CONTENT.typeCode
-    }
 
     override fun copy(): ListItem {
         return ContentVO(

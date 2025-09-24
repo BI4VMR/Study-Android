@@ -1,4 +1,4 @@
-package net.bi4vmr.study.differ
+package net.bi4vmr.study.diffutil
 
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
 

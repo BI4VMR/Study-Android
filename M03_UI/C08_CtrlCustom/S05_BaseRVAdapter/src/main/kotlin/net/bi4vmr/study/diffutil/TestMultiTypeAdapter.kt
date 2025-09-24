@@ -1,4 +1,4 @@
-package net.bi4vmr.study.differ
+package net.bi4vmr.study.diffutil
 
 import android.view.View
 import android.widget.ImageView

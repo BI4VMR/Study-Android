@@ -22,8 +22,8 @@ class TestMultiTypeAdapter
 ) : BindingAdapter<ListItem>(dataSource) {
 
     init {
-        addBindingMapper(ViewType.TITLE.code, ListItemTitleBinding::class.java, TitleVH::class.java)
-        addBindingMapper(ViewType.CONTENT.code, ListItemContentBinding::class.java, ContentVH::class.java)
+        addBindingMapper(ViewType.TITLE.typeCode, ListItemTitleBinding::class.java, TitleVH::class.java)
+        addBindingMapper(ViewType.CONTENT.typeCode, ListItemContentBinding::class.java, ContentVH::class.java)
     }
 
     class TitleVH(binding: ListItemTitleBinding) : BindingViewHolder<ListItemTitleBinding, TitleVO>(binding) {

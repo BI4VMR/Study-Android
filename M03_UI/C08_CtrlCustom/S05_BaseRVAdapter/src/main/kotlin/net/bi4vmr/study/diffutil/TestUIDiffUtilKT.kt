@@ -1,27 +1,27 @@
-package net.bi4vmr.study.binding
+package net.bi4vmr.study.diffutil
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import net.bi4vmr.study.R
-import net.bi4vmr.study.databinding.TestuiBaseBinding
+import net.bi4vmr.study.databinding.TestuiDiffutilBinding
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
 
 /**
- * 测试界面：ViewBinding。
+ * 测试界面：DiffUtil。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TestUIBindingKT : AppCompatActivity() {
+class TestUIDiffUtilKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-${TestUIBindingKT::class.java.simpleName}"
+        private val TAG: String = "TestApp-${TestUIDiffUtilKT::class.java.simpleName}"
     }
 
-    private val binding: TestuiBaseBinding by lazy {
-        TestuiBaseBinding.inflate(LayoutInflater.from(applicationContext))
+    private val binding: TestuiDiffutilBinding by lazy {
+        TestuiDiffutilBinding.inflate(LayoutInflater.from(applicationContext))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +37,18 @@ class TestUIBindingKT : AppCompatActivity() {
             // 创建Adapter
             val adapter = TestMultiTypeAdapter(dataSource)
             // 配置RecyclerView
-            recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIBindingKT))
+            recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIDiffUtilKT))
             recyclerview.setAdapter(adapter)
+
+            btnModify.setOnClickListener {
+                val newData = initTestData()
+                // newData.removeAt(2)
+                newData[4] = ContentVO("表项C（已修改）", "表项C（已修改）", R.drawable.ic_funny_256)
+                adapter.submit(newData)
+            }
+            btnReload.setOnClickListener {
+                adapter.reloadItems(initTestData())
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package net.bi4vmr.study.differ
+package net.bi4vmr.study.diffutil
 
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
 
@@ -8,7 +8,7 @@ import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class ContentVO(
+data class ContentVO(
     var title: String,
     var info: String,
     var iconRes: Int
