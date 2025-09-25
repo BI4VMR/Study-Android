@@ -80,19 +80,21 @@ abstract class BaseDiffer<T : ListItem> {
     }
 
     /**
-     * 判断参数所指定的两个位置对应表项是否相同。
-     *
-     * 如果表项具有唯一ID或多种类型，可以加入判断逻辑。
+     * 判断参数所指定的两个位置对应表项类型是否相同。
      *
      * @param[oldItem] 旧数据源中的表项。
      * @param[newItem] 新数据源中的表项。
      * @return 值为 `false` 时，表示两个表项不同；值为 `true` 时表示两个表项是相同的，但内部数据可能有变化，随后会调用
      * `areContentsTheSame()` 方法判断表项中的数据是否需要更新。
      */
-    abstract fun areItemsTheSame(oldItem: T, newItem: T): Boolean
+    open fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
+        // 默认实现：比较ViewType，如果ViewType不同，则两个表项一定是不同的。
+        val viewTypeSame = oldItem.getViewType() == newItem.getViewType()
+        return viewTypeSame
+    }
 
     /**
-     * 判断参数所指定的两个位置对应表项的内容是否相同。
+     * 判断参数所指定的两个位置对应表项内容是否相同。
      *
      * 仅当 `areItemsTheSame()` 返回 `true` 时才会调用本方法。
      *

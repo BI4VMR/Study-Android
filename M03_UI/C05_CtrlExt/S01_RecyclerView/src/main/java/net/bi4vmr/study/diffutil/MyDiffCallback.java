@@ -44,9 +44,7 @@ public class MyDiffCallback extends DiffUtil.Callback {
     }
 
     /**
-     * 判断参数所指定的两个位置对应表项是否相同。
-     * <p>
-     * 如果表项具有唯一ID或多种类型，可以加入判断逻辑。
+     * 判断参数所指定的两个位置对应表项类型是否相同。
      *
      * @param oldItemPosition 旧数据源中的表项索引。
      * @param newItemPosition 新数据源中的表项索引。
@@ -61,7 +59,7 @@ public class MyDiffCallback extends DiffUtil.Callback {
     }
 
     /**
-     * 判断参数所指定的两个位置对应表项的内容是否相同。
+     * 判断参数所指定的两个位置对应表项内容是否相同。
      * <p>
      * 仅当 `areItemsTheSame()` 返回 `true` 时才会调用本方法。
      *

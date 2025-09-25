@@ -1,7 +1,6 @@
 package net.bi4vmr.study.diffutil
 
 import android.annotation.SuppressLint
-import android.util.Log
 import net.bi4vmr.tool.android.ui.baservadapter.base.BaseDiffer
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
 
@@ -19,19 +18,9 @@ class MyDiffer : BaseDiffer<ListItem>() {
         const val FLAG_INFO = FLAG_CUSTOM shl 1
     }
 
-    override fun areItemsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
-        // 首先比较ViewType，如果ViewType不同，则两个表项一定是不同的。
-        val viewTypeSame = oldItem.getViewType() == newItem.getViewType()
-        if (!viewTypeSame) return false
-
-        // 如果ViewType相同，则调用两个表项的 `equals()` 方法进行比较。
-        return oldItem == newItem
-    }
-
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
-        Log.d("MyDiffer", "OldItem: $oldItem")
-        Log.d("MyDiffer", "NewItem: $newItem")
+        // 比较内容是否相同
         return oldItem == newItem
     }
 
