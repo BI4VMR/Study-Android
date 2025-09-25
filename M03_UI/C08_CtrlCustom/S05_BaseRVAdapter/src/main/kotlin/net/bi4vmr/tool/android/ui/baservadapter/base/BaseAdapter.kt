@@ -444,8 +444,15 @@ abstract class BaseAdapter<I : ListItem>
         detectMoves: Boolean = true,
         actionAfterUpdate: (() -> Unit)? = null
     ) {
+
+        fun postActionAfterUpdate() {
+            mRecyclerView?.post {
+                actionAfterUpdate?.invoke()
+            }
+        }
+
         val taskSequence = ++mUpdateTaskSequence
-        val oldData = mDataSource
+        val oldData = mDataSource.toList()
 
         if (debugMode) {
             Log.d(tag, "Submit. Async task Start. TaskID:[$taskSequence]")
@@ -471,30 +478,26 @@ abstract class BaseAdapter<I : ListItem>
 
         if (newData == oldData) {
             Log.i(tag, "Submit. New list is same as old, nothing to do.")
-            mRecyclerView?.post {
-                actionAfterUpdate?.invoke()
-            }
+            postActionAfterUpdate()
             return
         }
 
         // 快速处理某个列表为空的情况，无需执行差异对比。
         if (newData.isEmpty()) {
-            val oldSize = oldData.size
-            mDataSource.clear()
-            notifyItemRangeRemoved(0, oldSize)
-
-            mRecyclerView?.post {
-                actionAfterUpdate?.invoke()
+            uiScope.launch {
+                val oldSize = oldData.size
+                mDataSource.clear()
+                notifyItemRangeRemoved(0, oldSize)
+                postActionAfterUpdate()
             }
             return
         }
 
         if (oldData.isEmpty()) {
-            mDataSource.addAll(newData)
-            notifyItemRangeInserted(0, newData.size)
-
-            mRecyclerView?.post {
-                actionAfterUpdate?.invoke()
+            uiScope.launch {
+                mDataSource.addAll(newData)
+                notifyItemRangeInserted(0, newData.size)
+                postActionAfterUpdate()
             }
             return
         }
