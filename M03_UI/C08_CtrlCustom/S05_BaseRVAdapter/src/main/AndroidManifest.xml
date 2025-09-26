@@ -28,6 +28,16 @@
             android:name=".base.TestUIBaseKT"
             android:exported="false" />
 
+        <!-- 示例界面：单一表项类型(KT) -->
+        <activity
+            android:name=".simple.TestUISimpleKT"
+            android:exported="false" />
+
+        <!-- 示例界面：点击事件(KT) -->
+        <activity
+            android:name=".event.TestUIEventKT"
+            android:exported="false" />
+
         <!-- 示例界面：DiffUtil(KT) -->
         <activity
             android:name=".diffutil.TestUIDiffUtilKT"

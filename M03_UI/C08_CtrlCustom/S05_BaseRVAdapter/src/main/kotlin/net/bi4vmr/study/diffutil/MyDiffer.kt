@@ -40,7 +40,7 @@ class MyDiffer : BaseDiffer<ListItem>() {
         // 如果标题不同，则通过标志位指明需要刷新标题。
         if (oldItem.title != newItem.title) {
             // 内置标志位含义与实际一致，可以直接使用。
-            payload = FLAG_TITLE
+            payload = addFlag(payload, FLAG_NAME)
         }
 
         return payload
@@ -52,15 +52,15 @@ class MyDiffer : BaseDiffer<ListItem>() {
         // 如果标题不同，则通过标志位指明需要刷新标题。
         if (oldItem.title != newItem.title) {
             // 内置标志位含义与实际一致，可以直接使用。
-            payload = FLAG_TITLE
+            payload = addFlag(payload, FLAG_TITLE)
         }
         if (oldItem.info != newItem.info) {
             // 内置标志位不能满足要求，使用自定义标志位。
-            payload = payload or FLAG_INFO
+            payload = addFlag(payload, FLAG_INFO)
         }
         if (oldItem.iconRes != newItem.iconRes) {
             // 内置标志位含义与实际一致，可以直接使用。
-            payload = payload or FLAG_ICON
+            payload = addFlag(payload, FLAG_ICON)
         }
 
         return payload

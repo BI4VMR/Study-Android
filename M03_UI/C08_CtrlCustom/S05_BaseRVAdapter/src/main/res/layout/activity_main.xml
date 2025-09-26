@@ -31,7 +31,7 @@
             android:id="@+id/btnSimple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="基本应用（单一表项类型）"
+            android:text="单一表项类型"
             android:textAllCaps="false" />
 
         <Button
@@ -80,7 +80,7 @@
             android:id="@+id/btnSimpleKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="基本应用（单一表项类型）"
+            android:text="单一表项类型"
             android:textAllCaps="false" />
 
         <Button
