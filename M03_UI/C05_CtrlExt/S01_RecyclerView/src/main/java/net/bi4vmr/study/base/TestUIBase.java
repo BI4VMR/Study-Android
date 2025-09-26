@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class TestUIBase extends AppCompatActivity {
 
+    private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();
+
     private TestuiBaseBinding binding;
 
     @Override

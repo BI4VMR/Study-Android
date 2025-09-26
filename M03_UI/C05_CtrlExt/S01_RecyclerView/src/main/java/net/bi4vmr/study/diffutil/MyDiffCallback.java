@@ -53,9 +53,8 @@ public class MyDiffCallback extends DiffUtil.Callback {
      */
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        ItemVO oldItem = oldList.get(oldItemPosition);
-        ItemVO newItem = newList.get(newItemPosition);
-        return oldItem.equals(newItem);
+        // 此处只有一种表项类型，视图都可复用，直接返回 `true` 即可。
+        return true;
     }
 
     /**
@@ -71,6 +70,7 @@ public class MyDiffCallback extends DiffUtil.Callback {
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
         ItemVO oldItem = oldList.get(oldItemPosition);
         ItemVO newItem = newList.get(newItemPosition);
+        // 比较二者的内容是否相同
         return oldItem.equals(newItem);
     }
 

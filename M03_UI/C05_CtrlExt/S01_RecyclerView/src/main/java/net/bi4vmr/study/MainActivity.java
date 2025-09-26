@@ -12,6 +12,7 @@ import net.bi4vmr.study.clickevent.TestUIClickEventKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.diffutil.TestUIDiffUtil;
 import net.bi4vmr.study.diffutil.TestUIDiffUtilKT;
+import net.bi4vmr.study.diffutilasync.TestUIDiffUtilAsync;
 import net.bi4vmr.study.updateitem.TestUIUpdateItem;
 import net.bi4vmr.study.updateitem.TestUIUpdateItemKT;
 import net.bi4vmr.study.updatelist.TestUIUpdateList;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         // DiffUtil - 异步计算
         binding.btnDiffUtilAsync.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIDiffUtilKT.class);
+            Intent intent = new Intent(this, TestUIDiffUtilAsync.class);
             startActivity(intent);
         });
 

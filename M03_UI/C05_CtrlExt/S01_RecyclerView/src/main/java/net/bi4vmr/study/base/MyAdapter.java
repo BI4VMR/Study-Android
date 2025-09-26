@@ -22,6 +22,8 @@ import java.util.List;
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
+    private static final String TAG = "TestApp-" + MyAdapter.class.getSimpleName();
+
     /**
      * 数据源。
      */
@@ -48,7 +50,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.i("TestApp", "OnCreateViewHolder. ViewType:[" + viewType + "]");
+        Log.i(TAG, "OnCreateViewHolder. ViewType:[" + viewType + "]");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         /*
@@ -73,7 +75,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
      */
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Log.i("TestApp", "OnBindViewHolder. Position:[" + position + "]");
+        Log.i(TAG, "OnBindViewHolder. Position:[" + position + "]");
         holder.bindData();
     }
 

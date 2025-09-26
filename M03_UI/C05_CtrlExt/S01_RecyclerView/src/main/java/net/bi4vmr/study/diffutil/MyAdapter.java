@@ -25,6 +25,8 @@ import java.util.List;
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
+    private static final String TAG = "TestApp-" + MyAdapter.class.getSimpleName();
+
     /**
      * 数据源。
      */
@@ -41,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
-        Log.i("TestApp", "OnAttachedToRecyclerView.");
+        Log.i(TAG, "OnAttachedToRecyclerView.");
         LinearLayoutManager layoutManager = new LinearLayoutManager(recyclerView.getContext());
         recyclerView.setLayoutManager(layoutManager);
     }
@@ -49,7 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.i("TestApp", "OnCreateViewHolder. ViewType:[" + viewType + "]");
+        Log.i(TAG, "OnCreateViewHolder. ViewType:[" + viewType + "]");
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_type1, parent, false);
         return new MyViewHolder(view);
@@ -57,14 +59,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Log.i("TestApp", "OnBindViewHolder. Position:[" + position + "]");
+        Log.i(TAG, "OnBindViewHolder. Position:[" + position + "]");
         ItemVO vo = dataSource.get(position);
         holder.bindData(vo);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull List<Object> payloads) {
-        Log.i("TestApp", "OnBindViewHolder. Position:[" + position + "] PayloadsNum:[" + payloads.size() + "]");
+        Log.i(TAG, "OnBindViewHolder. Position:[" + position + "] PayloadsNum:[" + payloads.size() + "]");
         // 如果Payload列表内容为空，则执行普通的 `onBindViewHolder()` 方法。
         if (payloads.isEmpty()) {
             onBindViewHolder(holder, position);
@@ -75,12 +77,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Object data = payloads.get(payloads.size() - 1);
         // 如果Payload不能被解析为Flags，则忽略。
         if (!(data instanceof Integer)) {
-            Log.d("TestApp", "Payload type is unknown.");
+            Log.i(TAG, "Payload type is unknown.");
             return;
         }
 
         int flags = (Integer) data;
-        Log.d("TestApp", "Payload flags:[" + flags + "]");
+        Log.i(TAG, "Payload flags:[" + flags + "]");
         ItemVO vo = dataSource.get(holder.getAdapterPosition());
         if ((flags & UpdateFlagsKT.FLAG_TITLE) != 0) {
             holder.updateTitle(vo);
@@ -120,8 +122,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
      * @param newDatas 数据源。
      */
     public void updateData(List<ItemVO> newDatas) {
+        // 复制一份旧数据源以便 `getChangePayload()` 回调能够对比内容差异。
+        List<ItemVO> oldDatas = new ArrayList<>(dataSource);
         // 对比新旧列表的差异
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MyDiffCallback(dataSource, newDatas));
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MyDiffCallback(oldDatas, newDatas));
         // 更新数据源
         dataSource.clear();
         dataSource.addAll(newDatas);

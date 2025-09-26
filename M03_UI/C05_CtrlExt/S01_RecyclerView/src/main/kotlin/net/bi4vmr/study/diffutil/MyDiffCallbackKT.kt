@@ -42,7 +42,8 @@ class MyDiffCallbackKT(
      * `areContentsTheSame()` 方法判断表项中的数据是否需要更新。
      */
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition] == newList[newItemPosition]
+        // 此处只有一种表项类型，视图都可复用，直接返回 `true` 即可。
+        return true
     }
 
     /**
@@ -55,6 +56,7 @@ class MyDiffCallbackKT(
      * @return 值为 `true` 时表示两个表项内容相同，值为 `false` 表示两个表项内容不同。
      */
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        // 比较二者的内容是否相同
         return oldList[oldItemPosition] == newList[newItemPosition]
     }
 

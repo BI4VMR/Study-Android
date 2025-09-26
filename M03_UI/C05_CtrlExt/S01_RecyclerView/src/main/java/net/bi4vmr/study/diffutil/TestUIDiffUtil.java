@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class TestUIDiffUtil extends AppCompatActivity {
 
+    private static final String TAG = "TestApp-" + TestUIDiffUtil.class.getSimpleName();
+
     private TestuiDiffutilBinding binding;
 
     @Override

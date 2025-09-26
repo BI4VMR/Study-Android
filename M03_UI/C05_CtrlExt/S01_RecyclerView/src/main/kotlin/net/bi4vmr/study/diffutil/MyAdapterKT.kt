@@ -24,15 +24,19 @@ class MyAdapterKT(
     private val mDataSource: MutableList<ItemVOKT>
 ) : RecyclerView.Adapter<MyAdapterKT.MyViewHolder>() {
 
+    companion object {
+        private val TAG: String = "TestApp-${MyAdapterKT::class.simpleName}"
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        Log.d("TestApp", "OnCreateViewHolder. ViewType:[$viewType]")
+        Log.i(TAG, "OnCreateViewHolder. ViewType:[$viewType]")
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
         val itemView: View = inflater.inflate(R.layout.list_item_type1, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        Log.d("TestApp", "OnBindViewHolder. Position:[$position]")
+        Log.i(TAG, "OnBindViewHolder. Position:[$position]")
         val vo: ItemVOKT = mDataSource[position]
         holder.bindData(vo)
     }
@@ -48,7 +52,7 @@ class MyAdapterKT(
      * @param[payloads] Payload列表，其中的元素类型可以根据需要自行定义。
      */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, payloads: MutableList<Any>) {
-        Log.i("TestApp", "OnBindViewHolder. Position:[" + position + "] PayloadsNum:[" + payloads.size + "]")
+        Log.i(TAG, "OnBindViewHolder. Position:[" + position + "] PayloadsNum:[" + payloads.size + "]")
         // 如果Payload列表内容为空，则执行普通的 `onBindViewHolder()` 方法。
         if (payloads.isEmpty()) {
             onBindViewHolder(holder, position)
@@ -59,11 +63,11 @@ class MyAdapterKT(
         val flags: Any = payloads.last()
         // 如果Payload不能被解析为Flags，则忽略。
         if (flags !is Int) {
-            Log.d("TestApp", "Payload type is unknown.")
+            Log.i(TAG, "Payload type is unknown.")
             return
         }
 
-        Log.d("TestApp", "Payload flags:[$flags]")
+        Log.i(TAG, "Payload flags:[$flags]")
         val vo: ItemVOKT = mDataSource[holder.adapterPosition]
         if (flags and UpdateFlagsKT.FLAG_TITLE != 0) {
             holder.updateTitle(vo)
@@ -102,8 +106,10 @@ class MyAdapterKT(
      * @param[newDatas] 数据源。
      */
     fun updateData(newDatas: List<ItemVOKT>) {
+        // 复制一份旧数据源以便 `getChangePayload()` 回调能够对比内容差异。
+        val oldDatas: List<ItemVOKT> = mDataSource.toList()
         // 对比新旧列表的差异
-        val diffResult = DiffUtil.calculateDiff(MyDiffCallbackKT(mDataSource, newDatas))
+        val diffResult = DiffUtil.calculateDiff(MyDiffCallbackKT(oldDatas, newDatas))
         // 更新数据源
         mDataSource.clear()
         mDataSource.addAll(newDatas)
