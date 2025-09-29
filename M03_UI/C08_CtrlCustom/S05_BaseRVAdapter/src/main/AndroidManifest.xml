@@ -23,6 +23,11 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：表项点击事件 -->
+        <activity
+            android:name=".event.TestUIEvent"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
@@ -33,7 +38,7 @@
             android:name=".simple.TestUISimpleKT"
             android:exported="false" />
 
-        <!-- 示例界面：点击事件(KT) -->
+        <!-- 示例界面：表项点击事件(KT) -->
         <activity
             android:name=".event.TestUIEventKT"
             android:exported="false" />

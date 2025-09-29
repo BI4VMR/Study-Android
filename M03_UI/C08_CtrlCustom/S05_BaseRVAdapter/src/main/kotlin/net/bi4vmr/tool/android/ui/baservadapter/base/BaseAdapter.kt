@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
+import androidx.annotation.MainThread
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -53,6 +54,10 @@ abstract class BaseAdapter<I : ListItem>
     private val uiScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
 ) : RecyclerView.Adapter<BaseViewHolder<I>>() {
 
+    companion object {
+        private val DEFAULT_DEBOUNCE_DURATION = 500L
+    }
+
     /**
      * 日志Tag。
      */
@@ -80,9 +85,16 @@ abstract class BaseAdapter<I : ListItem>
     private var mRecyclerView: RecyclerView? = null
 
     /**
+     * 表项点击事件防抖时长。
+     *
+     * 默认值为500毫秒。
+     */
+    private var mDebounceDuration: Long = DEFAULT_DEBOUNCE_DURATION
+
+    /**
      * 表项点击事件监听器实现。
      */
-    private var mItemClickListener: ItemClickListener? = null
+    private var mItemClickListener: ItemClickListener<I>? = null
 
     /**
      * DiffUtil比较回调。
@@ -102,8 +114,10 @@ abstract class BaseAdapter<I : ListItem>
      * 数据更新互斥锁。
      *
      * 确保同时只能有一个协程访问数据源。
+     *
+     * 预留，暂不使用，目前更新数据均在主线程调度器执行，不会出现数据竞争问题。
      */
-    private val updateMutex: Mutex = Mutex()
+    private val updateMutex: Mutex? = null
 
     @CallSuper
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
@@ -140,9 +154,25 @@ abstract class BaseAdapter<I : ListItem>
             ?: throw IllegalArgumentException("ViewType [$viewType] is unknown! Did you forget to register it?")
         // 通过布局文件创建View实例
         val itemView = LayoutInflater.from(parent.context).inflate(layoutID, parent, false)
+
         // 通过反射调用ViewHolder的构造方法创建实例
-        val constructor = vhClass.getConstructor(View::class.java)
-        return constructor.newInstance(itemView) as BaseViewHolder<I>
+        var instance: BaseViewHolder<I>
+        try {
+            val constructor = vhClass.getConstructor(View::class.java)
+            if (!constructor.isAccessible) {
+                constructor.isAccessible = true
+            }
+            instance = constructor.newInstance(itemView) as BaseViewHolder<I>
+        } catch (e: NoSuchMethodException) {
+            // 以上方式仅适用于ViewHolder不是Adapter内部类的情况，如果ViewHolder在Adapter内部，构造方法第一参数会变为Adapter实例。
+            val constructor = vhClass.getConstructor(javaClass, View::class.java)
+            if (!constructor.isAccessible) {
+                constructor.isAccessible = true
+            }
+            instance = constructor.newInstance(this, itemView) as BaseViewHolder<I>
+        }
+
+        return instance
     }
 
     /**
@@ -160,7 +190,7 @@ abstract class BaseAdapter<I : ListItem>
 
         // 注册表项点击监听器
         mItemClickListener?.let { outListener ->
-            holder.itemView.setOnClickListener {
+            holder.itemView.setDebouncedClickListener(tag, mDebounceDuration) {
                 outListener.onItemClick(holder.adapterPosition, item, it)
             }
             holder.itemView.setOnLongClickListener {
@@ -204,7 +234,7 @@ abstract class BaseAdapter<I : ListItem>
             // 如果是内置Flag，则执行相应的逻辑，不必通知子类。
             if (BaseViewHolder.hasFlag(payload, BaseDiffer.FLAG_PRIVATE_CLICK_LISTENER_SET)) {
                 holder.itemView.let { rootView ->
-                    rootView.setOnClickListener {
+                    rootView.setDebouncedClickListener(tag, mDebounceDuration) {
                         notifyItemClick(holder.adapterPosition, item, rootView)
                     }
                     rootView.setOnLongClickListener {
@@ -698,28 +728,57 @@ abstract class BaseAdapter<I : ListItem>
     }
 
     /**
+     * 设置带有防抖功能的点击监听器。
+     *
+     * @param[tag] 日志Tag。
+     * @param[duration] 防抖时长。默认500毫秒。
+     * @param[l] 监听器实现。
+     */
+    private fun View.setDebouncedClickListener(
+        tag: String,
+        duration: Long = DEFAULT_DEBOUNCE_DURATION,
+        l: View.OnClickListener
+    ) {
+        var lastClickTime = 0L
+
+        setOnClickListener {
+            val currentTS = SystemClock.elapsedRealtime()
+            val time = currentTS - lastClickTime
+
+            // 如果当前时间和上次点击时间间隔小于防抖时长，则忽略此次点击。
+            if (time < duration) {
+                Log.w(tag, "Click too fast, ignored!")
+                return@setOnClickListener
+            }
+
+            lastClickTime = currentTS
+            l.onClick(it)
+        }
+    }
+
+    /**
      * 表项点击事件监听器定义。
      */
-    interface ItemClickListener {
+    fun interface ItemClickListener<I> {
 
         /**
-         * 表项被点击事件。
+         * 回调方法：表项被点击事件。
          *
          * @param[position] 当前表项的索引。
          * @param[item] 当前表项的数据。
          * @param[view] 当前表项的视图。
          */
-        fun onItemClick(position: Int, item: ListItem, view: View)
+        fun onItemClick(position: Int, item: I, view: View)
 
         /**
-         * 表项被长按事件。
+         * 回调方法：表项被长按事件。
          *
          * @param[position] 当前表项的索引。
          * @param[item] 当前表项的数据。
          * @param[view] 当前表项的视图。
          * @return `true` 表示事件处理完毕无需分发给子View， `false` 表示事件需要继续分发给子View。
          */
-        fun onItemLongClick(position: Int, item: ListItem, view: View): Boolean {
+        fun onItemLongClick(position: Int, item: I, view: View): Boolean {
             // 默认忽略长按事件
             return true
         }
@@ -732,7 +791,7 @@ abstract class BaseAdapter<I : ListItem>
      * @param[item] 当前表项的数据。
      * @param[view] 当前表项的视图。
      */
-    private fun notifyItemClick(position: Int, item: ListItem, view: View) {
+    private fun notifyItemClick(position: Int, item: I, view: View) {
         mItemClickListener?.onItemClick(position, item, view)
     }
 
@@ -744,16 +803,21 @@ abstract class BaseAdapter<I : ListItem>
      * @param[view] 当前表项的视图。
      * @return `true` 表示事件处理完毕无需分发给子View， `false` 表示事件需要继续分发给子View。
      */
-    private fun notifyItemLongClick(position: Int, item: ListItem, view: View): Boolean {
+    private fun notifyItemLongClick(position: Int, item: I, view: View): Boolean {
         return mItemClickListener?.onItemLongClick(position, item, view) ?: true
     }
 
     /**
      * 设置表项点击事件监听器。
      *
+     * @param[debounceDuration] 点击事件的防抖时长。
      * @param[listener] 监听器实现，传入空值表示取消监听。
      */
-    fun setItemClickListener(listener: ItemClickListener?) {
+    @MainThread
+    fun setItemClickListener(debounceDuration: Long, listener: ItemClickListener<I>?) {
+        mDebounceDuration = debounceDuration
+        mItemClickListener = listener
+
         if (listener == null) {
             /* 参数为空，表示撤销监听器。 */
             notifyItemRangeChanged(0, itemCount, BaseDiffer.FLAG_PRIVATE_CLICK_LISTENER_UNSET)
@@ -761,7 +825,42 @@ abstract class BaseAdapter<I : ListItem>
             /* 参数非空，表示设置监听器。 */
             notifyItemRangeChanged(0, itemCount, BaseDiffer.FLAG_PRIVATE_CLICK_LISTENER_SET)
         }
+    }
 
-        mItemClickListener = listener
+    /**
+     * 设置表项点击事件监听器。
+     *
+     * 使用默认的防抖时长 [DEFAULT_DEBOUNCE_DURATION] 。
+     *
+     * @param[listener] 监听器实现，传入空值表示取消监听。
+     */
+    @MainThread
+    fun setItemClickListener(listener: ItemClickListener<I>?) {
+        setItemClickListener(DEFAULT_DEBOUNCE_DURATION, listener)
+    }
+
+    /**
+     * 设置表项点击事件监听器。
+     *
+     * Java兼容接口，使用场景可参考 [ItemClickListenerJava] 的注释。
+     *
+     * @param[listener] 监听器实现，传入空值表示取消监听。
+     */
+    @MainThread
+    fun setItemClickListenerJava(listener: ItemClickListenerJava<I>?) {
+        setItemClickListener(DEFAULT_DEBOUNCE_DURATION, listener)
+    }
+
+    /**
+     * 设置表项点击事件监听器。
+     *
+     * Java兼容接口，使用场景可参考 [ItemClickListenerJava] 的注释。
+     *
+     * @param[debounceDuration] 点击事件的防抖时长。
+     * @param[listener] 监听器实现，传入空值表示取消监听。
+     */
+    @MainThread
+    fun setItemClickListenerJava(debounceDuration: Long, listener: ItemClickListenerJava<I>?) {
+        setItemClickListener(debounceDuration, listener)
     }
 }

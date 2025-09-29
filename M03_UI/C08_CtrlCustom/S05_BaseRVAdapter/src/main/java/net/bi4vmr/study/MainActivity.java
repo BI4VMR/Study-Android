@@ -11,6 +11,7 @@ import net.bi4vmr.study.binding.TestUIBindingKT;
 import net.bi4vmr.study.binding_simple.TestUISimpleBindingKT;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.diffutil.TestUIDiffUtilKT;
+import net.bi4vmr.study.event.TestUIEvent;
 import net.bi4vmr.study.event.TestUIEventKT;
 import net.bi4vmr.study.simple.TestUISimpleKT;
 
@@ -34,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 表项点击事件
+        binding.btnEvent.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIEvent.class);
+            startActivity(intent);
+        });
+
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
@@ -46,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 点击事件(KT)
+        // 表项点击事件(KT)
         binding.btnEventKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIEventKT.class);
             startActivity(intent);

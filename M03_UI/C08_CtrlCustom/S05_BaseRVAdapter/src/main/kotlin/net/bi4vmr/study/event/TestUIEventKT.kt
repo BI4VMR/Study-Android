@@ -12,7 +12,7 @@ import net.bi4vmr.tool.android.ui.baservadapter.base.BaseAdapter
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
 
 /**
- * 测试界面：基本应用。
+ * 测试界面：表项点击事件。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
@@ -43,8 +43,8 @@ class TestUIEventKT : AppCompatActivity() {
             recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIEventKT))
             recyclerview.setAdapter(adapter)
 
-            // 设置监听器
-            tbtn.setOnCheckedChangeListener { _, isChecked ->
+            // 设置或取消监听器
+            tbtnClick.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     adapter.setItemClickListener(ItemClickListener())
                 } else {
@@ -55,9 +55,9 @@ class TestUIEventKT : AppCompatActivity() {
     }
 
     /**
-     * 点击监听器实现类
+     * 点击监听器实现类。
      */
-    private inner class ItemClickListener : BaseAdapter.ItemClickListener {
+    private inner class ItemClickListener : BaseAdapter.ItemClickListener<ListItem> {
 
         /**
          * 回调方法：表项点击事件。

@@ -14,8 +14,7 @@ import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TestMultiTypeAdapter
-@JvmOverloads constructor(
+class TestMultiTypeAdapter(
 
     /**
      * 初始数据源。
@@ -35,7 +34,7 @@ class TestMultiTypeAdapter
     /**
      * 标题的ViewHolder。
      */
-    class TitleVH(view: View) : BaseViewHolder<TitleVO>(view) {
+    private inner class TitleVH(view: View) : BaseViewHolder<TitleVO>(view) {
 
         private val tvTitle: TextView = view.findViewById(R.id.tv_title)
 
@@ -48,7 +47,7 @@ class TestMultiTypeAdapter
     /**
      * 内容的ViewHolder。
      */
-    class ContentVH(view: View) : BaseViewHolder<ContentVO>(view) {
+    private inner class ContentVH(view: View) : BaseViewHolder<ContentVO>(view) {
 
         private val tvTitle: TextView = view.findViewById(R.id.tv_title)
         private val tvInfo: TextView = view.findViewById(R.id.tv_info)

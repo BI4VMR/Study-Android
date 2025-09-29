@@ -60,4 +60,5 @@ android {
 
 dependencies {
     implementation(libAndroid.bundles.appBaseKT)
+    implementation(libAndroid.recyclerview)
 }

@@ -38,7 +38,7 @@
             android:id="@+id/btnEvent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="点击事件"
+            android:text="表项点击事件"
             android:textAllCaps="false" />
 
         <Button
@@ -87,7 +87,7 @@
             android:id="@+id/btnEventKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="点击事件"
+            android:text="表项点击事件"
             android:textAllCaps="false" />
 
         <Button

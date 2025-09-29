@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import net.bi4vmr.study.R
 import net.bi4vmr.study.databinding.TestuiDiffutilBinding
 import net.bi4vmr.tool.android.ui.baservadapter.base.ListItem
-import kotlin.concurrent.thread
 
 /**
  * 测试界面：DiffUtil。
@@ -41,19 +40,20 @@ class TestUIDiffUtilKT : AppCompatActivity() {
             recyclerview.setLayoutManager(LinearLayoutManager(this@TestUIDiffUtilKT))
             recyclerview.setAdapter(adapter)
 
-            btnModify.setOnClickListener {
+            // 更新表项
+            btnUpdate.setOnClickListener {
                 val newData = initTestData()
                 newData.removeAt(2)
                 newData[4] = ContentVO("表项C（已修改）", "表项C（已修改）", R.drawable.ic_funny_256)
                 adapter.submit(newData)
             }
+            // 清空表项
+            btnClear.setOnClickListener {
+                adapter.submit(emptyList())
+            }
+            // 重置
             btnReload.setOnClickListener {
                 adapter.reloadItems(initTestData())
-            }
-            btnClear.setOnClickListener {
-                thread {
-                    adapter.submit(emptyList())
-                }
             }
         }
     }

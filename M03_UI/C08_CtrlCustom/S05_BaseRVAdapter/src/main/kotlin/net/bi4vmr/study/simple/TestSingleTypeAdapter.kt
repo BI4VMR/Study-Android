@@ -13,8 +13,7 @@ import net.bi4vmr.tool.android.ui.baservadapter.base.SimpleAdapter
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TestSingleTypeAdapter
-@JvmOverloads constructor(
+class TestSingleTypeAdapter(
 
     /**
      * 初始数据源。
@@ -22,7 +21,12 @@ class TestSingleTypeAdapter
     dataSource: MutableList<ContentVO> = mutableListOf()
 ) : SimpleAdapter<ContentVO>(R.layout.list_item_content, ContentVH::class.java, dataSource) {
 
-    class ContentVH(view: View) : BaseViewHolder<ContentVO>(view) {
+    init {
+        // 开启调试模式，方便查看Adapter的工作过程。
+        debugMode = true
+    }
+
+    private inner class ContentVH(view: View) : BaseViewHolder<ContentVO>(view) {
 
         private val tvTitle: TextView = view.findViewById(R.id.tv_title)
         private val tvInfo: TextView = view.findViewById(R.id.tv_info)

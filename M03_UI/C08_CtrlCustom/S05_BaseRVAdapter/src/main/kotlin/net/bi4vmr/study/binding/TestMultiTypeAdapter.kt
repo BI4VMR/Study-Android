@@ -22,18 +22,30 @@ class TestMultiTypeAdapter
 ) : BindingAdapter<ListItem>(dataSource) {
 
     init {
+        // 开启调试模式，方便查看Adapter的工作过程。
+        debugMode = true
+
+        // 配置ViewType映射关系
         addBindingMapper(ViewType.TITLE.typeCode, ListItemTitleBinding::class.java, TitleVH::class.java)
         addBindingMapper(ViewType.CONTENT.typeCode, ListItemContentBinding::class.java, ContentVH::class.java)
     }
 
-    class TitleVH(binding: ListItemTitleBinding) : BindingViewHolder<ListItemTitleBinding, TitleVO>(binding) {
+    /**
+     * 标题的ViewHolder。
+     */
+    private inner class TitleVH(binding: ListItemTitleBinding) :
+        BindingViewHolder<ListItemTitleBinding, TitleVO>(binding) {
 
         override fun bindData(item: TitleVO) {
             binding.tvTitle.text = item.title
         }
     }
 
-    class ContentVH(binding: ListItemContentBinding) : BindingViewHolder<ListItemContentBinding, ContentVO>(binding) {
+    /**
+     * 内容的ViewHolder。
+     */
+    private inner class ContentVH(binding: ListItemContentBinding) :
+        BindingViewHolder<ListItemContentBinding, ContentVO>(binding) {
 
         override fun bindData(item: ContentVO) {
             with(binding) {
