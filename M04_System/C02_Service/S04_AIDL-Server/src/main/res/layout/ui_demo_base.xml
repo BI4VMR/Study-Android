@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:id="@+id/tvInfoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="信息："
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:lines="3"
+        android:text="等待连接..."
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvInfoTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="回调："
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvInfo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btBind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="绑定服务" />
+
+    <Button
+        android:id="@+id/btUnbind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="解绑服务" />
+
+    <Button
+        android:id="@+id/btGetPID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取服务进程ID" />
+
+    <Button
+        android:id="@+id/btAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加任务" />
+
+    <Button
+        android:id="@+id/btAddTaskAsync"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加任务（异步方法）" />
+
+    <Button
+        android:id="@+id/btGetTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取任务" />
+</LinearLayout>
