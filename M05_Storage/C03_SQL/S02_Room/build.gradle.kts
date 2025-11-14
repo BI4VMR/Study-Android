@@ -63,6 +63,25 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    testOptions {
+        unitTests {
+            // 为单元测试添加Android资源
+            isIncludeAndroidResources = true
+        }
+
+        unitTests.all {
+            // Robolectric：启用日志输出
+            it.systemProperty("robolectric.logging.enabled", true)
+
+            // Robolectric：指定模拟API的JAR包下载仓库
+            it.systemProperty("robolectric.dependency.repo.id", "Mirror_Tencent")
+            it.systemProperty(
+                "robolectric.dependency.repo.url",
+                "https://mirrors.cloud.tencent.com/nexus/repository/maven-public/"
+            )
+        }
+    }
 }
 
 dependencies {
@@ -81,4 +100,7 @@ dependencies {
     // kapt(libAndroid.room.compiler)
     // Room注解处理器(Kotlin-KSP)
     ksp(libAndroid.room.compiler)
+
+    testImplementation(libJava.junit4)
+    testImplementation(libAndroid.robolectric.core)
 }

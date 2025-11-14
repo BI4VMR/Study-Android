@@ -76,9 +76,13 @@ android {
             // it.systemProperty("robolectric.dependency.repo.username", "username")
             // it.systemProperty("robolectric.dependency.repo.password", "password")
 
-            // Robolectric：指定代理服务器（需要Robolectric v4.9.1或更高版本。）
+            // Robolectric：指定代理服务器（需要Robolectric v4.9.1或更高版本）
             // it.systemProperty("robolectric.dependency.proxy.host", System.getenv("ROBOLECTRIC_PROXY_HOST"))
             // it.systemProperty("robolectric.dependency.proxy.port", System.getenv("ROBOLECTRIC_PROXY_PORT"))
+
+            // Robolectric：启用离线模式（需要预先下载所需的JAR包）
+            // it.systemProperty("robolectric.offline", true)
+            // it.systemProperty("robolectric.dependency.dir", "$rootDir/robolectric")
         }
     }
 }
@@ -88,5 +92,5 @@ dependencies {
 
     testImplementation(libJava.junit4)
     // 声明Robolectric依赖项
-    testImplementation("org.robolectric:robolectric:4.14.1")
+    testImplementation(libAndroid.robolectric.core)
 }

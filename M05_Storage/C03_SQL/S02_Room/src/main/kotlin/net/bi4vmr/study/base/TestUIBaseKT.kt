@@ -110,7 +110,7 @@ class TestUIBaseKT : AppCompatActivity() {
         Log.i(TAG, "----- 查询所有记录 -----")
         appendLog("\n----- 查询所有记录 -----")
 
-        val result: List<StudentKT> = studentDB.getStudentDAO().getStudent()
+        val result: List<StudentKT> = studentDB.getStudentDAO().getStudents()
         result.forEach {
             Log.i(TAG, it.toString())
             appendLog(it)

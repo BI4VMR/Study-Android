@@ -107,7 +107,7 @@ public class TestUIBase extends AppCompatActivity {
         Log.i(TAG, "----- 查询所有记录 -----");
         appendLog("\n----- 查询所有记录 -----");
 
-        List<Student> result = dao.getStudent();
+        List<Student> result = dao.getStudents();
         for (Student student : result) {
             Log.i(TAG, student.toString());
             appendLog(student);

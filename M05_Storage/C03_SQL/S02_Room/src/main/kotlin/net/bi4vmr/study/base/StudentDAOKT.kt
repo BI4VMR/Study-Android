@@ -22,7 +22,7 @@ interface StudentDAOKT {
      * @return 查询结果集合。
      */
     @Query("SELECT * FROM student_info")
-    fun getStudent(): List<StudentKT>
+    fun getStudents(): List<StudentKT>
 
     /**
      * 新增学生记录。

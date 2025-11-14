@@ -24,7 +24,7 @@ public interface StudentDAO {
      * @return 查询结果集合。
      */
     @Query("SELECT * FROM student_info")
-    List<Student> getStudent();
+    List<Student> getStudents();
 
     /**
      * 新增学生记录。
