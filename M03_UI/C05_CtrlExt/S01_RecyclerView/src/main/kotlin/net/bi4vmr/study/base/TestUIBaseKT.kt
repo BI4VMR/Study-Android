@@ -2,7 +2,7 @@ package net.bi4vmr.study.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import net.bi4vmr.study.databinding.TestuiBaseBinding
 
 /**
@@ -28,8 +28,14 @@ class TestUIBaseKT : AppCompatActivity() {
         }
 
         // 设置布局管理器
-        val linearLayoutManager = LinearLayoutManager(this)
+        val linearLayoutManager = PagedGridLayoutManager(
+            2,
+            4,
+            pagePaddingStartPx = 100,
+            pagePaddingEndPx = 100
+        )
         binding.rvContent.layoutManager = linearLayoutManager
+        PagedSnapHelper().attachToRecyclerView(binding.rvContent)
         // 设置适配器
         val adapter = MyAdapterKT(datas)
         binding.rvContent.adapter = adapter
