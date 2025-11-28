@@ -1,8 +1,10 @@
-package net.bi4vmr.study;
+package net.bi4vmr.study.base;
 
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
+
+import net.bi4vmr.study.R;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +17,7 @@ import org.robolectric.annotation.Config;
  * 示例一：构建环境。
  *
  * @author bi4vmr@outlook.com
- * @since 1.0
+ * @since 1.0.0
  */
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = {Build.VERSION_CODES.TIRAMISU})
