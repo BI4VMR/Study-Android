@@ -8,6 +8,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Outline;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LevelListDrawable;
@@ -16,14 +18,13 @@ import android.os.LocaleList;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewOutlineProvider;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.media3.exoplayer.ExoPlayer;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.permission.AospPermissionMgr;
@@ -105,6 +106,17 @@ public class MainActivity extends AppCompatActivity {
             // window.showAtLocation(v, Gravity.BOTTOM, 0, 0);
 
         });
+        binding.ivDraw.setElevation(32F);
+        binding.ivDraw.setImageDrawable(null);
+        binding.ivDraw.setOutlineSpotShadowColor(Color.GREEN);
+        binding.ivDraw.setOutlineAmbientShadowColor(Color.BLUE);
+        binding.ivDraw.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 22232F);
+            }
+        });
+        binding.ivDraw.setClipToOutline(true);
 
         // Log.d("Test123", "addOnActiveSessionsChangedListener: ");
         // MediaSessionManager manager = getSystemService(MediaSessionManager.class);
@@ -120,10 +132,11 @@ public class MainActivity extends AppCompatActivity {
         //     }
         // }, null);
 
-        ExoPlayer player = new ExoPlayer.Builder(this)
-                .build();
-        binding.playerView.hideController();
-        binding.playerView.setPlayer(player);
+        // ExoPlayer player = new ExoPlayer.Builder(this)
+        //         .build();
+        // binding.playerView.hideController();
+        // binding.playerView.setPlayer(player);
+        // binding.playerView.setVisibility(View.INVISIBLE);
 
         // String uri = ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + "/raw/ba";
         // MediaItem item = MediaItem.fromUri(uri);
