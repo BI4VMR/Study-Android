@@ -33,6 +33,26 @@ class ATest {
         println("QueryUserName of ID=1:[${mockDBHelper.queryUserName(1)}]")
         println("QueryUserName of ID=2:[${mockDBHelper.queryUserName(2)}]")
         println("QueryUserName of ID=3:[${mockDBHelper.queryUserName(3)}]")
+
+
+        // 参数为Int类型的方法
+        every { mockDBHelper.queryUserName(any<Int>()) } returns "MockUserA"
+        // 参数为String类型的方法
+        every { mockDBHelper.queryUserName(any<String>()) } returns "MockUserB"
+
+        // 参数为Int类型的方法
+        every { mockDBHelper.queryUserName(any(Int::class)) } returns "MockUserA"
+        // 参数为String类型的方法
+        every { mockDBHelper.queryUserName(any(String::class)) } returns "MockUserB"
+
+
+        // 错误用法：字面量与匹配器混用
+        every { mockDBHelper.queryUserNames(20, any()) } returns listOf()
+
+        // 正确用法：全部使用匹配器
+        every { mockDBHelper.queryUserNames(eq(20), any()) } returns listOf()
+        // 正确用法：全部使用字面量
+        every { mockDBHelper.queryUserNames(eq(20), false) } returns listOf()
     }
 
     class DBHelper {
@@ -42,6 +62,9 @@ class ATest {
 
         // 根据身份证号查询姓名
         fun queryUserName(cardID: String): String = "Real Name"
+
+        // 查询所有年龄和性别符合要求的用户ID
+        fun queryUserNames(age: Int, male: Boolean): List<Int> = listOf()
     }
 
     fun returns() {
