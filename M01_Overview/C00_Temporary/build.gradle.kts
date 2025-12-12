@@ -92,6 +92,7 @@ dependencies {
     implementation(libAndroid.media3.ui)
 
     testImplementation(libJava.junit4)
+    testImplementation(libKotlin.ktx.coroutines.test)
     testImplementation(libKotlin.mockk)
     testImplementation(libAndroid.robolectric.core)
 }

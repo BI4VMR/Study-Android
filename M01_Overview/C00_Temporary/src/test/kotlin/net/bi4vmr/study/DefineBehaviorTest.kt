@@ -2,6 +2,10 @@ package net.bi4vmr.study
 
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.junit.Test
 import java.io.File
 import java.io.IOException
@@ -17,7 +21,7 @@ class DefineBehaviorTest {
     /**
      * 示例四：模拟固定返回值。
      *
-     * 在本示例中，我们为Mock对象定义行为，每当指定方法被调用时，返回测试用例指定的值。
+     * 在本示例中，我们为Mock对象定义行为，每当指定方法被调用时，返回测试用例中指定的值。
      */
     @Test
     fun test_Define_Return_Value() {
@@ -28,6 +32,9 @@ class DefineBehaviorTest {
 
         // 调用Mock对象的 `getCanonicalPath()` 方法并输出结果
         println("File Path:[${mockFile.canonicalPath}]")
+        // 再次调用Mock对象的 `getCanonicalPath()` 方法并输出结果
+        println("File Path:[${mockFile.canonicalPath}]\n")
+
 
         // 修改行为：当 `mockFile` 的 `getCanonicalPath()` 方法被访问时，返回 `/data/file2` 。
         every { mockFile.canonicalPath } returns "/data/file2"
@@ -159,7 +166,9 @@ class DefineBehaviorTest {
     @Test
     fun test_Parameter_ValueAndEQ() {
         val mockDBHelper = mockk<DBHelper>()
-
+        CoroutineScope(Dispatchers.Default).launch {
+            delay(1)
+        }
         // 错误用法：字面量与匹配器混用
         every { mockDBHelper.queryUserNames(20, any()) } returns listOf()
 
