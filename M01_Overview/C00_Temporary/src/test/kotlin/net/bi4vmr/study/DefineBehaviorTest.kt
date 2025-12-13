@@ -2,10 +2,6 @@ package net.bi4vmr.study
 
 import io.mockk.every
 import io.mockk.mockk
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.junit.Test
 import java.io.File
 import java.io.IOException
@@ -166,9 +162,7 @@ class DefineBehaviorTest {
     @Test
     fun test_Parameter_ValueAndEQ() {
         val mockDBHelper = mockk<DBHelper>()
-        CoroutineScope(Dispatchers.Default).launch {
-            delay(1)
-        }
+
         // 错误用法：字面量与匹配器混用
         every { mockDBHelper.queryUserNames(20, any()) } returns listOf()
 
