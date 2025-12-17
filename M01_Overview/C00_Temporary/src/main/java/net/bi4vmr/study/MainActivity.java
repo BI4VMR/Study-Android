@@ -1,9 +1,11 @@
 package net.bi4vmr.study;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -70,7 +72,17 @@ public class MainActivity extends AppCompatActivity {
         btnTextClock.setOnClickListener(v -> {
             // Intent intent = new Intent(this, TestUITextClock.class);
             // startActivity(intent);
-            Log.d("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
+            // Log.d("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
+            PackageManager packageManager = this.getPackageManager();
+            try {
+                ComponentName cn = new ComponentName(getPackageName(),"net.bi4vmr.study.MainActivity2");
+                ActivityInfo activityInfo = packageManager.getActivityInfo(cn, 0);
+                String t = activityInfo.targetActivity;
+                Log.i("TEA", "t: " + t);
+            } catch (PackageManager.NameNotFoundException e) {
+                // 应用未安装
+                Log.e("TEA", "e: ", e);
+            }
         });
 
         Button btnView = findViewById(R.id.btnView);

@@ -43,6 +43,18 @@
             </intent-filter>
         </activity>
 
+        <activity-alias
+            android:name=".MainActivity2"
+            android:targetActivity=".MainActivity"
+            android:label="MainActivity alias"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
         <activity
             android:name=".view.TestUIView"
             android:exported="false" />
