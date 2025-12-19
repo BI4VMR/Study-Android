@@ -48,7 +48,7 @@ okdownload-core = "1.0.7"
 # ----- 工程架构 -----
 kunminx_unpeekLiveData = "7.8.0"
 
-hilt = "2.52"
+hilt = "2.51.1"
 
 
 # ----- 测试工具 -----
@@ -213,7 +213,7 @@ jraska_liveDataTest-kotlin = { group = "com.jraska.livedata", name = "testing-kt
 # 核心组件
 appBase = ["appcompat", "material", "constraintLayout"]
 # 核心组件(Kotlin)
-appBaseKT = ["appcompat", "material", "constraintLayout", "ktx_core", "ktx_coroutine", "ktx_lifecycleRuntime", "ktx_lifecycleViewModel"]
+appBaseKT = ["appcompat", "material", "constraintLayout", "ktx_core", "ktx_coroutine", "ktx_lifecycleRuntime", "ktx_lifecycleViewModel", "ktx_fragment"]
 
 # Jetpack Compose
 # 核心组件
