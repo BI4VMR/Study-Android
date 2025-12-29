@@ -7,6 +7,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import kotlinx.coroutines.withContext
 import org.junit.Test
 
 /**
@@ -16,11 +21,78 @@ import org.junit.Test
  * @since 1.0.0
  */
 class CommonTest {
-
+    val mainDispatcher = StandardTestDispatcher()
     private val mutex = Mutex()
 
     @Test
-    fun test() = runBlocking {
+    fun test() = runTest {
+        // A().a()
+        // val s = StandardTestDispatcher(testScheduler)
+        // val scope = CoroutineScope(s)
+        // B(scope).b()
+        // advanceUntilIdle()
+        Dispatchers.setMain(mainDispatcher)
+        val dispatcher = StandardTestDispatcher(testScheduler)
+        val scope = CoroutineScope(dispatcher)
+        UserManager(scope).b2()
+        // testDispatcher.scheduler.advanceUntilIdle()
+        mainDispatcher.scheduler.advanceUntilIdle()
+        advanceUntilIdle()
+        // mainDispatcher.scheduler.advanceUntilIdle()
+
+        println("test function complete!")
+    }
+
+    class A {
+        fun a() {
+            CoroutineScope(Dispatchers.Default).launch {
+                delay(10000L)
+                println("A.a complete!")
+            }
+        }
+    }
+
+    class UserManager(
+        private val scope: CoroutineScope = CoroutineScope(Dispatchers.Default)
+    ) {
+        fun b() {
+            scope.launch {
+                delay(10000L)
+                println("B.b complete!")
+            }
+        }
+
+        fun b2() {
+            scope.launch {
+                delay(10000L)
+                withContext(Dispatchers.Main) {
+                    println("B.b2 complete in main thread!")
+                }
+            }
+        }
+    }
+
+    class UserManager2(
+        private val scope: CoroutineScope = CoroutineScope(Dispatchers.Default)
+    ) {
+        fun b() {
+            scope.launch {
+                delay(10000L)
+                println("B.b complete!")
+            }
+        }
+
+        fun b2() {
+            scope.launch {
+                delay(10000L)
+                withContext(Dispatchers.Main) {
+                    println("B.b2 complete in main thread!")
+                }
+            }
+        }
+    }
+
+    fun test111() = runBlocking {
         CoroutineScope(Dispatchers.Default).launch {
             work(1000L)
         }
