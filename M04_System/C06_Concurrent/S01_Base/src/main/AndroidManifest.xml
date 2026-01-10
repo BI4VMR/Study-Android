@@ -20,7 +20,7 @@
 
         <!-- 示例界面：Kotlin协程 -->
         <activity
-            android:name=".coroutine.TestUICoroutineKT"
+            android:name=".base.TestUICoroutineKT"
             android:exported="false" />
     </application>
 </manifest>

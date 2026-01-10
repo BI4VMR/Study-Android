@@ -75,4 +75,8 @@ dependencies {
     implementation(libAndroid.ktx.lifecycleRuntime)
     // ViewModelScope
     implementation(libAndroid.ktx.lifecycleViewModel)
+
+    testImplementation(libJava.junit4)
+    // 协程测试工具
+    testImplementation(libKotlin.ktx.coroutines.test)
 }

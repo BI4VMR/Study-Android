@@ -1,4 +1,4 @@
-package net.bi4vmr.study.coroutine
+package net.bi4vmr.study.base
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

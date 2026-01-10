@@ -1,4 +1,4 @@
-package net.bi4vmr.study.coroutine
+package net.bi4vmr.study.base
 
 import android.os.Bundle
 import android.util.Log
@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import net.bi4vmr.study.databinding.TestuiBaseBinding
@@ -50,7 +48,11 @@ class TestUICoroutineKT : AppCompatActivity() {
         }
     }
 
-    // LifeCycle协程
+    /**
+     * 示例一：LifeCycle作用域协程。
+     *
+     * 在本示例中，我们使用Activity的协程作用域启动协程，并在协程终止前关闭Activity，观察协程的状态。
+     */
     private fun testLifeCycle() {
         Log.i(TAG, "--- LifeCycle协程 ---")
         binding.tvLog.append("\n--- LifeCycle协程 ---\n")
@@ -65,7 +67,11 @@ class TestUICoroutineKT : AppCompatActivity() {
         finish()
     }
 
-    // ViewModel协程
+    /**
+     * 示例二：ViewModel作用域协程。
+     *
+     * 在本示例中，我们使用ViewModel的协程作用域启动协程，并在协程终止前关闭相关Activity，观察协程的状态。
+     */
     private fun testViewModel() {
         Log.i(TAG, "--- ViewModel协程 ---")
         binding.tvLog.append("\n--- ViewModel协程 ---\n")
@@ -80,7 +86,11 @@ class TestUICoroutineKT : AppCompatActivity() {
         finish()
     }
 
-    // 进程级协程
+    /**
+     * 示例三：进程级协程。
+     *
+     * 在本示例中，我们创建关联到进程的协程。
+     */
     private fun testGlobal() {
         Log.i(TAG, "--- 全局协程 ---")
         binding.tvLog.append("\n--- 全局协程 ---\n")
@@ -90,10 +100,8 @@ class TestUICoroutineKT : AppCompatActivity() {
         //     task()
         // }
 
-        // 启动进程级协程，并指定调度器。
-        CoroutineScope(Dispatchers.Default).launch {
-            task()
-        }
+        // 启动进程级协程。
+        GlobalTaskManager.init()
     }
 
     override fun onDestroy() {
