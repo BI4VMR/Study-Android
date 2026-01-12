@@ -1,6 +1,6 @@
 package net.bi4vmr.study
 
-import android.util.Log
+import android.os.Looper
 
 /**
  * TODO 添加简述。
@@ -12,7 +12,7 @@ import android.util.Log
  */
 class SQLUtil {
 
-    fun merge(){
+    fun merge() {
 
         // var remainingSql = sqlQuery
         // var paramIndex = 0
@@ -37,5 +37,15 @@ class SQLUtil {
         // }
 
         // Log.d("StudentDBKT", "SQL:[$remainingSql]")
+    }
+
+    fun checkMain(): Boolean {
+        return Looper.myLooper() == Looper.getMainLooper()
+    }
+
+    fun requireMain() {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            throw IllegalStateException("This operation must be called on the main thread.")
+        }
     }
 }
