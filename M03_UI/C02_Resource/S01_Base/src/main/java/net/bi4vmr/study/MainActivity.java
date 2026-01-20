@@ -7,14 +7,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
-import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.databinding.MainActivityBinding;
+import net.bi4vmr.study.index.TestUIIndexKT;
+import net.bi4vmr.study.remote.TestUIRemoteKT;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // 基本应用
@@ -26,6 +28,18 @@ public class MainActivity extends AppCompatActivity {
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
+            startActivity(intent);
+        });
+
+        // 资源索引(KT)
+        binding.btnResIndexKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIIndexKT.class);
+            startActivity(intent);
+        });
+
+        // 外部资源(KT)
+        binding.btnResRemoteKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIRemoteKT.class);
             startActivity(intent);
         });
     }

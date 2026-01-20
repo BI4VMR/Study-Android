@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- 访问其他软件包的资源需要声明可见性 -->
+    <queries>
+        <package android:name="net.bi4vmr.study.ui.resource.base.res" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_funny_256"
@@ -23,9 +28,29 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：资源索引 -->
+        <activity
+            android:name=".index.TestUIIndex"
+            android:exported="false" />
+
+        <!-- 示例界面：外部资源 -->
+        <activity
+            android:name=".remote.TestUIRemote"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：资源索引(KT) -->
+        <activity
+            android:name=".index.TestUIIndexKT"
+            android:exported="false" />
+
+        <!-- 示例界面：外部资源(KT) -->
+        <activity
+            android:name=".remote.TestUIRemoteKT"
             android:exported="false" />
     </application>
 </manifest>

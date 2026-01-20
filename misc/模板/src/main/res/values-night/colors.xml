@@ -9,5 +9,5 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- 通用文本颜色 -->
-    <color name="common_text">@color/black</color>
+    <color name="common_text">@color/white</color>
 </resources>

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Java实现："
-            android:textColor="@color/black"
+            android:textColor="@color/common_text"
             android:textSize="18sp" />
 
         <Button
@@ -27,11 +27,25 @@
             android:text="基本应用"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/btnResIndex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="资源索引"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnResRemote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="外部资源"
+            android:textAllCaps="false" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kotlin实现："
-            android:textColor="@color/black"
+            android:textColor="@color/common_text"
             android:textSize="18sp" />
 
         <Button
@@ -39,6 +53,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="基本应用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnResIndexKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="资源索引"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnResRemoteKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="外部资源"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

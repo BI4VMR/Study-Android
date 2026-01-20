@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Java实现："
-            android:textColor="?android:textColorPrimary"
+            android:textColor="@color/common_text"
             android:textSize="18sp" />
 
         <Button
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kotlin实现："
-            android:textColor="?android:textColorPrimary"
+            android:textColor="@color/common_text"
             android:textSize="18sp" />
 
         <Button

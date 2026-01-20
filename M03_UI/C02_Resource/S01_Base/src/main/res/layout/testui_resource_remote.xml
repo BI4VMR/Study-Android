@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="基本应用"
+        android:text="外部资源"
         android:textColor="@color/common_text"
         android:textSize="20sp" />
 
@@ -26,6 +26,20 @@
         android:textColor="@color/common_text"
         android:textSize="16sp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="图片展示区域："
+        android:textColor="@color/common_text"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/shape_log_area"
+        android:importantForAccessibility="no" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -38,17 +52,17 @@
             android:paddingEnd="20dp">
 
             <Button
-                android:id="@+id/btnGetDisplayInfo"
+                android:id="@+id/btnRemoteResource"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="获取屏幕信息"
+                android:text="获取其他软件包中的资源"
                 android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/btnUnitConversion"
+                android:id="@+id/btnAPKResource"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="尺寸单位转换"
+                android:text="获取APK文件中的资源"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>

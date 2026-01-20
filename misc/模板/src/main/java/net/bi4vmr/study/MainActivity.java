@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
-import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.databinding.MainActivityBinding;
 
 /**
  * 主页。
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // 基本应用

@@ -2,6 +2,7 @@ package net.bi4vmr.study.base;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -22,28 +23,30 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
+
         binding.btnGetDisplayInfo.setOnClickListener(v -> testGetDisplayInfo());
         binding.btnUnitConversion.setOnClickListener(v -> testUnitConversion());
     }
 
-    // 获取屏幕信息
     private void testGetDisplayInfo() {
-        Log.i(TAG, "--- 获取屏幕信息 ---");
-        binding.tvLog.append("\n--- 获取屏幕信息 ---\n");
+        Log.i(TAG, "----- 获取屏幕信息 -----");
+        appendLog("\n----- 获取屏幕信息 -----");
 
         /* 单显示器环境 */
         DisplayMetrics dm = Resources.getSystem().getDisplayMetrics();
+
         Log.i(TAG, "屏幕宽度：" + dm.widthPixels);
         Log.i(TAG, "屏幕高度：" + dm.heightPixels);
         Log.i(TAG, "像素密度：" + dm.densityDpi);
         Log.i(TAG, "缩放倍率(DP)：" + dm.density);
         Log.i(TAG, "缩放倍率(SP)：" + dm.scaledDensity);
 
-        binding.tvLog.append("屏幕宽度：" + dm.widthPixels + "\n");
-        binding.tvLog.append("屏幕高度：" + dm.heightPixels + "\n");
-        binding.tvLog.append("像素密度：" + dm.densityDpi + "\n");
-        binding.tvLog.append("缩放倍率(DP)：" + dm.density + "\n");
-        binding.tvLog.append("缩放倍率(SP)：" + dm.scaledDensity + "\n");
+        appendLog("屏幕宽度：" + dm.widthPixels);
+        appendLog("屏幕高度：" + dm.heightPixels);
+        appendLog("像素密度：" + dm.densityDpi);
+        appendLog("缩放倍率(DP)：" + dm.density);
+        appendLog("缩放倍率(SP)：" + dm.scaledDensity);
 
         /* 多显示器环境 */
         // 创建一个空的DisplayMetrics对象
@@ -52,20 +55,19 @@ public class TestUIBase extends AppCompatActivity {
         // context.getDisplay().getRealMetrics(dm);
     }
 
-    // 单位转换
     private void testUnitConversion() {
-        Log.i(TAG, "--- 单位转换 ---");
-        binding.tvLog.append("\n--- 单位转换 ---\n");
+        Log.i(TAG, "----- 单位转换 -----");
+        appendLog("\n----- 单位转换 -----");
 
         Log.i(TAG, "100dp -> ?px: " + dpToPX(100));
-        Log.i(TAG, "100dp -> ?sx: " + spToPX(100));
+        Log.i(TAG, "100sp -> ?px: " + spToPX(100));
         Log.i(TAG, "300px -> ?dp: " + pxToDP(300));
         Log.i(TAG, "300px -> ?sp: " + pxToSP(300));
 
-        binding.tvLog.append("100dp -> ?px: " + dpToPX(100) + "\n");
-        binding.tvLog.append("100dp -> ?sx: " + spToPX(100) + "\n");
-        binding.tvLog.append("300px -> ?dp: " + pxToDP(300) + "\n");
-        binding.tvLog.append("300px -> ?sp: " + pxToSP(300) + "\n");
+        appendLog("100dp -> ?px: " + dpToPX(100));
+        appendLog("100sp -> ?px: " + spToPX(100));
+        appendLog("300px -> ?dp: " + pxToDP(300));
+        appendLog("300px -> ?sp: " + pxToSP(300));
     }
 
     // 将DP转换为PX
@@ -96,5 +98,20 @@ public class TestUIBase extends AppCompatActivity {
         // 获取SP缩放倍率
         float density = Resources.getSystem().getDisplayMetrics().scaledDensity;
         return Math.round(pxValue / density);
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private void appendLog(Object text) {
+        binding.tvLog.post(() -> binding.tvLog.append("\n" + text.toString()));
+        binding.tvLog.post(() -> {
+            try {
+                int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+                if (offset > 0) {
+                    binding.tvLog.scrollTo(0, offset);
+                }
+            } catch (Exception e) {
+                Log.w(TAG, "TextView scroll failed!", e);
+            }
+        });
     }
 }

@@ -2,6 +2,7 @@ package net.bi4vmr.study.base
 
 import android.content.res.Resources
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.TypedValue
@@ -24,6 +25,8 @@ class TestUIBaseKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
+            tvLog.movementMethod = ScrollingMovementMethod.getInstance()
+
             btnGetDisplayInfo.setOnClickListener { testGetDisplayInfo() }
             btnUnitConversion.setOnClickListener { testUnitConversion() }
         }
@@ -31,8 +34,8 @@ class TestUIBaseKT : AppCompatActivity() {
 
     // 获取屏幕信息
     private fun testGetDisplayInfo() {
-        Log.i(TAG, "--- 获取屏幕信息 ---")
-        binding.tvLog.append("\n--- 获取屏幕信息 ---\n")
+        Log.i(TAG, "----- 获取屏幕信息 -----")
+        binding.tvLog.append("\n----- 获取屏幕信息 -----")
 
         /* 单显示器环境 */
         val dm = Resources.getSystem().displayMetrics
@@ -56,16 +59,16 @@ class TestUIBaseKT : AppCompatActivity() {
     }
 
     private fun testUnitConversion() {
-        Log.i(TAG, "--- 单位转换 ---")
-        binding.tvLog.append("\n--- 单位转换 ---\n")
+        Log.i(TAG, "----- 单位转换 -----")
+        binding.tvLog.append("\n----- 单位转换 -----")
 
         Log.i(TAG, "100dp -> ?px: ${dpToPX(100F)}")
-        Log.i(TAG, "100dp -> ?sx: ${spToPX(100F)}")
+        Log.i(TAG, "100sp -> ?px: ${spToPX(100F)}")
         Log.i(TAG, "300px -> ?dp: ${pxToDP(300)}")
         Log.i(TAG, "300px -> ?sp: ${pxToSP(300)}")
 
         binding.tvLog.append("100dp -> ?px: ${dpToPX(100F)}\n")
-        binding.tvLog.append("100dp -> ?sx: ${spToPX(100F)}\n")
+        binding.tvLog.append("100sp -> ?px: ${spToPX(100F)}\n")
         binding.tvLog.append("300px -> ?dp: ${pxToDP(300)}\n")
         binding.tvLog.append("300px -> ?sp: ${pxToSP(300)}\n")
     }
