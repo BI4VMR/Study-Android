@@ -64,6 +64,13 @@
                 android:layout_height="wrap_content"
                 android:text="获取APK文件中的资源"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="清空图片展示框"
+                android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
