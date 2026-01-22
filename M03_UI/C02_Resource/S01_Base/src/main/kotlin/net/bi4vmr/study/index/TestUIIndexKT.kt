@@ -7,6 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.R
 import net.bi4vmr.study.databinding.TestuiResourceIndexBinding
 
+/**
+ * 测试界面：资源索引。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 class TestUIIndexKT : AppCompatActivity() {
 
     companion object {

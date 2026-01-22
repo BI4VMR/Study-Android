@@ -13,6 +13,12 @@ import net.bi4vmr.study.index.TestUIIndexKT;
 import net.bi4vmr.study.remote.TestUIRemote;
 import net.bi4vmr.study.remote.TestUIRemoteKT;
 
+/**
+ * 主页。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

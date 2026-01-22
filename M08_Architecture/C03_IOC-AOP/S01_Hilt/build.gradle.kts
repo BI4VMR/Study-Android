@@ -18,7 +18,7 @@ android {
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.architecture.iocaop.hilt"
+        applicationId = "net.bi4vmr.study.architecture.ioc_aop.hilt"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode

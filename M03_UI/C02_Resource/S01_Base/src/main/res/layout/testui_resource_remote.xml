@@ -37,7 +37,6 @@
         android:id="@+id/imageview"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:background="@drawable/shape_log_area"
         android:importantForAccessibility="no" />
 
     <ScrollView

@@ -10,6 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import net.bi4vmr.study.databinding.TestuiResourceRemoteBinding
 
+/**
+ * 测试界面：外部资源。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 class TestUIRemoteKT : AppCompatActivity() {
 
     companion object {
