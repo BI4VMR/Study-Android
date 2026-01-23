@@ -51,11 +51,11 @@ public class TestUIRemote extends AppCompatActivity {
             // 创建指定软件包的Context
             Context remoteContext = createPackageContext(targetPackage, 0);
             // 查询资源名称对应的资源ID
-            int resID = remoteContext.getResources().getIdentifier("house", "drawable", targetPackage);
+            int resID = remoteContext.getResources().getIdentifier("alarm", "drawable", targetPackage);
             // 如果ID大于0，说明资源存在；否则表示资源不存在。
             if (resID > 0) {
                 // 使用目标软件包的Resources获取该ID对应的资源
-                Drawable drawable = ResourcesCompat.getDrawable(remoteContext.getResources(), resID, null);
+                Drawable drawable = ResourcesCompat.getDrawable(remoteContext.getResources(), resID, remoteContext.getTheme());
                 // 使用资源
                 binding.imageview.setImageDrawable(drawable);
             } else {

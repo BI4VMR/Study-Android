@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- 访问其他软件包的资源需要声明可见性 -->
+    <!-- 访问其他软件包的资源需要声明可见性请求 -->
     <queries>
         <package android:name="net.bi4vmr.study.ui.resource.base.res" />
     </queries>

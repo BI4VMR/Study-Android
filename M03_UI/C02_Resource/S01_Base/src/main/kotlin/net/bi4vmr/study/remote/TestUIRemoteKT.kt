@@ -1,6 +1,5 @@
 package net.bi4vmr.study.remote
 
-import android.content.pm.PackageManager
 import android.content.res.AssetManager
 import android.content.res.Resources
 import android.os.Bundle
@@ -48,11 +47,11 @@ class TestUIRemoteKT : AppCompatActivity() {
             // 创建指定软件包的Context
             val remoteContext = createPackageContext(targetPackage, 0)
             // 查询资源名称对应的资源ID
-            val resID: Int = remoteContext.resources.getIdentifier("house", "drawable", targetPackage)
+            val resID: Int = remoteContext.resources.getIdentifier("alarm", "drawable", targetPackage)
             // 如果ID大于0，说明资源存在；否则表示资源不存在。
             if (resID > 0) {
                 // 使用目标软件包的Resources获取该ID对应的资源
-                val drawable = ResourcesCompat.getDrawable(remoteContext.resources, resID, null)
+                val drawable = ResourcesCompat.getDrawable(remoteContext.resources, resID, remoteContext.theme)
                 // 使用资源
                 binding.imageview.setImageDrawable(drawable)
             } else {
@@ -73,10 +72,7 @@ class TestUIRemoteKT : AppCompatActivity() {
         // 目标APK文件路径
         val apkPath = "/data/S01_Base_ResPack-debug.apk"
         // 解析APK包名
-        val pkgName = packageManager.getPackageArchiveInfo(
-            apkPath,
-            PackageManager.PackageInfoFlags.of(0L)
-        )?.packageName ?: "UNKNOWN"
+        val pkgName = packageManager.getPackageArchiveInfo(apkPath, 0)?.packageName ?: "UNKNOWN"
 
         try {
             // 创建AssetManager实例并加载资源
@@ -103,8 +99,8 @@ class TestUIRemoteKT : AppCompatActivity() {
                 appendLog("未找到指定资源！")
             }
         } catch (e: Exception) {
-            Log.e(TAG, "获取远程资源失败！", e);
-            appendLog("获取远程资源失败！");
+            Log.e(TAG, "获取远程资源失败！", e)
+            appendLog("获取远程资源失败！")
         }
     }
 
