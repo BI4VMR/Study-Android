@@ -10,25 +10,23 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Outline;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LevelListDrawable;
 import android.os.Bundle;
 import android.os.LocaleList;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewOutlineProvider;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.databinding.MainActivityBinding;
 import net.bi4vmr.study.permission.AospPermissionMgr;
 
 import java.io.File;
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // getLanguages().forEach(locale -> {
@@ -75,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             // Log.d("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
             PackageManager packageManager = this.getPackageManager();
             try {
-                ComponentName cn = new ComponentName(getPackageName(),"net.bi4vmr.study.MainActivity2");
+                ComponentName cn = new ComponentName(getPackageName(), "net.bi4vmr.study.MainActivity2");
                 ActivityInfo activityInfo = packageManager.getActivityInfo(cn, 0);
                 String t = activityInfo.targetActivity;
                 Log.i("TEA", "t: " + t);
@@ -110,25 +108,28 @@ public class MainActivity extends AppCompatActivity {
 
         binding.ivDraw.setOnClickListener(v -> {
             View v2 = LayoutInflater.from(this).inflate(R.layout.popup_subjects, null);
-            PopupWindow window = new PopupWindow(v2, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            PopupWindow window = new PopupWindow(v2, 200, ViewGroup.LayoutParams.WRAP_CONTENT);
+            // PopupWindow window = new PopupWindow(v2);
+            // window.setContentView(v2);
             window.setFocusable(true);
-            window.update();
-            window.setOverlapAnchor(true);
+            // window.update();
+            // window.update(0,0,0,0);
+            // window.setOverlapAnchor(true);
+            // window.showAsDropDown(v);
             window.showAsDropDown(v);
             // window.showAtLocation(v, Gravity.BOTTOM, 0, 0);
-
         });
-        binding.ivDraw.setElevation(32F);
-        binding.ivDraw.setImageDrawable(null);
-        binding.ivDraw.setOutlineSpotShadowColor(Color.GREEN);
-        binding.ivDraw.setOutlineAmbientShadowColor(Color.BLUE);
-        binding.ivDraw.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view, Outline outline) {
-                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 22232F);
-            }
-        });
-        binding.ivDraw.setClipToOutline(true);
+        // binding.ivDraw.setElevation(32F);
+        // binding.ivDraw.setImageDrawable(null);
+        // binding.ivDraw.setOutlineSpotShadowColor(Color.GREEN);
+        // binding.ivDraw.setOutlineAmbientShadowColor(Color.BLUE);
+        // binding.ivDraw.setOutlineProvider(new ViewOutlineProvider() {
+        //     @Override
+        //     public void getOutline(View view, Outline outline) {
+        //         outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 22232F);
+        //     }
+        // });
+        // binding.ivDraw.setClipToOutline(true);
 
         // Log.d("Test123", "addOnActiveSessionsChangedListener: ");
         // MediaSessionManager manager = getSystemService(MediaSessionManager.class);

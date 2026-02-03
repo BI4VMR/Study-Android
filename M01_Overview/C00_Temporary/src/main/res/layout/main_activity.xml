@@ -44,6 +44,7 @@
         <ImageView
             android:id="@+id/ivDraw"
             android:layout_width="64dp"
+            android:layout_marginTop="500dp"
             android:layout_height="64dp"
             android:layout_gravity="center"
             android:background="@color/black" />
