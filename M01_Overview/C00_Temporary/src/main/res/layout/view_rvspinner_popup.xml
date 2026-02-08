@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 选择弹窗：用户点击选择器后弹出界面，以供用户选择目标选项。 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</FrameLayout>

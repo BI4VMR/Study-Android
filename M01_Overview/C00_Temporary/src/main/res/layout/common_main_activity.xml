@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/general_title_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/layout_navigation"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <!-- 底部导航栏 -->
+    <LinearLayout
+        android:id="@+id/layout_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/purple_500"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        app:layout_anchorGravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tv_overview"
+            style="@style/main_menu_item"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/main_menu_overview"
+            app:drawableTopCompat="@drawable/icon_main_menu_overview" />
+
+        <TextView
+            android:id="@+id/tv_billing"
+            style="@style/main_menu_item"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/main_menu_billing"
+            app:drawableTopCompat="@drawable/icon_main_menu_billing" />
+
+        <TextView
+            android:id="@+id/tv_bookkeeping"
+            style="@style/main_menu_item"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/main_menu_bookkeeping"
+            app:drawableTopCompat="@drawable/icon_main_menu_bookkeeping" />
+
+        <TextView
+            android:id="@+id/tv_chart"
+            style="@style/main_menu_item"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/main_menu_report"
+            app:drawableTopCompat="@drawable/icon_main_menu_report" />
+
+        <TextView
+            android:id="@+id/tv_setting"
+            style="@style/main_menu_item"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/main_menu_advance"
+            app:drawableTopCompat="@drawable/icon_main_menu_advance" />
+    </LinearLayout>
+
+    <!-- TODO -->
+    <net.bi4vmr.bookkeeper.ui.common.RVSpinner
+        android:id="@+id/sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#4400FF00"
+        app:layout_constraintBottom_toTopOf="@id/layout_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+</androidx.constraintlayout.widget.ConstraintLayout>
