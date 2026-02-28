@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
-import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.databinding.MainActivityBinding;
 import net.bi4vmr.study.exceptions.TestUIExceptions;
 import net.bi4vmr.study.exceptions.TestUIExceptionsKT;
 import net.bi4vmr.study.file.TestUIFile;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // 基本应用
