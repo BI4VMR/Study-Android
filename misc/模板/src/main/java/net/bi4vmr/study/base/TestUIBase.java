@@ -3,6 +3,7 @@ package net.bi4vmr.study.base;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,12 +43,18 @@ public class TestUIBase extends AppCompatActivity {
 
     // 向文本框中追加日志内容并滚动到最底端
     private void appendLog(Object text) {
-        binding.tvLog.post(() -> binding.tvLog.append("\n" + text.toString()));
-        binding.tvLog.post(() -> {
+        if (text == null) {
+            Log.w(TAG, "Log item is NULL, ignored!");
+            return;
+        }
+
+        TextView logArea = binding.tvLog;
+        logArea.post(() -> logArea.append("\n" + text));
+        logArea.post(() -> {
             try {
-                int offset = binding.tvLog.getLayout().getLineTop(binding.tvLog.getLineCount()) - binding.tvLog.getHeight();
+                int offset = logArea.getLayout().getLineTop(logArea.getLineCount()) - logArea.getHeight();
                 if (offset > 0) {
-                    binding.tvLog.scrollTo(0, offset);
+                    logArea.scrollTo(0, offset);
                 }
             } catch (Exception e) {
                 Log.w(TAG, "TextView scroll failed!", e);

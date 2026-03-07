@@ -157,8 +157,8 @@ include(":M04_System:C05_Ability:S07_Process")
 include(":M04_System:C05_Ability:S08_User")
 include(":M04_System:C05_Ability:S09_Key")
 include(":M04_System:C05_Ability:S10_NDK")
-include(":M04_System:C06_Concurrent:S01_Base")
-include(":M04_System:C06_Concurrent:S02_Handler")
+include(":M04_System:C06_C06_MultiTask:S01_Base")
+include(":M04_System:C06_C06_MultiTask:S02_Handler")
 
 /* ----- 数据存储 ----- */
 include(":M05_Storage:C01_File:S01_Base")

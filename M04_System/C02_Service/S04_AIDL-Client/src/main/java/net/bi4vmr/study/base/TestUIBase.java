@@ -8,7 +8,6 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +45,7 @@ public class TestUIBase extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiBaseBinding.inflate(LayoutInflater.from(this));
+        binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
@@ -95,8 +94,8 @@ public class TestUIBase extends AppCompatActivity {
         Log.i(TAG, "----- 获取服务端进程ID -----");
         appendLog("\n----- 获取服务端进程ID -----");
 
-        // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
-        if (downloadService == null || !downloadService.asBinder().isBinderAlive()) {
+        // 根据Binder变量是否为空判断能否执行远程调用
+        if (downloadService == null) {
             Log.i(TAG, "连接未就绪！");
             appendLog("连接未就绪！");
             return;
@@ -116,8 +115,8 @@ public class TestUIBase extends AppCompatActivity {
         appendLog("\n----- 添加任务 -----");
         Log.i(TAG, "----- 添加任务 -----");
 
-        // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
-        if (downloadService == null || !downloadService.asBinder().isBinderAlive()) {
+        // 根据Binder变量是否为空判断能否执行远程调用
+        if (downloadService == null) {
             Log.i(TAG, "连接未就绪！");
             appendLog("连接未就绪！");
             return;
@@ -136,8 +135,8 @@ public class TestUIBase extends AppCompatActivity {
         Log.i(TAG, "----- 查询任务 -----");
         appendLog("\n----- 查询任务 -----");
 
-        // 根据连接状态标志位和Binder状态检测确定是否能够访问接口
-        if (downloadService == null || !downloadService.asBinder().isBinderAlive()) {
+        // 根据Binder变量是否为空判断能否执行远程调用
+        if (downloadService == null) {
             appendLog("连接未就绪！");
             Log.i(TAG, "连接未就绪！");
             return;
@@ -190,8 +189,13 @@ public class TestUIBase extends AppCompatActivity {
 
     // 向文本框中追加日志内容并滚动到最底端
     private void appendLog(Object text) {
+        if (text == null) {
+            Log.w(TAG, "Log item is NULL, ignored!");
+            return;
+        }
+
         TextView logArea = binding.tvLog;
-        logArea.post(() -> logArea.append("\n" + text.toString()));
+        logArea.post(() -> logArea.append("\n" + text));
         logArea.post(() -> {
             try {
                 int offset = logArea.getLayout().getLineTop(logArea.getLineCount()) - logArea.getHeight();

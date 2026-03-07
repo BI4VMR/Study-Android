@@ -1,4 +1,4 @@
-package net.bi4vmr.study.stability
+package net.bi4vmr.study.statedetect;
 
 /**
  * 测试界面：服务稳定性。
@@ -6,5 +6,5 @@ package net.bi4vmr.study.stability
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-class TestUIStabilityKT {
+public class TestUIStateDetect {
 }
