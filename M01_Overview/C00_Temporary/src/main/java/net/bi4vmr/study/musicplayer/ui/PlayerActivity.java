@@ -52,7 +52,7 @@ public class PlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG_APP, TAG + ":onCreate()");
+        Log.i(TAG_APP, TAG + ":onCreate()");
 
         binding = PlayerActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -68,7 +68,7 @@ public class PlayerActivity extends AppCompatActivity {
             // 列表项的点击事件
             @Override
             public void onItemClick(int position, MusicVO vo) {
-                Log.d(TAG_APP, TAG + ":点击表项：" + vo.toString());
+                Log.i(TAG_APP, TAG + ":点击表项：" + vo.toString());
                 //
                 Uri itemURI = Uri.parse(vo.getUri());
                 // 获取额外数据
@@ -81,7 +81,7 @@ public class PlayerActivity extends AppCompatActivity {
             // 列表项的长按事件
             @Override
             public void onItemLongClick(int position, MusicVO vo) {
-                Log.d(TAG_APP, TAG + ":长按表项：" + vo.toString());
+                Log.i(TAG_APP, TAG + ":长按表项：" + vo.toString());
             }
         });
 
@@ -112,7 +112,7 @@ public class PlayerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG_APP, TAG + ":onResume()");
+        Log.i(TAG_APP, TAG + ":onResume()");
 
         // 连接音乐播放服务
         mediaBrowser.connect();
@@ -126,7 +126,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        Log.d(TAG_APP, TAG + ":onStop()");
+        Log.i(TAG_APP, TAG + ":onStop()");
 
         if (mediaBrowser != null) {
             mediaBrowser.disconnect();
@@ -142,7 +142,7 @@ public class PlayerActivity extends AppCompatActivity {
 
         @Override
         public void onConnected() {
-            Log.d(TAG_APP, TAG + ":onConnected()");
+            Log.i(TAG_APP, TAG + ":onConnected()");
 
             // 获取令牌
             MediaSession.Token token = mediaBrowser.getSessionToken();
@@ -159,12 +159,12 @@ public class PlayerActivity extends AppCompatActivity {
 
         @Override
         public void onConnectionSuspended() {
-            Log.d(TAG_APP, TAG + ":onConnectionSuspended()");
+            Log.i(TAG_APP, TAG + ":onConnectionSuspended()");
         }
 
         @Override
         public void onConnectionFailed() {
-            Log.d(TAG_APP, TAG + ":onConnectionFailed()");
+            Log.i(TAG_APP, TAG + ":onConnectionFailed()");
         }
     }
 
@@ -181,7 +181,7 @@ public class PlayerActivity extends AppCompatActivity {
         @SuppressLint("SwitchIntDef")
         @Override
         public void onPlaybackStateChanged(@Nullable PlaybackState state) {
-            Log.d(TAG_APP, TAG + ":onPlaybackStateChanged()");
+            Log.i(TAG_APP, TAG + ":onPlaybackStateChanged()");
             // 更新回放状态LiveData
             playbackVM.setPlaybackState(state);
         }
@@ -193,7 +193,7 @@ public class PlayerActivity extends AppCompatActivity {
          */
         @Override
         public void onMetadataChanged(@Nullable MediaMetadata metadata) {
-            Log.d(TAG_APP, TAG + ":onMetadataChanged()");
+            Log.i(TAG_APP, TAG + ":onMetadataChanged()");
             // 更新媒体元数据LiveData
             playbackVM.setMediaMetadata(metadata);
         }

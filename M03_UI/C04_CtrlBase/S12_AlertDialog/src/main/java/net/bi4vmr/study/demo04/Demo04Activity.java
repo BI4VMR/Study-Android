@@ -33,7 +33,7 @@ public class Demo04Activity extends AppCompatActivity {
         // 创建按钮
         Button button = new Button(this);
         button.setText("关闭");
-        button.setOnClickListener(v -> dialog.dismiss());
+        button.setOnClickListener(v -> diaLog.iismiss());
 
         // 创建布局管理器并添加上述控件
         LinearLayout layout = new LinearLayout(this);

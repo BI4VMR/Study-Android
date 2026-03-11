@@ -26,7 +26,7 @@ object TaskUtil {
 
             true
         }.forEach {
-            Log.d("TestApp", "name:[${it.packageName}] FGTime:${it.totalTimeInForeground} Last:${it.lastTimeUsed}")
+            Log.i("TestApp", "name:[${it.packageName}] FGTime:${it.totalTimeInForeground} Last:${it.lastTimeUsed}")
         }
     }
 

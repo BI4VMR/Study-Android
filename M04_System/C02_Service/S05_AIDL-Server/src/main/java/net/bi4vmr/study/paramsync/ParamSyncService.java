@@ -30,18 +30,18 @@ public class ParamSyncService extends Service {
 
         @Override
         public void modifyParams(DownloadItem p1, DownloadItem p2, DownloadItem p3) {
-            Log.d(TAG, "ModifyParams start.");
-            Log.d(TAG, "In Param P1: " + p1);
-            Log.d(TAG, "Out Param P2: " + p2);
-            Log.d(TAG, "In/Out Param P3: " + p3);
+            Log.i(TAG, "ModifyParams start.");
+            Log.i(TAG, "In Param P1: " + p1);
+            Log.i(TAG, "Out Param P2: " + p2);
+            Log.i(TAG, "In/Out Param P3: " + p3);
 
             // new Thread(() -> {
                 try {
                     Thread.sleep(2000L);
-                    Log.d(TAG, "ModifyParams sleep end.");
-                    Log.d(TAG, "In Param P1: " + p1);
-                    Log.d(TAG, "Out Param P2: " + p2);
-                    Log.d(TAG, "In/Out Param P3: " + p3);
+                    Log.i(TAG, "ModifyParams sleep end.");
+                    Log.i(TAG, "In Param P1: " + p1);
+                    Log.i(TAG, "Out Param P2: " + p2);
+                    Log.i(TAG, "In/Out Param P3: " + p3);
 
                     // 修改参数
                     p1.setId(999);
@@ -54,10 +54,10 @@ public class ParamSyncService extends Service {
                     e.printStackTrace();
                 }
 
-                Log.d(TAG, "ModifyParams end.");
-                Log.d(TAG, "In Param P1: " + p1);
-                Log.d(TAG, "Out Param P2: " + p2);
-                Log.d(TAG, "In/Out Param P3: " + p3);
+                Log.i(TAG, "ModifyParams end.");
+                Log.i(TAG, "In Param P1: " + p1);
+                Log.i(TAG, "Out Param P2: " + p2);
+                Log.i(TAG, "In/Out Param P3: " + p3);
             // }).start();
         }
     }

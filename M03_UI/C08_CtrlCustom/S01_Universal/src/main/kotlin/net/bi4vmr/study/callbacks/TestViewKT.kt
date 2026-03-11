@@ -28,7 +28,7 @@ class TestViewKT @JvmOverloads constructor(
     // 控件被加入窗口
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        Log.d(TAG, "OnAttachedToWindow.")
+        Log.i(TAG, "OnAttachedToWindow.")
     }
 
     // 测量回调
@@ -38,19 +38,19 @@ class TestViewKT @JvmOverloads constructor(
      */
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        Log.d(TAG, "OnMeasure. widthMeasureSpec=$widthMeasureSpec, heightMeasureSpec=$heightMeasureSpec")
+        Log.i(TAG, "OnMeasure. widthMeasureSpec=$widthMeasureSpec, heightMeasureSpec=$heightMeasureSpec")
         val widthMode = MeasureSpec.getMode(widthMeasureSpec)
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)
         val heightMode = MeasureSpec.getMode(heightMeasureSpec)
         val heightSize = MeasureSpec.getSize(heightMeasureSpec)
-        Log.d(TAG, "OnMeasure. widthMode=$widthMode, widthSize=$widthSize")
-        Log.d(TAG, "OnMeasure. heightMode=$heightMode, heightSize=$heightSize")
+        Log.i(TAG, "OnMeasure. widthMode=$widthMode, widthSize=$widthSize")
+        Log.i(TAG, "OnMeasure. heightMode=$heightMode, heightSize=$heightSize")
     }
 
     // 尺寸改变回调
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        Log.d(TAG, "onSizeChanged. w=$w, h=$h, oldw=$oldw, oldh=$oldh")
+        Log.i(TAG, "onSizeChanged. w=$w, h=$h, oldw=$oldw, oldh=$oldh")
     }
 
     /**
@@ -60,18 +60,18 @@ class TestViewKT @JvmOverloads constructor(
      */
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
-        Log.d(TAG, "onLayout. changed=$changed, left=$left, top=$top, right=$right, bottom=$bottom")
+        Log.i(TAG, "onLayout. changed=$changed, left=$left, top=$top, right=$right, bottom=$bottom")
     }
 
     // 绘制内容
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        Log.d(TAG, "onDetachedFromWindow: ")
+        Log.i(TAG, "onDetachedFromWindow: ")
     }
 
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        Log.d(TAG, "OnDetachedFromWindow.")
+        Log.i(TAG, "OnDetachedFromWindow.")
     }
 }

@@ -75,12 +75,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Object data = payloads.get(payloads.size() - 1);
         // 如果Payload不能被解析为Flags，则忽略。
         if (!(data instanceof Integer)) {
-            Log.d("TestApp", "Payload type is unknown.");
+            Log.i("TestApp", "Payload type is unknown.");
             return;
         }
 
         int flags = (Integer) data;
-        Log.d("TestApp", "Payload flags:[" + flags + "]");
+        Log.i("TestApp", "Payload flags:[" + flags + "]");
         ItemVO vo = dataSource.get(holder.getAdapterPosition());
         if ((flags & UpdateFlagsKT.FLAG_TITLE) != 0) {
             holder.updateTitle(vo);

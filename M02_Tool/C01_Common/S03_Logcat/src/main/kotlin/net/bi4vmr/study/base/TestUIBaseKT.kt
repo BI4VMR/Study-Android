@@ -41,7 +41,7 @@ class TestUIBaseKT : AppCompatActivity() {
         // 输出Verbose级别日志
         Log.v(TAG, "Verbose Log.")
         // 输出Debug级别日志
-        Log.d(TAG, "Debug Log.")
+        Log.i(TAG, "Debug Log.")
         // 输出Info级别日志
         Log.i(TAG, "Info Log.")
         // 输出Warn级别日志

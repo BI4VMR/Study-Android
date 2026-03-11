@@ -33,7 +33,7 @@ public class MyVPAdapter extends FragmentStateAdapter {
      */
     @Override
     public int getItemCount() {
-        Log.d(TAG, "GetItemCount. Count:[" + pages.size() + "]");
+        Log.i(TAG, "GetItemCount. Count:[" + pages.size() + "]");
         return pages.size();
     }
 
@@ -46,7 +46,7 @@ public class MyVPAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Log.d(TAG, "CreateFragment. Position:[" + position + "]");
+        Log.i(TAG, "CreateFragment. Position:[" + position + "]");
         return pages.get(position);
     }
 

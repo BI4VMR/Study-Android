@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // getLanguages().forEach(locale -> {
-        //     // Log.d("TestApp","locale: "+ locale);
+        //     // Log.i("TestApp","locale: "+ locale);
         // });
 
         // 创建IntentFilter并添加ACTION_PACKAGE_CHANGED
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         btnTextClock.setOnClickListener(v -> {
             // Intent intent = new Intent(this, TestUITextClock.class);
             // startActivity(intent);
-            // Log.d("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
+            // Log.i("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
             PackageManager packageManager = this.getPackageManager();
             try {
                 ComponentName cn = new ComponentName(getPackageName(), "net.bi4vmr.study.MainActivity2");
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnView = findViewById(R.id.btnView);
         btnView.setOnClickListener(v -> {
             AospPermissionMgr mgr = AospPermissionMgr.getInstance(this);
-            mgr.startListenPermissionChange2(pkg -> Log.d("TestApp", "pkg: " + pkg));
+            mgr.startListenPermissionChange2(pkg -> Log.i("TestApp", "pkg: " + pkg));
 
             // Intent intent = new Intent(this, TestUIView.class);
             // startActivity(intent);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             // drawableToFile(wallpaperDrawable, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/1.png", Bitmap.CompressFormat.PNG);
 
             // TaskUtil.INSTANCE.getbgapps(getApplicationContext());
-            // Log.d("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
+            // Log.i("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
         });
 
         LevelListDrawable drawable = (LevelListDrawable) getResources().getDrawable(R.drawable.ic_status_wlan);
@@ -131,14 +131,14 @@ public class MainActivity extends AppCompatActivity {
         // });
         // binding.ivDraw.setClipToOutline(true);
 
-        // Log.d("Test123", "addOnActiveSessionsChangedListener: ");
+        // Log.i("Test123", "addOnActiveSessionsChangedListener: ");
         // MediaSessionManager manager = getSystemService(MediaSessionManager.class);
         // manager.addOnActiveSessionsChangedListener(new MediaSessionManager.OnActiveSessionsChangedListener() {
         //     @Override
         //     public void onActiveSessionsChanged(@Nullable List<MediaController> controllers) {
         //         if (controllers != null) {
         //             for (MediaController controller : controllers) {
-        //                 Log.d("Test123", "onActiveSessionsChanged: " + controller.getPackageName());
+        //                 Log.i("Test123", "onActiveSessionsChanged: " + controller.getPackageName());
         //
         //             }
         //         }
@@ -197,10 +197,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String packageName = intent.getData().getSchemeSpecificPart();
-            Log.d("TestAPP", "Package changed: " + packageName);
+            Log.i("TestAPP", "Package changed: " + packageName);
             try {
                 boolean b2 = context.getPackageManager().getApplicationInfo(packageName, 0).enabled;
-                Log.d("TestAPP", "Package state: " + b2);
+                Log.i("TestAPP", "Package state: " + b2);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
             // if (!list.contains(name)){
             list.add(name);
             // }
-            Log.d("TestApp", "locale: " + language.toLanguageTag());
+            Log.i("TestApp", "locale: " + language.toLanguageTag());
         }
         return list;
     }

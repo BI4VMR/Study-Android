@@ -31,14 +31,14 @@ public class OutterVPAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Log.d("myapp", "createFragment()-position:" + position);
+        Log.i("myapp", "createFragment()-position:" + position);
         return pages.get(position);
     }
 
     /* 获取页面数量 */
     @Override
     public int getItemCount() {
-        Log.d("myapp", "getItemCount()-count:" + pages.size());
+        Log.i("myapp", "getItemCount()-count:" + pages.size());
         return pages.size();
     }
 }

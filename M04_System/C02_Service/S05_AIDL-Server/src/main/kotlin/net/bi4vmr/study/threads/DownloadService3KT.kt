@@ -40,7 +40,7 @@ class DownloadService3KT : Service() {
          * @param[cb] 回调接口实现。
          */
         override fun setTaskCallback(cb: TaskCallbackKT) {
-            Log.d(TAG, "SetTaskCallback.")
+            Log.i(TAG, "SetTaskCallback.")
             callback = cb
         }
 
@@ -52,7 +52,7 @@ class DownloadService3KT : Service() {
          * @param[item] 下载任务。
          */
         override fun addTask(item: DownloadItemKT) {
-            Log.d(TAG, "AddTask.")
+            Log.i(TAG, "AddTask.")
 
             // 创建新线程模拟下载过程
             thread {
@@ -86,12 +86,12 @@ class DownloadService3KT : Service() {
          * @param[item] 下载任务。
          */
         override fun addTaskOneway(item: DownloadItemKT) {
-            Log.d(TAG, "AddTaskOneway.")
+            Log.i(TAG, "AddTaskOneway.")
 
             val total = 100.0F
             var length = 0
             try {
-                Log.d(TAG, "开始下载:" + item.url)
+                Log.i(TAG, "开始下载:" + item.url)
                 while (length < total) {
                     length += 10
                     // 更新进度
@@ -101,7 +101,7 @@ class DownloadService3KT : Service() {
                     // 休眠1秒，模拟耗时操作。
                     Thread.sleep(1000)
                 }
-                Log.d(TAG, "下载完成。")
+                Log.i(TAG, "下载完成。")
             } catch (e: InterruptedException) {
                 Log.w(TAG, "任务终止。")
             } catch (e: RemoteException) {

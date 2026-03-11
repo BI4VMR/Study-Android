@@ -41,7 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d("TestApp", "OnCreateViewHolder. ViewType:[" + viewType + "]");
+        Log.i("TestApp", "OnCreateViewHolder. ViewType:[" + viewType + "]");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.list_item_simple, parent, false);
         return new MyViewHolder(view);
@@ -49,7 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Log.d("TestApp", "OnBindViewHolder. Position:[" + position + "]");
+        Log.i("TestApp", "OnBindViewHolder. Position:[" + position + "]");
         holder.bindData();
     }
 

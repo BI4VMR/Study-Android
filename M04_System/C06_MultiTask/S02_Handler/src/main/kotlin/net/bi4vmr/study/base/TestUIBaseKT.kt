@@ -34,13 +34,13 @@ class TestUIBaseKT : AppCompatActivity() {
             val code: Int = msg.what
             when (code) {
                 0x01 -> {
-                    Log.d(TAG, "HandleMessage 1.")
+                    Log.i(TAG, "HandleMessage 1.")
                     binding.tvLog.append("\nHandleMessage 1.")
                     // 在此处编写收到1号消息后需要执行的逻辑...
                 }
 
                 0x02 -> {
-                    Log.d(TAG, "HandleMessage 2. Arg1:[${msg.arg1}] Arg2:[${msg.arg2}]")
+                    Log.i(TAG, "HandleMessage 2. Arg1:[${msg.arg1}] Arg2:[${msg.arg2}]")
                     binding.tvLog.append("\nHandleMessage 2. Arg1:[${msg.arg1}] Arg2:[${msg.arg2}]")
                     // 在此处编写收到2号消息后需要执行的逻辑...
                 }

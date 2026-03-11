@@ -24,6 +24,6 @@ public class TestInstrument {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         // 访问Android资源
         String appName = appContext.getString(R.string.app_name);
-        Log.d("Test", "应用名称：" + appName);
+        Log.i("Test", "应用名称：" + appName);
     }
 }

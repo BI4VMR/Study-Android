@@ -35,7 +35,7 @@ class TestUIBaseKT : AppCompatActivity() {
         Log.i(TAG, "--- 功能模块 ---")
         binding.tvLog.append("\n--- 功能模块 ---\n")
 
-        Log.d(TAG, "该工程主要用于测试编译，没有代码逻辑。")
+        Log.i(TAG, "该工程主要用于测试编译，没有代码逻辑。")
         binding.tvLog.append("该工程主要用于测试编译，没有代码逻辑。")
     }
 }

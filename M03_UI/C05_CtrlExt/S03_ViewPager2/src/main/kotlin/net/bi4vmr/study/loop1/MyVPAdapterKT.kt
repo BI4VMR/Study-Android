@@ -33,7 +33,7 @@ class MyVPAdapterKT(activity: FragmentActivity) : FragmentStateAdapter(activity)
      * @return 页面数量。
      */
     override fun getItemCount(): Int {
-        Log.d(TAG, "GetItemCount. Count:[${pages.size}]")
+        Log.i(TAG, "GetItemCount. Count:[${pages.size}]")
         return pages.size
     }
 
@@ -44,7 +44,7 @@ class MyVPAdapterKT(activity: FragmentActivity) : FragmentStateAdapter(activity)
      * @return Fragment实例。
      */
     override fun createFragment(position: Int): Fragment {
-        Log.d(TAG, "CreateFragment. Position:[${pages.size}]")
+        Log.i(TAG, "CreateFragment. Position:[${pages.size}]")
         return pages[position]
     }
 }

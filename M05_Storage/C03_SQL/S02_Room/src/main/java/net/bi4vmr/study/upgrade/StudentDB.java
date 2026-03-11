@@ -44,7 +44,7 @@ public abstract class StudentDB extends RoomDatabase {
                             .setQueryCallback(new QueryCallback() {
                                 @Override
                                 public void onQuery(@NonNull String sqlQuery, @NonNull List<?> bindArgs) {
-                                    Log.d("StudentDB", "SQL:[" + sqlQuery + "] | " + bindArgs);
+                                    Log.i("StudentDB", "SQL:[" + sqlQuery + "] | " + bindArgs);
                                 }
                             }, Executors.newSingleThreadExecutor())
                             // Room默认不允许在主线程执行操作，此配置允许在主线程操作，仅适用于调试。

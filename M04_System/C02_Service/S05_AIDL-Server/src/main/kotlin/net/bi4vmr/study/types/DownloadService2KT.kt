@@ -36,7 +36,7 @@ class DownloadService2KT : Service() {
          * @param[item] 下载项实体类。
          */
         override fun addTask(item: DownloadItemKT) {
-            Log.d(TAG, "AddTask. Item:$item")
+            Log.i(TAG, "AddTask. Item:$item")
             // 在此处实现下载业务，此处省略。
             tasks.add(item)
         }
@@ -47,7 +47,7 @@ class DownloadService2KT : Service() {
          * @return 任务列表。
          */
         override fun getTasks(): List<DownloadItemKT> {
-            Log.d(TAG, "GetTasks.")
+            Log.i(TAG, "GetTasks.")
             return tasks
         }
     }

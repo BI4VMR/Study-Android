@@ -46,10 +46,10 @@ public class MyVPAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Log.d(TAG, "CreateFragment. Position:[" + position + "]");
+        Log.i(TAG, "CreateFragment. Position:[" + position + "]");
         // 取模运算，将页面索引映射到实际的页面队列中。
         int index = position % datas.size();
-        Log.d(TAG, "CreateFragment. Index:[" + index + "]");
+        Log.i(TAG, "CreateFragment. Index:[" + index + "]");
         String name = datas.get(index);
         return TestFragment.newInstance(name);
     }

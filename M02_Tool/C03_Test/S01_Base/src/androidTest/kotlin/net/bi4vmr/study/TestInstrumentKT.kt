@@ -21,6 +21,6 @@ class TestInstrumentKT {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         // 访问Android资源
         val appName: String = appContext.getString(R.string.app_name)
-        Log.d("Test", "应用名称：$appName")
+        Log.i("Test", "应用名称：$appName")
     }
 }

@@ -31,7 +31,7 @@ class TestUIBaseKT : AppCompatActivity() {
     init {
         lifecycleScope.launch {
             flow.collect {
-                Log.d(TAG, "flow -> $it")
+                Log.i(TAG, "flow -> $it")
             }
         }
 

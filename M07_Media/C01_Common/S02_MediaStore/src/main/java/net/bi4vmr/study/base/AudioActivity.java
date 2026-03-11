@@ -41,7 +41,7 @@ public class AudioActivity extends AppCompatActivity {
 
         // 获取游标内容计数
         int reportedCount = cursor.getCount();
-        Log.d("myapp", "系统报告的曲目数量：" + reportedCount);
+        Log.i("myapp", "系统报告的曲目数量：" + reportedCount);
         // 没有数据时，退出当前方法。
         if (reportedCount == 0) {
             Log.i("myapp", "没有找到媒体文件");

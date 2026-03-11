@@ -37,7 +37,7 @@ public class DownloadService3 extends Service {
          */
         @Override
         public void setTaskCallback(TaskCallback cb) {
-            Log.d(TAG, "SetTaskCallback.");
+            Log.i(TAG, "SetTaskCallback.");
             callback = cb;
         }
 
@@ -50,7 +50,7 @@ public class DownloadService3 extends Service {
          */
         @Override
         public void addTask(DownloadItem item) {
-            Log.d(TAG, "AddTask.");
+            Log.i(TAG, "AddTask.");
 
             // 创建新线程模拟下载过程
             new Thread(() -> {
@@ -88,13 +88,13 @@ public class DownloadService3 extends Service {
          */
         @Override
         public void addTaskOneway(DownloadItem item) {
-            Log.d(TAG, "AddTaskOneway.");
+            Log.i(TAG, "AddTaskOneway.");
 
             final float TOTAL = 100.0F;
             int length = 0;
 
             try {
-                Log.d(TAG, "开始下载:" + item.getUrl());
+                Log.i(TAG, "开始下载:" + item.getUrl());
                 while (length < TOTAL) {
                     length += 10;
                     // 设置进度并通过回调通知客户端
@@ -103,7 +103,7 @@ public class DownloadService3 extends Service {
                     // 休眠1秒，模拟耗时操作。
                     Thread.sleep(1000);
                 }
-                Log.d(TAG, "下载完成。");
+                Log.i(TAG, "下载完成。");
             } catch (InterruptedException e) {
                 Log.w(TAG, "任务终止。");
             } catch (RemoteException e) {

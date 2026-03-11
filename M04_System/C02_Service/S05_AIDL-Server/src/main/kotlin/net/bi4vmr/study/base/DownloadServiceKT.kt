@@ -38,7 +38,7 @@ class DownloadServiceKT : Service() {
          */
         override fun getPID(): Int {
             val pid = Process.myPid()
-            Log.d(TAG, "GetPID. PID:[$pid]")
+            Log.i(TAG, "GetPID. PID:[$pid]")
             return pid
         }
 
@@ -48,7 +48,7 @@ class DownloadServiceKT : Service() {
          * @param url 目标地址。
          */
         override fun addTask(url: String) {
-            Log.d(TAG, "AddTask. URL:[$url]")
+            Log.i(TAG, "AddTask. URL:[$url]")
             // 在此处实现下载业务，此处省略。
             tasks.add(url)
         }
@@ -59,7 +59,7 @@ class DownloadServiceKT : Service() {
          * @return 任务列表。
          */
         override fun getTasks(): List<String> {
-            Log.d(TAG, "GetTasks.")
+            Log.i(TAG, "GetTasks.")
             return tasks
         }
     }

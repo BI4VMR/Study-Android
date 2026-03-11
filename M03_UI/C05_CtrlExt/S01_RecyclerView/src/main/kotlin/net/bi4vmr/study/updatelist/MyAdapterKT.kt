@@ -26,14 +26,14 @@ class MyAdapterKT(
 ) : RecyclerView.Adapter<MyAdapterKT.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        Log.d("TestApp", "OnCreateViewHolder. ViewType:[$viewType]")
+        Log.i("TestApp", "OnCreateViewHolder. ViewType:[$viewType]")
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
         val itemView: View = inflater.inflate(R.layout.list_item_simple, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        Log.d("TestApp", "OnBindViewHolder. Position:[$position]")
+        Log.i("TestApp", "OnBindViewHolder. Position:[$position]")
         holder.bindData()
     }
 

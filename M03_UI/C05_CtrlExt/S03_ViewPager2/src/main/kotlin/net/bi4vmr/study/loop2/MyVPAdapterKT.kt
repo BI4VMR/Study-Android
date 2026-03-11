@@ -35,10 +35,10 @@ class MyVPAdapterKT(activity: FragmentActivity) : FragmentStateAdapter(activity)
      * @return Fragment实例。
      */
     override fun createFragment(position: Int): Fragment {
-        Log.d(TAG, "CreateFragment. Position:[${datas.size}]")
+        Log.i(TAG, "CreateFragment. Position:[${datas.size}]")
         // 取模运算，将页面索引映射到实际的页面队列中。
         val index = position % datas.size
-        Log.d(TAG, "CreateFragment. Index:[${index}]")
+        Log.i(TAG, "CreateFragment. Index:[${index}]")
         val name = datas[index]
         return TestFragment.newInstance(name)
     }

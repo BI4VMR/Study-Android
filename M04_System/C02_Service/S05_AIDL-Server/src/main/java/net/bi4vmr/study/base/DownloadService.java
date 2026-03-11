@@ -42,7 +42,7 @@ public class DownloadService extends Service {
         @Override
         public int getPID() {
             int pid = Process.myPid();
-            Log.d(TAG, "GetPID. PID:[" + pid + "]");
+            Log.i(TAG, "GetPID. PID:[" + pid + "]");
             return pid;
         }
 
@@ -53,7 +53,7 @@ public class DownloadService extends Service {
          */
         @Override
         public void addTask(String url) {
-            Log.d(TAG, "AddTask. URL:[" + url + "]");
+            Log.i(TAG, "AddTask. URL:[" + url + "]");
             // 在此处实现下载业务，此处省略。
             tasks.add(url);
         }
@@ -65,7 +65,7 @@ public class DownloadService extends Service {
          */
         @Override
         public List<String> getTasks() {
-            Log.d(TAG, "GetTasks.");
+            Log.i(TAG, "GetTasks.");
             return tasks;
         }
     }

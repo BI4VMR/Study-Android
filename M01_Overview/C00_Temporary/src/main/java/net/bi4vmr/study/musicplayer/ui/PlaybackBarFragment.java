@@ -112,16 +112,16 @@ public class PlaybackBarFragment extends Fragment {
             // 回放状态不为空时，更新UI。
             switch (state.getState()) {
                 case PlaybackState.STATE_NONE:
-                    Log.d(TAG_APP, TAG + ":回放状态：NONE");
+                    Log.i(TAG_APP, TAG + ":回放状态：NONE");
                     binding.ibPlay.setImageResource(R.drawable.ic_playback_play);
                     break;
                 case PlaybackState.STATE_PLAYING:
-                    Log.d(TAG_APP, TAG + ":回放状态：PLAYING");
+                    Log.i(TAG_APP, TAG + ":回放状态：PLAYING");
                     // 播放时，将图标设为暂停。
                     binding.ibPlay.setImageResource(R.drawable.ic_playback_pause);
                     break;
                 case PlaybackState.STATE_PAUSED:
-                    Log.d(TAG_APP, TAG + ":回放状态：PAUSED");
+                    Log.i(TAG_APP, TAG + ":回放状态：PAUSED");
                     // 暂停时，将图标设为播放。
                     binding.ibPlay.setImageResource(R.drawable.ic_playback_play);
                     break;

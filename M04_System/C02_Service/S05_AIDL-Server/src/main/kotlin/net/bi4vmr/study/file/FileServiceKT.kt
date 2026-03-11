@@ -40,7 +40,7 @@ class FileServiceKT : Service() {
                 // 从输入流读取数据
                 FileInputStream(fd).use {
                     val content = IOUtil.readFile(it)
-                    Log.d(TAG, "获取到内容：$content")
+                    Log.i(TAG, "获取到内容：$content")
                 }
             }.onFailure { e ->
                 e.printStackTrace()

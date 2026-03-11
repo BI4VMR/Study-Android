@@ -46,7 +46,7 @@ abstract class StudentDBKT : RoomDatabase() {
                             // 设置SQL语句回调，便于调试。
                             .setQueryCallback(object : QueryCallback {
                                 override fun onQuery(sqlQuery: String, bindArgs: List<Any?>) {
-                                    Log.d("StudentDBKT", "SQL:[$sqlQuery] | $bindArgs")
+                                    Log.i("StudentDBKT", "SQL:[$sqlQuery] | $bindArgs")
                                 }
                             }, Executors.newSingleThreadExecutor())
                             // Room默认不允许在主线程执行操作，此配置允许在主线程操作，仅适用于调试。

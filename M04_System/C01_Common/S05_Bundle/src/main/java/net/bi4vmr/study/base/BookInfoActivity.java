@@ -34,7 +34,7 @@ public class BookInfoActivity extends AppCompatActivity {
             boolean isSoldout = bundle.getBoolean("KEY_SOLDOUT", true);
 
             String bookInfo = "ID:" + id + "\n名称:" + name + "\n价格:" + price + "\n售空:" + isSoldout;
-            Log.d(TAG, bookInfo);
+            Log.i(TAG, bookInfo);
             binding.tvInfo.setText(bookInfo);
         }
     }

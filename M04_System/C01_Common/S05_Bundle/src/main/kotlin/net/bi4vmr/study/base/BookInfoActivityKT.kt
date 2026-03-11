@@ -35,7 +35,7 @@ class BookInfoActivityKT : AppCompatActivity() {
             val isSoldout: Boolean = bundle.getBoolean("KEY_SOLDOUT", true)
 
             val bookInfo = "ID:$id\n名称:$name\n价格:$price\n售空:$isSoldout"
-            Log.d(TAG, bookInfo)
+            Log.i(TAG, bookInfo)
             binding.tvInfo.text = bookInfo
         }
     }

@@ -25,11 +25,11 @@ object GlobalTaskManager {
 
     private suspend fun task() {
         try {
-            Log.d(TAG, "Task start.")
+            Log.i(TAG, "Task start.")
             delay(5000L)
-            Log.d(TAG, "Task end.")
+            Log.i(TAG, "Task end.")
         } catch (e: CancellationException) {
-            Log.d(TAG, "Task was canceled!")
+            Log.i(TAG, "Task was canceled!")
         }
     }
 }

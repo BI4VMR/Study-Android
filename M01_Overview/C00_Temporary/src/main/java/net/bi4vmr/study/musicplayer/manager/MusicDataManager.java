@@ -61,7 +61,7 @@ public class MusicDataManager {
 
         // 获取游标内容计数
         int reportedCount = cursor.getCount();
-        Log.d(TAG_APP, "系统报告的曲目数量：" + reportedCount);
+        Log.i(TAG_APP, "系统报告的曲目数量：" + reportedCount);
         // 没有数据时，退出当前方法。
         if (reportedCount == 0) {
             Log.i(TAG_APP, "没有找到媒体文件");

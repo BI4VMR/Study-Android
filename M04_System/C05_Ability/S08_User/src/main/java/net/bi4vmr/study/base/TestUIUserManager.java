@@ -140,7 +140,7 @@ public class TestUIUserManager extends AppCompatActivity {
             Object object = method.invoke(userManager);
             if (object instanceof List<?>) {
                 List<?> list = (List) object;
-                Log.d(TAG, "getUsers:" + list);
+                Log.i(TAG, "getUsers:" + list);
             }
         } catch (Exception e) {
             Log.e(TAG, "反射操作失败：" + e.getMessage(), e);
@@ -153,7 +153,7 @@ public class TestUIUserManager extends AppCompatActivity {
             Object object = method.invoke(userManager, false);
             if (object instanceof List<?>) {
                 List<?> list = (List) object;
-                Log.d(TAG, "getUserHandles:" + list);
+                Log.i(TAG, "getUserHandles:" + list);
             }
         } catch (Exception e) {
             Log.e(TAG, "反射操作失败：" + e.getMessage(), e);

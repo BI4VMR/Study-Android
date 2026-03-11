@@ -40,7 +40,7 @@ public class DownloadService2 extends Service {
          */
         @Override
         public void addTask(DownloadItem item) {
-            Log.d(TAG, "AddTask. Item:" + item);
+            Log.i(TAG, "AddTask. Item:" + item);
             // 在此处实现下载业务，此处省略。
             tasks.add(item);
         }
@@ -52,7 +52,7 @@ public class DownloadService2 extends Service {
          */
         @Override
         public List<DownloadItem> getTasks() {
-            Log.d(TAG, "GetTasks.");
+            Log.i(TAG, "GetTasks.");
             return tasks;
         }
     }

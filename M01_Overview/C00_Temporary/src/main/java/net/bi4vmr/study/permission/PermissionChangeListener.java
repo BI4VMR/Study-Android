@@ -45,7 +45,7 @@ public class PermissionChangeListener implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) {
         if (method == null) {
-            Log.d("TestApp","invoke methodName is null!");
+            Log.i("TestApp","invoke methodName is null!");
             return null;
         }
         proxy = method.getName();

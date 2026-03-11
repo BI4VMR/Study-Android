@@ -40,11 +40,11 @@ class TestUICoroutineKT : AppCompatActivity() {
     // 测试协程
     private suspend fun task() {
         try {
-            Log.d(TAG, "Task start.")
+            Log.i(TAG, "Task start.")
             delay(5000L)
-            Log.d(TAG, "Task end.")
+            Log.i(TAG, "Task end.")
         } catch (e: CancellationException) {
-            Log.d(TAG, "Task was canceled!")
+            Log.i(TAG, "Task was canceled!")
         }
     }
 
@@ -63,7 +63,7 @@ class TestUICoroutineKT : AppCompatActivity() {
         }
 
         // 关闭当前页面
-        Log.d(TAG, "Finish activity.")
+        Log.i(TAG, "Finish activity.")
         finish()
     }
 
@@ -82,7 +82,7 @@ class TestUICoroutineKT : AppCompatActivity() {
         vm.task()
 
         // 关闭当前页面
-        Log.d(TAG, "Finish activity.")
+        Log.i(TAG, "Finish activity.")
         finish()
     }
 
@@ -106,6 +106,6 @@ class TestUICoroutineKT : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(TAG, "OnDestroy.")
+        Log.i(TAG, "OnDestroy.")
     }
 }

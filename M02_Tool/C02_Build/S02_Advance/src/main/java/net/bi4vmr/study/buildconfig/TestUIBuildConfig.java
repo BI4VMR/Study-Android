@@ -38,11 +38,11 @@ public class TestUIBuildConfig extends AppCompatActivity {
         boolean debug = BuildConfig.DEBUG;
         String buildType = BuildConfig.BUILD_TYPE;
 
-        Log.d(TAG, "是否允许Debug:[" + debug + "]\n构建类型:[" + buildType + "]");
+        Log.i(TAG, "是否允许Debug:[" + debug + "]\n构建类型:[" + buildType + "]");
         binding.tvLog.append("\n是否允许Debug:[" + debug + "]\n构建类型:[" + buildType + "]");
 
         // 访问自定义变量
-        Log.d(TAG, "自定义BuildConfig变量:[" + BuildConfig.SERVER_NAME + "]");
+        Log.i(TAG, "自定义BuildConfig变量:[" + BuildConfig.SERVER_NAME + "]");
         binding.tvLog.append("\n自定义BuildConfig变量:[" + BuildConfig.SERVER_NAME + "]");
     }
 }

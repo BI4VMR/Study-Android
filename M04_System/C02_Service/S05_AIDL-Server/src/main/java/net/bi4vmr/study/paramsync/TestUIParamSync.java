@@ -84,17 +84,17 @@ public class TestUIParamSync extends AppCompatActivity {
             // p1.setUrl("Client-Modify");
             // p2.setUrl("Client-Modify");
             // p3.setUrl("Client-Modify");
-            // Log.d(TAG, "客户端传值后修改变量");
-            // Log.d(TAG, "In Param P1: " + p1);
-            // Log.d(TAG, "Out Param P2: " + p2);
-            // Log.d(TAG, "In/Out Param P3: " + p3);
+            // Log.i(TAG, "客户端传值后修改变量");
+            // Log.i(TAG, "In Param P1: " + p1);
+            // Log.i(TAG, "Out Param P2: " + p2);
+            // Log.i(TAG, "In/Out Param P3: " + p3);
 
             Thread.sleep(3000L);
 
-            Log.d(TAG, "服务端操作完毕后读取变量");
-            Log.d(TAG, "In Param P1: " + p1);
-            Log.d(TAG, "Out Param P2: " + p2);
-            Log.d(TAG, "In/Out Param P3: " + p3);
+            Log.i(TAG, "服务端操作完毕后读取变量");
+            Log.i(TAG, "In Param P1: " + p1);
+            Log.i(TAG, "Out Param P2: " + p2);
+            Log.i(TAG, "In/Out Param P3: " + p3);
         } catch (Exception e) {
             appendLog(e.getMessage());
             e.printStackTrace();

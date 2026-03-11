@@ -41,7 +41,7 @@ public class FileService extends Service {
             ) {
                 // 从输入流读取数据
                 String content = IOUtil.readFile(fis);
-                Log.d(TAG, "获取到内容：" + content);
+                Log.i(TAG, "获取到内容：" + content);
             } catch (Exception e) {
                 e.printStackTrace();
             }

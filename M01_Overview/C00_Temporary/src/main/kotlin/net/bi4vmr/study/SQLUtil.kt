@@ -36,7 +36,7 @@ class SQLUtil {
         //     Log.w("StudentDBKT", "param more than ?")
         // }
 
-        // Log.d("StudentDBKT", "SQL:[$remainingSql]")
+        // Log.i("StudentDBKT", "SQL:[$remainingSql]")
     }
 
     fun checkMain(): Boolean {

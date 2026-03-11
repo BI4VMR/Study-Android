@@ -52,14 +52,14 @@ class MyAdapterKT(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        Log.d("TestApp", "OnCreateViewHolder. ViewType:[$viewType]")
+        Log.i("TestApp", "OnCreateViewHolder. ViewType:[$viewType]")
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
         val itemView: View = inflater.inflate(R.layout.list_item_type1, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        Log.d("TestApp", "OnBindViewHolder. Position:[$position]")
+        Log.i("TestApp", "OnBindViewHolder. Position:[$position]")
         val vo: ItemVOKT = differ.currentList[position]
         holder.bindData(vo)
     }
@@ -86,11 +86,11 @@ class MyAdapterKT(
         val flags: Any = payloads.last()
         // 如果Payload不能被解析为Flags，则忽略。
         if (flags !is Int) {
-            Log.d("TestApp", "Payload type is unknown.")
+            Log.i("TestApp", "Payload type is unknown.")
             return
         }
 
-        Log.d("TestApp", "Payload flags:[$flags]")
+        Log.i("TestApp", "Payload flags:[$flags]")
         val vo: ItemVOKT = differ.currentList[holder.adapterPosition]
         if (flags and UpdateFlagsKT.FLAG_TITLE != 0) {
             holder.updateTitle(vo)
