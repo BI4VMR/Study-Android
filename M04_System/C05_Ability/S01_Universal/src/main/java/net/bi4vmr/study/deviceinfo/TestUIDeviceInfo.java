@@ -52,13 +52,6 @@ public class TestUIDeviceInfo extends AppCompatActivity {
         String radioVersion = Build.getRadioVersion();
         String blVersion = Build.BOOTLOADER;
 
-        // Add on Android 12 (API level 31) and above
-        String sku = Build.SKU;
-        String osku = Build.ODM_SKU;
-        String soc = Build.SOC_MODEL;
-        String soc_mf = Build.SOC_MANUFACTURER;
-
-
         Log.i(TAG, "manufacturer: " + manufacturer);
         Log.i(TAG, "brand: " + brand);
         Log.i(TAG, "device: " + device);
@@ -70,10 +63,19 @@ public class TestUIDeviceInfo extends AppCompatActivity {
         Log.i(TAG, "radioVersion: " + radioVersion);
         Log.i(TAG, "blVersion: " + blVersion);
 
-        Log.i(TAG, "sku: " + sku);
-        Log.i(TAG, "odm_sku: " + osku);
-        Log.i(TAG, "soc: " + soc);
-        Log.i(TAG, "soc_mf: " + soc_mf);
+
+        // Add on Android 12 (API level 31) and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            String sku = Build.SKU;
+            String osku = Build.ODM_SKU;
+            String soc = Build.SOC_MODEL;
+            String soc_mf = Build.SOC_MANUFACTURER;
+
+            Log.i(TAG, "sku: " + sku);
+            Log.i(TAG, "odm_sku: " + osku);
+            Log.i(TAG, "soc: " + soc);
+            Log.i(TAG, "soc_mf: " + soc_mf);
+        }
 
 
         // 获取当前设备支持的ABI列表
@@ -120,6 +122,9 @@ public class TestUIDeviceInfo extends AppCompatActivity {
         Log.i(TAG, "user: " + user);
         Log.i(TAG, "host: " + host);
 
+        String disp = Build.DISPLAY;
+        Log.i(TAG, "DISPLAY: " + disp);
+
         // Build.VERSION_CODES.O
         int i = Build.VERSION.SDK_INT;
         Log.i(TAG, "SDK_INT: " + i);
@@ -130,6 +135,10 @@ public class TestUIDeviceInfo extends AppCompatActivity {
         Log.i(TAG, "BASE_OS: " + b);
         String cc = Build.VERSION.CODENAME;
         Log.i(TAG, "CODENAME: " + cc);
+        String inte = Build.VERSION.INCREMENTAL;
+        Log.i(TAG, "INCREMENTAL: " + inte);
+        String sp = Build.VERSION.SECURITY_PATCH;
+        Log.i(TAG, "SECURITY_PATCH: " + sp);
 
         // 应用ID，无需权限，直接获取
         String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
