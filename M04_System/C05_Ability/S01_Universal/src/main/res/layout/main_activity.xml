@@ -16,37 +16,43 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:text="Java实现："
-            android:textColor="@color/black"
+            android:textColor="@color/common_text"
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnBase"
+            android:id="@+id/btnDeviceInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:text="基本应用"
+            android:text="设备信息"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnDateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="时间管理"
             android:textAllCaps="false" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:text="Kotlin实现："
-            android:textColor="@color/black"
+            android:textColor="@color/common_text"
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnBaseKT"
+            android:id="@+id/btnDeviceInfoKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:text="基本应用"
+            android:text="设备信息"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnDateTimeKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="时间管理"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

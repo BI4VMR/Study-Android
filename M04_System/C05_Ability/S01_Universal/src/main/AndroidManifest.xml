@@ -18,14 +18,24 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：基本应用 -->
+        <!-- 示例界面：设备信息 -->
         <activity
-            android:name=".base.TestUIBase"
+            android:name=".deviceinfo.TestUIDeviceInfo"
             android:exported="false" />
 
-        <!-- 示例界面：基本应用(KT) -->
+        <!-- 示例界面：时间管理 -->
         <activity
-            android:name=".base.TestUIBaseKT"
+            android:name=".datetime.TestUIDateTime"
+            android:exported="false" />
+
+        <!-- 示例界面：设备信息(KT) -->
+        <activity
+            android:name=".deviceinfo.TestUIDeviceInfoKT"
+            android:exported="false" />
+
+        <!-- 示例界面：时间管理(KT) -->
+        <activity
+            android:name=".datetime.TestUIDateTimeKT"
             android:exported="false" />
     </application>
 </manifest>
