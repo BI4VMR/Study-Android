@@ -16,7 +16,6 @@ import android.graphics.drawable.LevelListDrawable;
 import android.os.Bundle;
 import android.os.LocaleList;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +25,14 @@ import android.widget.PopupWindow;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.MainActivityBinding;
 import net.bi4vmr.study.permission.AospPermissionMgr;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -53,6 +54,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Button btnBase = findViewById(R.id.btnBase);
+        btnBase.setOnClickListener(v -> {
+            try {
+                long ts = System.currentTimeMillis();
+                Method m = Button.class.getMethod("setTooltipText", CharSequence.class);
+                for (int i = 0; i < 100000; i++) {
+                    // Method m =  Button.class.getMethod("setTooltipText", CharSequence.class);
+                    m.invoke(btnBase, "123");
+                }
+                long ts2 = System.currentTimeMillis();
+                Log.i("TestApp", "call setTooltipText 10000time use: " + (ts2 - ts));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         // getLanguages().forEach(locale -> {
         //     // Log.i("TestApp","locale: "+ locale);
@@ -157,6 +174,11 @@ public class MainActivity extends AppCompatActivity {
 
         // player.prepare();
         // player.play();
+
+        binding.btnBaseKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIBaseKT.class);
+            startActivity(intent);
+        });
     }
 
     @Override

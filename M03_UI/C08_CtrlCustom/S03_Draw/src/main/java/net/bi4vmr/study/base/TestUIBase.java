@@ -1,5 +1,8 @@
 package net.bi4vmr.study.base;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -38,7 +41,10 @@ public class TestUIBase extends AppCompatActivity {
         Log.i(TAG, "----- 功能模块 -----");
         appendLog("\n----- 功能模块 -----");
 
-        // 示例代码...
+        Bitmap b = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        c.drawColor(Color.BLUE);
+        binding.ivTest.setImageBitmap(b);
     }
 
     // 向文本框中追加日志内容并滚动到最底端

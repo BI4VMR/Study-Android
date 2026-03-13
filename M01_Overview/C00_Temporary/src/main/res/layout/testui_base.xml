@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="设备信息"
+        android:text="基本应用"
         android:textColor="@color/common_text"
         android:textSize="20sp" />
 
@@ -38,24 +38,10 @@
             android:paddingEnd="20dp">
 
             <Button
-                android:id="@+id/btnHardwareInfo"
+                android:id="@+id/btn01"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="硬件信息"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnSystemInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="系统信息"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="唯一标识符"
+                android:text="功能按钮"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
