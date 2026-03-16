@@ -23,61 +23,41 @@ fun <T : Any> Any.requireFieldValue(name: String): T = ReflectUtil.requireFieldV
 
 fun <T : Any> Any.getFieldValue(name: String): T? = ReflectUtil.getFieldValue(this, name)
 
+fun <T : Any> Class<*>.requireFieldValue(name: String): T = ReflectUtil.requireFieldValue<T>(this, name)
+
+fun <T : Any> Class<*>.getFieldValue(name: String): T = ReflectUtil.getFieldValue<T>(this, name)
+
 fun Any.setFieldValueUnsafe(name: String, value: Any) = ReflectUtil.setFieldValueUnsafe(this, name, value)
+
+fun Class<*>.setFieldValueUnsafe(name: String, value: Any) = ReflectUtil.setFieldValueUnsafe(this, name, value)
 
 fun Any.setFieldValue(name: String, value: Any): Boolean = ReflectUtil.setFieldValue(this, name, value)
 
-fun Any.clearFieldUnsafe(name: String) = ReflectUtil.clearFieldUnsafe(this, name)
+fun Class<*>.setFieldValue(name: String, value: Any): Boolean = ReflectUtil.setFieldValue(this, name, value)
 
-fun Any.clearField(name: String): Boolean = ReflectUtil.clearField(this, name)
+fun Any.setFieldToNullUnsafe(name: String) = ReflectUtil.setFieldToNullUnsafe(this, name)
 
-fun Any.requireMethod(name: String, vararg parameterTypes: Class<*>): Method =
+fun Any.setFieldToNull(name: String): Boolean = ReflectUtil.setFieldToNull(this, name)
+
+fun Any.requireMethod(name: String, vararg parameterTypes: Class<*>?): Method =
     ReflectUtil.requireMethod(this.javaClass, name, *parameterTypes)
 
-fun Any.getMethod(name: String, vararg parameterTypes: Class<*>): Method? =
+fun Any.getMethod(name: String, vararg parameterTypes: Class<*>?): Method? =
     ReflectUtil.getMethod(this.javaClass, name, *parameterTypes)
 
-fun Method.invokeUnsafe(target: Any, vararg parameters: Any) = ReflectUtil.invokeUnsafe(target, this, parameters)
+fun Method.callWithUnsafe(target: Any?, vararg parameters: Any?) = ReflectUtil.callWithUnsafe(target, this, parameters)
 
-fun Method.invoke(target: Any, vararg parameters: Any): Boolean = ReflectUtil.invoke(target, this, parameters)
+fun Method.callWith(target: Any?, vararg parameters: Any?): Boolean = ReflectUtil.callWith(target, this, parameters)
 
-fun <T : Any> Method.invokeAsUnsafe(target: Any, vararg parameters: Any): T? =
-    ReflectUtil.invokeAsUnsafe<T>(target, this, parameters)
+fun <T : Any> Method.callForUnsafe(target: Any?, vararg parameters: Any?): T? =
+    ReflectUtil.callForUnsafe<T>(target, this, parameters)
 
-fun <T : Any> Method.invokeAs(target: Any, vararg parameters: Any): T? =
-    ReflectUtil.invokeAs<T>(target, this, parameters)
+fun <T : Any> Method.callFor(target: Any?, vararg parameters: Any?): T? =
+    ReflectUtil.callFor<T>(target, this, parameters)
 
 
-fun Any.setLazyPropertyValueUnsafe(name: String, value: Any) =
+fun Any.setLazyPropertyValueUnsafe(name: String, value: Any?) =
     ReflectUtilKT.setLazyPropertyValueUnsafe(this, name, value)
 
-fun Any.setLazyPropertyValue(name: String, value: Any) =
+fun Any.setLazyPropertyValue(name: String, value: Any?) =
     ReflectUtilKT.setLazyPropertyValue(this, name, value)
-
-fun <T : Any> Any.requireStaticField(fieldName: String): T {
-    fun findField(startClass: Class<*>?): Field? {
-        var current = startClass
-        while (current != null) {
-            try {
-                return current.getDeclaredField(fieldName)
-            } catch (_: NoSuchFieldException) {
-                current = current.superclass
-            }
-        }
-        return null
-    }
-
-    val candidates = linkedSetOf<Class<*>>().apply {
-        add(this@requireStaticField.javaClass)
-        // Kotlin companion fields are often emitted on the enclosing host class.
-        this@requireStaticField.javaClass.enclosingClass?.let { add(it) }
-    }
-
-    val field = candidates.asSequence()
-        .mapNotNull { findField(it) }
-        .firstOrNull()
-        ?: throw NoSuchFieldException(fieldName)
-
-    field.isAccessible = true
-    return field.get(null) as T
-}

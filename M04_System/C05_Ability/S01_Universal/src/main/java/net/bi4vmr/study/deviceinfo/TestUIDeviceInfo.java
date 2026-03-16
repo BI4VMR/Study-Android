@@ -43,12 +43,11 @@ public class TestUIDeviceInfo extends AppCompatActivity {
         Log.i(TAG, "----- 硬件信息 -----");
         appendLog("\n----- 硬件信息 -----");
 
-        /* 品牌信息 */
         // 制造商
         String manufacturer = Build.MANUFACTURER;
         // 品牌
         String brand = Build.BRAND;
-        // 型号（面向用户）
+        // 型号（面向用户，通常系统设置中“关于设备”页面设备型号就是该值。）
         String model = Build.MODEL;
 
         Log.i(TAG, "制造商：[" + manufacturer + "]");
@@ -59,16 +58,37 @@ public class TestUIDeviceInfo extends AppCompatActivity {
         appendLog("型号：[" + model + "]");
 
 
-        /* 硬件平台 */
-        // 平台名称，例如： `qcom` 表示Qualcomm。
+        // Android 12 (API Level 31) 新增的字段
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // SoC型号
+            String soc = Build.SOC_MODEL;
+            // SoC制造商
+            String soc_manufacturer = Build.SOC_MANUFACTURER;
+            // 产品规格，用于区分型号相同但内存与闪存配置不同的设备。
+            String sku = Build.SKU;
+            // 代工厂产品规格
+            String sku_odm = Build.ODM_SKU;
+
+            Log.i(TAG, "SoC型号：[" + soc + "]");
+            Log.i(TAG, "SoC制造商：[" + soc_manufacturer + "]");
+            Log.i(TAG, "产品规格：[" + sku + "]");
+            Log.i(TAG, "代工厂产品规格：[" + sku_odm + "]");
+            appendLog("SoC型号：[" + soc + "]");
+            appendLog("SoC制造商：[" + soc_manufacturer + "]");
+            appendLog("产品规格：[" + sku + "]");
+            appendLog("代工厂产品规格：[" + sku_odm + "]");
+        }
+
+
+        // 平台名称（例如： `qcom` 表示 `Qualcomm` 。）
         String hardware = Build.HARDWARE;
         // 开发代号
         String product = Build.PRODUCT;
         String device = Build.DEVICE;
         String board = Build.BOARD;
-        // 基带版本，如果厂商未配置则为 `unknown` 。
+        // 基带版本（如果厂商未配置则值为 `unknown` 。）
         String bbVersion = Build.getRadioVersion();
-        // BootLoader版本，如果厂商未配置则为 `unknown` 。
+        // BootLoader版本（如果厂商未配置则值为 `unknown` 。）
         String blVersion = Build.BOOTLOADER;
 
         Log.i(TAG, "平台名称：[" + hardware + "]");
@@ -77,7 +97,6 @@ public class TestUIDeviceInfo extends AppCompatActivity {
         Log.i(TAG, "Board：[" + board + "]");
         Log.i(TAG, "基带版本：[" + bbVersion + "]");
         Log.i(TAG, "BootLoader版本：[" + blVersion + "]");
-
         appendLog("平台名称：[" + hardware + "]");
         appendLog("Product：[" + product + "]");
         appendLog("Device：[" + device + "]");
@@ -113,20 +132,6 @@ public class TestUIDeviceInfo extends AppCompatActivity {
             Log.i(TAG, "当前设备支持的64位指令集：" + abis);
             appendLog("当前设备支持的64位指令集：" + abis);
         }
-
-
-        // Add on Android 12 (API level 31) and above
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            String sku = Build.SKU;
-            String osku = Build.ODM_SKU;
-            String soc = Build.SOC_MODEL;
-            String soc_mf = Build.SOC_MANUFACTURER;
-
-            Log.i(TAG, "sku: " + sku);
-            Log.i(TAG, "odm_sku: " + osku);
-            Log.i(TAG, "soc: " + soc);
-            Log.i(TAG, "soc_mf: " + soc_mf);
-        }
     }
 
     private void testSystemInfo() {
@@ -136,7 +141,7 @@ public class TestUIDeviceInfo extends AppCompatActivity {
         /* 基本信息 */
         // 系统版本ID
         String id = Build.ID;
-        // 版本名称，面向用户，是设置中显示的系统版本
+        // 版本名称（面向用户，通常系统设置中“关于设备”页面系统版本就是该值。）
         String disp = Build.DISPLAY;
 
 

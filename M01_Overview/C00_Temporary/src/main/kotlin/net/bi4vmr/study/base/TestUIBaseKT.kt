@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import net.bi4vmr.study.SQLUtil
 import net.bi4vmr.study.databinding.TestuiBaseBinding
 
 /**
@@ -40,10 +39,13 @@ class TestUIBaseKT : AppCompatActivity() {
         Log.i(TAG, "----- 功能模块 -----")
         appendLog("\n----- 功能模块 -----")
 
-        val i = SQLUtil()
-        i.setLazyPropertyValueUnsafe("lazyProp", "Mocked Value")
-        Log.i(TAG, "lazyProp: ${i.lazyProp}")
-
+        // val amm = getSystemService<ActivityManager>()
+        // val mi = ActivityManager.MemoryInfo()
+        // amm?.getMemoryInfo(mi)
+        // Log.i(TAG, "Total Memory: ${mi.totalMem / 1024 / 1024} MB")
+        // Log.i(TAG, "Available Memory: ${mi.availMem / 1024 / 1024} MB")
+        // Log.i(TAG, "threshold Memory: ${mi.threshold / 1024 / 1024} MB")
+        // Log.i(TAG, "lowMemory?: ${mi.lowMemory}")
     }
 
     // 向文本框中追加日志内容并滚动到最底端

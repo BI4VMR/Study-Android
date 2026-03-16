@@ -14,7 +14,19 @@ import kotlin.reflect.jvm.javaField
  */
 object ReflectUtil {
 
-    fun setLazyPropertyValueUnsafe(target: Any, name: String, value: Any) {
+    /**
+     * 设置 `by lazy {}` 属性的值。
+     *
+     * 忽略 `lazy {}` 块中的逻辑，强制设置参数所指定的值到属性中，可在单元测试中覆盖某些难以模拟的分支，不建议在业务代码中使用。
+     *
+     * 本方法默认不处理异常，遇到异常将会传递给调用者。
+     *
+     * @param[target] 目标对象实例。
+     * @param[name]   目标属性名称。
+     * @param[value]  属性值。
+     * @throws[NoSuchElementException] 若在当前类和父类中均未找到指定的属性，则抛出该异常。
+     */
+    fun setLazyPropertyValueUnsafe(target: Any, name: String, value: Any?) {
         val property = try {
             // 首先尝试查找当前类的属性
             target::class.declaredMemberProperties.first { it.name == name }
@@ -42,7 +54,19 @@ object ReflectUtil {
         ReflectUtil.setFieldValueUnsafe(current, "_value", value)
     }
 
-    fun setLazyPropertyValue(target: Any, name: String, value: Any): Boolean {
+    /**
+     * 设置 `by lazy {}` 属性的值。
+     *
+     * 忽略 `lazy {}` 块中的逻辑，强制设置参数所指定的值到属性中，可在单元测试中覆盖某些难以模拟的分支，不建议在业务代码中使用。
+     *
+     * 本方法不会抛出异常，如果目标属性不存在或出现其他错误，则忽略这些错误。。
+     *
+     * @param[target] 目标对象实例。
+     * @param[name]   目标属性名称。
+     * @param[value]  属性值。
+     * @return `true` 表示设置成功， `false` 表示设置失败，有异常出现。
+     */
+    fun setLazyPropertyValue(target: Any, name: String, value: Any?): Boolean {
         return try {
             setLazyPropertyValueUnsafe(target, name, value)
             true

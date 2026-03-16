@@ -12,10 +12,6 @@ import android.os.Looper
  */
 class SQLUtil {
 
-    val lazyProp: String by lazy {
-        "Original Value"
-    }
-
     fun merge() {
 
         // var remainingSql = sqlQuery
