@@ -29,20 +29,28 @@ public class ReflectUtil {
      * @throws NoSuchFieldException 若在当前类和父类中均未找到指定的属性，则抛出该异常。
      */
     public static Field requireField(Class<?> clazz, String name) throws NoSuchFieldException {
-        Field field;
+        Class<?> currentCls = clazz;
 
-        // 首先尝试查找当前类的属性
-        try {
-            field = clazz.getDeclaredField(name);
-        } catch (NoSuchFieldException e) {
-            // 如果当前类没有该属性，则尝试查找从父类继承的属性。
-            field = clazz.getField(name);
+        /*
+         * 遍历继承关系链，尝试查找目标字段。
+         *
+         * 如果一个类没有父类，说明该类已经是顶级类Object，目标字段确实不存在，可以终止循环。
+         */
+        while (currentCls != null) {
+            // 首先尝试查找当前类的属性
+            try {
+                Field field = currentCls.getDeclaredField(name);
+                // 如果已获取到字段，则解除访问限制，以便后续进一步操作。
+                field.setAccessible(true);
+                return field;
+            } catch (NoSuchFieldException e) {
+                // 如果当前类没有该字段，则更新当前Class为父类，下一轮循环在父类中继续查找。
+                currentCls = currentCls.getSuperclass();
+            }
         }
 
-        // 如果已获取到字段，则解除访问限制，以便后续进一步操作。
-        field.setAccessible(true);
-
-        return field;
+        // 如果循环内部并未找到字段提前返回，说明在当前类和父类中均未找到指定的字段，抛出异常。
+        throw new NoSuchFieldException();
     }
 
     /**
@@ -294,19 +302,27 @@ public class ReflectUtil {
      * @throws NoSuchMethodException 若在当前类和父类中均未找到指定的方法，则抛出该异常。
      */
     public static Method requireMethod(Class<?> clazz, String name, Class<?>... parameterTypes) throws NoSuchMethodException {
-        Method method;
+        Class<?> currentCls = clazz;
 
-        // 首先尝试查找当前类的方法
-        try {
-            method = clazz.getDeclaredMethod(name, parameterTypes);
-        } catch (NoSuchMethodException e) {
-            // 如果当前类没有该方法，则尝试查找从父类继承的方法。
-            method = clazz.getMethod(name, parameterTypes);
+        /*
+         * 遍历继承关系链，尝试查找目标方法。
+         *
+         * 如果一个类没有父类，说明该类已经是顶级类Object，目标方法确实不存在，可以终止循环。
+         */
+        while (currentCls != null) {
+            try {
+                Method method = currentCls.getDeclaredMethod(name, parameterTypes);
+                // 如果已获取到方法，则解除访问限制，以便后续进一步操作。
+                method.setAccessible(true);
+                return method;
+            } catch (NoSuchMethodException e) {
+                // 如果当前类没有该方法，则更新当前Class为父类，下一轮循环在父类中继续查找。
+                currentCls = currentCls.getSuperclass();
+            }
         }
 
-        // 如果已获取到方法，则解除访问限制，以便后续进一步操作。
-        method.setAccessible(true);
-        return method;
+        // 如果循环内部并未找到方法提前返回，说明在当前类和父类中均未找到指定的方法，抛出异常。
+        throw new NoSuchMethodException();
     }
 
     /**
@@ -391,7 +407,7 @@ public class ReflectUtil {
      * @throws InvocationTargetException 目标方法执行期间出现异常。
      * @throws IllegalAccessException    目标方法不可访问，由于本方法已经解除了访问限制，通常不会出现该异常。
      */
-    public static <T> T callForUnsafe(Object target, Method method, Object... parameters)
+    public static <T> T callWithForUnsafe(Object target, Method method, Object... parameters)
             throws InvocationTargetException, IllegalAccessException {
         // 如果这是一个静态方法，则将目标对象置为 `NULL` 。
         Object actualTarget = Modifier.isStatic(method.getModifiers()) ? null : target;
@@ -415,9 +431,9 @@ public class ReflectUtil {
      * @param method     目标方法。
      * @param parameters 参数列表。
      */
-    public static <T> T callFor(Object target, Method method, Object... parameters) {
+    public static <T> T callWithFor(Object target, Method method, Object... parameters) {
         try {
-            return callForUnsafe(target, method, parameters);
+            return callWithForUnsafe(target, method, parameters);
         } catch (Exception e) {
             return null;
         }

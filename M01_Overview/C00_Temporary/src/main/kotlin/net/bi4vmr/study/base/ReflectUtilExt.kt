@@ -45,15 +45,15 @@ fun Any.requireMethod(name: String, vararg parameterTypes: Class<*>?): Method =
 fun Any.getMethod(name: String, vararg parameterTypes: Class<*>?): Method? =
     ReflectUtil.getMethod(this.javaClass, name, *parameterTypes)
 
-fun Method.callWithUnsafe(target: Any?, vararg parameters: Any?) = ReflectUtil.callWithUnsafe(target, this, parameters)
+fun Method.callWithUnsafe(target: Any?, vararg parameters: Any?) = ReflectUtil.callWithUnsafe(target, this, *parameters)
 
-fun Method.callWith(target: Any?, vararg parameters: Any?): Boolean = ReflectUtil.callWith(target, this, parameters)
+fun Method.callWith(target: Any?, vararg parameters: Any?): Boolean = ReflectUtil.callWith(target, this, *parameters)
 
-fun <T : Any> Method.callForUnsafe(target: Any?, vararg parameters: Any?): T? =
-    ReflectUtil.callForUnsafe<T>(target, this, parameters)
+fun <T : Any> Method.callWithForUnsafe(target: Any?, vararg parameters: Any?): T? =
+    ReflectUtil.callWithForUnsafe<T>(target, this, *parameters)
 
-fun <T : Any> Method.callFor(target: Any?, vararg parameters: Any?): T? =
-    ReflectUtil.callFor<T>(target, this, parameters)
+fun <T : Any> Method.callWithFor(target: Any?, vararg parameters: Any?): T? =
+    ReflectUtil.callWithFor<T>(target, this, *parameters)
 
 
 fun Any.setLazyPropertyValueUnsafe(name: String, value: Any?) =
