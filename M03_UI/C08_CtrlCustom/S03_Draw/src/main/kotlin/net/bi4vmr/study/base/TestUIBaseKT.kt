@@ -1,5 +1,7 @@
 package net.bi4vmr.study.base
 
+import android.graphics.Color
+import android.graphics.SweepGradient
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
@@ -40,6 +42,8 @@ class TestUIBaseKT : AppCompatActivity() {
         appendLog("\n----- 功能模块 -----")
 
         // 示例代码...
+       val s =  SweepGradient(0F,0F,Color.RED,Color.CYAN)
+        // s.
     }
 
     // 向文本框中追加日志内容并滚动到最底端

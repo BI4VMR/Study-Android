@@ -73,6 +73,7 @@
         <!-- 示例界面：主题 - 深色模式(KT) -->
         <activity
             android:name=".themedark.TestUIThemeDarkKT"
+            android:configChanges="uiMode"
             android:exported="false" />
     </application>
 </manifest>

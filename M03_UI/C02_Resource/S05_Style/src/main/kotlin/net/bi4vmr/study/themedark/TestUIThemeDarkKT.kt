@@ -45,10 +45,10 @@ class TestUIThemeDarkKT : AppCompatActivity() {
         // finish()
         val u:UiModeManager = getSystemService(UiModeManager::class.java)
         if (checked){
-            u.nightMode = UiModeManager.MODE_NIGHT_YES
+            u.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES)
             // u.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES)
         }else{
-            u.nightMode = UiModeManager.MODE_NIGHT_NO
+            u.setApplicationNightMode( UiModeManager.MODE_NIGHT_NO)
             // u.setApplicationNightMode(UiModeManager.MODE_NIGHT_NO)
         }
 

@@ -3,6 +3,8 @@ package net.bi4vmr.study.base;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -43,8 +45,17 @@ public class TestUIBase extends AppCompatActivity {
 
         Bitmap b = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
-        c.drawColor(Color.BLUE);
+        // c.drawColor(Color.BLUE);
+
+        Paint p = new Paint();
+        p.setStrokeCap(Paint.Cap.ROUND);
+        p.setColor(Color.RED);
+        Rect r = new Rect(10, 10, 90, 90);
+        c.drawRect(r, p);
+
         binding.ivTest.setImageBitmap(b);
+
+        // c.drawOval(10, 10, 90, 90, null);
     }
 
     // 向文本框中追加日志内容并滚动到最底端

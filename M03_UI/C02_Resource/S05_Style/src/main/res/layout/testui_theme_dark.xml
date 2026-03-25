@@ -16,7 +16,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="文本（主题自带的自适应文本颜色）："
-            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <TextView
@@ -32,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="文本（通过代码设置颜色）："
-            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <TextView
@@ -46,7 +44,8 @@
         <View
             android:id="@+id/vvv"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            android:background="?attr/colorControlNormal" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/btnSwitchMode"
