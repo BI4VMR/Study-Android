@@ -1,5 +1,6 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.levellist;
 
+import android.graphics.drawable.LevelListDrawable;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -7,19 +8,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.bi4vmr.study.R;
 import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
 /**
- * 测试界面：TODO 添加简述。
- * <p>
- * TODO 添加详情。
+ * 测试界面：LevelList。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class TestUIBase extends AppCompatActivity {
+public class TestUILevelList extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();
+    private static final String TAG = "TestApp-" + TestUILevelList.class.getSimpleName();
 
     private TestuiBaseBinding binding;
 
@@ -38,7 +38,10 @@ public class TestUIBase extends AppCompatActivity {
         Log.i(TAG, "----- 功能模块 -----");
         appendLog("\n----- 功能模块 -----");
 
-        // 示例代码...
+        // LevelListDrawable drawable = (LevelListDrawable) getResources().getDrawable(R.drawable.ic_status_wlan);
+        // drawable.setAutoMirrored(true);
+        // drawable.setLevel(0);
+        // binding.ivDraw.setImageDrawable(drawable);
     }
 
     // 向文本框中追加日志内容并滚动到最底端

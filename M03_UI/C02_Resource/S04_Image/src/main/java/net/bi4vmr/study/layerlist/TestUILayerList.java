@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base;
+package net.bi4vmr.study.layerlist;
 
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -17,9 +17,9 @@ import net.bi4vmr.study.databinding.TestuiBaseBinding;
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class TestUIBase extends AppCompatActivity {
+public class TestUILayerList extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();
+    private static final String TAG = "TestApp-" + TestUILayerList.class.getSimpleName();
 
     private TestuiBaseBinding binding;
 

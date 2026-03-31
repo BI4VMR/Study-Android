@@ -12,7 +12,6 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LevelListDrawable;
 import android.os.Bundle;
 import android.os.LocaleList;
 import android.util.Log;
@@ -32,7 +31,6 @@ import net.bi4vmr.study.permission.AospPermissionMgr;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -56,20 +54,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Button btnBase = findViewById(R.id.btnBase);
-        btnBase.setOnClickListener(v -> {
-            try {
-                long ts = System.currentTimeMillis();
-                Method m = Button.class.getMethod("setTooltipText", CharSequence.class);
-                for (int i = 0; i < 100000; i++) {
-                    // Method m =  Button.class.getMethod("setTooltipText", CharSequence.class);
-                    m.invoke(btnBase, "123");
-                }
-                long ts2 = System.currentTimeMillis();
-                Log.i("TestApp", "call setTooltipText 10000time use: " + (ts2 - ts));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
 
         // getLanguages().forEach(locale -> {
         //     // Log.i("TestApp","locale: "+ locale);
@@ -116,12 +100,6 @@ public class MainActivity extends AppCompatActivity {
             // TaskUtil.INSTANCE.getbgapps(getApplicationContext());
             // Log.i("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
         });
-
-        LevelListDrawable drawable = (LevelListDrawable) getResources().getDrawable(R.drawable.ic_status_wlan);
-        drawable.setAutoMirrored(true);
-        drawable.setLevel(0);
-        binding.ivDraw.setImageDrawable(drawable);
-        // binding.ivDraw.setImageResource(R.drawable.ic_status_wlan_disconnected);
 
         binding.ivDraw.setOnClickListener(v -> {
             View v2 = LayoutInflater.from(this).inflate(R.layout.popup_subjects, null);

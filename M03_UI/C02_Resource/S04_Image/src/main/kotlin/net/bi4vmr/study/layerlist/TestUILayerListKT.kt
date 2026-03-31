@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.layerlist
 
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -14,10 +14,10 @@ import net.bi4vmr.study.databinding.TestuiBaseBinding
  * @author bi4vmr@outlook.com
  * @version 1.0
  */
-class TestUIBaseKT : AppCompatActivity() {
+class TestUILayerListKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-${TestUIBaseKT::class.java.simpleName}"
+        private val TAG: String = "TestApp-${TestUILayerListKT::class.java.simpleName}"
     }
 
     private val binding: TestuiBaseBinding by lazy {

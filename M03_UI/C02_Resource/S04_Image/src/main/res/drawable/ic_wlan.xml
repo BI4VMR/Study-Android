@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- 推荐 RSSI 区间（dBm）：<= -89、-88~-78、-77~-67、-66~-56、>= -55 -->
+    <item
+        android:drawable="@drawable/ic_wlan_0"
+        android:minLevel="-200"
+        android:maxLevel="-89" />
+
+    <item
+        android:drawable="@drawable/ic_wlan_1"
+        android:minLevel="-88"
+        android:maxLevel="-78" />
+
+    <item
+        android:drawable="@drawable/ic_wlan_2"
+        android:minLevel="-77"
+        android:maxLevel="-67" />
+
+    <item
+        android:drawable="@drawable/ic_wlan_3"
+        android:minLevel="-66"
+        android:maxLevel="-56" />
+
+    <item
+        android:drawable="@drawable/ic_wlan_4"
+        android:minLevel="-55"
+        android:maxLevel="0" />
+</level-list>
