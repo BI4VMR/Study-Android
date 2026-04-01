@@ -27,6 +27,13 @@
             android:text="基本应用"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/btnLevelList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LevelListDrawable"
+            android:textAllCaps="false" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,6 +46,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="基本应用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnLevelListKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LevelListDrawable"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

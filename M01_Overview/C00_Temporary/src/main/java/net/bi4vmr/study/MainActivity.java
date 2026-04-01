@@ -140,18 +140,6 @@ public class MainActivity extends AppCompatActivity {
         //     }
         // }, null);
 
-        // ExoPlayer player = new ExoPlayer.Builder(this)
-        //         .build();
-        // binding.playerView.hideController();
-        // binding.playerView.setPlayer(player);
-        // binding.playerView.setVisibility(View.INVISIBLE);
-
-        // String uri = ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + "/raw/ba";
-        // MediaItem item = MediaItem.fromUri(uri);
-        // player.setMediaItem(item);
-
-        // player.prepare();
-        // player.play();
 
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);

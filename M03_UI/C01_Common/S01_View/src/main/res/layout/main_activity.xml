@@ -42,10 +42,17 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnListener"
+            android:id="@+id/btnEvent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="事件监听器"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnSkills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="实用技巧"
             android:textAllCaps="false" />
 
         <TextView
@@ -63,17 +70,17 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnResIndexKT"
+            android:id="@+id/btnEventKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="资源索引"
+            android:text="事件监听器"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnResRemoteKT"
+            android:id="@+id/btnSkillsKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="外部资源"
+            android:text="实用技巧"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

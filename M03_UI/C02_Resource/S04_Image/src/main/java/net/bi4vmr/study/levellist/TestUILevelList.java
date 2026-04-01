@@ -2,17 +2,16 @@ package net.bi4vmr.study.levellist;
 
 import android.graphics.drawable.LevelListDrawable;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import net.bi4vmr.study.R;
-import net.bi4vmr.study.databinding.TestuiBaseBinding;
+import net.bi4vmr.study.databinding.TestuiLevellistBinding;
 
 /**
- * 测试界面：LevelList。
+ * 测试界面：LevelListDrawable。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
@@ -21,47 +20,43 @@ public class TestUILevelList extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUILevelList.class.getSimpleName();
 
-    private TestuiBaseBinding binding;
+    private TestuiLevellistBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiBaseBinding.inflate(getLayoutInflater());
+        binding = TestuiLevellistBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
-
-        binding.btn01.setOnClickListener(v -> test());
+        binding.radiogroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.rb_level0) {
+                binding.imageview.setImageLevel(0);
+            } else if (checkedId == R.id.rb_level1) {
+                binding.imageview.setImageLevel(1);
+            } else if (checkedId == R.id.rb_level2) {
+                binding.imageview.setImageLevel(2);
+            } else if (checkedId == R.id.rb_level3) {
+                binding.imageview.setImageLevel(3);
+            } else if (checkedId == R.id.rb_level4) {
+                binding.imageview.setImageLevel(4);
+            }
+        });
     }
 
     private void test() {
-        Log.i(TAG, "----- 功能模块 -----");
-        appendLog("\n----- 功能模块 -----");
+        Log.i(TAG, "----- 通过代码解析XML获取LevelListDrawable -----");
 
-        // LevelListDrawable drawable = (LevelListDrawable) getResources().getDrawable(R.drawable.ic_status_wlan);
-        // drawable.setAutoMirrored(true);
-        // drawable.setLevel(0);
-        // binding.ivDraw.setImageDrawable(drawable);
-    }
+        // 通过代码解析XML获取LevelListDrawable实例
+        LevelListDrawable drawable = (LevelListDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.ic_wlan, getTheme());
+        if (drawable != null) {
+            // 获取当前Level
+            drawable.getLevel();
 
-    // 向文本框中追加日志内容并滚动到最底端
-    private void appendLog(Object text) {
-        if (text == null) {
-            Log.w(TAG, "Log item is NULL, ignored!");
-            return;
+            // 设置新的Level
+            drawable.setLevel(5);
         }
 
-        TextView logArea = binding.tvLog;
-        logArea.post(() -> logArea.append("\n" + text));
-        logArea.post(() -> {
-            try {
-                int offset = logArea.getLayout().getLineTop(logArea.getLineCount()) - logArea.getHeight();
-                if (offset > 0) {
-                    logArea.scrollTo(0, offset);
-                }
-            } catch (Exception e) {
-                Log.w(TAG, "TextView scroll failed!", e);
-            }
-        });
+        // 将Drawable设置到ImageView中
+        binding.imageview.setImageDrawable(drawable);
     }
 }

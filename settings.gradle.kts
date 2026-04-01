@@ -181,7 +181,10 @@ include(":M06_Network:C01_Common:S02_ConnectState")
 /* ----- 媒体技术 ----- */
 include(":M07_Media:C01_Common:S01_MediaSession")
 include(":M07_Media:C01_Common:S02_MediaStore")
-include(":M07_Media:C03_Audio:S01_AudioFocus")
+include(":M07_Media:C03_Audio:S01_Universal")
+include(":M07_Media:C03_Audio:S02_AudioFocus")
+include(":M07_Media:C03_Audio:S03_MediaPlayer")
+include(":M07_Media:C03_Audio:S04_ExoPlayer")
 
 /* ----- 工程架构 ----- */
 include(":M08_Architecture:C02_Component:S01_ViewModel")

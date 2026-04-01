@@ -23,9 +23,19 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：LevelListDrawable -->
+        <activity
+            android:name=".levellist.TestUILevelList"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
+            android:exported="false" />
+
+        <!-- 示例界面：LevelListDrawable(KT) -->
+        <activity
+            android:name=".levellist.TestUILevelListKT"
             android:exported="false" />
     </application>
 </manifest>

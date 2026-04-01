@@ -7,9 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiBaseBinding
 
 /**
- * 测试界面：TODO 添加简述。
- *
- * TODO 添加详情。
+ * 测试界面：LevelListDrawable。
  *
  * @author bi4vmr@outlook.com
  * @version 1.0
