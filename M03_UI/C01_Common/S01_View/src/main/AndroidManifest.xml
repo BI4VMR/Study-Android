@@ -18,9 +18,14 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：基本应用 -->
+        <!-- 示例界面：布局文件 -->
         <activity
-            android:name=".base.TestUIBase"
+            android:name=".layout.TestUILayout"
+            android:exported="false" />
+
+        <!-- 示例界面：常用方法 -->
+        <activity
+            android:name=".function.TestUIFunction"
             android:exported="false" />
 
         <!-- 示例界面：事件监听器 -->
@@ -33,15 +38,20 @@
             android:name=".skills.TestUISkills"
             android:exported="false" />
 
-        <!-- 示例界面：基本应用(KT) -->
+        <!-- 示例界面：布局文件(KT) -->
         <activity
-            android:name=".base.TestUIBaseKT"
+            android:name=".layout.TestUILayoutKT"
+            android:exported="false" />
+
+        <!-- 示例界面：常用方法(KT) -->
+        <activity
+            android:name=".function.TestUIFunctionKT"
             android:exported="false" />
 
         <!-- 示例界面：事件监听器(KT) -->
-        <!--<activity-->
-        <!--    android:name=".event.TestUIEventKT"-->
-        <!--    android:exported="false" />-->
+        <activity
+            android:name=".event.TestUIEventKT"
+            android:exported="false" />
 
         <!-- 示例界面：实用技巧(KT) -->
         <activity

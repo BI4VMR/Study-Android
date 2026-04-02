@@ -1,21 +1,23 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.layout
 
 import android.os.Bundle
-import android.util.Log
-import android.view.ViewGroup
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import net.bi4vmr.study.R
-import net.bi4vmr.study.databinding.TestuiBaseBinding
+import net.bi4vmr.study.databinding.TestuiLayoutBinding
 
-class TestUIBaseKT : AppCompatActivity() {
+/**
+ * 测试界面：布局文件。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
+class TestUILayoutKT : AppCompatActivity() {
 
     companion object {
-        private val TAG: String = "TestApp-" + TestUIBaseKT::class.java.simpleName
+        private val TAG: String = "TestApp-" + TestUILayoutKT::class.java.simpleName
     }
 
-    private val binding: TestuiBaseBinding by lazy {
-        TestuiBaseBinding.inflate(layoutInflater)
+    private val binding: TestuiLayoutBinding by lazy {
+        TestuiLayoutBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

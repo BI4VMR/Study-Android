@@ -4,18 +4,18 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.databinding.TestuiBaseBinding;
+import net.bi4vmr.study.databinding.TestuiFunctionBinding;
 
 public class TestUIFunction extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUIFunction.class.getSimpleName();
 
-    private TestuiBaseBinding binding;
+    private TestuiFunctionBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiBaseBinding.inflate(getLayoutInflater());
+        binding = TestuiFunctionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         /* 点击事件 */

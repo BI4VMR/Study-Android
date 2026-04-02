@@ -1,12 +1,8 @@
 package net.bi4vmr.study.function
 
 import android.os.Bundle
-import android.util.Log
-import android.view.ViewGroup
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import net.bi4vmr.study.R
-import net.bi4vmr.study.databinding.TestuiBaseBinding
+import net.bi4vmr.study.databinding.TestuiFunctionBinding
 
 class TestUIFunctionKT : AppCompatActivity() {
 
@@ -14,8 +10,8 @@ class TestUIFunctionKT : AppCompatActivity() {
         private val TAG: String = "TestApp-" + TestUIFunctionKT::class.java.simpleName
     }
 
-    private val binding: TestuiBaseBinding by lazy {
-        TestuiBaseBinding.inflate(layoutInflater)
+    private val binding: TestuiFunctionBinding by lazy {
+        TestuiFunctionBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

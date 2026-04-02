@@ -21,24 +21,17 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnBase"
+            android:id="@+id/btnLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="布局文件"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnResIndex"
+            android:id="@+id/btnFunction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="代码控制"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnResRemote"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="更新界面"
+            android:text="常用方法"
             android:textAllCaps="false" />
 
         <Button
@@ -63,10 +56,17 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnBaseKT"
+            android:id="@+id/btnLayoutKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="基本应用"
+            android:text="布局文件"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnFunctionKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="常用方法"
             android:textAllCaps="false" />
 
         <Button

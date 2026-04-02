@@ -6,10 +6,13 @@ import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.base.TestUIBase;
-import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.MainActivityBinding;
 import net.bi4vmr.study.event.TestUIEvent;
+import net.bi4vmr.study.event.TestUIEventKT;
+import net.bi4vmr.study.function.TestUIFunction;
+import net.bi4vmr.study.function.TestUIFunctionKT;
+import net.bi4vmr.study.layout.TestUILayout;
+import net.bi4vmr.study.layout.TestUILayoutKT;
 import net.bi4vmr.study.skills.TestUISkills;
 import net.bi4vmr.study.skills.TestUISkillsKT;
 
@@ -21,9 +24,15 @@ public class MainActivity extends AppCompatActivity {
         MainActivityBinding binding = MainActivityBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
-        // 基本应用
-        binding.btnBase.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIBase.class);
+        // 布局文件
+        binding.btnLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUILayout.class);
+            startActivity(intent);
+        });
+
+        // 常用方法
+        binding.btnFunction.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIFunction.class);
             startActivity(intent);
         });
 
@@ -39,15 +48,21 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 基本应用(KT)
-        binding.btnBaseKT.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIBaseKT.class);
+        // 布局文件(KT)
+        binding.btnLayoutKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUILayoutKT.class);
+            startActivity(intent);
+        });
+
+        // 常用方法(KT)
+        binding.btnFunctionKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIFunctionKT.class);
             startActivity(intent);
         });
 
         // 事件监听器(KT)
         binding.btnSkillsKT.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUISkillsKT.class);
+            Intent intent = new Intent(this, TestUIEventKT.class);
             startActivity(intent);
         });
 
