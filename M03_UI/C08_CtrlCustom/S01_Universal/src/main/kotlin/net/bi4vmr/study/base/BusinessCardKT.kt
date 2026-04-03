@@ -33,7 +33,7 @@ class BusinessCardKT : FrameLayout {
      *
      *                 后续控件的资源需要基于该实例获取，由于存在深色主题等，因此使用者需要注意区别传入的实例类型。
      */
-    constructor(context: Context) : super(context)
+    constructor(context: Context) : this(context, null)
 
     /**
      * 构造方法2。
@@ -45,12 +45,12 @@ class BusinessCardKT : FrameLayout {
      *                 后续控件的资源需要基于该实例获取，由于存在深色主题等，因此使用者需要注意区别传入的实例类型。
      * @param[attrs]   XML属性，可能为空值。
      */
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
     /**
      * 构造方法3。
      *
-     * 可选，与主题有关。
+     * 可选，支持通过主题设置默认样式。
      *
      * @param[context]      上下文环境。
      *
@@ -58,12 +58,12 @@ class BusinessCardKT : FrameLayout {
      * @param[attrs]        XML属性，可能为空值。
      * @param[defStyleAttr] 主题属性。
      */
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(context, attrs, defStyleAttr, 0)
 
     /**
      * 构造方法4。
      *
-     * 可选，与主题有关。
+     * 可选，支持通过样式资源设置默认样式。
      *
      * @param[context]      上下文环境。
      *

@@ -38,10 +38,10 @@ public class BusinessCard extends FrameLayout {
      *                后续控件的资源需要基于该实例获取，由于存在深色主题等，因此使用者需要注意区别传入的实例类型。
      */
     public BusinessCard(@NonNull Context context) {
-        super(context);
+        this(context, null);
         /* 初始化操作 ... */
         // 将布局文件渲染生成View实例
-        View view = LayoutInflater.from(context).inflate(R.layout.business_card, this, true);
+        View view = LayoutInflater.from(context).inflate(R.layout.business_card, this);
         // 获取View实例中各个子元素的引用
         ivAvatar = view.findViewById(R.id.ivAvatar);
         tvName = view.findViewById(R.id.tvName);
@@ -59,14 +59,14 @@ public class BusinessCard extends FrameLayout {
      * @param attrs   XML属性，可能为空值。
      */
     public BusinessCard(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
         /* 初始化操作 ... */
     }
 
     /**
      * 构造方法3。
      * <p>
-     * 可选，支持使用主题提供的资源。
+     * 可选，支持通过主题设置默认样式。
      *
      * @param context      上下文环境。
      *                     <p>
@@ -82,7 +82,7 @@ public class BusinessCard extends FrameLayout {
     /**
      * 构造方法4。
      * <p>
-     * 可选，支持使用样式提供的资源。
+     * 可选，支持通过样式资源设置默认样式。
      *
      * @param context      上下文环境。
      *                     <p>

@@ -36,27 +36,28 @@ class BusinessCard2KT @JvmOverloads constructor(
 
     init {
         // 初始化视图
-        // 此处留空，因为"binding"变量已经通过"lazy"函数延迟初始化。
+        // 此处留空，因为 `binding` 变量已经通过 `lazy` 函数延迟初始化。
 
         // 如果当前实例不是通过布局文件生成的，则不必解析XML属性。
-        if (attrs != null) {
-            // 获取自定义属性数组
-            val ta: TypedArray =
-                context.obtainStyledAttributes(attrs, R.styleable.BusinessCard2, defStyleAttr, defStyleRes)
-            ta.use {
-                if (ta.hasValue(R.styleable.BusinessCard2_name)) {
-                    val name: String? = ta.getString(R.styleable.BusinessCard2_name)
-                    binding.tvName.text = name
-                }
-                if (ta.hasValue(R.styleable.BusinessCard2_phone)) {
-                    val phone: String? = ta.getString(R.styleable.BusinessCard2_phone)
-                    binding.tvPhone.text = phone
-                }
-                if (ta.hasValue(R.styleable.BusinessCard2_avatar)) {
-                    val avatar: Drawable? = ta.getDrawable(R.styleable.BusinessCard2_avatar)
-                    binding.ivAvatar.setImageDrawable(avatar)
-                }
+        // 获取自定义属性数组
+        val ta: TypedArray =
+            context.obtainStyledAttributes(attrs, R.styleable.BusinessCard2, defStyleAttr, defStyleRes)
+        try {
+            if (ta.hasValue(R.styleable.BusinessCard2_name)) {
+                val name: String? = ta.getString(R.styleable.BusinessCard2_name)
+                binding.tvName.text = name
             }
+            if (ta.hasValue(R.styleable.BusinessCard2_phone)) {
+                val phone: String? = ta.getString(R.styleable.BusinessCard2_phone)
+                binding.tvPhone.text = phone
+            }
+            if (ta.hasValue(R.styleable.BusinessCard2_avatar)) {
+                val avatar: Drawable? = ta.getDrawable(R.styleable.BusinessCard2_avatar)
+                binding.ivAvatar.setImageDrawable(avatar)
+            }
+        } finally {
+            // 释放TypedArray资源
+            ta.recycle()
         }
     }
 

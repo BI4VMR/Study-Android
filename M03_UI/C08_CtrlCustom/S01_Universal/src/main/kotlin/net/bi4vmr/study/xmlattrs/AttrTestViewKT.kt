@@ -22,8 +22,7 @@ import net.bi4vmr.study.databinding.AttrTestViewBinding
  */
 @SuppressLint("SetTextI18n", "CustomViewStyleable")
 class AttrTestViewKT @JvmOverloads constructor(
-    @UiContext
-    private val mContext: Context,
+    @param:UiContext private val mContext: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
     defStyleRes: Int = 0

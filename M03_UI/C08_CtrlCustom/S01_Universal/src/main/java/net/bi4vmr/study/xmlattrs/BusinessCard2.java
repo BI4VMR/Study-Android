@@ -49,29 +49,26 @@ public class BusinessCard2 extends FrameLayout {
         // 初始化视图
         initView();
 
-        // 如果当前实例不是通过布局文件生成的，则不必解析XML属性。
-        if (attrs == null) {
-            return;
-        }
-
         // 获取自定义属性数组
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BusinessCard2, defStyleAttr, defStyleRes);
-        // 获取属性，并设置到子控件上。
-        if (ta.hasValue(R.styleable.BusinessCard2_name)) {
-            String name = ta.getString(R.styleable.BusinessCard2_name);
-            binding.tvName.setText(name);
+        try {
+            // 获取属性，并设置到子控件上。
+            if (ta.hasValue(R.styleable.BusinessCard2_name)) {
+                String name = ta.getString(R.styleable.BusinessCard2_name);
+                binding.tvName.setText(name);
+            }
+            if (ta.hasValue(R.styleable.BusinessCard2_phone)) {
+                String phone = ta.getString(R.styleable.BusinessCard2_phone);
+                binding.tvPhone.setText(phone);
+            }
+            if (ta.hasValue(R.styleable.BusinessCard2_avatar)) {
+                Drawable avatar = ta.getDrawable(R.styleable.BusinessCard2_avatar);
+                binding.ivAvatar.setImageDrawable(avatar);
+            }
+        } finally {
+            // 释放TypedArray资源
+            ta.recycle();
         }
-        if (ta.hasValue(R.styleable.BusinessCard2_phone)) {
-            String phone = ta.getString(R.styleable.BusinessCard2_phone);
-            binding.tvPhone.setText(phone);
-        }
-        if (ta.hasValue(R.styleable.BusinessCard2_avatar)) {
-            Drawable avatar = ta.getDrawable(R.styleable.BusinessCard2_avatar);
-            binding.ivAvatar.setImageDrawable(avatar);
-        }
-
-        // 释放TypedArray资源
-        ta.recycle();
     }
 
     // 初始化视图
