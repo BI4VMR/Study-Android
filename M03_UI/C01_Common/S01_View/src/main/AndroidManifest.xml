@@ -23,6 +23,11 @@
             android:name=".layout.TestUILayout"
             android:exported="false" />
 
+        <!-- 示例界面：手动加载布局文件 -->
+        <activity
+            android:name=".layout.TestUILayoutInflater"
+            android:exported="false" />
+
         <!-- 示例界面：常用方法 -->
         <activity
             android:name=".function.TestUIFunction"
@@ -41,6 +46,11 @@
         <!-- 示例界面：布局文件(KT) -->
         <activity
             android:name=".layout.TestUILayoutKT"
+            android:exported="false" />
+
+        <!-- 示例界面：手动加载布局文件(KT) -->
+        <activity
+            android:name=".layout.TestUILayoutInflaterKT"
             android:exported="false" />
 
         <!-- 示例界面：常用方法(KT) -->

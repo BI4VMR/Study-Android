@@ -1,8 +1,10 @@
 package net.bi4vmr.study.layout
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import net.bi4vmr.study.databinding.TestuiLayoutBinding
+import net.bi4vmr.study.R
 
 /**
  * 测试界面：布局文件。
@@ -16,21 +18,16 @@ class TestUILayoutKT : AppCompatActivity() {
         private val TAG: String = "TestApp-" + TestUILayoutKT::class.java.simpleName
     }
 
-    private val binding: TestuiLayoutBinding by lazy {
-        TestuiLayoutBinding.inflate(layoutInflater)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        // 自动加载布局
+        setContentView(R.layout.testui_layout)
 
-        // /* 点击事件 */
-        // // 获取按钮"btnTest"的实例
-        // val btnTest: Button = findViewById(R.id.btnTest)
-        // // 实现点击监听器并传递给"btnTest"
-        // btnTest.setOnClickListener {
-        //     Log.i(TAG, "按钮Test被点击了！")
-        //     binding.tvLog.append("按钮Test被点击了！\n")
-        // }
+
+        // 设置手动加载布局示例界面的跳转事件
+        findViewById<Button>(R.id.btn_layout_inflater).setOnClickListener {
+            val intent = Intent(this, TestUILayoutInflaterKT::class.java)
+            startActivity(intent)
+        }
     }
 }
