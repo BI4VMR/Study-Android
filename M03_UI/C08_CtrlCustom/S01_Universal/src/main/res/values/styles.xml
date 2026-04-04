@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主题样式：通过主题引用，并传递给View构造方法第三参数。 -->
+    <style name="AttrTestThemeStyle" parent="AttrTestDefaultStyle">
+        <item name="initParam1">在主题属性中设置的文本1</item>
+    </style>
+
+    <!-- 默认样式：传递给View构造方法第四参数 -->
+    <style name="AttrTestDefaultStyle">
+        <item name="initParam1">在默认样式中设置的文本1</item>
+        <item name="initParam2">在默认样式中设置的文本2</item>
+    </style>
+</resources>

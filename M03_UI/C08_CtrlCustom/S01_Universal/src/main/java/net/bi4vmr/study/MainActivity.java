@@ -11,6 +11,12 @@ import net.bi4vmr.study.databinding.ActivityMainBinding;
 import net.bi4vmr.study.xmlattrs.TestUIXMLAttrs;
 import net.bi4vmr.study.xmlattrs.TestUIXMLAttrsKT;
 
+/**
+ * 主页。
+ *
+ * @author bi4vmr@outlook.com
+ * @version 1.0
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -25,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // XML属性
+        // 布局属性
         binding.btnXMLAttrs.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIXMLAttrs.class);
             startActivity(intent);
@@ -37,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // XML属性(KT)
+        // 布局属性(KT)
         binding.btnXMLAttrsKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIXMLAttrsKT.class);
             startActivity(intent);

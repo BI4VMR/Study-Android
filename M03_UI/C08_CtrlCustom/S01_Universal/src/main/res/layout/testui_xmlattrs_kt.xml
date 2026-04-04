@@ -32,6 +32,7 @@
             app:name="田所浩二"
             app:phone="11451419198" />
 
+        <!-- XML属性类型测试 -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +42,6 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <!-- XML属性类型测试 -->
         <net.bi4vmr.study.xmlattrs.AttrTestViewKT
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

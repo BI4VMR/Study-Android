@@ -31,7 +31,7 @@
             android:id="@+id/btnXMLAttrs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="XML属性"
+            android:text="布局属性"
             android:textAllCaps="false" />
 
         <TextView
@@ -52,7 +52,7 @@
             android:id="@+id/btnXMLAttrsKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="XML属性"
+            android:text="布局属性"
             android:textAllCaps="false" />
 
         <net.bi4vmr.study.callbacks.TestViewKT

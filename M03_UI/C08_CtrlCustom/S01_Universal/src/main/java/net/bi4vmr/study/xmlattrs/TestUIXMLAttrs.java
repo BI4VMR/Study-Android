@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.bi4vmr.study.databinding.TestuiXmlattrsBinding;
 
 /**
- * 测试界面：XML属性。
+ * 测试界面：布局属性。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0

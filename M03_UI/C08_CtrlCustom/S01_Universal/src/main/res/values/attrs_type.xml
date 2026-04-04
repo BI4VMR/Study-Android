@@ -40,5 +40,12 @@
 
         <!-- 定义属性：组合类型 -->
         <attr name="multiTypeValue" format="color|reference" />
+
+        <!-- 构造方法测试属性 -->
+        <attr name="initParam1" format="string" />
+        <attr name="initParam2" format="string" />
     </declare-styleable>
+
+    <!-- 定义属性：测试控件在主题中的样式 -->
+    <attr name="attrInTheme" format="reference" />
 </resources>

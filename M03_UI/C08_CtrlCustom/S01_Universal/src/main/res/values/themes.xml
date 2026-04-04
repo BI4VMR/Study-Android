@@ -12,5 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!-- 为主题属性赋值，引用控件样式 -->
+        <item name="attrInTheme">@style/AttrTestThemeStyle</item>
     </style>
 </resources>
