@@ -9,7 +9,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
-import androidx.annotation.UiContext
 import net.bi4vmr.study.R
 import net.bi4vmr.study.databinding.AttrTestViewBinding
 
@@ -21,11 +20,11 @@ import net.bi4vmr.study.databinding.AttrTestViewBinding
  */
 @SuppressLint("SetTextI18n", "CustomViewStyleable")
 class AttrTestViewKT @JvmOverloads constructor(
-    @param:UiContext private val mContext: Context,
+    context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = R.attr.attrInTheme,
     defStyleRes: Int = R.style.AttrTestDefaultStyle
-) : FrameLayout(mContext, attrs, defStyleAttr, defStyleRes) {
+) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     companion object {
         private val TAG: String = "TestApp-${AttrTestViewKT::class.java.simpleName}"

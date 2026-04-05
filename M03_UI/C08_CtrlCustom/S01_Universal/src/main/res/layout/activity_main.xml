@@ -54,9 +54,5 @@
             android:layout_height="wrap_content"
             android:text="布局属性"
             android:textAllCaps="false" />
-
-        <net.bi4vmr.study.callbacks.TestViewKT
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
     </LinearLayout>
 </ScrollView>

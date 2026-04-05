@@ -1,4 +1,4 @@
-package net.bi4vmr.study.callbacks
+package net.bi4vmr.study.base
 
 import android.content.Context
 import android.graphics.Canvas

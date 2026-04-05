@@ -45,7 +45,7 @@ public class AttrTestView extends FrameLayout {
 
     // 构造方法3
     public AttrTestView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        // 调用构造方法4，传入Style作为默认值。
+        // 调用构造方法4，传入主题属性与默认样式。
         this(context, attrs, defStyleAttr, R.style.AttrTestDefaultStyle);
     }
 
