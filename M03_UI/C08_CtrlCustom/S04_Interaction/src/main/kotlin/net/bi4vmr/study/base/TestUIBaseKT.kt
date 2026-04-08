@@ -7,12 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiBaseBinding
 
 /**
- * 测试界面：TODO 添加简述。
- *
- * TODO 添加详情。
+ * Activity：触摸事件测试。
  *
  * @author bi4vmr@outlook.com
- * @version 1.0
+ * @since 1.0.0
  */
 class TestUIBaseKT : AppCompatActivity() {
 

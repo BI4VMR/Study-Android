@@ -3,6 +3,7 @@ package net.bi4vmr.study.base;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,9 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
 /**
- * 测试界面：TODO 添加简述。
- * <p>
- * TODO 添加详情。
+ * Activity：触摸事件测试。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
@@ -32,6 +31,23 @@ public class TestUIBase extends AppCompatActivity {
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         binding.btn01.setOnClickListener(v -> test());
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.i(TAG, "dispatchTouchEvent: " + ev);
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void onUserInteraction() {
+        Log.i(TAG, "onUserInteraction: ");
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.i(TAG, "onTouchEvent: " + event);
+        return super.onTouchEvent(event);
     }
 
     private void test() {

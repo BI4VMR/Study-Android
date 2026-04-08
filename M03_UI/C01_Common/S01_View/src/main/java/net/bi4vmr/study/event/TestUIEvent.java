@@ -30,6 +30,7 @@ public class TestUIEvent extends AppCompatActivity {
         /* 点击事件 */
         binding.btnClick.setOnClickListener(new View.OnClickListener() {
 
+            // 该方法将在控件被点击时回调
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "按钮被点击了！");
@@ -40,6 +41,7 @@ public class TestUIEvent extends AppCompatActivity {
         /* 长按事件 */
         binding.btnClick.setOnLongClickListener(new View.OnLongClickListener() {
 
+            // 该方法将在控件被按住0.5秒后被回调
             @Override
             public boolean onLongClick(View v) {
                 Log.i(TAG, "按钮被长按了！");

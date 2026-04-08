@@ -30,19 +30,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <net.bi4vmr.study.base.MyLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
-            <Button
+            <net.bi4vmr.study.base.MyButton
                 android:id="@+id/btn01"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="功能按钮"
                 android:textAllCaps="false" />
-        </LinearLayout>
+        </net.bi4vmr.study.base.MyLinearLayout>
     </ScrollView>
 </LinearLayout>

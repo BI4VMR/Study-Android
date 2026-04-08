@@ -16,7 +16,7 @@ android {
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.ui.ctrlcustom.tools"
+        applicationId = "net.bi4vmr.study.ui.ctrlcustom.interaction"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
