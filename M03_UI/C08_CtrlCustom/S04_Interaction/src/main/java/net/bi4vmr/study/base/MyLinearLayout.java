@@ -28,22 +28,25 @@ public class MyLinearLayout extends LinearLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.i(TAG, "dispatchTouchEvent: " + ev);
-        // if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-        //     return true;
-        // }
-        return super.dispatchTouchEvent(ev);
+        Log.i(TAG, "DispatchTouchEvent. Type:[" + ev.getAction() + "]");
+        boolean r = super.dispatchTouchEvent(ev);
+        Log.i(TAG, "DispatchTouchEvent end, return:[" + r + "]");
+        return r;
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.i(TAG, "onInterceptTouchEvent: " + ev);
-        return super.onInterceptTouchEvent(ev);
+        Log.i(TAG, "OnInterceptTouchEvent. Type:[" + ev.getAction() + "]");
+        boolean r = super.onInterceptTouchEvent(ev);
+        Log.i(TAG, "OnInterceptTouchEvent end, return:[" + r + "]");
+        return r;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i(TAG, "onTouchEvent: " + event);
-        return super.onTouchEvent(event);
+        Log.i(TAG, "OnTouchEvent. Type:[" + event.getAction() + "]");
+        boolean r = super.onTouchEvent(event);
+        Log.i(TAG, "OnTouchEvent end, return:[" + r + "]");
+        return r;
     }
 }

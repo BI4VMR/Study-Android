@@ -1,13 +1,12 @@
 package net.bi4vmr.study.function;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +15,12 @@ import androidx.core.content.res.ResourcesCompat;
 import net.bi4vmr.study.R;
 import net.bi4vmr.study.databinding.TestuiFunctionBinding;
 
+/**
+ * 测试界面：常用方法。
+ *
+ * @author bi4vmr@outlook.com
+ * @since 1.0.0
+ */
 public class TestUIFunction extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUIFunction.class.getSimpleName();
@@ -30,46 +35,23 @@ public class TestUIFunction extends AppCompatActivity {
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
 
+        binding.btnGetView.setOnClickListener(v -> testGetView());
+        binding.btnCreateView.setOnClickListener(v -> testCreateView());
         binding.btnCoordinates.setOnClickListener(v -> testCoordinates());
 
-        testGetView();
-        testCreateView();
         testFgAndBg();
     }
 
-    // 获取控件引用
     private void testGetView() {
-        // 获取按钮控件的引用（控件不存在则为空值）
-        TextView tvTitle = findViewById(R.id.tv_title);
-        // 设置文本颜色
-        tvTitle.setTextColor(Color.GREEN);
-
-
-        // Android 9(API 28)新增方法：获取控件引用，如果控件不存在则抛出异常：IllegalArgumentException。
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            TextView tvTitle1 = requireViewById(R.id.tv_title);
-            tvTitle1.setTextColor(Color.GREEN);
-        }
-
-
-        // 推荐使用ViewBinding取代 `findViewById()` 方法。
-        binding.tvTitle.setTextColor(Color.GREEN);
+        Intent intent = new Intent(this, TestUIFunctionGetView.class);
+        startActivity(intent);
     }
 
-    // 创建控件实例
     private void testCreateView() {
-        // 创建TextView实例
-        TextView textview = new TextView(this);
-        // 设置文本内容
-        textview.setText("这是一个动态创建的TextView");
-        // 设置文本颜色
-        textview.setTextColor(Color.RED);
-        // 将TextView添加到容器中
-        LinearLayout layout = findViewById(R.id.linearLayout);
-        layout.addView(textview);
+        Intent intent = new Intent(this, TestUIFunctionCreateView.class);
+        startActivity(intent);
     }
 
-    // 坐标系统
     private void testCoordinates() {
         Log.i(TAG, "--- 坐标系统 ---");
         appendLog("\n--- 坐标系统 ---\n");
@@ -128,7 +110,7 @@ public class TestUIFunction extends AppCompatActivity {
         // binding.ivFgBg.setBackground(drawable);
 
         // 该方法可以从资源解析图片并作为背景，但不支持主题。
-        binding.ivFgBg.setBackgroundResource(R.drawable.shape_icon_fg);
+        // binding.ivFgBg.setBackgroundResource(R.drawable.shape_icon_fg);
 
         // 设置前景为矢量图（蓝色圆圈）
         Drawable fgDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.shape_icon_fg, getTheme());

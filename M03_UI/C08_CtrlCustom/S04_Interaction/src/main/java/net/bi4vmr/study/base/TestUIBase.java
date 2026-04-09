@@ -18,7 +18,7 @@ import net.bi4vmr.study.databinding.TestuiBaseBinding;
  */
 public class TestUIBase extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-" + TestUIBase.class.getSimpleName();
+    private static final String TAG = "Activity";
 
     private TestuiBaseBinding binding;
 
@@ -30,31 +30,31 @@ public class TestUIBase extends AppCompatActivity {
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
 
-        binding.btn01.setOnClickListener(v -> test());
+        binding.btnTest.setOnClickListener(v -> {
+            Log.i(TAG, "按钮被点击了！");
+            appendLog("按钮被点击了！");
+        });
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.i(TAG, "dispatchTouchEvent: " + ev);
-        return super.dispatchTouchEvent(ev);
+        Log.i(TAG, "DispatchTouchEvent. Type:[" + ev.getAction() + "]");
+        boolean r = super.dispatchTouchEvent(ev);
+        Log.i(TAG, "DispatchTouchEvent end, return:[" + r + "]");
+        return r;
     }
 
     @Override
     public void onUserInteraction() {
-        Log.i(TAG, "onUserInteraction: ");
+        Log.i(TAG, "OnUserInteraction.");
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i(TAG, "onTouchEvent: " + event);
-        return super.onTouchEvent(event);
-    }
-
-    private void test() {
-        Log.i(TAG, "----- 功能模块 -----");
-        appendLog("\n----- 功能模块 -----");
-
-        // 示例代码...
+        Log.i(TAG, "OnTouchEvent. Type:[" + event.getAction() + "]");
+        boolean r = super.onTouchEvent(event);
+        Log.i(TAG, "OnTouchEvent end, return:[" + r + "]");
+        return r;
     }
 
     // 向文本框中追加日志内容并滚动到最底端

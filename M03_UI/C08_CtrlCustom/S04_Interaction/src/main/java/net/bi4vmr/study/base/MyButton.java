@@ -7,7 +7,8 @@ import android.view.MotionEvent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
+
+import com.google.android.material.button.MaterialButton;
 
 /**
  * View：触摸事件测试。
@@ -15,7 +16,7 @@ import androidx.appcompat.widget.AppCompatButton;
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class MyButton extends AppCompatButton {
+public class MyButton extends MaterialButton {
 
     private static final String TAG = "View";
 
@@ -29,13 +30,17 @@ public class MyButton extends AppCompatButton {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.i(TAG, "dispatchTouchEvent: " + ev);
-        return super.dispatchTouchEvent(ev);
+        Log.i(TAG, "DispatchTouchEvent. Type:[" + ev.getAction() + "]");
+        boolean r = super.dispatchTouchEvent(ev);
+        Log.i(TAG, "DispatchTouchEvent end, return:[" + r + "]");
+        return r;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i(TAG, "onTouchEvent: " + event);
-        return false;
+        Log.i(TAG, "OnTouchEvent. Type:[" + event.getAction() + "]");
+        boolean r = super.onTouchEvent(event);
+        Log.i(TAG, "OnTouchEvent end, return:[" + r + "]");
+        return r;
     }
 }

@@ -40,6 +40,20 @@
             android:paddingEnd="20dp">
 
             <Button
+                android:id="@+id/btn_get_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="获取控件引用"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_create_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="创建控件实例"
+                android:textAllCaps="false" />
+
+            <Button
                 android:id="@+id/btn_coordinates"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

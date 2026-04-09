@@ -38,10 +38,10 @@
             android:paddingEnd="20dp">
 
             <net.bi4vmr.study.base.MyButton
-                android:id="@+id/btn01"
+                android:id="@+id/btn_test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="功能按钮"
+                android:text="测试按钮"
                 android:textAllCaps="false" />
         </net.bi4vmr.study.base.MyLinearLayout>
     </ScrollView>

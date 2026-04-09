@@ -33,6 +33,16 @@
             android:name=".function.TestUIFunction"
             android:exported="false" />
 
+        <!-- 示例界面：常用方法 - 获取控件引用 -->
+        <activity
+            android:name=".function.TestUIFunctionGetView"
+            android:exported="false" />
+
+        <!-- 示例界面：常用方法 - 创建控件实例 -->
+        <activity
+            android:name=".function.TestUIFunctionCreateView"
+            android:exported="false" />
+
         <!-- 示例界面：事件监听器 -->
         <activity
             android:name=".event.TestUIEvent"
@@ -56,6 +66,16 @@
         <!-- 示例界面：常用方法(KT) -->
         <activity
             android:name=".function.TestUIFunctionKT"
+            android:exported="false" />
+
+        <!-- 示例界面：常用方法 - 获取控件引用(KT) -->
+        <activity
+            android:name=".function.TestUIFunctionGetViewKT"
+            android:exported="false" />
+
+        <!-- 示例界面：常用方法 - 创建控件实例(KT) -->
+        <activity
+            android:name=".function.TestUIFunctionCreateViewKT"
             android:exported="false" />
 
         <!-- 示例界面：事件监听器(KT) -->
