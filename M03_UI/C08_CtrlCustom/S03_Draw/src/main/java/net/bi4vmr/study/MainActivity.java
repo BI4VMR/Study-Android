@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.MainActivityBinding;
+import net.bi4vmr.study.point.TestUIPoint;
 
 /**
  * 主页。
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 基本应用
         binding.btnBase.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIBase.class);
+            Intent intent = new Intent(this, TestUIPoint.class);
             startActivity(intent);
         });
 

@@ -15,9 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
 /**
- * 测试界面：TODO 添加简述。
- * <p>
- * TODO 添加详情。
+ * 测试界面：基本应用。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
