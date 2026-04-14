@@ -38,10 +38,17 @@
             android:paddingEnd="20dp">
 
             <Button
-                android:id="@+id/btn01"
+                android:id="@+id/btnAddWindow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="功能按钮"
+                android:text="添加Window"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnGetActivityWindow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="控制Activity的Window"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>

@@ -26,23 +26,18 @@
         android:textColor="@color/common_text"
         android:textSize="14sp" />
 
-    <ScrollView
+    <net.bi4vmr.study.base.MyLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
 
-        <net.bi4vmr.study.base.MyLinearLayout
+        <net.bi4vmr.study.base.MyButton
+            android:id="@+id/btn_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
-
-            <net.bi4vmr.study.base.MyButton
-                android:id="@+id/btn_test"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="测试按钮"
-                android:textAllCaps="false" />
-        </net.bi4vmr.study.base.MyLinearLayout>
-    </ScrollView>
+            android:text="点击或触摸此按钮"
+            android:textAllCaps="false" />
+    </net.bi4vmr.study.base.MyLinearLayout>
 </LinearLayout>

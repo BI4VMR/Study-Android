@@ -2,14 +2,13 @@ package net.bi4vmr.study;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.MainActivityBinding;
 import net.bi4vmr.study.point.TestUIPoint;
+import net.bi4vmr.study.shape.TestUIShape;
 
 /**
  * 主页。
@@ -28,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
         // 基本应用
         binding.btnBase.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIPoint.class);
+            startActivity(intent);
+        });
+
+        // 绘制基本形状
+        binding.btnShape.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIShape.class);
             startActivity(intent);
         });
 

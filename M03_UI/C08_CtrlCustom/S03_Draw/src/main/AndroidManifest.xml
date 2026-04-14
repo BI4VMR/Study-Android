@@ -28,6 +28,11 @@
             android:name=".point.TestUIPoint"
             android:exported="false" />
 
+        <!-- 示例界面：绘制基本形状 -->
+        <activity
+            android:name=".shape.TestUIShape"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"

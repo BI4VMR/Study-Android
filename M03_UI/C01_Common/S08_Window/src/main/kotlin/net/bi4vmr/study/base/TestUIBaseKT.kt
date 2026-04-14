@@ -31,7 +31,7 @@ class TestUIBaseKT : AppCompatActivity() {
         with(binding) {
             tvLog.movementMethod = ScrollingMovementMethod.getInstance()
 
-            btn01.setOnClickListener { test() }
+            btnAddWindow.setOnClickListener { test() }
         }
     }
 

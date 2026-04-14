@@ -1,9 +1,11 @@
 package net.bi4vmr.study.base;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,7 @@ public class TestUIBase extends AppCompatActivity {
 
     private TestuiBaseBinding binding;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +33,18 @@ public class TestUIBase extends AppCompatActivity {
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+
+        // 注册点击事件监听器，查看点击事件。
         binding.btnTest.setOnClickListener(v -> {
-            Log.i(TAG, "按钮被点击了！");
+            Log.i("View", "按钮被点击了！");
             appendLog("按钮被点击了！");
+        });
+
+        // 注册触摸事件监听器，查看触摸事件。
+        binding.btnTest.setOnTouchListener((v, event) -> {
+            Log.i("View", "OnTouch: " + event);
+            return false;
         });
     }
 
