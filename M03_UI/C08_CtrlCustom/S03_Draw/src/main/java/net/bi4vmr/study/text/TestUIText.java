@@ -4,14 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.databinding.TestuiPointBinding;
+import net.bi4vmr.study.databinding.TestuiTextBinding;
 
 /**
- * 测试界面：基本形状。
+ * 测试界面：文本。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
@@ -20,19 +21,16 @@ public class TestUIText extends AppCompatActivity {
 
     private static final String TAG = "TestApp-" + TestUIText.class.getSimpleName();
 
-    private TestuiPointBinding binding;
+    private TestuiTextBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiPointBinding.inflate(getLayoutInflater());
+        binding = TestuiTextBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.getRoot().post(() -> {
             test_Single();
-            test_Batch();
-            test_SingleLine();
-            test_StrokeCap();
         });
     }
 
@@ -42,82 +40,25 @@ public class TestUIText extends AppCompatActivity {
         Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bmp);
 
-        // 创建画笔并设置样式：尺寸为5像素，颜色为红色。
         Paint paint = new Paint();
-        paint.setStrokeWidth(10);
-        paint.setColor(Color.RED);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(25.0F);
 
-        // 在画布 `(50, 50)` 的位置绘制一个点
-        canvas.drawPoint(50, 50, paint);
-        // 在画布 `(100, 100)` 的位置绘制一个点
-        canvas.drawPoint(100, 100, paint);
+        // 参考矩形
+        RectF rect = new RectF(50, 50, 150, 150);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(rect, paint);
+
+        // 绘制文本
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawText("fgHIjklMNOpq", 50, 50, paint);
+
+        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        // targetRect.centerY() - (FontMetrics.bottom - FontMetrics.top) / 2 - FontMetrics.top
+        float offset = (rect.bottom + rect.top - fontMetrics.bottom - fontMetrics.top) / 2;
+
+        canvas.drawText("fgHIjklMNOpq", 50, offset, paint);
 
         binding.ivSingle.setImageBitmap(bmp);
-    }
-
-    private void test_Batch() {
-        int width = binding.ivSingle.getWidth();
-        int height = binding.ivSingle.getHeight();
-        Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bmp);
-
-        Paint p = new Paint();
-        p.setStrokeWidth(10);
-        p.setColor(Color.GREEN);
-
-        // 使用数组表示一批点，每两个元素为一组，分别表示点的X坐标与Y坐标。
-        float[] points = {50, 50, 100, 100, 50, 100, 100, 50};
-        canvas.drawPoints(points, p);
-
-        binding.ivBatch.setImageBitmap(bmp);
-    }
-
-    private void test_SingleLine() {
-        // 创建与ImageView尺寸相同的Bitmap，将其作为画布。
-        int width = binding.ivSingle.getWidth();
-        int height = binding.ivSingle.getHeight();
-        Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bmp);
-
-        Paint p = new Paint();
-        p.setStrokeWidth(10);
-        p.setStrokeCap(Paint.Cap.ROUND);
-        p.setColor(Color.GREEN);
-
-
-        canvas.drawLine(50, 50, 100, 100, p);
-
-        canvas.drawLine(50, 200, 400, 200, p);
-
-        // 将绘制后的Bitmap设置到ImageView中。
-        binding.ivSingleLine.setImageBitmap(bmp);
-    }
-
-    private void test_StrokeCap() {
-        // 创建与ImageView尺寸相同的Bitmap，将其作为画布。
-        int width = binding.ivSingle.getWidth();
-        int height = binding.ivSingle.getHeight();
-        Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bmp);
-
-        Paint p = new Paint();
-        p.setStrokeWidth(50);
-        p.setColor(Color.CYAN);
-
-        // 无
-        p.setStrokeCap(Paint.Cap.BUTT);
-
-        canvas.drawLine(50, 50, 50, 400, p);
-
-        p.setStrokeCap(Paint.Cap.SQUARE);
-
-        canvas.drawLine(150, 50, 150, 400, p);
-
-        p.setStrokeCap(Paint.Cap.ROUND);
-
-        canvas.drawLine(250, 50, 250, 400, p);
-
-        // 将绘制后的Bitmap设置到ImageView中。
-        binding.ivStrokeCap.setImageBitmap(bmp);
     }
 }

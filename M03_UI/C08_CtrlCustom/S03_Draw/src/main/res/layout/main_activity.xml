@@ -28,10 +28,45 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/btnPoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="点"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="直线"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btnShape"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="绘制基本形状"
+            android:text="基本形状"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="路径"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="文本"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnShader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Shader"
             android:textAllCaps="false" />
 
         <TextView
@@ -49,10 +84,45 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/btnPointKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="点"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnLineKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="直线"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btnShapeKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="绘制基本形状"
+            android:text="基本形状"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnPathKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="路径"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnTextKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="文本"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnShaderKT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Shader"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

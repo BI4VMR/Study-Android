@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="绘制点"
+            android:text="文本"
             android:textColor="@color/common_text"
             android:textSize="20sp" />
 
@@ -31,70 +31,6 @@
 
         <ImageView
             android:id="@+id/iv_single"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@drawable/shape_log_area"
-            android:importantForAccessibility="no" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="绘制一批点："
-            android:textColor="@color/common_text"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:id="@+id/iv_batch"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@drawable/shape_log_area"
-            android:importantForAccessibility="no" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="绘制单条线段："
-            android:textColor="@color/common_text"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:id="@+id/iv_single_line"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@drawable/shape_log_area"
-            android:importantForAccessibility="no" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="绘制一批线段："
-            android:textColor="@color/common_text"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:id="@+id/iv_batch_line"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@drawable/shape_log_area"
-            android:importantForAccessibility="no" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="线段末端样式："
-            android:textColor="@color/common_text"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:id="@+id/iv_stroke_cap"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="@drawable/shape_log_area"

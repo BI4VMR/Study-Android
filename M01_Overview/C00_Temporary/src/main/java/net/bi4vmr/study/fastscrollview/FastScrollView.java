@@ -117,11 +117,4 @@ public class FastScrollView extends ScrollView {
         final float scale = getContext().getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
-
-    /**
-     * 这里不用view的paddding，用于预留特殊空隙
-     */
-    public void setRightPadding(int mRightPadding) {
-        this.mRightPadding = mRightPadding;
-    }
 }

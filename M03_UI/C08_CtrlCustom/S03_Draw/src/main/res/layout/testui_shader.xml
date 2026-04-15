@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="基本应用"
+            android:text="Shader"
             android:textColor="@color/common_text"
             android:textSize="20sp" />
 
@@ -25,12 +25,28 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="2D绘图："
+            android:text="线性渐变："
             android:textColor="@color/common_text"
             android:textSize="16sp" />
 
         <ImageView
-            android:id="@+id/iv_draft"
+            android:id="@+id/iv_linear"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/shape_log_area"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="扫描渐变："
+            android:textColor="@color/common_text"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_sweep"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="@drawable/shape_log_area"

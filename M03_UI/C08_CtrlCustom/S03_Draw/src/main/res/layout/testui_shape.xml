@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="绘制基本形状"
+            android:text="基本形状"
             android:textColor="@color/common_text"
             android:textSize="20sp" />
 
@@ -41,12 +41,76 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:text="圆角矩形："
+            android:textColor="@color/common_text"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_round_corner_rectangle"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/shape_log_area"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="双矩形相减得到的形状："
+            android:textColor="@color/common_text"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_double_round_rectangle"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/shape_log_area"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:text="圆形："
             android:textColor="@color/common_text"
             android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/iv_circle"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/shape_log_area"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="椭圆："
+            android:textColor="@color/common_text"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_oval"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/shape_log_area"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="圆弧："
+            android:textColor="@color/common_text"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_arc"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="@drawable/shape_log_area"

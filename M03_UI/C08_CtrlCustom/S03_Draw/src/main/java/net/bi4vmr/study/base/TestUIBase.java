@@ -4,11 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,48 +28,28 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
+        binding.getRoot().post(() -> {
+            // 创建画布
+            int width = binding.ivDraft.getWidth();
+            int height = binding.ivDraft.getHeight();
+            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bmp);
 
-        binding.btn01.setOnClickListener(v -> test());
-    }
+            // 创建画笔，颜色为绿色。
+            Paint paint = new Paint();
+            paint.setColor(Color.GREEN);
 
-    private void test() {
-        Log.i(TAG, "----- 功能模块 -----");
-        appendLog("\n----- 功能模块 -----");
+            // 将整个画布填充为黑色
+            canvas.drawColor(Color.BLACK);
+            // 以 `(100, 100)` 为顶点，绘制一个宽度为400像素、高度为100像素的矩形。
+            canvas.drawRect(100, 100, 500, 200, paint);
 
-        Bitmap b = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas(b);
-        // c.drawColor(Color.BLUE);
+            // 将画笔颜色改为青色
+            paint.setColor(Color.CYAN);
+            // 以 `(600, 150)` 为圆心，绘制一个半径为50像素的圆。
+            canvas.drawCircle(600, 150, 50, paint);
 
-        Paint p = new Paint();
-        p.setStrokeCap(Paint.Cap.ROUND);
-        p.setColor(Color.RED);
-        Rect r = new Rect(10, 10, 90, 90);
-        c.drawRect(r, p);
-
-        binding.ivTest.setImageBitmap(b);
-
-        // c.drawOval(10, 10, 90, 90, null);
-    }
-
-    // 向文本框中追加日志内容并滚动到最底端
-    private void appendLog(Object text) {
-        if (text == null) {
-            Log.w(TAG, "Log item is NULL, ignored!");
-            return;
-        }
-
-        TextView logArea = binding.tvLog;
-        logArea.post(() -> logArea.append("\n" + text));
-        logArea.post(() -> {
-            try {
-                int offset = logArea.getLayout().getLineTop(logArea.getLineCount()) - logArea.getHeight();
-                if (offset > 0) {
-                    logArea.scrollTo(0, offset);
-                }
-            } catch (Exception e) {
-                Log.w(TAG, "TextView scroll failed!", e);
-            }
+            binding.ivDraft.setImageBitmap(bmp);
         });
     }
 }

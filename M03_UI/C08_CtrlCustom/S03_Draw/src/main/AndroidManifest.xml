@@ -23,14 +23,34 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 示例界面：绘制点 -->
+        <!-- 示例界面：点 -->
         <activity
             android:name=".point.TestUIPoint"
             android:exported="false" />
 
-        <!-- 示例界面：绘制基本形状 -->
+        <!-- 示例界面：直线 -->
+        <activity
+            android:name=".line.TestUILine"
+            android:exported="false" />
+
+        <!-- 示例界面：基本形状 -->
         <activity
             android:name=".shape.TestUIShape"
+            android:exported="false" />
+
+        <!-- 示例界面：路径 -->
+        <activity
+            android:name=".path.TestUIPath"
+            android:exported="false" />
+
+        <!-- 示例界面：文本 -->
+        <activity
+            android:name=".text.TestUIText"
+            android:exported="false" />
+
+        <!-- 示例界面：Shader -->
+        <activity
+            android:name=".shader.TestUIShader"
             android:exported="false" />
 
         <!-- 示例界面：基本应用(KT) -->
