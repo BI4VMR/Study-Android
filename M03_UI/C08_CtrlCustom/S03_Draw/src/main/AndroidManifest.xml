@@ -57,5 +57,35 @@
         <activity
             android:name=".base.TestUIBaseKT"
             android:exported="false" />
+
+        <!-- 示例界面：点(KT) -->
+        <activity
+            android:name=".point.TestUIPointKT"
+            android:exported="false" />
+
+        <!-- 示例界面：直线(KT) -->
+        <activity
+            android:name=".line.TestUILineKT"
+            android:exported="false" />
+
+        <!-- 示例界面：基本形状(KT) -->
+        <activity
+            android:name=".shape.TestUIShapeKT"
+            android:exported="false" />
+
+        <!-- 示例界面：路径(KT) -->
+        <activity
+            android:name=".path.TestUIPathKT"
+            android:exported="false" />
+
+        <!-- 示例界面：文本(KT) -->
+        <activity
+            android:name=".text.TestUITextKT"
+            android:exported="false" />
+
+        <!-- 示例界面：Shader(KT) -->
+        <activity
+            android:name=".shader.TestUIShaderKT"
+            android:exported="false" />
     </application>
 </manifest>

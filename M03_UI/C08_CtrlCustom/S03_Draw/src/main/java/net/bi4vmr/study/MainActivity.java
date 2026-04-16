@@ -9,11 +9,17 @@ import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.MainActivityBinding;
 import net.bi4vmr.study.line.TestUILine;
+import net.bi4vmr.study.line.TestUILineKT;
 import net.bi4vmr.study.path.TestUIPath;
+import net.bi4vmr.study.path.TestUIPathKT;
 import net.bi4vmr.study.point.TestUIPoint;
+import net.bi4vmr.study.point.TestUIPointKT;
 import net.bi4vmr.study.shader.TestUIShader;
+import net.bi4vmr.study.shader.TestUIShaderKT;
 import net.bi4vmr.study.shape.TestUIShape;
+import net.bi4vmr.study.shape.TestUIShapeKT;
 import net.bi4vmr.study.text.TestUIText;
+import net.bi4vmr.study.text.TestUITextKT;
 
 /**
  * 主页。
@@ -74,6 +80,42 @@ public class MainActivity extends AppCompatActivity {
         // 基本应用(KT)
         binding.btnBaseKT.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBaseKT.class);
+            startActivity(intent);
+        });
+
+        // 点(KT)
+        binding.btnPointKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIPointKT.class);
+            startActivity(intent);
+        });
+
+        // 直线(KT)
+        binding.btnLineKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUILineKT.class);
+            startActivity(intent);
+        });
+
+        // 基本形状(KT)
+        binding.btnShapeKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIShapeKT.class);
+            startActivity(intent);
+        });
+
+        // 路径(KT)
+        binding.btnPathKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIPathKT.class);
+            startActivity(intent);
+        });
+
+        // 文本(KT)
+        binding.btnTextKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUITextKT.class);
+            startActivity(intent);
+        });
+
+        // Shader(KT)
+        binding.btnShaderKT.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIShaderKT.class);
             startActivity(intent);
         });
     }
