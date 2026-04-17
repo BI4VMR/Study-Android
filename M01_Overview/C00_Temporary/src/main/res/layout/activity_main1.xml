@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <net.bi4vmr.study.seekbarwithindecitor.SeekBarWithIndicator
+    <net.bi4vmr.tool.android.ui.xseekbar.SeekBarWithIndicator
         android:id="@+id/seekbar"
         android:layout_width="match_parent"
         android:layout_height="20dp"

@@ -38,6 +38,10 @@ public class TestUIFunction extends AppCompatActivity {
         binding.btnGetView.setOnClickListener(v -> testGetView());
         binding.btnCreateView.setOnClickListener(v -> testCreateView());
         binding.btnCoordinates.setOnClickListener(v -> testCoordinates());
+        binding.btnClip.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIFunctionClip.class);
+            startActivity(intent);
+        });
 
         testFgAndBg();
     }
