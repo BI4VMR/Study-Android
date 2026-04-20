@@ -28,6 +28,17 @@
             android:name=".datetime.TestUIDateTime"
             android:exported="false" />
 
+        <!-- 示例界面：进程管理 -->
+        <activity
+            android:name=".process.TestUIProcess"
+            android:exported="false"
+            android:process=":sub" />
+
+        <!-- 示例界面：隐藏接口 -->
+        <activity
+            android:name=".hideapi.TestUIHideAPI"
+            android:exported="false" />
+
         <!-- 示例界面：设备信息(KT) -->
         <activity
             android:name=".deviceinfo.TestUIDeviceInfoKT"

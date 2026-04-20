@@ -38,6 +38,8 @@ class TestUIBaseKT : AppCompatActivity() {
     private fun test() {
         Log.i(TAG, "----- 功能模块 -----")
         appendLog("\n----- 功能模块 -----")
+
+        // 示例代码...
     }
 
     // 向文本框中追加日志内容并滚动到最底端

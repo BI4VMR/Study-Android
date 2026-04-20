@@ -10,6 +10,8 @@ import net.bi4vmr.study.datetime.TestUIDateTime;
 import net.bi4vmr.study.datetime.TestUIDateTimeKT;
 import net.bi4vmr.study.deviceinfo.TestUIDeviceInfo;
 import net.bi4vmr.study.deviceinfo.TestUIDeviceInfoKT;
+import net.bi4vmr.study.hideapi.TestUIHideAPI;
+import net.bi4vmr.study.process.TestUIProcess;
 
 /**
  * 主页。
@@ -34,6 +36,18 @@ public class MainActivity extends AppCompatActivity {
         // 时间管理
         binding.btnDateTime.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIDateTime.class);
+            startActivity(intent);
+        });
+
+        // 进程管理
+        binding.btnProcess.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIProcess.class);
+            startActivity(intent);
+        });
+
+        // 隐藏接口
+        binding.btnHideAPI.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIHideAPI.class);
             startActivity(intent);
         });
 

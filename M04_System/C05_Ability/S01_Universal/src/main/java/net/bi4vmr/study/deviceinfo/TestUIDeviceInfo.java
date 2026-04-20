@@ -1,6 +1,7 @@
 package net.bi4vmr.study.deviceinfo;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -187,6 +188,22 @@ public class TestUIDeviceInfo extends AppCompatActivity {
         // 安全补丁版本，一般为日期。
         String sp = Build.VERSION.SECURITY_PATCH;
         Log.i(TAG, "SECURITY_PATCH: " + sp);
+    }
+
+    private void test_MemoryInfo() {
+        Log.i(TAG, "----- 内存信息 -----");
+        appendLog("\n----- 内存信息 -----");
+
+        ActivityManager am = getSystemService(ActivityManager.class);
+        // 创建一个MemoryInfo实例
+        ActivityManager.MemoryInfo info = new ActivityManager.MemoryInfo();
+        // 通过ActivityManager获取内存信息
+        am.getMemoryInfo(info);
+
+        Log.i(TAG, "Total Memory: ${mi.totalMem / 1024 / 1024} MB");
+        Log.i(TAG, "Available Memory: ${mi.availMem / 1024 / 1024} MB");
+        Log.i(TAG, "threshold Memory: ${mi.threshold / 1024 / 1024} MB");
+        Log.i(TAG, "lowMemory?: ${mi.lowMemory}");
     }
 
     @SuppressLint("HardwareIds")

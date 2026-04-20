@@ -21,31 +21,10 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnDeviceInfo"
+            android:id="@+id/btnBase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="设备信息"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnDateTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="时间管理"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnProcess"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="进程管理"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnHideAPI"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="隐藏接口"
+            android:text="基本应用"
             android:textAllCaps="false" />
 
         <TextView
@@ -56,17 +35,10 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnDeviceInfoKT"
+            android:id="@+id/btnBaseKT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="设备信息"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnDateTimeKT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="时间管理"
+            android:text="基本应用"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>
