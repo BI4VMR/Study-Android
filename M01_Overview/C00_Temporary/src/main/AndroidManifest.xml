@@ -43,33 +43,20 @@
             </intent-filter>
         </activity>
 
-        <activity-alias
-            android:name=".MainActivity2"
-            android:exported="true"
-            android:label="MainActivity alias"
-            android:targetActivity=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <!--<activity-alias-->
+        <!--    android:name=".MainActivity2"-->
+        <!--    android:exported="true"-->
+        <!--    android:label="MainActivity alias"-->
+        <!--    android:targetActivity=".MainActivity">-->
+        <!--    <intent-filter>-->
+        <!--        <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity-alias>
+        <!--        <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--    </intent-filter>-->
+        <!--</activity-alias>-->
 
         <activity
             android:name=".base.TestUIBaseKT"
             android:exported="false" />
-
-        <service
-            android:name=".wallpaper.MyWallpaperService"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.BIND_WALLPAPER">
-            <intent-filter>
-                <action android:name="android.service.wallpaper.WallpaperService" />
-            </intent-filter>
-            <meta-data
-                android:name="android.service.wallpaper"
-                android:resource="@xml/wallpaper" />
-        </service>
     </application>
 </manifest>

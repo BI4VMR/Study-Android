@@ -23,29 +23,22 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 示例界面：使用代码表示颜色 -->
-        <activity
-            android:name=".colorincode.TestUIColorInCode"
-            android:exported="false" />
-
-        <!-- 示例界面：颜色选择器 -->
-        <activity
-            android:name=".selector.TestUISelector"
-            android:exported="false" />
-
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"
             android:exported="false" />
 
-        <!-- 示例界面：使用代码表示颜色(KT) -->
-        <activity
-            android:name=".colorincode.TestUIColorInCodeKT"
-            android:exported="false" />
-
-        <!-- 示例界面：颜色选择器(KT) -->
-        <activity
-            android:name=".selector.TestUISelectorKT"
-            android:exported="false" />
+        <service
+            android:name=".wallpaper.MyWallpaperService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/wallpaper" />
+        </service>
     </application>
 </manifest>

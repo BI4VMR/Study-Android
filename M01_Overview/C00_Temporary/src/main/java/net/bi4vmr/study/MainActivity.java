@@ -1,51 +1,19 @@
 package net.bi4vmr.study;
 
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.LocaleList;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.MainActivityBinding;
-import net.bi4vmr.study.permission.AospPermissionMgr;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    public boolean isAppEnabled(Context context, String packageName) {
-        PackageManager packageManager = context.getPackageManager();
-        try {
-            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, 0);
-            return applicationInfo.enabled;
-        } catch (PackageManager.NameNotFoundException e) {
-            // 应用未安装
-            return false;
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,51 +22,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Button btnBase = findViewById(R.id.btnBase);
+        btnBase.setOnClickListener(v -> {
 
-        // getLanguages().forEach(locale -> {
-        //     // Log.i("TestApp","locale: "+ locale);
-        // });
-
-        // 创建IntentFilter并添加ACTION_PACKAGE_CHANGED
-        // IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_CHANGED);
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
-        filter.addDataScheme("package");
-        // 注册BroadcastReceiver
-        registerReceiver(new PackageChangedReceiver(), filter);
+        });
 
         Button btnTextClock = findViewById(R.id.btnTextClock);
         btnTextClock.setOnClickListener(v -> {
             // Intent intent = new Intent(this, TestUITextClock.class);
             // startActivity(intent);
-            // Log.i("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
-            PackageManager packageManager = this.getPackageManager();
-            try {
-                ComponentName cn = new ComponentName(getPackageName(), "net.bi4vmr.study.MainActivity2");
-                ActivityInfo activityInfo = packageManager.getActivityInfo(cn, 0);
-                String t = activityInfo.targetActivity;
-                Log.i("TEA", "t: " + t);
-            } catch (PackageManager.NameNotFoundException e) {
-                // 应用未安装
-                Log.e("TEA", "e: ", e);
-            }
         });
 
         Button btnView = findViewById(R.id.btnView);
         btnView.setOnClickListener(v -> {
-            AospPermissionMgr mgr = AospPermissionMgr.getInstance(this);
-            mgr.startListenPermissionChange2(pkg -> Log.i("TestApp", "pkg: " + pkg));
-
             // Intent intent = new Intent(this, TestUIView.class);
             // startActivity(intent);
-            //
-            // WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
-            //
-            // final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
-            // drawableToFile(wallpaperDrawable, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/1.png", Bitmap.CompressFormat.PNG);
-
-            // TaskUtil.INSTANCE.getbgapps(getApplicationContext());
-            // Log.i("TestAPP", "AppEnabled:" + isAppEnabled(this, "com.android.nfc"));
         });
 
         binding.ivDraw.setOnClickListener(v -> {
@@ -146,83 +83,4 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        LocaleList l = newConfig.getLocales();
-        Log.i("TestApp", "onConfigurationChanged. list: " + l);
-        for (int i = 0; i < l.size(); i++) {
-            Log.i("TestApp", "onConfigurationChanged. i: " + i + ", c: " + l.get(i).getLanguage());
-        }
-    }
-
-    // Bitmap.CompressFormat.PNG
-    public void drawableToFile(Drawable drawable, String filePath, Bitmap.CompressFormat format) {
-        if (drawable == null)
-            return;
-
-        try {
-            File file = new File(filePath);
-
-            if (file.exists())
-                file.delete();
-
-            if (!file.exists())
-                file.createNewFile();
-
-            FileOutputStream out = null;
-            out = new FileOutputStream(file);
-            ((BitmapDrawable) drawable).getBitmap().compress(format, 100, out);
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static class PackageChangedReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String packageName = intent.getData().getSchemeSpecificPart();
-            Log.i("TestAPP", "Package changed: " + packageName);
-            try {
-                boolean b2 = context.getPackageManager().getApplicationInfo(packageName, 0).enabled;
-                Log.i("TestAPP", "Package state: " + b2);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * 获取当前系统支持的语言集
-     *
-     * @return
-     */
-    private List<String> getLanguages() {
-        List<String> list = new ArrayList<>();
-        Locale[] lg = Locale.getAvailableLocales();
-        for (Locale language : lg) {
-            String name = language.getDisplayLanguage();
-            // 去掉重复的语言
-            // if (!list.contains(name)){
-            list.add(name);
-            // }
-            Log.i("TestApp", "locale: " + language.toLanguageTag());
-        }
-        return list;
-    }
-
-    /**
-     * 获取当前系统语言
-     * * settings get system system_locales
-     *
-     * @return
-     */
-    private String getCurrentLanguage() {
-        Locale locale = getResources().getConfiguration().locale;
-        return locale.getDisplayLanguage();
-    }
-
 }
