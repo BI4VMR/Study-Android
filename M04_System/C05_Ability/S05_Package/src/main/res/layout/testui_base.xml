@@ -52,6 +52,20 @@
                 android:textAllCaps="false" />
 
             <Button
+                android:id="@+id/btnGetActivityInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="获取Activity信息"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnQueryServiceInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="查询符合条件的Service信息"
+                android:textAllCaps="false" />
+
+            <Button
                 android:id="@+id/btnGetAppList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

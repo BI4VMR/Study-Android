@@ -59,7 +59,7 @@ public class TestUIDeviceInfo extends AppCompatActivity {
         appendLog("型号：[" + model + "]");
 
 
-        // Android 12 (API Level 31) 新增的字段
+        // Android 12 (API 31) 新增的字段
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             // SoC型号
             String soc = Build.SOC_MODEL;
