@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="基本应用"
+        android:text="事件监听"
         android:textColor="@color/common_text"
         android:textSize="20sp" />
 
@@ -38,45 +38,17 @@
             android:paddingEnd="20dp">
 
             <Button
-                android:id="@+id/btnGetPackageInfo"
+                android:id="@+id/btnStartListening"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="获取Package信息"
+                android:text="开始监听"
                 android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/btnGetAppInfo"
+                android:id="@+id/btnStopListening"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="获取Application信息"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnGetActivityInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="获取Activity信息"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnGetAllPackages"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="查询所有软件包信息"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnQueryServiceInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="查询符合条件的Service信息"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/btnResolveAPK"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="解析APK文件信息"
+                android:text="结束监听"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>

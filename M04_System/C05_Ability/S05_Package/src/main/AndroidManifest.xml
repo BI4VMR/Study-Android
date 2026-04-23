@@ -29,6 +29,16 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
+        <!-- 示例界面：元数据 -->
+        <activity
+            android:name=".metadata.TestUIMetaData"
+            android:exported="false" />
+
+        <!-- 示例界面：事件监听 -->
+        <activity
+            android:name=".event.TestUIEvent"
+            android:exported="false" />
+
         <!-- 示例界面：基本应用(KT) -->
         <activity
             android:name=".base.TestUIBaseKT"

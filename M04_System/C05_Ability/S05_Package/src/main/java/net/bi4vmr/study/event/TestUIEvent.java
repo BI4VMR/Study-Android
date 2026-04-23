@@ -1,4 +1,4 @@
-package net.bi4vmr.study.packagechange;
+package net.bi4vmr.study.event;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.databinding.TestuiPackagechangeBinding;
+import net.bi4vmr.study.databinding.TestuiEventBinding;
 
 /**
  * 测试界面：基本应用。
@@ -19,18 +19,18 @@ import net.bi4vmr.study.databinding.TestuiPackagechangeBinding;
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class TestUIPackageChange extends AppCompatActivity {
+public class TestUIEvent extends AppCompatActivity {
 
-    private static final String TAG = "TestApp-" + TestUIPackageChange.class.getSimpleName();
+    private static final String TAG = "TestApp-" + TestUIEvent.class.getSimpleName();
 
-    private TestuiPackagechangeBinding binding;
+    private TestuiEventBinding binding;
 
-    private PackageChangeReceiver receiver;
+    private final PackageChangeReceiver receiver = new PackageChangeReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = TestuiPackagechangeBinding.inflate(getLayoutInflater());
+        binding = TestuiEventBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
@@ -45,7 +45,9 @@ public class TestUIPackageChange extends AppCompatActivity {
 
         // 创建IntentFilter并添加ACTION_PACKAGE_CHANGED
         IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_PACKAGE_ADDED);
         filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+        filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         filter.addDataScheme("package");
         // 注册BroadcastReceiver
         registerReceiver(receiver, filter);

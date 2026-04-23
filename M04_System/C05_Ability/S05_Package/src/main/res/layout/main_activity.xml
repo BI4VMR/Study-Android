@@ -28,10 +28,17 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnListenEvent"
+            android:id="@+id/btnMetaData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="监听软件包事件"
+            android:text="元数据"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="事件监听"
             android:textAllCaps="false" />
 
         <TextView

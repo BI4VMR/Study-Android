@@ -47,8 +47,9 @@ public class TestUIBase extends AppCompatActivity {
         binding.btnGetPackageInfo.setOnClickListener(v -> test_GetPackageInfo());
         binding.btnGetAppInfo.setOnClickListener(v -> test_GetApplicationInfo());
         binding.btnGetActivityInfo.setOnClickListener(v -> test_GetActivityInfo());
+        binding.btnGetAllPackages.setOnClickListener(v -> test_GetAllPackages());
         binding.btnQueryServiceInfo.setOnClickListener(v -> test_QueryServiceInfo());
-        binding.btnGetAppList.setOnClickListener(v -> test_GetAllPackages());
+        binding.btnResolveAPK.setOnClickListener(v -> test_ResolveAPK());
     }
 
     private void test_GetPackageInfo() {
@@ -149,27 +150,13 @@ public class TestUIBase extends AppCompatActivity {
         try {
             // 使用当前软件包作为目标
             String target = getPackageName();
+            // 获取该软件包的ApplicationInfo实例
             ApplicationInfo info = packageManager.getApplicationInfo(target, 0);
 
             // 包名
             String packageName = info.packageName;
             Log.i(TAG, "包名：[" + packageName + "]");
             appendLog("包名：[" + packageName + "]");
-
-            // 应用名称
-            CharSequence label = info.loadLabel(packageManager);
-            Log.i(TAG, "标签：[" + label + "]");
-            appendLog("标签：[" + label + "]");
-
-            // 徽章图标（带有通知、工作区应用等角标）
-            Drawable icon = info.loadIcon(packageManager);
-            Log.i(TAG, "徽章图标：[" + icon + "]");
-            appendLog("徽章图标：[" + icon + "]");
-
-            // 原始图标（无角标，直接返回Manifest中指明的图标。）
-            Drawable rawIcon = info.loadUnbadgedIcon(packageManager);
-            Log.i(TAG, "原始图标：[" + rawIcon + "]");
-            appendLog("原始图标：[" + rawIcon + "]");
 
             // 当前是否启用
             boolean enable = info.enabled;
@@ -213,26 +200,21 @@ public class TestUIBase extends AppCompatActivity {
             String nativeLibraryDir = info.nativeLibraryDir;
             Log.i(TAG, "原生库目录：[" + nativeLibraryDir + "]");
             appendLog("原生库目录：[" + nativeLibraryDir + "]");
-        } catch (PackageManager.NameNotFoundException e) {
-            // 应用未安装
-            Log.e(TAG, "App not found! Info:[" + e.getMessage() + "]");
-            appendLog("App not f+ound! Info:[" + e.getMessage() + "]");
-        }
-    }
 
-    private void test_GetActivityInfo() {
-        Log.i(TAG, "----- 获取Activity信息 -----");
-        appendLog("\n----- 获取Activity信息 -----");
+            // 应用名称
+            CharSequence label = info.loadLabel(packageManager);
+            Log.i(TAG, "标签：[" + label + "]");
+            appendLog("标签：[" + label + "]");
 
-        ComponentName cn = new ComponentName(this, getClass());
-        try {
-            ActivityInfo info = getPackageManager().getActivityInfo(cn, 0);
-            String ttt = info.targetActivity;
-            // 获取Activity的图标，如果Activity未配置图标，则返回应用图标。
-            info.getIconResource();
-            Log.i(TAG, "Activity: " + info.name + ", package: " + info);
-            Drawable icon = info.loadIcon(getPackageManager());
-            binding.tvLog.setBackground(icon);
+            // 徽章图标（带有通知、工作区应用等角标）
+            Drawable icon = info.loadIcon(packageManager);
+            Log.i(TAG, "徽章图标：[" + icon + "]");
+            appendLog("徽章图标：[" + icon + "]");
+
+            // 原始图标（无角标，直接返回Manifest中指明的图标。）
+            Drawable rawIcon = info.loadUnbadgedIcon(packageManager);
+            Log.i(TAG, "原始图标：[" + rawIcon + "]");
+            appendLog("原始图标：[" + rawIcon + "]");
         } catch (PackageManager.NameNotFoundException e) {
             // 应用未安装
             Log.e(TAG, "App not found! Info:[" + e.getMessage() + "]");
@@ -240,19 +222,60 @@ public class TestUIBase extends AppCompatActivity {
         }
     }
 
-    private void test_QueryServiceInfo() {
-        Log.i(TAG, "----- 查询符合条件的Service信息 -----");
-        appendLog("\n----- 查询符合条件的Service信息 -----");
+    private void test_GetActivityInfo() {
+        Log.i(TAG, "----- 获取Activity信息 -----");
+        appendLog("\n----- 获取Activity信息 -----");
 
-        // MediaSession服务的Intent
-        Intent intent = new Intent();
-        intent.setAction(MediaBrowserService.SERVICE_INTERFACE);
+        PackageManager packageManager = this.getPackageManager();
+        try {
+            // 指定当前示例Activity为目标
+            ComponentName cn = new ComponentName(this, getClass());
+            // 获取该Component的ActivityInfo实例
+            ActivityInfo info = packageManager.getActivityInfo(cn, 0);
 
-        List<ResolveInfo> resolveInfos = getPackageManager().queryIntentServices(intent, 0);
-        resolveInfos.forEach(info -> {
-            ServiceInfo serviceInfo = info.serviceInfo;
-            Log.i(TAG, "Service: " + serviceInfo.name + ", package: " + serviceInfo.packageName);
-        });
+            // 包名
+            String packageName = info.packageName;
+            Log.i(TAG, "包名：[" + packageName + "]");
+            appendLog("包名：[" + packageName + "]");
+
+            // 类名
+            String name = info.name;
+            Log.i(TAG, "类名：[" + name + "]");
+            appendLog("类名：[" + name + "]");
+
+            // 目标Activity
+            // 若当前ActivityInfo是一个Activity别名，该属性提供了别名指向的实际Activity；若ActivityInfo不是别名，该属性为空值。
+            String targetActivity = info.targetActivity;
+            Log.i(TAG, "目标Activity：[" + targetActivity + "]");
+            appendLog("目标Activity：[" + targetActivity + "]");
+
+            // Activity名称（如果Activity未定义Label属性，则返回Application中定义的名称。）
+            CharSequence label = info.loadLabel(packageManager);
+            Log.i(TAG, "标签：[" + label + "]");
+            appendLog("标签：[" + label + "]");
+
+            // 徽章图标（带有通知、工作区应用等角标）
+            // 如果Activity未定义Icon属性，则返回Application中定义的图标。
+            Drawable icon = info.loadIcon(packageManager);
+            Log.i(TAG, "徽章图标：[" + icon + "]");
+            appendLog("徽章图标：[" + icon + "]");
+
+            // 原始图标（无角标，直接返回Manifest中指明的图标。）
+            // 如果Activity未定义Icon属性，则返回Application中定义的图标。
+            Drawable rawIcon = info.loadUnbadgedIcon(packageManager);
+            Log.i(TAG, "原始图标：[" + rawIcon + "]");
+            appendLog("原始图标：[" + rawIcon + "]");
+        } catch (PackageManager.NameNotFoundException e) {
+            // 应用未安装
+            Log.e(TAG, "App not found! Info:[" + e.getMessage() + "]");
+            appendLog("App not found! Info:[" + e.getMessage() + "]");
+        }
+
+
+        // 以下方法可以获取Service/ContentProvider/BroadcastReceiver信息，参数同上。
+        // packageManager.getServiceInfo(component, 0);
+        // packageManager.getProviderInfo(component, 0);
+        // packageManager.getReceiverInfo(component, 0);
     }
 
     private void test_GetAllPackages() {
@@ -275,6 +298,42 @@ public class TestUIBase extends AppCompatActivity {
             appendLog(info.toString());
         });
         Log.i(TAG, "--- ApplicationInfo列表 结束 ---");
+    }
+
+    private void test_QueryServiceInfo() {
+        Log.i(TAG, "----- 查询符合条件的Service信息 -----");
+        appendLog("\n----- 查询符合条件的Service信息 -----");
+
+        PackageManager packageManager = this.getPackageManager();
+
+        // MediaSession服务的Intent
+        Intent intent = new Intent();
+        intent.setAction(MediaBrowserService.SERVICE_INTERFACE);
+
+        // 查询所有的MediaSession服务
+        List<ResolveInfo> resolveInfos = packageManager.queryIntentServices(intent, 0);
+        resolveInfos.forEach(info -> {
+            // 获取ServiceInfo
+            ServiceInfo serviceInfo = info.serviceInfo;
+            Log.i(TAG, "Service:[" + serviceInfo.name + "]");
+        });
+
+
+        // 以下方法可以查询更多信息
+        // packageManager.queryIntentActivities(intent, 0);
+        // packageManager.queryIntentContentProviders(intent, 0);
+        // packageManager.queryBroadcastReceivers(intent, 0);
+    }
+
+    private void test_ResolveAPK() {
+        Log.i(TAG, "----- 解析APK文件 -----");
+        appendLog("\n----- 解析APK文件 -----");
+
+        PackageManager packageManager = this.getPackageManager();
+        // 解析指定路径的APK文件，获取PackageInfo实例。
+        PackageInfo info = packageManager.getPackageArchiveInfo("/system_ext/priv-app/SystemUI/SystemUI.apk", 0);
+        Log.i(TAG, "解析结果：" + info);
+        appendLog("解析结果：" + info);
     }
 
     // 向文本框中追加日志内容并滚动到最底端

@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="监听软件包事件"
+        android:text="基本应用"
         android:textColor="@color/common_text"
         android:textSize="20sp" />
 
@@ -38,17 +38,17 @@
             android:paddingEnd="20dp">
 
             <Button
-                android:id="@+id/btnStartListening"
+                android:id="@+id/btnGetData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="开始监听"
+                android:text="获取数据"
                 android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/btnStopListening"
+                android:id="@+id/btnGetResource"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="结束监听"
+                android:text="获取资源"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
