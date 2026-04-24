@@ -43,10 +43,16 @@ android {
     }
 
     sourceSets {
+        // 默认的 `main` 目录
         getByName("main") {
-            java {
-                java.srcDir("src/main/kotlin")
-            }
+            // 添加额外的Java源码目录 `java-vendor`
+            java.srcDir("src/main/java-vendor")
+
+            // 添加额外的Kotlin源码目录 `kotlin`
+            kotlin.srcDir("src/main/kotlin")
+
+            // 添加额外的资源目录 `res-extra`
+            res.srcDir("src/main/res-extra")
         }
     }
 

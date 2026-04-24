@@ -1,8 +1,10 @@
 package net.bi4vmr.study.shellinapp;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,13 +31,15 @@ public class TestUIShellInAPP extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
+        binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
+
         binding.btnADBShell.setOnClickListener(v -> testADBCMD());
     }
 
     // 执行ADB命令
     private void testADBCMD() {
-        Log.i(TAG, "--- 执行ADB命令 ---");
-        binding.tvLog.append("\n--- 执行ADB命令 ---\n");
+        Log.i(TAG, "----- 执行ADB命令 -----");
+        appendLog("\n----- 执行ADB命令 -----");
 
         // 命令语句
         final String cmd = "free -h";
@@ -64,5 +68,26 @@ public class TestUIShellInAPP extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private void appendLog(Object text) {
+        if (text == null) {
+            Log.w(TAG, "Log item is NULL, ignored!");
+            return;
+        }
+
+        TextView logArea = binding.tvLog;
+        logArea.post(() -> logArea.append("\n" + text));
+        logArea.post(() -> {
+            try {
+                int offset = logArea.getLayout().getLineTop(logArea.getLineCount()) - logArea.getHeight();
+                if (offset > 0) {
+                    logArea.scrollTo(0, offset);
+                }
+            } catch (Exception e) {
+                Log.w(TAG, "TextView scroll failed!", e);
+            }
+        });
     }
 }

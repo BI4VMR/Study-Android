@@ -31,7 +31,7 @@ public class TestUIBase extends AppCompatActivity {
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
 
-        binding.btn01.setOnClickListener(v -> test());
+        binding.btnFunction.setOnClickListener(v -> test());
     }
 
     private void test() {

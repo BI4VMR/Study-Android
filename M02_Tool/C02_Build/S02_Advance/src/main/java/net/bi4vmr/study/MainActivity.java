@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.buildconfig.TestUIBuildConfig;
 import net.bi4vmr.study.buildconfig.TestUIBuildConfigKT;
-import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.databinding.MainActivityBinding;
 
 /**
  * 主页。
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // 读取BuildConfig中的变量

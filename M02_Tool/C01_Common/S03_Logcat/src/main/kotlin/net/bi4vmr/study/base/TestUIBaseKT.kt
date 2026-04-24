@@ -1,6 +1,7 @@
 package net.bi4vmr.study.base
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiBaseBinding
@@ -26,6 +27,8 @@ class TestUIBaseKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
+            tvLog.movementMethod = ScrollingMovementMethod.getInstance()
+
             btnLog.setOnClickListener { testLog() }
             btnJavaLog.setOnClickListener { testJavaLog() }
             btnChatty.setOnClickListener { testChatty() }
@@ -35,8 +38,8 @@ class TestUIBaseKT : AppCompatActivity() {
 
     // 输出日志
     private fun testLog() {
-        Log.i(TAG, "--- 输出日志 ---")
-        binding.tvLog.append("\n--- 输出日志 ---\n")
+        Log.i(TAG, "----- 输出日志 -----")
+        binding.tvLog.append("\n----- 输出日志 -----")
 
         // 输出Verbose级别日志
         Log.v(TAG, "Verbose Log.")
@@ -52,8 +55,8 @@ class TestUIBaseKT : AppCompatActivity() {
 
     // Java日志兼容性
     private fun testJavaLog() {
-        Log.i(TAG, "--- Java日志兼容性 ---")
-        binding.tvLog.append("\n--- Java日志兼容性 ---\n")
+        Log.i(TAG, "----- Java日志兼容性 -----")
+        binding.tvLog.append("\n----- Java日志兼容性 -----")
 
         // 输出标准信息
         println("标准信息输出测试。")
@@ -63,8 +66,8 @@ class TestUIBaseKT : AppCompatActivity() {
 
     // Chatty机制
     private fun testChatty() {
-        Log.i(TAG, "--- Chatty机制 ---")
-        binding.tvLog.append("\n--- Chatty机制 ---\n")
+        Log.i(TAG, "----- Chatty机制 -----")
+        binding.tvLog.append("\n----- Chatty机制 -----")
 
         for (i in 0 until 100) {
             Log.i(TAG, "Chatty机制测试内容。")
@@ -73,8 +76,8 @@ class TestUIBaseKT : AppCompatActivity() {
 
     // 输出超长内容
     private fun testLongLine() {
-        Log.i(TAG, "--- 输出超长内容 ---")
-        binding.tvLog.append("\n--- 输出超长内容 ---\n")
+        Log.i(TAG, "----- 输出超长内容 -----")
+        binding.tvLog.append("\n----- 输出超长内容 -----")
 
         // 测试数据
         val stringBuilder = StringBuilder()

@@ -6,9 +6,11 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.os.Bundle
-
+import android.text.Layout
+import android.text.StaticLayout
+import android.text.TextPaint
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.core.graphics.createBitmap
 import net.bi4vmr.study.databinding.TestuiTextBinding
 
 /**
@@ -35,6 +37,7 @@ class TestUITextKT : AppCompatActivity() {
             test_NoCenter()
             test_CenterV()
             test_CenterH()
+            testStatic()
         }
     }
 
@@ -113,5 +116,22 @@ class TestUITextKT : AppCompatActivity() {
         canvas.drawText("fgHIjklMNOpq", rect.centerX(), 50F, paint)
 
         binding.ivCenterH.setImageBitmap(bmp)
+    }
+
+    private fun testStatic() {
+        val width = binding.ivStaticLayout.width
+        val height = binding.ivStaticLayout.height
+        val bmp = createBitmap(width, height)
+        val canvas = Canvas(bmp)
+
+        val textPaint = TextPaint()
+        textPaint.color = Color.BLACK
+        textPaint.textSize = 32.0F
+
+        val sl =
+            StaticLayout("我能够吞下玻璃而不伤身。", textPaint, width, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false)
+        sl.draw(canvas)
+
+        binding.ivStaticLayout.setImageBitmap(bmp)
     }
 }

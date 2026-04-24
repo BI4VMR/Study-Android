@@ -1,6 +1,7 @@
 package net.bi4vmr.study.buildconfig
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.BuildConfig
@@ -27,14 +28,16 @@ class TestUIBuildConfigKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
+            tvLog.movementMethod = ScrollingMovementMethod.getInstance()
+
             btnAccess.setOnClickListener { testAccess() }
         }
     }
 
     // 访问变量
     private fun testAccess() {
-        Log.i(TAG, "--- 访问变量 ---")
-        binding.tvLog.append("\n--- 访问变量 ---\n")
+        Log.i(TAG, "----- 访问变量 -----")
+        binding.tvLog.append("\n----- 访问变量 -----")
 
         // 访问内置变量
         val debug: Boolean = BuildConfig.DEBUG

@@ -1,6 +1,7 @@
 package net.bi4vmr.study.base;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,8 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
+
         binding.btnLog.setOnClickListener(v -> testLog());
         binding.btnJavaLog.setOnClickListener(v -> testJavaLog());
         binding.btnChatty.setOnClickListener(v -> testChatty());
@@ -33,8 +36,8 @@ public class TestUIBase extends AppCompatActivity {
 
     // 输出日志
     private void testLog() {
-        Log.i(TAG, "--- 输出日志 ---");
-        binding.tvLog.append("\n--- 输出日志 ---\n");
+        Log.i(TAG, "----- 输出日志 -----");
+        binding.tvLog.append("\n----- 输出日志 -----");
 
         // 输出Verbose级别日志
         Log.v(TAG, "Verbose Log.");
@@ -50,8 +53,8 @@ public class TestUIBase extends AppCompatActivity {
 
     // Java日志兼容性
     private void testJavaLog() {
-        Log.i(TAG, "--- Java日志兼容性 ---");
-        binding.tvLog.append("\n--- Java日志兼容性 ---\n");
+        Log.i(TAG, "----- Java日志兼容性 -----");
+        binding.tvLog.append("\n----- Java日志兼容性 -----");
 
         // 输出标准信息
         System.out.println("标准信息输出测试。");
@@ -61,8 +64,8 @@ public class TestUIBase extends AppCompatActivity {
 
     // Chatty机制
     private void testChatty() {
-        Log.i(TAG, "--- Chatty机制 ---");
-        binding.tvLog.append("\n--- Chatty机制 ---\n");
+        Log.i(TAG, "----- Chatty机制 -----");
+        binding.tvLog.append("\n----- Chatty机制 -----");
 
         // 连续输出100行相同的日志
         for (int i = 0; i < 100; i++) {
@@ -72,8 +75,8 @@ public class TestUIBase extends AppCompatActivity {
 
     // 输出超长内容
     private void testLongLine() {
-        Log.i(TAG, "--- 输出超长内容 ---");
-        binding.tvLog.append("\n--- 输出超长内容 ---\n");
+        Log.i(TAG, "----- 输出超长内容 -----");
+        binding.tvLog.append("\n----- 输出超长内容 -----");
 
         // 测试数据
         StringBuilder sb = new StringBuilder();

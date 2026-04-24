@@ -1,6 +1,7 @@
 package net.bi4vmr.study.base;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +28,9 @@ public class TestUIBase extends AppCompatActivity {
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btn01.setOnClickListener(v -> test());
+        binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
+
+        binding.btnFunction.setOnClickListener(v -> test());
     }
 
     // 功能模块

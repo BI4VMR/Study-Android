@@ -1,6 +1,7 @@
 package net.bi4vmr.study.base
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiBaseBinding
@@ -20,14 +21,16 @@ class TestUIBaseKT : AppCompatActivity() {
         setContentView(binding.root)
 
         with(binding) {
-            btn01.setOnClickListener { test() }
+            tvLog.movementMethod = ScrollingMovementMethod.getInstance()
+
+            btnFunction.setOnClickListener { test() }
         }
     }
 
     // 功能模块
     private fun test() {
-        Log.i(TAG, "--- 功能模块 ---")
-        binding.tvLog.append("\n--- 功能模块 ---\n")
+        Log.i(TAG, "----- 功能模块 -----")
+        binding.tvLog.append("\n----- 功能模块 -----")
 
         // ...
     }

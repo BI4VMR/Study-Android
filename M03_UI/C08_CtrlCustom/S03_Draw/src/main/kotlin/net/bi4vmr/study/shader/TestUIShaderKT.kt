@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.RectF
+import android.graphics.Shader
 import android.graphics.SweepGradient
 import android.os.Bundle
 
@@ -52,7 +53,7 @@ class TestUIShaderKT : AppCompatActivity() {
         val shader = LinearGradient(
             0F, 0F, width.toFloat(), height.toFloat(),
             intArrayOf(0xFFFF0000.toInt(), 0xFF00FF00.toInt(), 0xFF0000FF.toInt()),
-            null, LinearGradient.TileMode.CLAMP
+            null, Shader.TileMode.CLAMP
         )
 
         // 创建画笔

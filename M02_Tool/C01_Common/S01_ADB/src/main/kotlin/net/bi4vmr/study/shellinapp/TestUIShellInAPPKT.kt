@@ -1,6 +1,7 @@
 package net.bi4vmr.study.shellinapp
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import net.bi4vmr.study.databinding.TestuiBaseBinding
@@ -27,12 +28,16 @@ class TestUIShellInAPPKT : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.btnADBShell.setOnClickListener { testADBCMD() }
+        with(binding) {
+            tvLog.movementMethod = ScrollingMovementMethod.getInstance()
+
+            btnADBShell.setOnClickListener { testADBCMD() }
+        }
     }
 
     private fun testADBCMD() {
-        Log.i(TAG, "--- 执行ADB命令 ---")
-        binding.tvLog.append("\n--- 执行ADB命令 ---\n")
+        Log.i(TAG, "----- 执行ADB命令 -----")
+        appendLog("\n----- 执行ADB命令 -----")
 
         // 命令语句
         val cmd = "free -h"
@@ -43,23 +48,40 @@ class TestUIShellInAPPKT : AppCompatActivity() {
             // 阻塞当前线程等待命令执行完毕
             val resultCode: Int = process.waitFor()
             Log.i(TAG, "'free -h'命令的执行结果:[$resultCode]")
-            binding.tvLog.append("'free -h'命令的执行结果:[$resultCode]\n")
+            appendLog("'free -h'命令的执行结果:[$resultCode]\n")
 
             if (resultCode == 0) {
                 /* 命令执行成功 */
                 val isStdOut: InputStream = process.inputStream
                 val text: String = IOUtil.readFile(isStdOut)
                 Log.i(TAG, "标准信息输出：\n$text")
-                binding.tvLog.append("标准信息输出：\n$text\n")
+                appendLog("标准信息输出：\n$text\n")
             } else {
                 /* 命令执行失败 */
                 val isStdErr: InputStream = process.errorStream
                 val text: String = IOUtil.readFile(isStdErr)
                 Log.i(TAG, "标准错误输出：\n$text")
-                binding.tvLog.append("标准错误输出：\n$text\n")
+                appendLog("标准错误输出：\n$text\n")
             }
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    // 向文本框中追加日志内容并滚动到最底端
+    private fun appendLog(text: Any) {
+        binding.tvLog.apply {
+            post { append("\n$text") }
+            post {
+                runCatching {
+                    val offset = layout.getLineTop(lineCount) - height
+                    if (offset > 0) {
+                        scrollTo(0, offset)
+                    }
+                }.onFailure { e ->
+                    Log.w(TAG, "TextView scroll failed!", e)
+                }
+            }
         }
     }
 }
