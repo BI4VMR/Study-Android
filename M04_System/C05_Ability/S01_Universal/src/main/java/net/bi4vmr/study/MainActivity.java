@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.bi4vmr.study.compatibility.TestUICompatibility;
 import net.bi4vmr.study.databinding.MainActivityBinding;
 import net.bi4vmr.study.datetime.TestUIDateTime;
 import net.bi4vmr.study.datetime.TestUIDateTimeKT;
@@ -36,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
         // 时间管理
         binding.btnDateTime.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIDateTime.class);
+            startActivity(intent);
+        });
+
+        // 系统兼容性
+        binding.btnCompatibility.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUICompatibility.class);
             startActivity(intent);
         });
 

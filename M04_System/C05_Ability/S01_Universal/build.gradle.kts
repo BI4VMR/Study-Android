@@ -33,20 +33,18 @@ android {
         }
     }
 
-    buildTypes {
-        getByName("debug") {
-            signingConfig = signingConfigs.getByName("AOSP")
-        }
-        getByName("release") {
-            signingConfig = signingConfigs.getByName("AOSP")
-        }
-    }
+    // buildTypes {
+    //     getByName("debug") {
+    //         signingConfig = signingConfigs.getByName("AOSP")
+    //     }
+    //     getByName("release") {
+    //         signingConfig = signingConfigs.getByName("AOSP")
+    //     }
+    // }
 
     sourceSets {
         getByName("main") {
-            java {
-                java.srcDir("src/main/kotlin")
-            }
+            kotlin.srcDir("src/main/kotlin")
         }
     }
 
@@ -68,4 +66,7 @@ android {
 
 dependencies {
     implementation(libAndroid.bundles.appBaseKT)
+
+    // FreeReflection：解锁Android 9及更高版本对隐藏方法的调用限制
+    implementation(libAndroid.freeReflection)
 }

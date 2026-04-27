@@ -44,9 +44,7 @@ android {
 
     sourceSets {
         getByName("main") {
-            java {
-                java.srcDir("src/main/kotlin")
-            }
+            kotlin.srcDir("src/main/kotlin")
         }
     }
 

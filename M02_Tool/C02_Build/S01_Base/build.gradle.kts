@@ -51,6 +51,9 @@ android {
             // 添加额外的Kotlin源码目录 `kotlin`
             kotlin.srcDir("src/main/kotlin")
 
+            // 添加额外的Kotlin源码目录 `kotlin` 和 `kotlin-vendor`
+            kotlin.srcDirs("src/main/kotlin", "src/main/kotlin-vendor")
+
             // 添加额外的资源目录 `res-extra`
             res.srcDir("src/main/res-extra")
         }

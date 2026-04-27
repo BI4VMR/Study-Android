@@ -3,11 +3,14 @@ package net.bi4vmr.study.hideapi;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.databinding.TestuiHideapiBinding;
+
+import java.lang.reflect.Method;
 
 /**
  * 测试界面：设备信息。
@@ -29,14 +32,18 @@ public class TestUIHideAPI extends AppCompatActivity {
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
 
-        binding.btnCall.setOnClickListener(v -> testID());
-    }
+        binding.btnCall.setOnClickListener(v -> {
+            Log.i(TAG, "----- 调用隐藏接口 -----");
+            appendLog("\n----- 调用隐藏接口 -----");
 
-    private void testID() {
-        Log.i(TAG, "----- isCrossWindowBlurEnabled -----");
-        appendLog("\n----- isCrossWindowBlurEnabled -----");
-
-        // TODO
+            try {
+                Method method = WindowManager.class.getDeclaredMethod("shouldShowSystemDecors", int.class);
+                method.invoke(getWindowManager(), 0);
+            } catch (Exception e) {
+                Log.e(TAG, "调用隐藏方法失败！", e);
+                appendLog("调用隐藏方法失败！\n" + e);
+            }
+        });
     }
 
     // 向文本框中追加日志内容并滚动到最底端
