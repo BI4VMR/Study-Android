@@ -215,6 +215,16 @@ public class TestUIBase extends AppCompatActivity {
             Drawable rawIcon = info.loadUnbadgedIcon(packageManager);
             Log.i(TAG, "原始图标：[" + rawIcon + "]");
             appendLog("原始图标：[" + rawIcon + "]");
+
+            // 标志位
+            int flags = info.flags;
+            Log.i(TAG, "Flags：[" + flags + "]");
+            appendLog("Flags：[" + flags + "]");
+
+            // 是否为系统应用？
+            boolean isSystemApp = ((flags & ApplicationInfo.FLAG_SYSTEM) == 1);
+            Log.i(TAG, "系统应用？:[" + isSystemApp + "]");
+            appendLog("系统应用？:[" + isSystemApp + "]");
         } catch (PackageManager.NameNotFoundException e) {
             // 应用未安装
             Log.e(TAG, "App not found! Info:[" + e.getMessage() + "]");

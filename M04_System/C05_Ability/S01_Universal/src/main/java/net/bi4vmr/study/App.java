@@ -6,9 +6,7 @@ import android.content.Context;
 import me.weishu.reflection.Reflection;
 
 /**
- * TODO 添加简述。
- * <p>
- * TODO 添加详情。
+ * 自定义Application。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
@@ -18,6 +16,7 @@ public class App extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        // 解除Android 10及以上版本系统对隐藏接口的访问限制。
         Reflection.unseal(base);
     }
 }

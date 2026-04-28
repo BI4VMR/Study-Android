@@ -16,7 +16,7 @@ android {
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.tool.build.advance"
+        applicationId = "net.bi4vmr.study.system.ability.ndk"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode
@@ -36,15 +36,9 @@ android {
     buildTypes {
         getByName("debug") {
             signingConfig = signingConfigs.getByName("AOSP")
-
-            // 向BuildConfig类添加字段
-            buildConfigField("String", "SERVER_NAME", "\"http://test.example.net/\"")
         }
         getByName("release") {
             signingConfig = signingConfigs.getByName("AOSP")
-
-            // 向BuildConfig类添加字段
-            buildConfigField("String", "SERVER_NAME", "\"http://prod.example.net/\"")
         }
     }
 
@@ -65,25 +59,31 @@ android {
         jvmTarget = "11"
     }
 
-    // 打包APK时的选项
-    packagingOptions {
-        // 不添加任何配置时，默认不过滤任何文件。
-
-        // 打包时排除所有x86架构的库文件
-        jniLibs.excludes.add("lib/x86/*.so")
-
-        // 如果多个模块的LICENSE文件路径相同，则将它们合并为同一个文件。
-        resources.merges.add("**/LICENSE.txt")
-    }
-
     buildFeatures {
         viewBinding = true
+    }
 
-        // 此配置项可以禁止本模块生成BuildConfig文件
-        // buildConfig = false
+    // 指定NDK版本，覆盖AGP的默认版本。
+    ndkVersion = "25.2.9519653"
+
+    // C语言编译配置
+    externalNativeBuild {
+        cmake {
+            // 指定CMake配置文件
+            path = File("src/main/cpp/CMakeLists.txt")
+            // 指定CMake版本
+            version = "3.22.1"
+        }
     }
 }
 
 dependencies {
     implementation(libAndroid.bundles.appBaseKT)
+}
+
+gradle.projectsEvaluated {
+    tasks.withType(Delete::class.java) {
+        // 清除C++构建缓存文件
+        delete("${projectDir.absolutePath}${File.separator}.cxx")
+    }
 }

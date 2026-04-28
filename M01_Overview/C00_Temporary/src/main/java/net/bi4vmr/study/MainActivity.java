@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.bi4vmr.study.base.TestUIBaseKT;
 import net.bi4vmr.study.databinding.MainActivityBinding;
 
+import java.util.function.Function;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -21,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
         MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+        Function<String,Void> l= (String a) -> {
+            System.out.println(a);
+            return null;
+        };
         Button btnBase = findViewById(R.id.btnBase);
         btnBase.setOnClickListener(v -> {
 
