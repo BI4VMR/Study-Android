@@ -23,9 +23,22 @@ android {
         versionName = versionModuleName
     }
 
-    sourceSets {
-        getByName("main") {
-            kotlin.srcDir("src/main/kotlin")
+    signingConfigs {
+        create("AOSP") {
+            storeFile =
+                file("${rootDir.absolutePath}${File.separator}misc${File.separator}keystore${File.separator}AOSP.keystore")
+            storePassword = "AOSPSystem"
+            keyAlias = "AOSPSystem"
+            keyPassword = "AOSPSystem"
+        }
+    }
+
+    buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("AOSP")
+        }
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("AOSP")
         }
     }
 
@@ -40,8 +53,8 @@ android {
         jvmTarget = "11"
     }
 
-    viewBinding {
-        enable = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 

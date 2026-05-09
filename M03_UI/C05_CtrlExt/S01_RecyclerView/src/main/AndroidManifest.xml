@@ -54,6 +54,16 @@
             android:name=".diffutilasync.TestUIDiffUtilAsync"
             android:exported="false" />
 
+        <!-- 示例界面：布局 - Grid - 基本应用 -->
+        <activity
+            android:name=".layout.grid.base.TestUILayoutGridBase"
+            android:exported="false" />
+
+        <!-- 示例界面：布局 - Grid - 多种类型 -->
+        <activity
+            android:name=".layout.grid.viewtype.TestUILayoutGridViewType"
+            android:exported="false" />
+
         <!-- 示例界面：缓存与复用 -->
         <activity
             android:name=".viewcache.TestUIViewCache"
