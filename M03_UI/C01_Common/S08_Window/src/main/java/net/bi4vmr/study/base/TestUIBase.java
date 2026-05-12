@@ -1,8 +1,11 @@
 package net.bi4vmr.study.base;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -41,16 +44,25 @@ public class TestUIBase extends AppCompatActivity {
         appendLog("\n----- 添加Window -----");
 
         // 创建View
+        View v = TestuiBaseBinding.inflate(getLayoutInflater()).getRoot();
+        v.setBackgroundColor(Color.BLUE);
 
         // 配置参数
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        // 当对齐方向为top或bottom时，窗体到对齐边缘的偏移量
+        lp.y = 100;
+        // lp.alpha = 0.8F;
+        // 弹窗在整个屏幕的顶部显示
+        lp.gravity = Gravity.TOP;
 
         // 获取WindowManager
         WindowManager manager = getApplicationContext().getSystemService(WindowManager.class);
-        manager.addView(binding.getRoot(), new WindowManager.LayoutParams());
+        manager.addView(v, lp);
+
+        // manager.updateViewLayout(view, lp);
     }
 
     private void test_GetActivityWindow() {
