@@ -1,4 +1,4 @@
-package net.bi4vmr.study.layout.grid.viewtype;
+package net.bi4vmr.study.layout.grid.types;
 
 /**
  * “列表表项”接口，用于规范表项必须实现的功能。

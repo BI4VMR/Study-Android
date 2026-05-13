@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.bi4vmr.study.R;
-import net.bi4vmr.study.base.SimpleVO;
 
 import java.util.List;
 
@@ -28,14 +27,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     /**
      * 数据源。
      */
-    private final List<net.bi4vmr.study.base.SimpleVO> dataSource;
+    private final List<GridVO> dataSource;
 
     /**
      * 构造方法。
      *
      * @param dataSource 初始数据源。
      */
-    public MyAdapter(List<net.bi4vmr.study.base.SimpleVO> dataSource) {
+    public MyAdapter(List<GridVO> dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -59,7 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
          *
          * 此处的第三参数必须为"false"，因为控件将由ViewHolder控制Attach与Detach。
          */
-        View view = inflater.inflate(R.layout.list_item_simple, parent, false);
+        View view = inflater.inflate(R.layout.list_item_grid, parent, false);
 
         // 创建ViewHolder实例，并将View对象保存在其中。
         return new MyViewHolder(view);
@@ -121,10 +120,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
          */
         public void bindData() {
             // 获取当前表项位置对应的数据项
-            SimpleVO vo = dataSource.get(getAdapterPosition());
+            GridVO vo = dataSource.get(getAdapterPosition());
             // 将数据设置到视图中
             if (tvTitle != null) {
-                tvTitle.setText(vo.getTitle());
+                tvTitle.setText(vo.getInfo());
             }
         }
     }

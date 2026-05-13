@@ -5,20 +5,20 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.bi4vmr.study.base.TestUIBase;
-import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.base.TestUIData;
+import net.bi4vmr.study.databinding.MainActivityBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // 基本应用
         binding.btnBase.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIBase.class);
+            Intent intent = new Intent(this, TestUIData.class);
             startActivity(intent);
         });
     }

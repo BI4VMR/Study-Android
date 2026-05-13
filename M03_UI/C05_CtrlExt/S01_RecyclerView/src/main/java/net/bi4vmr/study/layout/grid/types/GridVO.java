@@ -1,18 +1,18 @@
-package net.bi4vmr.study.layout.grid.viewtype;
+package net.bi4vmr.study.layout.grid.types;
 
 import androidx.annotation.NonNull;
 
 /**
- * 列表项的实体类（类型II）。
+ * 列表项的实体类（Grid类型）。
  *
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class Type2VO implements ListItem {
+public class GridVO implements ListItem {
 
     private String info;
 
-    public Type2VO(String info) {
+    public GridVO(String info) {
         this.info = info;
     }
 

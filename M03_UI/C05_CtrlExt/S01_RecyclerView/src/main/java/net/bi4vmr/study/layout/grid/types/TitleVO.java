@@ -1,4 +1,4 @@
-package net.bi4vmr.study.layout.grid.viewtype;
+package net.bi4vmr.study.layout.grid.types;
 
 import androidx.annotation.NonNull;
 
@@ -8,17 +8,17 @@ import androidx.annotation.NonNull;
  * @author bi4vmr@outlook.com
  * @since 1.0.0
  */
-public class Type1VO implements ListItem {
+public class TitleVO implements ListItem {
 
     private String title;
     private String info;
 
-    public Type1VO(String title) {
+    public TitleVO(String title) {
         this.title = title;
         info = "-";
     }
 
-    public Type1VO(String title, String info) {
+    public TitleVO(String title, String info) {
         this.title = title;
         this.info = info;
     }

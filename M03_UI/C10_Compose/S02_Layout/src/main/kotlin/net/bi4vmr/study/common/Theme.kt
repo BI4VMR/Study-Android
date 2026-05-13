@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base.theme
+package net.bi4vmr.study.common
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

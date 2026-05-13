@@ -1,4 +1,4 @@
-package net.bi4vmr.study.layout.grid.viewtype;
+package net.bi4vmr.study.layout.grid.types;
 
 import android.os.Bundle;
 
@@ -28,16 +28,16 @@ public class TestUILayoutGridViewType extends AppCompatActivity {
 
         // 制造测试数据
         List<ListItem> datas = new ArrayList<>();
-        datas.add(new Type1VO("标题一", "这是类型I"));
-        datas.add(new Type2VO("A1"));
-        datas.add(new Type2VO("A2"));
-        datas.add(new Type2VO("A3"));
-        datas.add(new Type2VO("A4"));
-        datas.add(new Type2VO("A5"));
-        datas.add(new Type1VO("标题二", "这是类型I"));
-        datas.add(new Type2VO("B1"));
-        datas.add(new Type2VO("B2"));
-        datas.add(new Type2VO("B3"));
+        datas.add(new TitleVO("标题一", "这是类型I"));
+        datas.add(new GridVO("A1"));
+        datas.add(new GridVO("A2"));
+        datas.add(new GridVO("A3"));
+        datas.add(new GridVO("A4"));
+        datas.add(new GridVO("A5"));
+        datas.add(new TitleVO("标题二", "这是类型I"));
+        datas.add(new GridVO("B1"));
+        datas.add(new GridVO("B2"));
+        datas.add(new GridVO("B3"));
 
 
         // 设置适配器
@@ -57,6 +57,7 @@ public class TestUILayoutGridViewType extends AppCompatActivity {
                 }
             }
         });
+        binding.rvContent.addItemDecoration(new GridItemSpacer(10,0,new ArrayList<>(List.of(MyAdapter.Type1VH.class))));
         binding.rvContent.setLayoutManager(layoutManager);
     }
 }

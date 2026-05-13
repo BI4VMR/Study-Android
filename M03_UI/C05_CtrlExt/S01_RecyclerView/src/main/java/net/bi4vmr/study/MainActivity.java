@@ -14,7 +14,7 @@ import net.bi4vmr.study.diffutil.TestUIDiffUtil;
 import net.bi4vmr.study.diffutil.TestUIDiffUtilKT;
 import net.bi4vmr.study.diffutilasync.TestUIDiffUtilAsync;
 import net.bi4vmr.study.layout.grid.base.TestUILayoutGridBase;
-import net.bi4vmr.study.layout.grid.viewtype.TestUILayoutGridViewType;
+import net.bi4vmr.study.layout.grid.types.TestUILayoutGridViewType;
 import net.bi4vmr.study.updateitem.TestUIUpdateItem;
 import net.bi4vmr.study.updateitem.TestUIUpdateItemKT;
 import net.bi4vmr.study.updatelist.TestUIUpdateList;

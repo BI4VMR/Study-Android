@@ -1,5 +1,6 @@
-package net.bi4vmr.study.layout.grid.viewtype;
+package net.bi4vmr.study.layout.grid.types;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import net.bi4vmr.study.R;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * RecyclerView的适配器。
@@ -59,7 +61,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             break;
             case 2: {
                 View view = inflater.inflate(R.layout.list_item_type2, parent, false);
-                vh = new Type2VH(view);
+                vh = new GridVH(view);
             }
             break;
             default:
@@ -82,8 +84,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof Type1VH) {
             ((Type1VH) holder).bindData();
-        } else if (holder instanceof Type2VH) {
-            ((Type2VH) holder).bindData();
+        } else if (holder instanceof GridVH) {
+            ((GridVH) holder).bindData();
         } else {
             Log.w("Test", "Unknown ViewHolder!");
         }
@@ -125,7 +127,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         public void bindData() {
-            Type1VO vo = (Type1VO) dataSource.get(getAdapterPosition());
+            TitleVO vo = (TitleVO) dataSource.get(getAdapterPosition());
             tvTitle.setText(vo.getTitle());
             tvInfo.setText(vo.getInfo());
         }
@@ -134,18 +136,42 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     /**
      * 第二种表项的ViewHolder。
      */
-    class Type2VH extends RecyclerView.ViewHolder {
+    class GridVH extends RecyclerView.ViewHolder {
+
+        View rootView;
 
         TextView tvInfo;
 
-        public Type2VH(@NonNull View itemView) {
+        public GridVH(@NonNull View itemView) {
             super(itemView);
+            rootView = itemView;
             tvInfo = itemView.findViewById(R.id.tvInfo);
         }
 
         public void bindData() {
-            Type2VO vo = (Type2VO) dataSource.get(getAdapterPosition());
+            GridVO vo = (GridVO) dataSource.get(getAdapterPosition());
             tvInfo.setText(vo.getInfo());
+
+            rootView.setBackgroundColor(Color.parseColor(getRandomColor()));
+        }
+
+        /**
+         * 获取随机颜色代码。
+         *
+         * @return 十六进制颜色代码，例如"#5A6677"。
+         */
+        private String getRandomColor() {
+            String R, G, B;
+            Random random = new Random();
+            R = Integer.toHexString(random.nextInt(256)).toUpperCase();
+            G = Integer.toHexString(random.nextInt(256)).toUpperCase();
+            B = Integer.toHexString(random.nextInt(256)).toUpperCase();
+
+            R = R.length() == 1 ? "0" + R : R;
+            G = G.length() == 1 ? "0" + G : G;
+            B = B.length() == 1 ? "0" + B : B;
+
+            return "#" + R + G + B;
         }
     }
 }

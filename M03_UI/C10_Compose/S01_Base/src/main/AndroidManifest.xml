@@ -22,5 +22,10 @@
         <activity
             android:name=".base.TestUIBase"
             android:exported="false" />
+
+        <!-- 示例界面：基本应用 -->
+        <activity
+            android:name=".base.TestUIData"
+            android:exported="false" />
     </application>
 </manifest>
