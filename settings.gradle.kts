@@ -132,7 +132,7 @@ include(":M03_UI:C09_Animation:S02_Tween")
 include(":M03_UI:C09_Animation:S03_Property")
 include(":M03_UI:C10_Compose:S01_Base")
 include(":M03_UI:C10_Compose:S02_Layout")
-include(":M03_UI:C10_Compose:S03_Ctrl")
+include(":M03_UI:C10_Compose:S03_View")
 include(":M03_UI:C10_Compose:S04_State")
 
 /* ----- 系统组件 ----- */

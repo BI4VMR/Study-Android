@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Java实现："
-            android:textColor="@color/black"
+            android:textColor="@color/common_text"
             android:textSize="18sp" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kotlin实现："
-            android:textColor="@color/black"
+            android:textColor="@color/common_text"
             android:textSize="18sp" />
 
         <Button
@@ -39,6 +39,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="基本应用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="数据交互"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnAndroidView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="兼容性 - AndroidView"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnComposeView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="兼容性 - ComposeView"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

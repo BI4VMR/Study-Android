@@ -38,7 +38,7 @@ class TestUIBaseKT : AppCompatActivity() {
         // 存入数据
         editor.putInt("Data_Int", 100)
         editor.putBoolean("Data_Boolean", true)
-        editor.putString("Data_String", "我能够吞下玻璃而不伤身。")
+        editor.putString("Data_String", "我能吞下玻璃而不伤身。")
         // 提交变更
         editor.apply()
 

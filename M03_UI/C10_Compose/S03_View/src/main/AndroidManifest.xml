@@ -20,22 +20,7 @@
 
         <!-- 示例界面：基本应用 -->
         <activity
-            android:name=".base.TestUIBase"
-            android:exported="false" />
-
-        <!-- 示例界面：数据交互 -->
-        <activity
-            android:name=".data.TestUIData"
-            android:exported="false" />
-
-        <!-- 示例界面：兼容性 - AndroidView -->
-        <activity
-            android:name=".compatible.TestUIAndroidView"
-            android:exported="false" />
-
-        <!-- 示例界面：兼容性 - ComposeView -->
-        <activity
-            android:name=".compatible.TestUIComposeView"
+            android:name=".TestUIBase"
             android:exported="false" />
     </application>
 </manifest>
