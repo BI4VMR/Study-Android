@@ -5,10 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,12 +26,10 @@ class TestUIModifierStyle : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TestComposeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Column(Modifier.padding(innerPadding)) {
-                        ColorBackground()
-                        ShapeBackground()
-                        GradientBackground()
-                    }
+                Column {
+                    ColorBackground()
+                    ShapeBackground()
+                    GradientBackground()
                 }
             }
         }

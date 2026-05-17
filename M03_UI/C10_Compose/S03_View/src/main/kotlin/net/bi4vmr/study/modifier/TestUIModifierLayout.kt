@@ -3,10 +3,7 @@ package net.bi4vmr.study.modifier
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -25,16 +22,11 @@ class TestUIModifierLayout : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            // 应用主题
             TestComposeTheme {
-                // 应用布局
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    // 放置控件
-                    FixSize(
-                        name = "Android",
-                        // modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                FixSize(
+                    name = "Android",
+                    // modifier = Modifier.padding(innerPadding)
+                )
             }
         }
     }

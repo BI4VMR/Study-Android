@@ -40,5 +40,19 @@
             android:layout_height="wrap_content"
             android:text="Modifier - 布局"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnModifierStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modifier - 样式"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnModifierTransform"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modifier - 变换"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

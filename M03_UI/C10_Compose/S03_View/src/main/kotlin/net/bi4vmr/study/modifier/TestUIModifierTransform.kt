@@ -3,9 +3,7 @@ package net.bi4vmr.study.modifier
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import net.bi4vmr.study.common.TestComposeTheme
 
 /**
- * 测试界面：Modifier - 布局。
+ * 测试界面：Modifier - 变换。
  *
  * @since 1.0.0
  * @author bi4vmr@outlook.com
@@ -25,26 +23,17 @@ class TestUIModifierTransform : ComponentActivity() {
         super.onCreate(savedInstanceState)
         // 显示Compose UI组件
         setContent {
-            // 应用主题
             TestComposeTheme {
-                // 应用布局
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    // 放置控件
-                    FixSize(
-                        name = "Android",
-                        // modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                FixSize()
             }
         }
     }
 
     // 背景
     @Composable
-    fun FixSize(name: String) {
-        // 声明文本框
+    fun FixSize() {
         Text(
-            text = "Hello $name!",
+            "12345",
             modifier = Modifier.size(10.dp)
         )
     }
@@ -53,7 +42,7 @@ class TestUIModifierTransform : ComponentActivity() {
     @Composable
     fun FixSizePreview() {
         TestComposeTheme {
-            FixSize("Android")
+            FixSize()
         }
     }
 

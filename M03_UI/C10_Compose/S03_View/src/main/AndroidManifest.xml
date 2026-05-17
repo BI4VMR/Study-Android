@@ -18,9 +18,19 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：基本应用 -->
+        <!-- 示例界面：Modifier - 布局 -->
         <activity
-            android:name=".TestUIBase"
+            android:name=".modifier.TestUIModifierLayout"
+            android:exported="false" />
+
+        <!-- 示例界面：Modifier - 样式 -->
+        <activity
+            android:name=".modifier.TestUIModifierStyle"
+            android:exported="false" />
+
+        <!-- 示例界面：Modifier - 变换 -->
+        <activity
+            android:name=".modifier.TestUIModifierTransform"
             android:exported="false" />
     </application>
 </manifest>
