@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.bi4vmr.study.appcenter.AppCenterActivity;
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.compatible.TestUIAndroidView;
 import net.bi4vmr.study.compatible.TestUIComposeView;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 基本应用
         binding.btnBase.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIBase.class);
+            Intent intent = new Intent(this, AppCenterActivity.class);
             startActivity(intent);
         });
 
