@@ -37,10 +37,5 @@
         <activity
             android:name=".compatible.TestUIComposeView"
             android:exported="false" />
-
-        <!-- TODO Demo -->
-        <activity
-            android:name=".appcenter.AppCenterActivity"
-            android:exported="false" />
     </application>
 </manifest>
