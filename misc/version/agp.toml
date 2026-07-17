@@ -2,8 +2,8 @@
 [versions]
 # SDK版本
 minSdk = "26"
-targetSdk = "33"
-compileSdk = "33"
+targetSdk = "36"
+compileSdk = "36"
 
 # APP版本（全局默认）
 moduleCode = "1"

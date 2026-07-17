@@ -50,13 +50,8 @@ android {
 
     compileOptions {
         // 指定Java源码编译目标版本
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        // 指定Kotlin源码编译目标版本
-        jvmTarget = "11"
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     buildFeatures {
@@ -64,7 +59,7 @@ android {
     }
 
     // 指定NDK版本，覆盖AGP的默认版本。
-    ndkVersion = "25.2.9519653"
+    ndkVersion = "29.0.14206865"
 
     // C语言编译配置
     externalNativeBuild {
