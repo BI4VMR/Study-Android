@@ -17,7 +17,6 @@ desugarLibs = "2.0.4"
 
 compose-bom = "2026.06.01"
 compose-activity = "1.13.0"
-compose-compiler = "1.5.7"
 
 
 # ----- 实用工具 -----
@@ -96,25 +95,26 @@ ktx_lifecycleViewModel = { group = "androidx.lifecycle", name = "lifecycle-viewm
 ktx_fragment = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "ktx_fragment" }
 
 # < Jetpack Compose >
-# BOM文件（其他组件的版本配置文件）
+# BOM 文件（其他组件的版本配置文件）
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 # 核心组件
 compose-ui = { module = "androidx.compose.ui:ui" }
+# 2D 画布等基础 API ，被 `ui` 组件依赖，无需手动声明，仅编写基础库时需要。
 compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
-# 基础控件
+# 基础控件，被 `material3` 组件依赖，无需手动声明，仅编写基础库时需要。
 compose-foundation = { module = "androidx.compose.foundation:foundation" }
-# Material控件
+# Material2 控件
 compose-material = { module = "androidx.compose.material:material" }
-# Material3控件
+# Material3 控件
 compose-material3 = { module = "androidx.compose.material3:material3" }
-# 调试工具（ 仅包含 `@Preview` 注解，需要通过 `implementation` 引入。）
+# 调试工具（ 仅包含 `@Preview` 注解声明，需要在所有 Build Variant 引入确保编译通过。）
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
-# 调试工具（ IDE预览能力，通过 `debugImplementation` 引入即可。）
+# 调试工具（ IDE 预览能力，通过 `debugImplementation` 引入即可。）
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 # 测试工具
 compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
-# Activity支持
+# Activity 支持
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity" }
 
 
@@ -222,7 +222,7 @@ appBaseKT = ["appcompat", "material", "constraintLayout", "ktx_core", "ktx_corou
 
 # Jetpack Compose
 # 核心组件
-compose-core = ["compose-ui", "compose-ui-graphics", "compose-ui-tooling-preview", "compose-material3", "compose-activity"]
+compose-core = ["compose-ui", "compose-ui-tooling-preview", "compose-material3", "compose-activity"]
 # 测试工具
 compose-test = ["compose-ui-test-manifest", "compose-ui-test-junit4"]
 

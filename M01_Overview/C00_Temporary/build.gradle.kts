@@ -5,7 +5,6 @@ val versionCompileSDK: Int = agp.versions.compileSdk.get().toInt()
 val versionTargetSDK: Int = agp.versions.targetSdk.get().toInt()
 val versionModuleCode: Int = agp.versions.moduleCode.get().toInt()
 val versionModuleName: String = agp.versions.moduleName.get()
-val versionComposeCompiler: String = libAndroid.versions.compose.compiler.get()
 
 plugins {
     alias(libAndroid.plugins.application)

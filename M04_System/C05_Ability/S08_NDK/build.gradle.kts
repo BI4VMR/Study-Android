@@ -67,7 +67,7 @@ android {
             // 指定CMake配置文件
             path = File("src/main/cpp/CMakeLists.txt")
             // 指定CMake版本
-            version = "3.22.1"
+            version = "4.1.2"
         }
     }
 }

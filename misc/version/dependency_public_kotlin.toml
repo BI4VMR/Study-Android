@@ -30,7 +30,7 @@ mockk = "1.13.17"
 
 
 # ----- Gradle插件 -----
-plugin_ksp = "2.2.20-2.0.4"
+plugin_ksp = "2.2.21-2.0.5"
 plugin_compose = "1.11.1"
 plugin_dokka = "2.2.0"
 plugin_kover = "0.9.8"
@@ -124,13 +124,13 @@ spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "plugin_ksp" }
 
 
-# ----- Compose Multiplatform -----
-# Compose Multiplatform
-compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "plugin_compose" }
-# Compose Multiplatform 编译器（仅基于Kotlin v2.0之后的Compose Multiplatform版本需要声明）
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+# ----- Kotlin Multiplatform -----
 # Kotlin Multiplatform
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+# Compose Multiplatform
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "plugin_compose" }
+# Compose 编译器（仅基于 Kotlin v2.0 之后的 Compose 版本需声明，通常为 Compose 1.6.8 、 BOM 2024.06.00 或更高版本。）
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 
 # ----- 其他插件 -----
