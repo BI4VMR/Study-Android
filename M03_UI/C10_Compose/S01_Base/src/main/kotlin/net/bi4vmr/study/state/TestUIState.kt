@@ -1,16 +1,17 @@
-package net.bi4vmr.study.data
+package net.bi4vmr.study.state
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import net.bi4vmr.study.common.TestComposeTheme
 
@@ -20,38 +21,37 @@ import net.bi4vmr.study.common.TestComposeTheme
  * @since 1.0.0
  * @author bi4vmr@outlook.com
  */
-class TestUIData : ComponentActivity() {
-
-    private val viewModel: MyViewModel by viewModels()
+class TestUIState : ComponentActivity() {
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             TestComposeTheme {
-                // 放置Compose组件
-                Counter(viewModel)
+                // 放置 Compose 组件
+                Counter()
             }
         }
     }
 
-    // 有状态UI组件，包含具体的业务逻辑，依赖于ViewModel，不可复用。
+    // 有状态组件，包含具体的业务逻辑，依赖于特定的 ViewModel ，不可跨工程复用。
     @Composable
-    fun Counter(viewModel: MyViewModel) {
-        // 将ViewModel中的Flow转换为Compose状态。
-        val num: Int by viewModel.state.collectAsState()
+    fun Counter() {
+        // 声明状态：表示当前数量
+        var count: Int by remember { mutableIntStateOf(0) }
 
-        // 组装控件，传递数据和回调函数。
-        TestUI(
-            num,
-            onAdd = { viewModel.add() },
-            onReduce = { viewModel.reduce() }
+        Text("计数器")
+        // 组装控件，传递数据并处理回调函数。
+        CounterStateless(
+            count,
+            onAdd = { count++ },
+            onReduce = { count-- }
         )
     }
 
-    // 无状态UI组件，只暴露可变数据和回调函数，不包含具体的逻辑，可被复用。
+    // 无状态组件，只暴露可变数据和回调函数，不包含具体的逻辑，可被跨工程复用。
     @Composable
-    fun TestUI(value: Int, onAdd: () -> Unit, onReduce: () -> Unit) {
+    fun CounterStateless(value: Int, onAdd: () -> Unit, onReduce: () -> Unit) {
         Column {
             // 文本框：显示当前数值
             Text("当前数值：[$value]")
@@ -68,9 +68,9 @@ class TestUIData : ComponentActivity() {
 
     @Preview(showBackground = true)
     @Composable
-    fun TestUIPreview() {
+    fun CounterStatelessPreview() {
         TestComposeTheme {
-            TestUI(1, onAdd = { }, onReduce = { })
+            CounterStateless(1, onAdd = { }, onReduce = { })
         }
     }
 }

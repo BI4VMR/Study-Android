@@ -12,9 +12,10 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
-import net.bi4vmr.study.base.theme.TestComposeTheme
+import net.bi4vmr.study.base.common.TestComposeTheme
 
 /**
  * 测试界面：基本应用。
@@ -35,6 +36,8 @@ class TestUIBase : ComponentActivity() {
                     TaskInfo()
                     Text("示例二：")
                     TaskInfo2()
+                    Text("示例二：")
+                    TaskInfo3()
                 }
             }
         }
@@ -47,7 +50,7 @@ class TestUIBase : ComponentActivity() {
      */
     @Composable
     fun TaskInfo() {
-        // 声明状态变量，每当状态变量被改变时，该Composable函数将被运行环境调用重绘UI。
+        // 声明状态变量，每当状态变量被改变时，该 Composable 函数将被运行环境调用重绘界面。
         val count: MutableState<Int> = remember { mutableStateOf(0) }
 
         Column {
@@ -102,7 +105,7 @@ class TestUIBase : ComponentActivity() {
     @Composable
     fun TaskInfo3() {
         // 将普通变量委托给 `remember` 函数
-        var count: Int by remember { mutableStateOf(0) }
+        var count: Int by rememberSaveable { mutableStateOf(0) }
 
         Column {
             Text("待办事项：$count")

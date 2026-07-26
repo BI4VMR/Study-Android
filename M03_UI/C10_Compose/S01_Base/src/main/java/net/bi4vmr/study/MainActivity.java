@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.compatible.TestUIAndroidView;
 import net.bi4vmr.study.compatible.TestUIComposeView;
-import net.bi4vmr.study.data.TestUIData;
+import net.bi4vmr.study.state.TestUIState;
 import net.bi4vmr.study.databinding.MainActivityBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 数据交互
         binding.btnData.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIData.class);
+            Intent intent = new Intent(this, TestUIState.class);
             startActivity(intent);
         });
 

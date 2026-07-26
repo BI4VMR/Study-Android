@@ -25,7 +25,7 @@
 
         <!-- 示例界面：数据交互 -->
         <activity
-            android:name=".data.TestUIData"
+            android:name=".state.TestUIState"
             android:exported="false" />
 
         <!-- 示例界面：兼容性 - AndroidView -->
