@@ -41,7 +41,7 @@ class TestUIState : ComponentActivity() {
         var count: Int by remember { mutableIntStateOf(0) }
 
         Text("计数器")
-        // 组装控件，传递数据并处理回调函数。
+        // 组装控件，传入当前数量，并在回调函数中更新数量。
         CounterStateless(
             count,
             onAdd = { count++ },
