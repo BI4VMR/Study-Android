@@ -37,16 +37,18 @@ class TestUIState : ComponentActivity() {
     // 有状态组件，包含具体的业务逻辑，依赖于特定的 ViewModel ，不可跨工程复用。
     @Composable
     fun Counter() {
-        // 声明状态：表示当前数量
-        var count: Int by remember { mutableIntStateOf(0) }
+        Column {
+            // 声明状态：表示当前数量
+            var count: Int by remember { mutableIntStateOf(0) }
 
-        Text("计数器")
-        // 组装控件，传入当前数量，并在回调函数中更新数量。
-        CounterStateless(
-            count,
-            onAdd = { count++ },
-            onReduce = { count-- }
-        )
+            Text("计数器")
+            // 组装控件，传入当前数量，并在回调函数中更新数量。
+            CounterStateless(
+                count,
+                onAdd = { count++ },
+                onReduce = { count-- }
+            )
+        }
     }
 
     // 无状态组件，只暴露可变数据和回调函数，不包含具体的逻辑，可被跨工程复用。
