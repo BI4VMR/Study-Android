@@ -40,5 +40,26 @@
             android:layout_height="wrap_content"
             android:text="基本应用"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnStateSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="状态保持"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="数据表示"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnEffect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="副作用"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

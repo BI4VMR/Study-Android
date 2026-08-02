@@ -69,7 +69,5 @@ dependencies {
     // Jetpack Compose 核心组件
     implementation(libAndroid.bundles.compose.core)
 
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1") {
-        exclude("org.jetbrains.kotlin", "kotlin-stdlib-jdk8")
-    }
+    implementation("androidx.compose.runtime:runtime-livedata:1.11.4")
 }

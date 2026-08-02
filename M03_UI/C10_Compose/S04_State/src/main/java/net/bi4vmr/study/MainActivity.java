@@ -6,7 +6,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.bi4vmr.study.base.TestUIBase;
+import net.bi4vmr.study.data.TestUIData;
 import net.bi4vmr.study.databinding.ActivityMainBinding;
+import net.bi4vmr.study.statesave.TestUIStateSave;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +21,24 @@ public class MainActivity extends AppCompatActivity {
         // 基本应用
         binding.btnBase.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBase.class);
+            startActivity(intent);
+        });
+
+        // 状态保持
+        binding.btnStateSave.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIStateSave.class);
+            startActivity(intent);
+        });
+
+        // 数据表示
+        binding.btnData.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIData.class);
+            startActivity(intent);
+        });
+
+        // 副作用
+        binding.btnEffect.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIData.class);
             startActivity(intent);
         });
     }

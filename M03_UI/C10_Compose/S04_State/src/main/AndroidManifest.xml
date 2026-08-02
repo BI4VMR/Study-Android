@@ -22,5 +22,15 @@
         <activity
             android:name=".base.TestUIBase"
             android:exported="false" />
+
+        <!-- 示例界面：状态保持 -->
+        <activity
+            android:name=".statesave.TestUIStateSave"
+            android:exported="false" />
+
+        <!-- 示例界面：数据表示 -->
+        <activity
+            android:name=".data.TestUIData"
+            android:exported="false" />
     </application>
 </manifest>

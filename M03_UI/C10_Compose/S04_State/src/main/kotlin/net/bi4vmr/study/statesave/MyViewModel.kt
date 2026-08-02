@@ -1,4 +1,4 @@
-package net.bi4vmr.study.base
+package net.bi4vmr.study.statesave
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.StateFlow
  */
 class MyViewModel : ViewModel() {
 
-    // 可变状态 StateFlow ，仅内部使用。
+    // 可变 StateFlow ，仅内部使用。
     private val _count: MutableStateFlow<Int> = MutableStateFlow(0)
 
-    // 不可变状态 StateFlow ，与可变实例保持同步，供外部观察。
+    // 不可变 StateFlow ，与可变实例保持同步，供外部观察。
     val count: StateFlow<Int> = _count
 
 
