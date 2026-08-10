@@ -2,7 +2,6 @@ package net.bi4vmr.study;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -72,28 +71,5 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TestUISkillsKT.class);
             startActivity(intent);
         });
-
-        int i = getIntent().getIntExtra("home_mode", -1);
-        Log.w("TEST123", "onCreate: home_mode=" + i);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        int i = getIntent().getIntExtra("home_mode", -1);
-        Log.w("TEST123", "onResume: home_mode=" + i);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        int i = intent.getIntExtra("home_mode", -1);
-        Log.w("TEST123", "onNewIntent: home_mode=" + i);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.w("TEST123", "onDestroy");
     }
 }
