@@ -38,7 +38,14 @@
             android:id="@+id/btnBase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="基本应用"
+            android:text="Column / Row"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Box"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

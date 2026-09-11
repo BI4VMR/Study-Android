@@ -3,16 +3,20 @@ package net.bi4vmr.study.base
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
 import net.bi4vmr.study.common.TestComposeTheme
 
 /**
@@ -25,43 +29,62 @@ class TestUIBase : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // 显示Compose UI组件
         setContent {
-            // 应用主题
             TestComposeTheme {
-                // 应用布局
-                Scaffold(
-                    Modifier.fillMaxSize()
-                ) { innerPadding ->
-                    // 放置控件
-                    Column(
-                        modifier = Modifier.padding(innerPadding),
-                        horizontalAlignment = Alignment.End,
-                        verticalArrangement = Arrangement.Bottom
-                    ) {
-                        (1..3).forEach { i ->
-                            Text(
-                                text = "$i"
-                            )
-                        }
+                // 顶层容器
+                Column(modifier = Modifier.fillMaxSize()) {
+                    Text("列：")
+                    Spacer(Modifier.height(8.dp))
+
+                    Column {
+                        // 子元素 1
+                        Box(
+                            modifier = Modifier
+                                .size(50.dp)
+                                .background(Color.Cyan)
+                        )
+                        // 子元素 2
+                        Box(
+                            modifier = Modifier
+                                .width(100.dp)
+                                .height(50.dp)
+                                .background(Color.Red)
+                        )
+                        // 子元素 3
+                        Box(
+                            modifier = Modifier
+                                .width(50.dp)
+                                .height(100.dp)
+                                .background(Color.Yellow)
+                        )
                     }
+
+                    Text("行：")
+                    Spacer(Modifier.height(8.dp))
 
                     Row(
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier
                     ) {
-                        (1..3).forEach { i ->
-                            Text(
-                                text = "$i"
-                            )
-                        }
-                    }
-
-                    Box {
-                        (1..3).forEach { i ->
-                            Text(
-                                text = "$i"
-                            )
-                        }
+                        // 子元素 1
+                        Box(
+                            modifier = Modifier
+                                .size(50.dp)
+                                .background(Color.Cyan)
+                        )
+                        // 子元素 2
+                        Box(
+                            modifier = Modifier
+                                .width(100.dp)
+                                .height(50.dp)
+                                .background(Color.Red)
+                        )
+                        // 子元素 3
+                        Box(
+                            modifier = Modifier
+                                .width(50.dp)
+                                .height(100.dp)
+                                .background(Color.Yellow)
+                        )
                     }
                 }
             }
