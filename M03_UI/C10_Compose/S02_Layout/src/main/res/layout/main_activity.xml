@@ -47,5 +47,19 @@
             android:layout_height="wrap_content"
             android:text="Box"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnScaffold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scaffold"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ConstraintLayout"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

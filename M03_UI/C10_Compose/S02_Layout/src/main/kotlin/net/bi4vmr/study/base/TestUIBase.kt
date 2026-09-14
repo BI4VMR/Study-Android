@@ -16,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ConstraintLayout
 import net.bi4vmr.study.common.TestComposeTheme
 
 /**
@@ -33,6 +32,31 @@ class TestUIBase : ComponentActivity() {
             TestComposeTheme {
                 // 顶层容器
                 Column(modifier = Modifier.fillMaxSize()) {
+                    Text("尺寸：")
+                    Spacer(Modifier.height(8.dp))
+
+                    // 默认：尺寸与内容相同
+                    Text(
+                        text = "Hello!",
+                        modifier = Modifier.background(Color.Red.copy(0.3F))
+                    )
+
+                    // 默认：尺寸与内容相同
+                    Text(
+                        text = "Hello!",
+                        modifier = Modifier.size(100.dp).background(Color.Red.copy(0.3F))
+                    )
+
+                    // 默认：尺寸与内容相同
+                    Text(
+                        text = "Hello!",
+                        modifier = Modifier.size(100.dp).background(Color.Red.copy(0.3F))
+                    )
+                    Text(
+                        text = "Hello!",
+                                modifier = Modifier.width(width = 100.dp, height = 50.dp).background(Color.Red.copy(0.3F))
+                    )
+
                     Text("列：")
                     Spacer(Modifier.height(8.dp))
 
@@ -59,6 +83,7 @@ class TestUIBase : ComponentActivity() {
                         )
                     }
 
+                    Spacer(Modifier.height(8.dp))
                     Text("行：")
                     Spacer(Modifier.height(8.dp))
 
