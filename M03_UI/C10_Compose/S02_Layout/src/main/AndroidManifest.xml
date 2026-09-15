@@ -18,7 +18,12 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：基本应用 -->
+        <!-- 示例界面：全局属性 -->
+        <activity
+            android:name=".modifier.TestUIModifier"
+            android:exported="false" />
+
+        <!-- 示例界面：Column / Row -->
         <activity
             android:name=".base.TestUIBase"
             android:exported="false" />
@@ -26,6 +31,11 @@
         <!-- 示例界面：Box -->
         <activity
             android:name=".box.TestUIBox"
+            android:exported="false" />
+
+        <!-- 示例界面：Scaffold -->
+        <activity
+            android:name=".scaffold.TestUIScaffold"
             android:exported="false" />
     </application>
 </manifest>

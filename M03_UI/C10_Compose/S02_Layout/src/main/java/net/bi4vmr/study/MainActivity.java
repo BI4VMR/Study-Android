@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.box.TestUIBox;
 import net.bi4vmr.study.databinding.MainActivityBinding;
+import net.bi4vmr.study.modifier.TestUIModifier;
+import net.bi4vmr.study.scaffold.TestUIScaffold;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +19,13 @@ public class MainActivity extends AppCompatActivity {
         MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 基本应用
+        // 全局属性
+        binding.btnModifier.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIModifier.class);
+            startActivity(intent);
+        });
+
+        // Column / Row
         binding.btnBase.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBase.class);
             startActivity(intent);
@@ -26,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
         // Box
         binding.btnBox.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIBox.class);
+            startActivity(intent);
+        });
+
+        // Scaffold
+        binding.btnScaffold.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIScaffold.class);
             startActivity(intent);
         });
     }

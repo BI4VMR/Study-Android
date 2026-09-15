@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import net.bi4vmr.study.common.TestComposeTheme
 
 /**
- * 测试界面：基本应用。
+ * 测试界面： Column / Row 。
  *
  * @since 1.0.0
  * @author bi4vmr@outlook.com
@@ -32,31 +32,6 @@ class TestUIBase : ComponentActivity() {
             TestComposeTheme {
                 // 顶层容器
                 Column(modifier = Modifier.fillMaxSize()) {
-                    Text("尺寸：")
-                    Spacer(Modifier.height(8.dp))
-
-                    // 默认：尺寸与内容相同
-                    Text(
-                        text = "Hello!",
-                        modifier = Modifier.background(Color.Red.copy(0.3F))
-                    )
-
-                    // 默认：尺寸与内容相同
-                    Text(
-                        text = "Hello!",
-                        modifier = Modifier.size(100.dp).background(Color.Red.copy(0.3F))
-                    )
-
-                    // 默认：尺寸与内容相同
-                    Text(
-                        text = "Hello!",
-                        modifier = Modifier.size(100.dp).background(Color.Red.copy(0.3F))
-                    )
-                    Text(
-                        text = "Hello!",
-                                modifier = Modifier.width(width = 100.dp, height = 50.dp).background(Color.Red.copy(0.3F))
-                    )
-
                     Text("列：")
                     Spacer(Modifier.height(8.dp))
 
