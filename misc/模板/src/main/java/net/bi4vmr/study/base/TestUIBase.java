@@ -1,11 +1,13 @@
 package net.bi4vmr.study.base;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 
 import net.bi4vmr.study.databinding.TestuiBaseBinding;
 
@@ -26,6 +28,12 @@ public class TestUIBase extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /* 根据主题设置状态栏图标颜色 */
+        int darkModeFlag = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        boolean darkMode = (darkModeFlag == Configuration.UI_MODE_NIGHT_YES);
+        WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
+                .setAppearanceLightStatusBars(!darkMode);
+
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

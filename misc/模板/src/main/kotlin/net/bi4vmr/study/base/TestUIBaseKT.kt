@@ -1,9 +1,11 @@
 package net.bi4vmr.study.base
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import net.bi4vmr.study.databinding.TestuiBaseBinding
 
 /**
