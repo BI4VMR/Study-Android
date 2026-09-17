@@ -16,6 +16,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/common_text"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Java实现："
             android:textColor="@color/common_text"
             android:textSize="18sp" />
@@ -35,24 +43,24 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnModifierLayout"
+            android:id="@+id/btnModifier"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Modifier - 布局"
+            android:text="全局属性"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnModifierStyle"
+            android:id="@+id/btnText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Modifier - 样式"
+            android:text="Text"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnModifierTransform"
+            android:id="@+id/btnTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Modifier - 变换"
+            android:text="TextField"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

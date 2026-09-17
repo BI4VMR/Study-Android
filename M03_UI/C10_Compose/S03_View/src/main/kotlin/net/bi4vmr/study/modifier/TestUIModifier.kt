@@ -1,5 +1,6 @@
 package net.bi4vmr.study.modifier
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,50 +8,57 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
 import net.bi4vmr.study.common.TestComposeTheme
 
 /**
- * 测试界面：Modifier - 布局。
+ * 测试界面：全局属性。
  *
  * @since 1.0.0
  * @author bi4vmr@outlook.com
  */
-class TestUIModifierLayout : ComponentActivity() {
+class TestUIModifier : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        /* 根据主题设置状态栏图标颜色 */
+        val darkModeFlag = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        val darkMode = (darkModeFlag == Configuration.UI_MODE_NIGHT_YES)
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = !darkMode
+
         setContent {
             TestComposeTheme {
+                // 顶层容器
                 Column(
-                    Modifier.verticalScroll(rememberScrollState())
+                    Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                        .systemBarsPadding()
                 ) {
-                    FixSize()
-                    MatchParent()
-                    WrapContent()
-                    Padding()
-                    Order()
+                    ColorBackground()
+                    ShapeBackground()
+                    GradientBackground()
                 }
             }
         }
     }
 
 
-    // 固定尺寸
     @Composable
     fun FixSize() = Example("固定尺寸") {
         Text(
@@ -62,78 +70,32 @@ class TestUIModifierLayout : ComponentActivity() {
         )
     }
 
-
-    // 跟随父容器
+    // 纯色背景
     @Composable
-    fun MatchParent() = Example("跟随父容器") {
+    fun ColorBackground() {
         Text(
             text = "我能吞下玻璃而不伤身体。",
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Gray)
+            modifier = Modifier.background(Color.Gray)
         )
     }
 
 
-    // 跟随自身内容
+    // 形状背景
     @Composable
-    fun WrapContent() = Example("跟随自身内容") {
+    fun ShapeBackground() {
         Text(
             text = "我能吞下玻璃而不伤身体。",
-            modifier = Modifier
-                .wrapContentSize()
-                .background(Color.Gray)
+            modifier = Modifier.background(Color.Gray, RoundedCornerShape(16.dp))
         )
     }
 
 
-    // 最小尺寸限制
+    // 渐变背景
     @Composable
-    fun MinSize() = Example("最小尺寸限制") {
+    fun GradientBackground() {
         Text(
             text = "我能吞下玻璃而不伤身体。",
-            modifier = Modifier
-                .defaultMinSize(150.dp, 150.dp)
-                .background(Color.Gray)
-        )
-    }
-
-
-    // 最大尺寸限制
-    @Composable
-    fun MaxSize() = Example("最大尺寸限制") {
-        Text(
-            text = "我能吞下玻璃而不伤身体。",
-            modifier = Modifier
-                .sizeIn(maxWidth = 50.dp, maxHeight = 50.dp)
-                .background(Color.Gray)
-        )
-    }
-
-
-    // 是否允许超出父容器
-
-    // 边距
-    @Composable
-    fun Padding() = Example("边距") {
-        Text(
-            text = "我能吞下玻璃而不伤身体。",
-            modifier = Modifier
-                .padding(50.dp)
-                .background(Color.Gray)
-        )
-    }
-
-
-    // 配置顺序
-    @Composable
-    fun Order() = Example("配置顺序") {
-        Text(
-            text = "我能吞下玻璃而不伤身体。",
-            modifier = Modifier
-                .background(Color.Gray)
-                .padding(25.dp)
-                .background(Color.Cyan)
+            modifier = Modifier.background(Brush.linearGradient(listOf(Color.Red, Color.Green, Color.Blue)))
         )
     }
 

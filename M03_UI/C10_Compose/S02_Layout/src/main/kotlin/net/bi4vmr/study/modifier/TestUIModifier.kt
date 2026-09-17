@@ -2,12 +2,15 @@ package net.bi4vmr.study.modifier
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,11 +20,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
@@ -45,10 +50,12 @@ class TestUIModifier : ComponentActivity() {
 
         setContent {
             TestComposeTheme {
+                // 顶层容器
                 Column(
                     Modifier
-                        .systemBarsPadding()
+                        .fillMaxSize()
                         .verticalScroll(rememberScrollState())
+                        .systemBarsPadding()
                 ) {
                     Default()
                     FixSize()
@@ -58,15 +65,16 @@ class TestUIModifier : ComponentActivity() {
 
                     Padding()
                     Order()
+
+                    Optional()
                 }
             }
         }
     }
 
 
-    // 尺寸约束：默认约束
     @Composable
-    fun Default() = Example("尺寸约束 - 默认约束") {
+    fun Default() = Example("尺寸约束 - 默认约束：") {
         Text(
             text = "我能吞下玻璃而不伤身体。",
             // 不指定尺寸，默认以内容尺寸为准。
@@ -74,9 +82,8 @@ class TestUIModifier : ComponentActivity() {
         )
     }
 
-    // 尺寸约束：固定尺寸
     @Composable
-    fun FixSize() = Example("尺寸约束 - 固定尺寸") {
+    fun FixSize() = Example("尺寸约束 - 固定尺寸：") {
         Text(
             text = "我能吞下玻璃而不伤身体。",
             // 固定尺寸：100dp x 100dp
@@ -86,10 +93,8 @@ class TestUIModifier : ComponentActivity() {
         )
     }
 
-
-    // 尺寸约束：跟随父容器
     @Composable
-    fun MatchParent() = Example("尺寸约束 - 跟随父容器") {
+    fun MatchParent() = Example("尺寸约束 - 跟随父容器：") {
         Text(
             text = "我能吞下玻璃而不伤身体。",
             modifier = Modifier
@@ -98,9 +103,8 @@ class TestUIModifier : ComponentActivity() {
         )
     }
 
-    // 尺寸约束：最小尺寸限制
     @Composable
-    fun MinSize() = Example("尺寸约束 - 最小尺寸限制") {
+    fun MinSize() = Example("尺寸约束 - 最小尺寸限制：") {
         Text(
             text = "我能吞下玻璃而不伤身体。",
             modifier = Modifier
@@ -109,9 +113,8 @@ class TestUIModifier : ComponentActivity() {
         )
     }
 
-    // 尺寸约束：最大尺寸限制
     @Composable
-    fun MaxSize() = Example("尺寸约束 - 最大尺寸限制") {
+    fun MaxSize() = Example("尺寸约束 - 最大尺寸限制：") {
         Text(
             text = "我能吞下玻璃而不伤身体。",
             modifier = Modifier
@@ -120,22 +123,18 @@ class TestUIModifier : ComponentActivity() {
         )
     }
 
-
-    // 边距
     @Composable
-    fun Padding() = Example("边距") {
+    fun Padding() = Example("边距：") {
         Text(
-            text = "我能吞下玻璃而不伤身体。",
+            text = "我能吞下玻璃而不伤身体。The quick brown fox jumps over the lazy dog.",
             modifier = Modifier
                 .padding(50.dp)
                 .background(Color.Gray)
         )
     }
 
-
-    // 配置顺序
     @Composable
-    fun Order() = Example("配置顺序") {
+    fun Order() = Example("配置顺序：") {
         Text(
             text = "我能吞下玻璃而不伤身体。",
             modifier = Modifier
@@ -143,6 +142,38 @@ class TestUIModifier : ComponentActivity() {
                 .padding(25.dp)
                 .background(Color.Cyan)
         )
+    }
+
+    @Composable
+    fun Optional() = Example("可选属性：") {
+        Row {
+            Tab("可点击表项", allowClick = true)
+            Tab("不可点击表项", allowClick = false)
+        }
+    }
+
+    @Composable
+    fun Tab(
+        title: String,
+        modifier: Modifier = Modifier,
+        allowClick: Boolean = true
+    ) {
+        val context = LocalContext.current
+        // 组件的根布局，继承外部传入的 Modifier 。
+        Column(
+            modifier = modifier
+                .background(Color.Magenta.copy(0.3F), RoundedCornerShape(16.dp))
+                // 可选属性，根据 `allowClick` 决定是否添加点击事件。
+                .then(
+                    if (allowClick) Modifier.clickable {
+                        Toast.makeText(context, title, Toast.LENGTH_SHORT).show()
+                    }
+                    else Modifier
+                )
+                .padding(8.dp)
+        ) {
+            Text(title)
+        }
     }
 
 
