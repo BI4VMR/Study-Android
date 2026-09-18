@@ -16,9 +16,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import net.bi4vmr.study.R
@@ -59,7 +60,7 @@ class TestUIModifier : ComponentActivity() {
                 ) {
                     Default()
                     FixSize()
-                    MatchParent()
+                    ParentFraction()
                     MinSize()
                     MaxSize()
 
@@ -74,11 +75,11 @@ class TestUIModifier : ComponentActivity() {
 
 
     @Composable
-    fun Default() = Example("尺寸约束 - 默认约束：") {
+    fun Default() = Example("尺寸约束 - 默认规则：") {
         Text(
             text = "我能吞下玻璃而不伤身体。",
             // 不指定尺寸，默认以内容尺寸为准。
-            Modifier.background(Color.Gray)
+            modifier = Modifier.background(Color.Gray)
         )
     }
 
@@ -86,39 +87,42 @@ class TestUIModifier : ComponentActivity() {
     fun FixSize() = Example("尺寸约束 - 固定尺寸：") {
         Text(
             text = "我能吞下玻璃而不伤身体。",
-            // 固定尺寸：100dp x 100dp
-            Modifier
-                .size(100.dp)
+            modifier = Modifier
+                // 固定宽度：50 dp
+                .width(50.dp)
                 .background(Color.Gray)
         )
     }
 
     @Composable
-    fun MatchParent() = Example("尺寸约束 - 跟随父容器：") {
+    fun ParentFraction() = Example("尺寸约束 - 比例约束：") {
         Text(
             text = "我能吞下玻璃而不伤身体。",
             modifier = Modifier
+                // 当前元素的宽高都跟随父容器
                 .fillMaxSize()
                 .background(Color.Gray)
         )
     }
 
     @Composable
-    fun MinSize() = Example("尺寸约束 - 最小尺寸限制：") {
+    fun MinSize() = Example("尺寸约束 - 最小尺寸：") {
         Text(
-            text = "我能吞下玻璃而不伤身体。",
+            text = "Hello!",
             modifier = Modifier
-                .defaultMinSize(150.dp, 150.dp)
+                // 最小宽高为 120 dp ，当内容尺寸小于 120 dp 时，仍会占用 120 dp 的空间。
+                .defaultMinSize(120.dp, 120.dp)
                 .background(Color.Gray)
         )
     }
 
     @Composable
-    fun MaxSize() = Example("尺寸约束 - 最大尺寸限制：") {
+    fun MaxSize() = Example("尺寸约束 - 最大尺寸：") {
         Text(
             text = "我能吞下玻璃而不伤身体。",
             modifier = Modifier
-                .sizeIn(maxWidth = 50.dp, maxHeight = 50.dp)
+                // 最大宽度为 50 dp ，最大高度为未指定。
+                .sizeIn(maxWidth = 50.dp, maxHeight = Dp.Unspecified)
                 .background(Color.Gray)
         )
     }

@@ -61,6 +61,33 @@ class TestUIBox : ComponentActivity() {
 
     @Composable
     fun DefaultLayout() = Example("默认排列规则：") {
+        Box(modifier = Modifier.fillMaxSize()) {
+            // 子元素 A
+            Text(
+                text = "A",
+                modifier = Modifier
+                    .size(150.dp)
+                    .background(Color.Blue)
+            )
+            // 子元素 B
+            Text(
+                text = "B",
+                modifier = Modifier
+                    .size(100.dp)
+                    .background(Color.Cyan)
+            )
+            // 子元素 C
+            Text(
+                text = "C",
+                modifier = Modifier
+                    .size(50.dp)
+                    .background(Color.Green)
+            )
+        }
+    }
+
+    @Composable
+    fun Align() = Example("对齐规则：") {
         Box(
             // 全局规则：所有子元素都居中对齐。
             contentAlignment = Alignment.Center,
@@ -87,33 +114,6 @@ class TestUIBox : ComponentActivity() {
                     .size(50.dp)
                     // 局部规则：对齐到父容器的右下角。
                     .align(Alignment.BottomEnd)
-                    .background(Color.Green)
-            )
-        }
-    }
-
-    @Composable
-    fun Align() = Example("对齐规则：") {
-        Box(modifier = Modifier.fillMaxSize()) {
-            // 子元素 A
-            Text(
-                text = "A",
-                modifier = Modifier
-                    .size(150.dp)
-                    .background(Color.Blue)
-            )
-            // 子元素 B
-            Text(
-                text = "B",
-                modifier = Modifier
-                    .size(100.dp)
-                    .background(Color.Cyan)
-            )
-            // 子元素 C
-            Text(
-                text = "C",
-                modifier = Modifier
-                    .size(50.dp)
                     .background(Color.Green)
             )
         }

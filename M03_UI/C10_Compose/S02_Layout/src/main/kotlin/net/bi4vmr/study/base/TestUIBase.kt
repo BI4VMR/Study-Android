@@ -124,11 +124,11 @@ class TestUIBase : ComponentActivity() {
     }
 
     @Composable
-    fun Align() = Example("对齐规则：") {
+    fun Align() = Example("对齐方式：") {
         Row(
             // 主要轴对齐方式
             horizontalArrangement = Arrangement.End,
-            // 辅助轴对齐方式
+            // 次要轴对齐方式
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxSize()
         ) {
@@ -143,6 +143,8 @@ class TestUIBase : ComponentActivity() {
                 modifier = Modifier
                     .width(100.dp)
                     .height(50.dp)
+                    // 局部设置辅助轴对齐方式，覆盖容器全局设置。
+                    .align(Alignment.Bottom)
                     .background(Color.Red)
             )
             Text(
