@@ -23,19 +23,14 @@
             android:name=".base.TestUIBase"
             android:exported="false" />
 
-        <!-- 示例界面：数据交互 -->
+        <!-- 示例界面：设计思想 - 组件可见性 -->
         <activity
-            android:name=".state.TestUIState"
+            android:name=".skill.TestUIVisibility"
             android:exported="false" />
 
-        <!-- 示例界面：兼容性 - AndroidView -->
+        <!-- 示例界面：设计思想 - 状态驱动 -->
         <activity
-            android:name=".compatible.TestUIAndroidView"
-            android:exported="false" />
-
-        <!-- 示例界面：兼容性 - ComposeView -->
-        <activity
-            android:name=".compatible.TestUIComposeView"
+            android:name=".skill.TestUIState"
             android:exported="false" />
     </application>
 </manifest>

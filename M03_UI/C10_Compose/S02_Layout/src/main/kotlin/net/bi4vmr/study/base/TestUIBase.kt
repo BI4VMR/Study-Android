@@ -193,7 +193,7 @@ class TestUIBase : ComponentActivity() {
     }
 
 
-    // 示例框架
+    // 组件：示例框架
     @Composable
     private inline fun Example(title: String, crossinline content: @Composable () -> Unit) {
         Column(Modifier.padding(10.dp)) {

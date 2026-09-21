@@ -133,7 +133,11 @@ include(":M03_UI:C09_Animation:S03_Property")
 include(":M03_UI:C10_Compose:S01_Base")
 include(":M03_UI:C10_Compose:S02_Layout")
 include(":M03_UI:C10_Compose:S03_View")
-include(":M03_UI:C10_Compose:S04_State")
+include(":M03_UI:C10_Compose:S04_Resource")
+include(":M03_UI:C10_Compose:S05_State")
+include(":M03_UI:C10_Compose:S06_Interaction")
+include(":M03_UI:C10_Compose:S07_Animation")
+include(":M03_UI:C10_Compose:S08_Compatible")
 
 /* ----- 系统组件 ----- */
 include(":M04_System:C01_Common:S01_Application")
