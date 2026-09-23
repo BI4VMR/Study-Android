@@ -19,6 +19,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
@@ -56,7 +57,8 @@ class TestUIVisibility : ComponentActivity() {
                     NoData()
                     HasData()
 
-                    Placeholder()
+                    ShowIcon()
+                    HideIcon()
                 }
             }
         }
@@ -92,19 +94,31 @@ class TestUIVisibility : ComponentActivity() {
         News(newsList)
     }
 
+    // 组件：状态指示灯
     @Composable
-    fun Placeholder() = Example("组件占位：") {
-        Row {
-            Icon(painter = painterResource(android.R.drawable.ic_menu_add), contentDescription = null)
+    fun Lamps(show: Boolean) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(painter = painterResource(android.R.drawable.ic_dialog_alert), contentDescription = null)
             Icon(
                 painter = painterResource(android.R.drawable.ic_delete),
                 contentDescription = null,
-                // 不透明度为 `0` ，组件不可见但仍参与布局占据空间。
-                modifier = Modifier.alpha(0F)
+                // 无需显示时，将不透明度设为 `0` ，组件不可见但仍参与布局占据空间。
+                modifier = Modifier.alpha(if (show) 1.0F else 0F)
             )
             Icon(painter = painterResource(android.R.drawable.ic_menu_help), contentDescription = null)
         }
     }
+
+    @Composable
+    fun ShowIcon() = Example("显示图标：") {
+        Lamps(true)
+    }
+
+    @Composable
+    fun HideIcon() = Example("隐藏图标：") {
+        Lamps(false)
+    }
+
 
     // 组件：示例框架
     @Composable
@@ -117,7 +131,7 @@ class TestUIVisibility : ComponentActivity() {
                 // 为容器设置边框以便观察布局属性的效果
                 Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .height(150.dp)
                     .border(1.dp, Color.Blue)
             ) {
                 content()

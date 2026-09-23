@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -56,7 +57,13 @@ class TestUIBase : ComponentActivity() {
                 ) {
                     Column()
                     Row()
+
                     Align()
+                    AlignSpace()
+                    AlignBetween()
+                    AlignAround()
+                    AlignEvenly()
+
                     Weight()
                     WeightFill()
                 }
@@ -154,6 +161,55 @@ class TestUIBase : ComponentActivity() {
                     .height(75.dp)
                     .background(Color.Yellow)
             )
+        }
+    }
+
+    @Composable
+    fun AlignSpace() = Example("对齐方式 - 元素间距：") {
+        Row(
+            // 为子元素统一添加 `10 dp` 的间距，且居中对齐。
+            horizontalArrangement = spacedBy(10.dp, Alignment.CenterHorizontally),
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Text("A", Modifier.size(50.dp).background(Color.Cyan))
+            Text("B", Modifier.size(50.dp).background(Color.Red))
+            Text("C", Modifier.size(50.dp).background(Color.Yellow))
+        }
+    }
+
+    @Composable
+    fun AlignBetween() = Example("对齐方式 - SpaceBetween ：") {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Text("A", Modifier.size(50.dp).background(Color.Cyan))
+            Text("B", Modifier.size(50.dp).background(Color.Red))
+            Text("C", Modifier.size(50.dp).background(Color.Yellow))
+        }
+    }
+
+    @Composable
+    fun AlignEvenly() = Example("对齐方式 - SpaceEvenly ：") {
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Text("A", Modifier.size(50.dp).background(Color.Cyan))
+            Text("B", Modifier.size(50.dp).background(Color.Red))
+            Text("C", Modifier.size(50.dp).background(Color.Yellow))
+        }
+    }
+
+    @Composable
+    fun AlignAround() = Example("对齐方式 - SpaceAround ：") {
+        Row(
+            horizontalArrangement = Arrangement.SpaceAround,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Text("A", Modifier.size(50.dp).background(Color.Cyan))
+            Text("B", Modifier.size(50.dp).background(Color.Red))
+            Text("C", Modifier.size(50.dp).background(Color.Yellow))
         }
     }
 
