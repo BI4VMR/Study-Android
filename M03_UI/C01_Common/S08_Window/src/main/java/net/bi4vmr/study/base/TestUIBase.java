@@ -1,5 +1,6 @@
 package net.bi4vmr.study.base;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -70,6 +71,15 @@ public class TestUIBase extends AppCompatActivity {
         appendLog("\n----- 控制Activity的Window -----");
 
         getWindowManager();
+        // getWindow().addFlags();
+    }
+
+    private void test_DialogWindow() {
+        Log.i(TAG, "----- 控制Activity的Window -----");
+        appendLog("\n----- 控制Activity的Window -----");
+
+        getWindowManager();
+        new Dialog(this).show();
         // getWindow().addFlags();
     }
 

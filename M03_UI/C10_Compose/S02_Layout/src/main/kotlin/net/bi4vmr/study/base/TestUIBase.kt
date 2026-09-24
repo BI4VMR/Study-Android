@@ -233,16 +233,18 @@ class TestUIBase : ComponentActivity() {
 
     @Composable
     fun WeightFill() = Example("填充剩余空间：") {
-        Row(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
             Text(
-                text = "A",
+                text = "标题",
                 modifier = Modifier
+                    .fillMaxWidth()
                     .background(Color.Blue)
             )
             Text(
-                text = "B",
+                text = "内容",
                 modifier = Modifier
                     .weight(1F)
+                    .fillMaxWidth()
                     .background(Color.Yellow)
             )
         }

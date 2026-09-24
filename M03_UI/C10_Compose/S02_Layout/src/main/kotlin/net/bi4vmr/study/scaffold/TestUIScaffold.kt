@@ -4,12 +4,16 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.core.view.WindowCompat
+import net.bi4vmr.study.R
 import net.bi4vmr.study.common.TestComposeTheme
 
 /**
@@ -32,15 +36,17 @@ class TestUIScaffold : ComponentActivity() {
                 // 顶层容器
                 Scaffold(
                     topBar = { Text(text = "标题栏") },
-                    floatingActionButton = { Text(text = "按钮") },
+                    floatingActionButton = {
+                        IconButton(onClick = {}) {
+                            Image(painterResource(R.drawable.ic_funny_256), contentDescription = null)
+                        }
+                    },
                     bottomBar = {
                         Text(text = "底栏")
                     },
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .systemBarsPadding()
-                ) { p ->
-                    Text("内容")
+                    modifier = Modifier.systemBarsPadding()
+                ) { innerPadding ->
+                    Text("内容", Modifier.padding(innerPadding))
                 }
             }
         }
