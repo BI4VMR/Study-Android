@@ -35,6 +35,20 @@ public class TestUIBase extends AppCompatActivity {
                 .setAppearanceLightStatusBars(!darkMode);
 
         binding = TestuiBaseBinding.inflate(getLayoutInflater());
+
+        /*
+         * Target SDK 为 Android 15 或更高版本时，系统强制启用 Edge-to-Edge 模式，且无法关闭。
+         *
+         * 此处添加 Insets 监听，将根布局内容绘制在状态栏和导航栏之间，避免重叠。
+         */
+        View rootView = binding.getRoot();
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, bars.top, 0, 0);
+            return WindowInsetsCompat.CONSUMED;
+        });
+        ViewCompat.requestApplyInsets(rootView);
+
         setContentView(binding.getRoot());
 
         binding.tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());

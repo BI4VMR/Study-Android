@@ -11,12 +11,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.compatible.TestUIAndroidView;
 import net.bi4vmr.study.compatible.TestUIComposeView;
 import net.bi4vmr.study.databinding.MainActivityBinding;
-import net.bi4vmr.study.skill.TestUIState;
-import net.bi4vmr.study.skill.TestUIVisibility;
 
 public class MainActivity extends AppCompatActivity {
 

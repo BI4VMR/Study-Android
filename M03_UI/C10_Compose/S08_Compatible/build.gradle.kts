@@ -62,6 +62,7 @@ dependencies {
     implementation(platform(libAndroid.compose.bom))
     // Jetpack Compose 核心组件
     implementation(libAndroid.bundles.compose.core)
+    implementation(libAndroid.ktx.lifecycleRuntime)
     // Jetpack Compose 调试工具
     debugImplementation(libAndroid.compose.ui.tooling)
 }

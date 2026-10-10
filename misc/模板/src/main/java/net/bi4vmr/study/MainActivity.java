@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 .setAppearanceLightStatusBars(!darkMode);
 
         MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         /*
          * Target SDK 为 Android 15 或更高版本时，系统强制启用 Edge-to-Edge 模式，且无法关闭。
@@ -48,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         });
         ViewCompat.requestApplyInsets(rootView);
 
+        setContentView(binding.getRoot());
 
         // 基本应用
         binding.btnBase.setOnClickListener(v -> {
