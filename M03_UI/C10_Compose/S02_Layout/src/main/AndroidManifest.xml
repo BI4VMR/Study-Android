@@ -37,5 +37,10 @@
         <activity
             android:name=".scaffold.TestUIScaffold"
             android:exported="false" />
+
+        <!-- 示例界面：Dialog -->
+        <activity
+            android:name=".dialog.TestUIDialog"
+            android:exported="false" />
     </application>
 </manifest>

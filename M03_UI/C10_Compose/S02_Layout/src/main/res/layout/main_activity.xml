@@ -71,11 +71,32 @@
             android:text="Scaffold"
             android:textAllCaps="false" />
 
+        <!--<Button-->
+        <!--    android:id="@+id/btnConstraintLayout"-->
+        <!--    android:layout_width="match_parent"-->
+        <!--    android:layout_height="wrap_content"-->
+        <!--    android:text="ConstraintLayout"-->
+        <!--    android:textAllCaps="false" />-->
+
         <Button
-            android:id="@+id/btnConstraintLayout"
+            android:id="@+id/btnDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ConstraintLayout"
+            android:text="Dialog"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="List"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Grid"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

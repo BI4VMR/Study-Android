@@ -22,5 +22,20 @@
         <activity
             android:name=".modifier.TestUIModifier"
             android:exported="false" />
+
+        <!-- 示例界面： Text -->
+        <activity
+            android:name=".text.TestUIText"
+            android:exported="false" />
+
+        <!-- 示例界面： Button -->
+        <activity
+            android:name=".button.TestUIButton"
+            android:exported="false" />
+
+        <!-- 示例界面： Image -->
+        <activity
+            android:name=".image.TestUIImage"
+            android:exported="false" />
     </application>
 </manifest>

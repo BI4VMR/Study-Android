@@ -62,6 +62,8 @@ dependencies {
     implementation(platform(libAndroid.compose.bom))
     // Jetpack Compose 核心组件
     implementation(libAndroid.bundles.compose.core)
+    // Jetpack Compose 内置图标
+    implementation(libAndroid.compose.material.icons)
     // Jetpack Compose 调试工具
     debugImplementation(libAndroid.compose.ui.tooling)
 

@@ -11,8 +11,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import net.bi4vmr.study.button.TestUIButton;
 import net.bi4vmr.study.databinding.MainActivityBinding;
+import net.bi4vmr.study.image.TestUIImage;
 import net.bi4vmr.study.modifier.TestUIModifier;
+import net.bi4vmr.study.text.TestUIText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +48,24 @@ public class MainActivity extends AppCompatActivity {
         // 全局属性
         binding.btnModifier.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIModifier.class);
+            startActivity(intent);
+        });
+
+        // Text
+        binding.btnText.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIText.class);
+            startActivity(intent);
+        });
+
+        // Button
+        binding.btnButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIButton.class);
+            startActivity(intent);
+        });
+
+        // Image
+        binding.btnImage.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIImage.class);
             startActivity(intent);
         });
     }

@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import net.bi4vmr.study.base.TestUIBase;
 import net.bi4vmr.study.box.TestUIBox;
 import net.bi4vmr.study.databinding.MainActivityBinding;
+import net.bi4vmr.study.dialog.TestUIDialog;
 import net.bi4vmr.study.modifier.TestUIModifier;
 import net.bi4vmr.study.scaffold.TestUIScaffold;
 
@@ -66,6 +67,12 @@ public class MainActivity extends AppCompatActivity {
         // Scaffold
         binding.btnScaffold.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIScaffold.class);
+            startActivity(intent);
+        });
+
+        // Dialog
+        binding.btnDialog.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIDialog.class);
             startActivity(intent);
         });
     }
