@@ -11,12 +11,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import net.bi4vmr.study.base.TestUIBase;
-import net.bi4vmr.study.compatible.TestUIAndroidView;
-import net.bi4vmr.study.compatible.TestUIComposeView;
 import net.bi4vmr.study.databinding.MainActivityBinding;
-import net.bi4vmr.study.skill.TestUIState;
-import net.bi4vmr.study.skill.TestUIVisibility;
+import net.bi4vmr.study.theme.TestUITheme;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         // AndroidView
         binding.btnAndroidView.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIAndroidView.class);
+            Intent intent = new Intent(this, TestUITheme.class);
             startActivity(intent);
         });
 
         // ComposeView
         binding.btnComposeView.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIComposeView.class);
+            Intent intent = new Intent(this, TestUITheme.class);
             startActivity(intent);
         });
     }

@@ -18,14 +18,10 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：AndroidView -->
+        <!-- 示例界面：主题切换 -->
         <activity
-            android:name=".compatible.TestUIAndroidView"
-            android:exported="false" />
-
-        <!-- 示例界面：ComposeView -->
-        <activity
-            android:name=".compatible.TestUIComposeView"
+            android:name=".theme.TestUITheme"
+            android:configChanges="uiMode"
             android:exported="false" />
     </application>
 </manifest>
