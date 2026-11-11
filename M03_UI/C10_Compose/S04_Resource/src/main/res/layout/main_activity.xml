@@ -44,17 +44,24 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btnAndroidView"
+            android:id="@+id/btnRes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AndroidView"
+            android:text="资源"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnComposeView"
+            android:id="@+id/btnTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ComposeView"
+            android:text="主题切换"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCustomTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自定义主题"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

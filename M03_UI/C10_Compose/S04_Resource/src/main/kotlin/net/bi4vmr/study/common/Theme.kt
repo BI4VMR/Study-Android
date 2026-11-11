@@ -4,18 +4,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
-
+// 配色方案：浅色模式
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = Color.Black
 )
+
+// 配色方案：深色模式
+private val DarkColorScheme = darkColorScheme(
+    // 主要颜色：文本框、按钮等元素的主色调
+    primary = Color.White
+)
+
 
 // 自定义主题
 @Composable

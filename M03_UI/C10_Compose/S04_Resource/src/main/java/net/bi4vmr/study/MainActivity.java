@@ -12,6 +12,8 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import net.bi4vmr.study.databinding.MainActivityBinding;
+import net.bi4vmr.study.res.TestUIRes;
+import net.bi4vmr.study.theme.TestUICustomTheme;
 import net.bi4vmr.study.theme.TestUITheme;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,15 +44,21 @@ public class MainActivity extends AppCompatActivity {
         ViewCompat.requestApplyInsets(rootView);
 
 
-        // AndroidView
-        binding.btnAndroidView.setOnClickListener(v -> {
+        // 资源
+        binding.btnRes.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIRes.class);
+            startActivity(intent);
+        });
+
+        // 主题切换
+        binding.btnTheme.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUITheme.class);
             startActivity(intent);
         });
 
-        // ComposeView
-        binding.btnComposeView.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUITheme.class);
+        // 自定义主题
+        binding.btnCustomTheme.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUICustomTheme.class);
             startActivity(intent);
         });
     }

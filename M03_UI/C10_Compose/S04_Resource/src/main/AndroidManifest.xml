@@ -20,8 +20,18 @@
 
         <!-- 示例界面：主题切换 -->
         <activity
+            android:name=".res.TestUIRes"
+            android:exported="false" />
+
+        <!-- 示例界面：主题切换 -->
+        <activity
             android:name=".theme.TestUITheme"
             android:configChanges="uiMode"
+            android:exported="false" />
+
+        <!-- 示例界面：自定义主题 -->
+        <activity
+            android:name=".theme.TestUICustomTheme"
             android:exported="false" />
     </application>
 </manifest>

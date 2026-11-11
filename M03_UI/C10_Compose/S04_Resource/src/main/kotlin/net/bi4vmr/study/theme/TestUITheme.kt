@@ -11,9 +11,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -60,6 +64,8 @@ class TestUITheme : ComponentActivity() {
                             .verticalScroll(rememberScrollState())
                             .systemBarsPadding()
                     ) {
+                        /* 深色模式设置 */
+                        Text(text = "深色模式设置：")
                         Row {
                             RadioButton(
                                 selected = (darkModeConfig == DarkMode.AUTO),
@@ -81,6 +87,29 @@ class TestUITheme : ComponentActivity() {
                             )
                             Text(text = "深色")
                         }
+
+
+                        /* 引用主题属性 */
+                        Text(text = "引用主题属性设置文本颜色", color = MaterialTheme.colorScheme.primary)
+
+
+                        /* 示例控件 */
+                        Text(text = "示例控件：")
+
+                        Text(text = "Hello, World!")
+
+                        var textInput: String by remember { mutableStateOf("Hello, World!") }
+                        TextField(
+                            value = textInput,
+                            onValueChange = { textInput = it },
+                            label = { Text(text = "输入框") }
+                        )
+
+                        Button(onClick = {}) {
+                            Text(text = "确认")
+                        }
+
+                        CircularProgressIndicator()
                     }
                 }
             }
