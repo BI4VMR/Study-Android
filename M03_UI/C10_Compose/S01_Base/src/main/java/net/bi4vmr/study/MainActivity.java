@@ -12,6 +12,7 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import net.bi4vmr.study.base.TestUIBase;
+import net.bi4vmr.study.compositionlocal.TestUICompositionLocal;
 import net.bi4vmr.study.databinding.MainActivityBinding;
 import net.bi4vmr.study.skill.TestUIState;
 import net.bi4vmr.study.skill.TestUIVisibility;
@@ -59,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
         // 状态驱动
         binding.btnState.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUIState.class);
+            startActivity(intent);
+        });
+
+        // CompositionLocal
+        binding.btnCompositionLocal.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUICompositionLocal.class);
             startActivity(intent);
         });
     }

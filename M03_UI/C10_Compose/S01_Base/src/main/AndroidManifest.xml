@@ -32,5 +32,10 @@
         <activity
             android:name=".skill.TestUIState"
             android:exported="false" />
+
+        <!-- 示例界面：CompositionLocal -->
+        <activity
+            android:name=".compositionlocal.TestUICompositionLocal"
+            android:exported="false" />
     </application>
 </manifest>

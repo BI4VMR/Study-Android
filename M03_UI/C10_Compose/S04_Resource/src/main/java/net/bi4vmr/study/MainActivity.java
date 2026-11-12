@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 主题切换
+        // MaterialTheme
         binding.btnTheme.setOnClickListener(v -> {
             Intent intent = new Intent(this, TestUITheme.class);
             startActivity(intent);

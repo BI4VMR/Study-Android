@@ -63,5 +63,12 @@
             android:layout_height="wrap_content"
             android:text="设计思想 - 状态驱动"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnCompositionLocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CompositionLocal"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

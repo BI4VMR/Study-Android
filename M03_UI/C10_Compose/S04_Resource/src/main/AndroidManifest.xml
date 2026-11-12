@@ -23,7 +23,7 @@
             android:name=".res.TestUIRes"
             android:exported="false" />
 
-        <!-- 示例界面：主题切换 -->
+        <!-- 示例界面：MaterialTheme -->
         <activity
             android:name=".theme.TestUITheme"
             android:configChanges="uiMode"

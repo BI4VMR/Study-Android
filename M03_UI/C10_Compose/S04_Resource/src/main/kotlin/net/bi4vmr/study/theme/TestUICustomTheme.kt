@@ -75,8 +75,10 @@ class TestUICustomTheme : ComponentActivity() {
                         /* 示例控件 */
                         Text(text = "示例控件：")
 
+                        // 使用原始方式访问
                         Text(text = "警告消息", color = LocalMyTextColors.current.warning)
-                        Text(text = "错误消息", color = LocalMyTextColors.current.error)
+                        // 使用单例对象访问
+                        Text(text = "错误消息", color = MyCustomTheme.textColors.error)
                     }
                 }
             }

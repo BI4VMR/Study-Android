@@ -13,6 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
@@ -23,6 +24,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.core.view.WindowCompat
 import net.bi4vmr.study.common.MyTheme
 
@@ -90,7 +92,11 @@ class TestUITheme : ComponentActivity() {
 
 
                         /* 引用主题属性 */
-                        Text(text = "引用主题属性设置文本颜色", color = MaterialTheme.colorScheme.primary)
+                        Icon(
+                            painter = painterResource(id = android.R.drawable.ic_dialog_alert),
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
 
 
                         /* 示例控件 */

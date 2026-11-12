@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -40,14 +41,16 @@ class TestUIState : ComponentActivity() {
 
         setContent {
             TestComposeTheme {
-                // 顶层容器
-                Column(
-                    Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                        .systemBarsPadding()
-                ) {
-                    Counter()
+                Surface {
+                    // 顶层容器
+                    Column(
+                        Modifier
+                            .fillMaxSize()
+                            .verticalScroll(rememberScrollState())
+                            .systemBarsPadding()
+                    ) {
+                        Counter()
+                    }
                 }
             }
         }

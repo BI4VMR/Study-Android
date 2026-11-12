@@ -1,6 +1,9 @@
 package net.bi4vmr.study.common
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
@@ -26,14 +29,14 @@ val LocalMyTextColors: ProvidableCompositionLocal<MyTextColors> = staticComposit
 
 // 浅色配置
 val LightTextColors = MyTextColors(
-    warning = Color(0xFFCCCC00),
-    error = Color(0xFFFF2F2F)
+    warning = Color(0xFFEEEE00),
+    error = Color(0xFFEF5350)
 )
 
 // 深色配置
 val DarkTextColors = MyTextColors(
-    warning = Color(0xFFEEEE00),
-    error = Color(0xFFEF5350)
+    warning = Color.Cyan,
+    error = Color.Magenta
 )
 
 
@@ -47,7 +50,11 @@ fun MyCustomTheme(
 
     // 通过 CompositionLocalProvider 向作用域内注入 LocalMyTextColors 变量
     CompositionLocalProvider(LocalMyTextColors provides myTextColors) {
-        content()
+        // 保留 MaterialTheme
+        MaterialTheme(
+            colorScheme = if (darkTheme) darkColorScheme() else lightColorScheme(),
+            content = content
+        )
     }
 }
 

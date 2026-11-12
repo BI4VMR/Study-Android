@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -47,18 +48,20 @@ class TestUIVisibility : ComponentActivity() {
 
         setContent {
             TestComposeTheme {
-                // 顶层容器
-                Column(
-                    Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                        .systemBarsPadding()
-                ) {
-                    NoData()
-                    HasData()
+                Surface {
+                    // 顶层容器
+                    Column(
+                        Modifier
+                            .fillMaxSize()
+                            .verticalScroll(rememberScrollState())
+                            .systemBarsPadding()
+                    ) {
+                        NoData()
+                        HasData()
 
-                    ShowIcon()
-                    HideIcon()
+                        ShowIcon()
+                        HideIcon()
+                    }
                 }
             }
         }
