@@ -32,5 +32,10 @@
         <activity
             android:name=".data.TestUIData"
             android:exported="false" />
+
+        <!-- 示例界面：`rememberUpdatedState` -->
+        <activity
+            android:name=".callback.TestUICallback"
+            android:exported="false" />
     </application>
 </manifest>
