@@ -11,9 +11,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import net.bi4vmr.study.compatible.TestUIAndroidView;
-import net.bi4vmr.study.compatible.TestUIComposeView;
 import net.bi4vmr.study.databinding.MainActivityBinding;
+import net.bi4vmr.study.shadow.TestUIBaseShadow;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,15 +42,9 @@ public class MainActivity extends AppCompatActivity {
         ViewCompat.requestApplyInsets(rootView);
 
 
-        // AndroidView
-        binding.btnAndroidView.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIAndroidView.class);
-            startActivity(intent);
-        });
-
-        // ComposeView
-        binding.btnComposeView.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TestUIComposeView.class);
+        // 基础阴影
+        binding.btnBaseShadow.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TestUIBaseShadow.class);
             startActivity(intent);
         });
     }

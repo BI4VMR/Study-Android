@@ -17,7 +17,7 @@ android {
     compileSdk = versionCompileSDK
 
     defaultConfig {
-        applicationId = "net.bi4vmr.study.ui.compose.base"
+        applicationId = "net.bi4vmr.study.ui.compose.compatible"
         minSdk = versionMinSDK
         targetSdk = versionTargetSDK
         versionCode = versionModuleCode

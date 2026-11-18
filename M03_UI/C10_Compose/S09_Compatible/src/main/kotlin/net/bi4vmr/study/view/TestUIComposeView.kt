@@ -1,8 +1,9 @@
-package net.bi4vmr.study.compatible
+package net.bi4vmr.study.view
 
 import android.content.res.Configuration
 import android.graphics.PixelFormat
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.lifecycle.setViewTreeViewModelStoreOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
+import net.bi4vmr.study.window.WindowComposeLifecycleManager
 import net.bi4vmr.study.databinding.TestuiComposeviewBinding
 
 /**
@@ -115,7 +117,7 @@ class TestUIComposeView : AppCompatActivity() {
             0,
             PixelFormat.TRANSLUCENT
         ).apply {
-            gravity = android.view.Gravity.CENTER
+            gravity = Gravity.CENTER
         }
     }
 }

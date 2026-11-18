@@ -1,4 +1,4 @@
-package net.bi4vmr.study.compatible
+package net.bi4vmr.study.window
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

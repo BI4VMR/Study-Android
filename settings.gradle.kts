@@ -137,7 +137,8 @@ include(":M03_UI:C10_Compose:S04_Resource")
 include(":M03_UI:C10_Compose:S05_State")
 include(":M03_UI:C10_Compose:S06_Interaction")
 include(":M03_UI:C10_Compose:S07_Animation")
-include(":M03_UI:C10_Compose:S08_Compatible")
+include(":M03_UI:C10_Compose:S08_Graphic")
+include(":M03_UI:C10_Compose:S09_Compatible")
 
 /* ----- 系统组件 ----- */
 include(":M04_System:C01_Common:S01_Application")

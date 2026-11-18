@@ -20,14 +20,9 @@
             </intent-filter>
         </activity>
 
-        <!-- 示例界面：AndroidView -->
+        <!-- 示例界面：基础阴影 -->
         <activity
-            android:name=".compatible.TestUIAndroidView"
-            android:exported="false" />
-
-        <!-- 示例界面：ComposeView -->
-        <activity
-            android:name=".compatible.TestUIComposeView"
+            android:name=".shadow.TestUIBaseShadow"
             android:exported="false" />
     </application>
 </manifest>
