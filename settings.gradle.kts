@@ -64,6 +64,7 @@ includeBuild("plugin")
 /* ----- 基础知识 ----- */
 include(":M01_Overview:C00_Temporary")
 include(":M01_Overview:C01_HelloWorld")
+include(":M01_Overview:MIUILauncher")
 
 /* ----- 实用工具 ----- */
 include(":M02_Tool:C01_Common:S01_ADB")
