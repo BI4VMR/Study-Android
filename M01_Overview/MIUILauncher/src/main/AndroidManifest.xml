@@ -31,6 +31,6 @@
         <activity
             android:name=".base.TestUIWorkspaceKT"
             android:exported="false"
-            android:theme="@style/Theme.Workspace" />
+            android:theme="@style/Theme.Default" />
     </application>
 </manifest>
